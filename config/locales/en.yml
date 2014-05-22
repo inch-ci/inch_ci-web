@@ -39,7 +39,7 @@ en:
       This project is an attempt to raise the visibility of code documentation in Ruby. It provides badges to include in your project's README, to show people that documenting code is a cool thing.
 
       The badges are based on Inch and look like this:
-      ![Inline docs](/assets/badge-example.png)
+      ![Inline docs](%{badge_image_url})
        Get yours below!
 
       ## What is Inch?
