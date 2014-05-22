@@ -9,10 +9,9 @@ module Action
 
       def initialize(params)
         if params[:payload]
-          payload = JSON[params[:payload]]
-          project = InchCI::Store::FindProject.call(project_uid(payload))
-          enqueue_build(project, branch_name(payload))
-          @result = "OK"
+          process_payload JSON[params[:payload]]
+        elsif params[:ref]
+          process_payload params
         else
           @result = "ERROR"
         end
@@ -26,6 +25,12 @@ module Action
 
       def branch_name(payload)
         payload['ref'] =~ /^refs\/heads\/(.+)$/ && $1
+      end
+
+      def process_payload(payload)
+        project = InchCI::Store::FindProject.call(project_uid(payload))
+        enqueue_build(project, branch_name(payload))
+        @result = "OK"
       end
 
       def project_uid(payload)
