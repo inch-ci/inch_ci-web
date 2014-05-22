@@ -17,3 +17,4 @@ config/access_tokens.yml
 /log/*.log
 /tmp
 /public/github
+/public/assets
