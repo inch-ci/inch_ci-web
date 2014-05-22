@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%= render "layouts/head" %>
+
+  <body class="cover centered">
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand"><%= link_to t("navigation.brand"), root_path %></h3>
+              <ul class="nav masthead-nav">
+                <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to t("navigation.home"), root_path %></li>
+                <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to t("navigation.learn_more"), about_path %></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <%= yield %>
+          </div>
+
+          <%= render "layouts/footer" %>
+        </div>
+
+      </div>
+
+    </div>
+  </body>
+</html>

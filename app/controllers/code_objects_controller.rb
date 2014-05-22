@@ -1,0 +1,2 @@
+class CodeObjectsController < ApplicationController
+end

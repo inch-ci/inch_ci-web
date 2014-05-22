@@ -1,0 +1,325 @@
+---
+codebase_3_objects:
+  build:
+    status: success
+    repo_url: git@github.com:rrrene/sparkr_mock.git
+    branch_name: master
+    started_at: &1 2014-04-10 13:18:52.944747927 +02:00
+    finished_at: *1
+    service_name: github
+    user_name: rrrene
+    repo_name: sparkr_mock
+    revision_uid: 8849af2b7ad96c6aa650a6fd5490ef83629faf2a
+    revision_author_name: René Föhring
+    revision_author_email: rf@bamaru.de
+    revision_authored_at: Wed Jan 29 22:47:36 2014 +0100
+    latest_revision: true
+    objects:
+    - type: Module
+      fullname: Sparkr
+      docstring: ''
+      score: 0
+      grade: U
+      priority: 5
+      location: lib/sparkr.rb:7
+      roles:
+      - name: Object::InRoot
+        priority: 3
+        score: 0.0
+      - name: Object::Public
+        priority: 2
+        score: 0.0
+      - name: Object::WithoutDoc
+        priority: 0
+        potential_score: 100
+      - name: Object::WithoutCodeExample
+        priority: 0
+        potential_score: 10
+      - name: Namespace::WithChildren
+        priority: 0
+        score: 0
+    - type: Method
+      fullname: Sparkr.sparkline
+      docstring: |-
+        Returns a sparkline
+
+        Example:
+
+          list = [open_issue_count, closed_issue_count]
+          Sparkr.sparkline(list)
+          # => "▁█"
+
+        Example with block:
+
+        Let's say you have your list of open and closed issues, but you
+        want to format it so the open ones are red and the closed ones are
+        green, so you can quickly see how you are doing. Let's further
+        suppose you use a gem that adds a #color method to String
+        for ANSI coloring.
+
+          line = Sparkr.sparkline(list) do |tick, count, index|
+            if index == 0
+              tick.color(:red)
+            else
+              tick.color(:green)
+            end
+          end
+
+          line
+          # => "▁█" (colored, trust me)
+
+        @param numbers [Array<String, Fixnum, Float>] the numbers to be rendered
+        @param &block [Proc] optional, can be used to format the rendered string
+
+        @return [String]
+      score: 100
+      grade: A
+      priority: 3
+      location: lib/sparkr.rb:39
+      roles:
+      - name: Object::Public
+        priority: 2
+        score: 0.0
+      - name: Object::WithDoc
+        priority: 0
+        score: 50.0
+      - name: Object::WithMultipleCodeExamples
+        priority: 0
+        score: 25.0
+      - name: Method::WithReturnType
+        priority: 0
+        score: 10.0
+      - name: Method::WithoutReturnDescription
+        priority: 0
+        potential_score: 30
+      - name: MethodParameter::WithMention
+        priority: 0
+        score: 10.0
+        ref_name: numbers
+      - name: MethodParameter::WithType
+        priority: 0
+        score: 10.0
+        ref_name: numbers
+      - name: MethodParameter::WithMention
+        priority: 0
+        score: 10.0
+        ref_name: block
+      - name: MethodParameter::WithType
+        priority: 0
+        score: 10.0
+        ref_name: block
+      - name: MethodParameter::Block
+        priority: 1
+        score: 0.0
+        ref_name: block
+    - type: Method
+      fullname: Sparkr::CLI#run
+      docstring: |-
+        Runs sparkr with the given +args+
+        @return [void]
+      score: 60
+      grade: B
+      priority: 3
+      location: lib/sparkr/cli.rb:17
+      roles:
+      - name: Object::Public
+        priority: 2
+        score: 0.0
+      - name: Object::WithDoc
+        priority: 0
+        score: 50.0
+      - name: Object::WithoutCodeExample
+        priority: 0
+        potential_score: 10
+      - name: Method::WithReturnType
+        priority: 0
+        score: 10.0
+      - name: Method::WithoutReturnDescription
+        priority: 0
+        potential_score: 30
+      - name: MethodParameter::WithoutMention
+        priority: 0
+        potential_score: 20
+        ref_name: args
+      - name: MethodParameter::WithoutType
+        priority: 0
+        potential_score: 20
+        ref_name: args
+      - name: MethodParameter::Splat
+        priority: 1
+        score: 0.0
+        ref_name: args
+codebase_3_objects_1_changed:
+  build:
+    status: success
+    repo_url: git@github.com:rrrene/sparkr_mock.git
+    branch_name: master
+    started_at: &1 2014-04-10 13:18:52.944747927 +02:00
+    finished_at: *1
+    service_name: github
+    user_name: rrrene
+    repo_name: sparkr_mock
+    revision_uid: a6fd5490ef83629faf2a89af2b7ad96c6aa65840
+    revision_author_name: René Föhring
+    revision_author_email: rf@bamaru.de
+    revision_authored_at: Wed Jan 29 22:47:36 2014 +0100
+    latest_revision: true
+    objects:
+    - type: Module
+      fullname: Sparkr
+      docstring: ''
+      score: 100
+      grade: A
+      priority: 5
+      location: lib/sparkr.rb:7
+      roles:
+      - name: Object::InRoot
+        priority: 3
+        score: 0.0
+      - name: Object::Public
+        priority: 2
+        score: 0.0
+      - name: Object::WithDoc
+        priority: 0
+        score: 100
+      - name: Object::WithoutCodeExample
+        priority: 0
+        potential_score: 10
+      - name: Namespace::WithChildren
+        priority: 0
+        score: 0
+    - type: Method
+      fullname: Sparkr.sparkline
+      docstring: |-
+        Returns a sparkline
+
+        Example:
+
+          list = [open_issue_count, closed_issue_count]
+          Sparkr.sparkline(list)
+          # => "▁█"
+
+        Example with block:
+
+        Let's say you have your list of open and closed issues, but you
+        want to format it so the open ones are red and the closed ones are
+        green, so you can quickly see how you are doing. Let's further
+        suppose you use a gem that adds a #color method to String
+        for ANSI coloring.
+
+          line = Sparkr.sparkline(list) do |tick, count, index|
+            if index == 0
+              tick.color(:red)
+            else
+              tick.color(:green)
+            end
+          end
+
+          line
+          # => "▁█" (colored, trust me)
+
+        @param numbers [Array<String, Fixnum, Float>] the numbers to be rendered
+        @param &block [Proc] optional, can be used to format the rendered string
+
+        @return [String]
+      score: 100
+      grade: A
+      priority: 3
+      location: lib/sparkr.rb:39
+      roles:
+      - name: Object::Public
+        priority: 2
+        score: 0.0
+      - name: Object::WithDoc
+        priority: 0
+        score: 50.0
+      - name: Object::WithMultipleCodeExamples
+        priority: 0
+        score: 25.0
+      - name: Method::WithReturnType
+        priority: 0
+        score: 10.0
+      - name: Method::WithoutReturnDescription
+        priority: 0
+        potential_score: 30
+      - name: MethodParameter::WithMention
+        priority: 0
+        score: 10.0
+        ref_name: numbers
+      - name: MethodParameter::WithType
+        priority: 0
+        score: 10.0
+        ref_name: numbers
+      - name: MethodParameter::WithMention
+        priority: 0
+        score: 10.0
+        ref_name: block
+      - name: MethodParameter::WithType
+        priority: 0
+        score: 10.0
+        ref_name: block
+      - name: MethodParameter::Block
+        priority: 1
+        score: 0.0
+        ref_name: block
+    - type: Method
+      fullname: Sparkr::CLI#run
+      docstring: |-
+        Runs sparkr with the given +args+
+        @return [void]
+      score: 60
+      grade: B
+      priority: 3
+      location: lib/sparkr/cli.rb:17
+      roles:
+      - name: Object::Public
+        priority: 2
+        score: 0.0
+      - name: Object::WithDoc
+        priority: 0
+        score: 50.0
+      - name: Object::WithoutCodeExample
+        priority: 0
+        potential_score: 10
+      - name: Method::WithReturnType
+        priority: 0
+        score: 10.0
+      - name: Method::WithoutReturnDescription
+        priority: 0
+        potential_score: 30
+      - name: MethodParameter::WithoutMention
+        priority: 0
+        potential_score: 20
+        ref_name: args
+      - name: MethodParameter::WithoutType
+        priority: 0
+        potential_score: 20
+        ref_name: args
+      - name: MethodParameter::Splat
+        priority: 1
+        score: 0.0
+        ref_name: args
+retrieve_failed:
+  build:
+    status: retrieve_failed
+    repo_url: git@github.com:rrrene/sparkr.git
+    branch_name: master
+    started_at: &1 2014-04-11 01:57:44.233056000 +02:00
+    finished_at: *1
+    latest_revision: false
+change_branch_failed:
+  build:
+    status: change_branch_failed
+    repo_url: git@github.com:rrrene/sparkr.git
+    branch_name: master
+    started_at: &1 2014-04-11 01:57:44.233056000 +02:00
+    finished_at: *1
+    latest_revision: false
+checkout_revision_failed:
+  build:
+    status: checkout_revision_failed
+    repo_url: git@github.com:rrrene/sparkr.git
+    branch_name: master
+    started_at: &1 2014-04-11 01:57:44.233056000 +02:00
+    finished_at: *1
+    latest_revision: false

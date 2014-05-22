@@ -1,0 +1,17 @@
+%h1.cover-heading
+  = t('welcome.headline')
+
+= markdown t('welcome.abstract')
+
+= render 'projects/form_new'
+
+%hr
+
+%h1= t('welcome.featured')
+
+= render "projects/featured"
+
+%hr
+
+%p.lead
+  = link_to t('welcome.learn_more'), about_path, :class => 'btn btn-lg btn-default'

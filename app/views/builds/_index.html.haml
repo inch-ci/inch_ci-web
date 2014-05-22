@@ -1,0 +1,47 @@
+- if @project
+  = back_button project_page_path(@project)
+
+%h2.sub-header
+  - if @project
+    = t("builds.index.title_with_project", :project_name => @project.name)
+  - else
+    = t("builds.index.title")
+
+.table-responsive
+  %table.table.table-striped.builds
+    %thead
+      %tr
+        %th #
+        %th Project
+        %th.revision_uid Revision
+        %th Branch
+        %th.duration Duration
+        %th.status{:colspan => 2} Status
+    %tbody
+      - @builds.each do |build|
+        %tr
+          %td= @project ? build.number : build.id
+          %td= link_to_project build.branch.project
+          %td.revision_uid
+            = link_to_branch build.branch
+            %small
+              - if revision = build.revision
+                - if revision.tag_uid
+                  %span.badge{:title => revision.uid}
+                    = "#{revision.tag_uid}"
+                -else
+                  = "(#{revision.uid})"
+
+          %td
+          %td.duration
+            - if build.finished_at
+              = build.finished_at - build.started_at
+              seconds
+            - elsif build.started_at
+              %span{"data-increment-every-second" => true}
+                = (Time.now - build.started_at).to_i
+              seconds ago
+          %td.status{:class => build_css_class(build)}
+            = build_status_icon(build)
+          %td.trigger
+            = build_trigger_icon(build)

@@ -1,0 +1,2 @@
+class CodeObjectRolesController < ApplicationController
+end

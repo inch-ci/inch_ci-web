@@ -1,0 +1,31 @@
+.stats-wrapper
+  .stats
+    .progress
+      .progress-bar.progress-bar-A{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('A')}%", :title => 'Really good'}
+      .progress-bar.progress-bar-B{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('B')}%", :title => 'Properly documented'}
+      .progress-bar.progress-bar-C{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('C')}%", :title => 'Needs work'}
+      .progress-bar.progress-bar-U{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('U')}%", :title => 'Undocumented'}
+
+    %table.table.stats-box
+      %tr
+        %th.build_number
+          = t('projects.topbar.info.build_number')
+        %td.build_number
+          - if @revision && @build = @revision.builds.last
+            = "##{@build.number}"
+            %small
+              = link_to_build_history(@project)
+        %th.revision_uid
+          = t('projects.topbar.info.revision_uid')
+        %td.revision_uid
+          = @revision.uid
+        - if @project.source_code_url
+          %th.source_code_url
+            = t('projects.topbar.info.source_code_url')
+          %td.source_code_url
+            = link_to_with_hostname @project.source_code_url, :target => '_blank'
+        - if @project.documentation_url
+          %th.documentation_url
+            = t('projects.topbar.info.documentation_url')
+          %td.documentation_url
+            = link_to_with_hostname @project.documentation_url, :target => '_blank'

@@ -1,0 +1,57 @@
+class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+
+  def featured_projects
+    @featured_projects ||= FEATURED_PROJECT_UIDS.map do |uid|
+      InchCI::Store::FindProject.call(uid)
+    end.compact
+  end
+  helper_method :featured_projects
+
+  def project_path(project, *args)
+    options = args.extract_options!
+    branch_name = args.shift
+    revision_uid = args.shift
+    hash = {
+      :controller => 'projects',
+      :action => 'show',
+      :service => project.service_name,
+      :user => project.user_name,
+      :repo => project.repo_name,
+      :branch => branch_name,
+      :revision => revision_uid,
+    }
+    hash.merge(options)
+  end
+  helper_method :project_path
+
+  def project_url(*args)
+    url_for project_path(*args)
+  end
+
+  def project_build_history_path(*args)
+    project_path(*args).merge(:controller => 'builds', :action => 'index')
+  end
+  helper_method :project_build_history_path
+
+  def project_page_path(*args)
+    project_path(*args).merge(:action => 'page')
+  end
+  helper_method :project_page_path
+
+  def project_page_url(*args)
+    url_for project_page_path(*args)
+  end
+
+  def project_rebuild_path(*args)
+    project_path(*args).merge(:action => 'rebuild')
+  end
+  helper_method :project_rebuild_path
+
+  def project_update_info_path(*args)
+    project_path(*args).merge(:action => 'update_info')
+  end
+  helper_method :project_update_info_path
+end

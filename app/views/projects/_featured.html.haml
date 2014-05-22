@@ -1,0 +1,5 @@
+.featured_projects
+  %p
+    - featured_projects.each do |project|
+      %strong= link_to_project project
+      / %small= project.description

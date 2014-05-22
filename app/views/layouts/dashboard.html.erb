@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%= render "layouts/head" %>
+
+  <body class="dashboard">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"># Inch CI</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar nav-sidebar-project">
+            <li><a href="#">Feed</a></li>
+            <li class="active"><a href="#">Report</a></li>
+            <li><a href="#">Suggestions</a></li>
+            <li><a href="#">Branches</a></li>
+            <li><a href="#">Tags</a></li>
+            <li><a href="#">Settings</a></li>
+          </ul>
+          <ul class="nav nav-sidebar nav-sidebar-repos">
+            <li class="dropdown-header">Your repositories</li>
+            <li><a href="">rrrene/inch</a></li>
+            <li><a href="">rrrene/sparkr</a></li>
+            <li><a href="">neopoly/dci</a></li>
+            <li><a href="">neopoly/on</a></li>
+            <li><a href="">rrrene/homecoming</a></li>
+          </ul>
+          <ul class="nav nav-sidebar nav-sidebar-popular">
+            <li class="dropdown-header">Popular projects</li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

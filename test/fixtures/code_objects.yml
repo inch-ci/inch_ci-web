@@ -1,0 +1,273 @@
+---
+code_object_1:
+  id: 1
+  project_id: 1
+  type: Module
+  fullname: Sparkr
+  score: 0
+  grade: U
+  priority: 5
+  location: lib/sparkr.rb:7
+  digest: DtXbUUl3ipNzLiy2JKZkV+dcZHc=
+  created_at: 2014-04-13 20:07:33.101241000 Z
+  updated_at: 2014-04-13 20:07:33.101241000 Z
+code_object_2:
+  id: 2
+  project_id: 1
+  type: Method
+  fullname: Sparkr.sparkline
+  docstring: |-
+    Returns a sparkline
+
+    Example:
+
+      list = [open_issue_count, closed_issue_count]
+      Sparkr.sparkline(list)
+      # => "▁█"
+
+    Example with block:
+
+    Let's say you have your list of open and closed issues, but you
+    want to format it so the open ones are red and the closed ones are
+    green, so you can quickly see how you are doing. Let's further
+    suppose you use a gem that adds a #color method to String
+    for ANSI coloring.
+
+      line = Sparkr.sparkline(list) do |tick, count, index|
+        if index == 0
+          tick.color(:red)
+        else
+          tick.color(:green)
+        end
+      end
+
+      line
+      # => "▁█" (colored, trust me)
+
+    @param numbers [Array<String, Fixnum, Float>] the numbers to be rendered
+    @param &block [Proc] optional, can be used to format the rendered string
+
+    @return [String]
+  score: 100
+  grade: A
+  priority: 3
+  location: lib/sparkr.rb:39
+  digest: GQTg8xbcrhu+crU5anhl5Ekf18Q=
+  created_at: 2014-04-13 20:07:33.154173000 Z
+  updated_at: 2014-04-13 20:07:33.154173000 Z
+code_object_3:
+  id: 3
+  project_id: 1
+  type: Method
+  fullname: Sparkr::CLI#run
+  docstring: |-
+    Runs sparkr with the given +args+
+    @return [void]
+  score: 60
+  grade: B
+  priority: 3
+  location: lib/sparkr/cli.rb:17
+  digest: 12efooPmIHFldjqHfWAQRoCcLgk=
+  created_at: 2014-04-13 20:07:33.187312000 Z
+  updated_at: 2014-04-13 20:07:33.187312000 Z
+code_object_4:
+  id: 4
+  project_id: 1
+  type: Method
+  fullname: Sparkr::Sparkline#normalize_numbers
+  docstring: |-
+    Returns the normalized equivalent of a given list
+
+      normalize_numbers([3, 4, 7])
+      # => [0, 1, 4]
+
+    @return [Fixnum] the normalized equivalent of the given +_numbers+
+  score: 100
+  grade: A
+  priority: 2
+  location: lib/sparkr/sparkline.rb:62
+  digest: PS4pqSA/Ss921vZBjGZRASwa69U=
+  created_at: 2014-04-13 20:07:33.215329000 Z
+  updated_at: 2014-04-13 20:07:33.215329000 Z
+code_object_5:
+  id: 5
+  project_id: 1
+  type: Method
+  fullname: Sparkr::Sparkline#format
+  docstring: |-
+    Formats all the ticks in the Sparkline with a given block,
+    returns itself
+
+    Example:
+
+    Let's say you have a list of open and closed issues and want
+    to format it so the open ones are red and the closed ones are
+    green, so you can quickly see how you are doing. Let's further
+    suppose you use a gem that adds a #color method to String
+    for ANSI coloring.
+
+      list = [open_issue_count, closed_issue_count]
+      sparkline = Sparkr::Sparkline.new(list)
+      sparkline.format do |tick, count, index|
+        if index == 0
+          tick.color(:red)
+        else
+          tick.color(:green)
+        end
+      end
+
+      sparkline.to_s
+      # => "▁█" (colored, which you can't see)
+
+    @return [Sparkline] itself
+  score: 100
+  grade: A
+  priority: 2
+  location: lib/sparkr/sparkline.rb:49
+  digest: 3vjtRqDc+aolkDXtRytuVPKiyHM=
+  created_at: 2014-04-13 20:07:33.241633000 Z
+  updated_at: 2014-04-13 20:07:33.241633000 Z
+code_object_6:
+  id: 6
+  project_id: 1
+  type: Method
+  fullname: Sparkr::Sparkline#steps
+  docstring: "@return [Fixnum] the count of steps between the smallest and highest
+    bar"
+  score: 100
+  grade: A
+  priority: 2
+  location: lib/sparkr/sparkline.rb:83
+  digest: kx4ZS3XK8XM/1Zm1hS4U4tMe9Xk=
+  created_at: 2014-04-13 20:07:33.263273000 Z
+  updated_at: 2014-04-13 20:07:33.263273000 Z
+code_object_7:
+  id: 7
+  project_id: 1
+  type: Method
+  fullname: Sparkr::CLI.run
+  docstring: |-
+    Helper method to run an instance with the given +args+
+
+    @see #run
+    @return [CLI] the instance that ran
+  score: 100
+  grade: A
+  priority: 2
+  location: lib/sparkr/cli.rb:9
+  digest: GSeqzAkZSoLucv400c5OgoSPLck=
+  created_at: 2014-04-13 20:07:33.290836000 Z
+  updated_at: 2014-04-13 20:07:33.290836000 Z
+code_object_8:
+  id: 8
+  project_id: 1
+  type: Method
+  fullname: Sparkr::Sparkline#to_s
+  docstring: |-
+    @param sep [String, nil] separator used to join the bars of the sparkline
+    @return [String] the sparkline, seperated by +sep+ (defaults to '')
+  score: 80
+  grade: A
+  priority: 2
+  location: lib/sparkr/sparkline.rb:89
+  digest: 3B11xIqgBBBYJCoL6Jio9qO5IA8=
+  created_at: 2014-04-13 20:07:33.316737000 Z
+  updated_at: 2014-04-13 20:07:33.316737000 Z
+code_object_9:
+  id: 9
+  project_id: 1
+  type: Method
+  fullname: Sparkr::Sparkline#step_height
+  docstring: "@return [Float] the numerical \"height\" of a single bar \"step\""
+  score: 40
+  grade: C
+  priority: 2
+  location: lib/sparkr/sparkline.rb:71
+  digest: LpVZtWXcdYef4dD9XM5eGH/t1us=
+  created_at: 2014-04-13 20:07:33.342364000 Z
+  updated_at: 2014-04-13 20:07:33.342364000 Z
+code_object_10:
+  id: 10
+  project_id: 1
+  type: Method
+  fullname: Sparkr::Sparkline#initialize
+  score: 0
+  grade: U
+  priority: 2
+  location: lib/sparkr/sparkline.rb:8
+  digest: KhGdlBevzX0d1PM3ULK776MXTog=
+  created_at: 2014-04-13 20:07:33.370412000 Z
+  updated_at: 2014-04-13 20:07:33.370412000 Z
+code_object_11:
+  id: 11
+  project_id: 1
+  type: Class
+  fullname: Sparkr::Sparkline
+  score: 0
+  grade: U
+  priority: 2
+  location: lib/sparkr/sparkline.rb:4
+  digest: rvwJ+8HZnLN+jp1b92Z5eIuEcT4=
+  created_at: 2014-04-13 20:07:33.390495000 Z
+  updated_at: 2014-04-13 20:07:33.390495000 Z
+code_object_12:
+  id: 12
+  project_id: 1
+  type: Class
+  fullname: Sparkr::CLI
+  score: 0
+  grade: U
+  priority: 2
+  location: lib/sparkr/cli.rb:4
+  digest: hccOuo/gXverkwd81SOFOSunBdA=
+  created_at: 2014-04-13 20:07:33.406377000 Z
+  updated_at: 2014-04-13 20:07:33.406377000 Z
+code_object_13:
+  id: 13
+  project_id: 1
+  type: Constant
+  fullname: Sparkr::Sparkline::DEFAULT_SEPARATOR
+  score: 0
+  grade: U
+  priority: -1
+  location: lib/sparkr/sparkline.rb:6
+  digest: AND989TdvUbXKOtffQBM8LXxhp4=
+  created_at: 2014-04-13 20:07:33.422668000 Z
+  updated_at: 2014-04-13 20:07:33.422668000 Z
+code_object_14:
+  id: 14
+  project_id: 1
+  type: Constant
+  fullname: Sparkr::Sparkline::TICKS
+  score: 0
+  grade: U
+  priority: -1
+  location: lib/sparkr/sparkline.rb:5
+  digest: smJBjdVI4v4qUb9ffSvWlQ2Yshc=
+  created_at: 2014-04-13 20:07:33.435485000 Z
+  updated_at: 2014-04-13 20:07:33.435485000 Z
+code_object_15:
+  id: 15
+  project_id: 1
+  type: Constant
+  fullname: Sparkr::VERSION
+  score: 0
+  grade: U
+  priority: -1
+  location: lib/sparkr/version.rb:4
+  digest: UX1w6i4zI2BoJO7czxH0fIty79I=
+  created_at: 2014-04-13 20:07:33.446811000 Z
+  updated_at: 2014-04-13 20:07:33.446811000 Z
+code_object_16:
+  id: 16
+  project_id: 1
+  type: Method
+  fullname: Sparkr::CLI#help
+  docstring: Returns usage information
+  score: 100
+  grade: A
+  priority: -2
+  location: lib/sparkr/cli.rb:29
+  digest: M0X99AxTPyQRBGQsyA02jxF8zKg=
+  created_at: 2014-04-13 20:07:33.469059000 Z
+  updated_at: 2014-04-13 20:07:33.469059000 Z

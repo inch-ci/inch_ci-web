@@ -1,0 +1,23 @@
+- show_count ||= 5
+
+%table.table.table-striped.grade-table{:class => "grade-table-#{grade_list.grade}"}
+  %thead
+    %tr
+      %th{:colspan => 3}= t("grade_list_table.header_#{grade_list.grade}")
+  %tbody
+    - if grade_list.code_objects.empty?
+      %tr.show_more
+        %td{:colspan => 3}
+          &ndash;
+    - else
+      - grade_list.code_objects[0...show_count].each do |code_object|
+        %tr
+          = render "shared/grade_list_cells", :grade_list => grade_list, :code_object => code_object
+      - if grade_list.count > show_count
+        %tr.show_more
+          %td{:colspan => 3}
+            %a{:href => '#', :'data-show-more' => grade_list.grade}
+              = t('grade_list_table.show_more', :more_count => grade_list.count - show_count)
+        - grade_list.code_objects[show_count..-1].each do |code_object|
+          %tr.hidden_object
+            = render "shared/grade_list_cells", :grade_list => grade_list, :code_object => code_object

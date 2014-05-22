@@ -1,0 +1,105 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  navigation:
+    brand: "# Inch CI"
+    home: Home
+    learn_more: Learn more
+    report_card: Report card
+    what_is_this: What is this about?
+  welcome:
+    headline: "Documentation badges for Ruby projects"
+    abstract: "Let's raise the visibility of code documentation in Ruby!"
+    featured: "Join the movement!"
+    learn_more: "Lean more"
+    project_placeholder: git@github.com:rrrene/inch.git
+    add_project: "Add project"
+  about:
+    headline: "What is Inch CI?"
+    abstract: |
+      This project is an attempt to raise the visibility of code documentation in Ruby. It provides badges to include in your project's README, to show people that documenting code is a cool thing.
+
+      The badges are based on Inch and look like this:
+      ![Inline docs](/assets/badge-example.png)
+       Get yours below!
+
+      ## What is Inch?
+
+      Inch is a documentation measurement tool for Ruby that was created to help people document their code.
+      It is a command-line utility that gives grades based on how complete the docs are ([screenshots](http://trivelop.de/inch)).
+
+      ## What is the goal?
+
+      I really think that posting these badges in a project's README will benefit the project (because people can see that it's well documented) and the community by improving the visibility of documentation.
+
+      Let's start a discussion, let's raise the visibility of documentation, let's talk.
+
+      ## Wait, who's behind this?
+
+      I'm [@rrrene](https://twitter.com/rrrene), creator of [sparkr](http://trivelop.de/sparkr) and [Inch](http://trivelop.de/inch).
+
+      If you have any questions or suggestions: Hit me up [on Twitter](https://twitter.com/rrrene) or [create an issue](https://github.com/rrrene/inch) in the Inch CI project.
+  builds:
+    index:
+      title: Recent builds
+      title_with_project: "Recent builds for %{project_name}"
+  projects:
+    create:
+      url_not_found: "No project was found under that URL."
+    topbar:
+      info:
+        build_number: "Build"
+        builds_all: "(%{link})"
+        builds_link: "all"
+        build_status: "Status"
+        running_time: "Started"
+        branch_name: Branch
+        revision_uid: Revision
+        message: Message
+        author_name: Author
+        documentation_url: Documentation
+        source_code_url: Source
+      rebuild_link: Refresh
+      update_info_link: "Update branches & info"
+    wait_for_build:
+      info: "Your page is currently building. This page will automatically refresh (can take up to a minute)."
+    start_build:
+      info: "This branch is not evaluated yet. Press 'Refresh' to add it."
+
+  badge:
+    format:
+      image_url: "Image URL:"
+      md: "Markdown:"
+      textile: "Textile:"
+      rdoc: "RDoc:"
+  grade_list_table:
+    header_A: "Seems really good"
+    header_B: "Proper documentation present"
+    header_C: "Needs work"
+    header_U: "Undocumented"
+    show_more: "Show %{more_count} more ..."
+  shared:
+    back_link: Back
+    footer: |
+      An open source project,
+      created by René Föhring ([@rrrene](https://twitter.com/rrrene)),
+      based on [Inch](http://trivelop.de/inch).

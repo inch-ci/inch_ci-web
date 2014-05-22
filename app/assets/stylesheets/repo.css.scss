@@ -1,0 +1,215 @@
+
+body.repo {
+  color: #fff;
+  background-image: transparent;
+  background-color: #392455;
+  box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+  text-align: center;
+  min-height: 100%;
+  padding-top: 0;
+
+  .site-wrapper {
+    width: 100%;
+    min-height: 100%;
+    background-image: image-url("topbar.png");
+    background-repeat: repeat-x;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  }
+  .cover-container {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  /*
+   * Header
+   */
+  .masthead-brand {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    a {
+      color: white;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .masthead-nav > li {
+    display: inline-block;
+  }
+  .masthead-nav > li + li {
+    margin-left: 20px;
+  }
+  .masthead-nav > li > a {
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* IE8 proofing */
+    color: rgba(255,255,255,.75);
+    border-bottom: 2px solid transparent;
+  }
+  .masthead-nav > li > a:hover,
+  .masthead-nav > li > a:focus {
+    background-color: transparent;
+    border-bottom-color: rgba(255,255,255,.25);
+  }
+  .masthead-nav > .active > a,
+  .masthead-nav > .active > a:hover,
+  .masthead-nav > .active > a:focus {
+    color: #fff;
+    border-bottom-color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .masthead-brand {
+      float: left;
+    }
+    .masthead-nav {
+      float: right;
+    }
+  }
+
+
+  /*
+   * Footer
+   */
+
+  .mastfoot {
+    color: #999; /* IE8 proofing */
+    color: rgba(255,255,255,.5);
+    padding: 20px;
+
+    /* Links */
+    a,
+    a:focus,
+    a:hover {
+      color: #fff;
+    }
+  }
+
+
+  /*
+   * Affix and center
+   */
+
+  @media (min-width: 768px) {
+    .masthead {
+      padding: 30px 0 15px 0;
+    }
+    /* Handle the widths */
+    .masthead,
+    .mastfoot,
+    .cover-container {
+      width: 100%; /* Must be percentage or pixels for horizontal alignment */
+    }
+  }
+
+  @media (min-width: 992px) {
+    .masthead,
+    .mastfoot,
+    .cover-container {
+      width: 800px;
+    }
+  }
+
+  .repo-wrapper {
+    color: #333;
+    text-shadow: none;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2),0 -3px 8px rgba(0,0,0,0.1);
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 40px;
+    margin: 20px 0;
+  }
+
+  .repo-card {
+    position: relative;
+    min-height: 20rem;
+  }
+  .badge-info {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #f0f0f0;
+    padding: 2px 10px;
+    border-radius: 4px;
+  }
+  .badge-info a,
+  .badge-info a:hover {
+    color: #999;
+    text-decoration: none;
+  }
+  .badge-info a:hover {
+    color: inherit;
+  }
+  .badge-info img {
+    vertical-align: text-bottom;
+  }
+  #badge-image-markup {
+    background: #f0f0f0;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    padding: 1rem 2rem 0.5rem 2rem;
+    border-bottom: 4px solid #ddd;
+  }
+  #badge-image-markup h3 {
+    margin-top: 0;
+  }
+  #badge-image-markup label {
+    float: left;
+    width: 10rem;
+  }
+  #badge-image-markup input.url {
+    width: 40rem;
+    padding: 0.1rem;
+  }
+  .topbar,
+  .repo-info {
+    padding: 6px 20px;
+  }
+  .topbar button em {
+    font-style: normal;
+    color: #aaa;
+  }
+  .repo-info .explanation {
+    text-align: center;
+    opacity: 0.7;
+    margin: 1rem;
+  }
+  .repo-info .explanation p {
+    margin: 0;
+  }
+  .repo-links {
+    margin-bottom: 1rem;
+    background-color: #eee;
+    text-align: center;
+  }
+  .repo-links ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .repo-links ul li {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+  .repo-links ul li:last-child {
+    margin-right: 0;
+  }
+
+  .repo-card .description {
+    margin-top: 0.1rem;
+    opacity: 0.7;
+  }
+
+  img.github-logo {
+    opacity: 0.7
+  }
+
+}

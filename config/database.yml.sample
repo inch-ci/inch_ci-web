@@ -1,0 +1,32 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  collation: utf8_general_ci
+  reconnect: false
+  database: inch_ci
+  pool: 5
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  collation: utf8_general_ci
+  reconnect: false
+  database: inch_ci_test
+  pool: 5
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  collation: utf8_general_ci
+  reconnect: false
+  database: inch_ci
+  pool: 5
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock

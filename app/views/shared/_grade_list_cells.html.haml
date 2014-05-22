@@ -1,0 +1,5 @@
+%td.grade
+  .grade-circle{:class => "grade-circle-#{grade_list.grade}"}
+    = grade_list.grade
+%td.fullname= code_object.fullname
+%td.priority= image_tag "priority/#{code_object.priority_symbol}.png"

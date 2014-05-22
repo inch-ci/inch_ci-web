@@ -1,0 +1,764 @@
+---
+code_object_role_1:
+  id: 1
+  code_object_id: 1
+  code_object_role_name_id: 1
+  priority: 3
+  score: 0
+  created_at: 2014-04-13 20:07:33.103375000 Z
+  updated_at: 2014-04-13 20:07:33.103375000 Z
+code_object_role_2:
+  id: 2
+  code_object_id: 1
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.105004000 Z
+  updated_at: 2014-04-13 20:07:33.105004000 Z
+code_object_role_3:
+  id: 3
+  code_object_id: 1
+  code_object_role_name_id: 3
+  priority: 0
+  potential_score: 100
+  created_at: 2014-04-13 20:07:33.106074000 Z
+  updated_at: 2014-04-13 20:07:33.106074000 Z
+code_object_role_4:
+  id: 4
+  code_object_id: 1
+  code_object_role_name_id: 4
+  priority: 0
+  potential_score: 10
+  created_at: 2014-04-13 20:07:33.107158000 Z
+  updated_at: 2014-04-13 20:07:33.107158000 Z
+code_object_role_5:
+  id: 5
+  code_object_id: 1
+  code_object_role_name_id: 5
+  priority: 0
+  score: 0
+  created_at: 2014-04-13 20:07:33.108196000 Z
+  updated_at: 2014-04-13 20:07:33.108196000 Z
+code_object_role_6:
+  id: 6
+  code_object_id: 2
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.155458000 Z
+  updated_at: 2014-04-13 20:07:33.155458000 Z
+code_object_role_7:
+  id: 7
+  code_object_id: 2
+  code_object_role_name_id: 6
+  priority: 0
+  score: 50
+  created_at: 2014-04-13 20:07:33.156535000 Z
+  updated_at: 2014-04-13 20:07:33.156535000 Z
+code_object_role_8:
+  id: 8
+  code_object_id: 2
+  code_object_role_name_id: 7
+  priority: 0
+  score: 25
+  created_at: 2014-04-13 20:07:33.157573000 Z
+  updated_at: 2014-04-13 20:07:33.157573000 Z
+code_object_role_9:
+  id: 9
+  code_object_id: 2
+  code_object_role_name_id: 8
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.158606000 Z
+  updated_at: 2014-04-13 20:07:33.158606000 Z
+code_object_role_10:
+  id: 10
+  code_object_id: 2
+  code_object_role_name_id: 9
+  priority: 0
+  potential_score: 30
+  created_at: 2014-04-13 20:07:33.159645000 Z
+  updated_at: 2014-04-13 20:07:33.159645000 Z
+code_object_role_11:
+  id: 11
+  code_object_id: 2
+  code_object_role_name_id: 10
+  ref_name: numbers
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.160702000 Z
+  updated_at: 2014-04-13 20:07:33.160702000 Z
+code_object_role_12:
+  id: 12
+  code_object_id: 2
+  code_object_role_name_id: 11
+  ref_name: numbers
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.161865000 Z
+  updated_at: 2014-04-13 20:07:33.161865000 Z
+code_object_role_13:
+  id: 13
+  code_object_id: 2
+  code_object_role_name_id: 10
+  ref_name: block
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.162941000 Z
+  updated_at: 2014-04-13 20:07:33.162941000 Z
+code_object_role_14:
+  id: 14
+  code_object_id: 2
+  code_object_role_name_id: 11
+  ref_name: block
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.164001000 Z
+  updated_at: 2014-04-13 20:07:33.164001000 Z
+code_object_role_15:
+  id: 15
+  code_object_id: 2
+  code_object_role_name_id: 12
+  ref_name: block
+  priority: 1
+  score: 0
+  created_at: 2014-04-13 20:07:33.165095000 Z
+  updated_at: 2014-04-13 20:07:33.165095000 Z
+code_object_role_16:
+  id: 16
+  code_object_id: 3
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.188552000 Z
+  updated_at: 2014-04-13 20:07:33.188552000 Z
+code_object_role_17:
+  id: 17
+  code_object_id: 3
+  code_object_role_name_id: 6
+  priority: 0
+  score: 50
+  created_at: 2014-04-13 20:07:33.189640000 Z
+  updated_at: 2014-04-13 20:07:33.189640000 Z
+code_object_role_18:
+  id: 18
+  code_object_id: 3
+  code_object_role_name_id: 4
+  priority: 0
+  potential_score: 10
+  created_at: 2014-04-13 20:07:33.190676000 Z
+  updated_at: 2014-04-13 20:07:33.190676000 Z
+code_object_role_19:
+  id: 19
+  code_object_id: 3
+  code_object_role_name_id: 8
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.191726000 Z
+  updated_at: 2014-04-13 20:07:33.191726000 Z
+code_object_role_20:
+  id: 20
+  code_object_id: 3
+  code_object_role_name_id: 9
+  priority: 0
+  potential_score: 30
+  created_at: 2014-04-13 20:07:33.192758000 Z
+  updated_at: 2014-04-13 20:07:33.192758000 Z
+code_object_role_21:
+  id: 21
+  code_object_id: 3
+  code_object_role_name_id: 13
+  ref_name: args
+  priority: 0
+  potential_score: 20
+  created_at: 2014-04-13 20:07:33.193815000 Z
+  updated_at: 2014-04-13 20:07:33.193815000 Z
+code_object_role_22:
+  id: 22
+  code_object_id: 3
+  code_object_role_name_id: 14
+  ref_name: args
+  priority: 0
+  potential_score: 20
+  created_at: 2014-04-13 20:07:33.194925000 Z
+  updated_at: 2014-04-13 20:07:33.194925000 Z
+code_object_role_23:
+  id: 23
+  code_object_id: 3
+  code_object_role_name_id: 15
+  ref_name: args
+  priority: 1
+  score: 0
+  created_at: 2014-04-13 20:07:33.195982000 Z
+  updated_at: 2014-04-13 20:07:33.195982000 Z
+code_object_role_24:
+  id: 24
+  code_object_id: 4
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.216573000 Z
+  updated_at: 2014-04-13 20:07:33.216573000 Z
+code_object_role_25:
+  id: 25
+  code_object_id: 4
+  code_object_role_name_id: 6
+  priority: 0
+  score: 50
+  created_at: 2014-04-13 20:07:33.217684000 Z
+  updated_at: 2014-04-13 20:07:33.217684000 Z
+code_object_role_26:
+  id: 26
+  code_object_id: 4
+  code_object_role_name_id: 16
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.219093000 Z
+  updated_at: 2014-04-13 20:07:33.219093000 Z
+code_object_role_27:
+  id: 27
+  code_object_id: 4
+  code_object_role_name_id: 8
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.220180000 Z
+  updated_at: 2014-04-13 20:07:33.220180000 Z
+code_object_role_28:
+  id: 28
+  code_object_id: 4
+  code_object_role_name_id: 17
+  priority: 0
+  score: 30
+  created_at: 2014-04-13 20:07:33.221269000 Z
+  updated_at: 2014-04-13 20:07:33.221269000 Z
+code_object_role_29:
+  id: 29
+  code_object_id: 4
+  code_object_role_name_id: 13
+  ref_name: _numbers
+  priority: 0
+  potential_score: 20
+  created_at: 2014-04-13 20:07:33.222354000 Z
+  updated_at: 2014-04-13 20:07:33.222354000 Z
+code_object_role_30:
+  id: 30
+  code_object_id: 4
+  code_object_role_name_id: 14
+  ref_name: _numbers
+  priority: 0
+  potential_score: 20
+  created_at: 2014-04-13 20:07:33.223499000 Z
+  updated_at: 2014-04-13 20:07:33.223499000 Z
+code_object_role_31:
+  id: 31
+  code_object_id: 5
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.242913000 Z
+  updated_at: 2014-04-13 20:07:33.242913000 Z
+code_object_role_32:
+  id: 32
+  code_object_id: 5
+  code_object_role_name_id: 6
+  priority: 0
+  score: 90
+  created_at: 2014-04-13 20:07:33.244033000 Z
+  updated_at: 2014-04-13 20:07:33.244033000 Z
+code_object_role_33:
+  id: 33
+  code_object_id: 5
+  code_object_role_name_id: 7
+  priority: 0
+  score: 25
+  created_at: 2014-04-13 20:07:33.245122000 Z
+  updated_at: 2014-04-13 20:07:33.245122000 Z
+code_object_role_34:
+  id: 34
+  code_object_id: 5
+  code_object_role_name_id: 8
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.246197000 Z
+  updated_at: 2014-04-13 20:07:33.246197000 Z
+code_object_role_35:
+  id: 35
+  code_object_id: 5
+  code_object_role_name_id: 17
+  priority: 0
+  score: 90
+  created_at: 2014-04-13 20:07:33.247244000 Z
+  updated_at: 2014-04-13 20:07:33.247244000 Z
+code_object_role_36:
+  id: 36
+  code_object_id: 5
+  code_object_role_name_id: 18
+  priority: 0
+  score: 0
+  created_at: 2014-04-13 20:07:33.248287000 Z
+  updated_at: 2014-04-13 20:07:33.248287000 Z
+code_object_role_37:
+  id: 37
+  code_object_id: 6
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.264516000 Z
+  updated_at: 2014-04-13 20:07:33.264516000 Z
+code_object_role_38:
+  id: 38
+  code_object_id: 6
+  code_object_role_name_id: 3
+  priority: 0
+  potential_score: 90
+  created_at: 2014-04-13 20:07:33.265664000 Z
+  updated_at: 2014-04-13 20:07:33.265664000 Z
+code_object_role_39:
+  id: 39
+  code_object_id: 6
+  code_object_role_name_id: 4
+  priority: 0
+  potential_score: 10
+  created_at: 2014-04-13 20:07:33.266737000 Z
+  updated_at: 2014-04-13 20:07:33.266737000 Z
+code_object_role_40:
+  id: 40
+  code_object_id: 6
+  code_object_role_name_id: 8
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.267797000 Z
+  updated_at: 2014-04-13 20:07:33.267797000 Z
+code_object_role_41:
+  id: 41
+  code_object_id: 6
+  code_object_role_name_id: 17
+  priority: 0
+  score: 90
+  created_at: 2014-04-13 20:07:33.268893000 Z
+  updated_at: 2014-04-13 20:07:33.268893000 Z
+code_object_role_42:
+  id: 42
+  code_object_id: 6
+  code_object_role_name_id: 18
+  priority: 0
+  score: 0
+  created_at: 2014-04-13 20:07:33.269965000 Z
+  updated_at: 2014-04-13 20:07:33.269965000 Z
+code_object_role_43:
+  id: 43
+  code_object_id: 7
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.292093000 Z
+  updated_at: 2014-04-13 20:07:33.292093000 Z
+code_object_role_44:
+  id: 44
+  code_object_id: 7
+  code_object_role_name_id: 6
+  priority: 0
+  score: 50
+  created_at: 2014-04-13 20:07:33.293192000 Z
+  updated_at: 2014-04-13 20:07:33.293192000 Z
+code_object_role_45:
+  id: 45
+  code_object_id: 7
+  code_object_role_name_id: 4
+  priority: 0
+  potential_score: 10
+  created_at: 2014-04-13 20:07:33.294241000 Z
+  updated_at: 2014-04-13 20:07:33.294241000 Z
+code_object_role_46:
+  id: 46
+  code_object_id: 7
+  code_object_role_name_id: 19
+  priority: -1
+  score: 20
+  created_at: 2014-04-13 20:07:33.295288000 Z
+  updated_at: 2014-04-13 20:07:33.295288000 Z
+code_object_role_47:
+  id: 47
+  code_object_id: 7
+  code_object_role_name_id: 8
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.296357000 Z
+  updated_at: 2014-04-13 20:07:33.296357000 Z
+code_object_role_48:
+  id: 48
+  code_object_id: 7
+  code_object_role_name_id: 17
+  priority: 0
+  score: 30
+  created_at: 2014-04-13 20:07:33.297396000 Z
+  updated_at: 2014-04-13 20:07:33.297396000 Z
+code_object_role_49:
+  id: 49
+  code_object_id: 7
+  code_object_role_name_id: 13
+  ref_name: args
+  priority: 0
+  potential_score: 20
+  created_at: 2014-04-13 20:07:33.298443000 Z
+  updated_at: 2014-04-13 20:07:33.298443000 Z
+code_object_role_50:
+  id: 50
+  code_object_id: 7
+  code_object_role_name_id: 14
+  ref_name: args
+  priority: 0
+  potential_score: 20
+  created_at: 2014-04-13 20:07:33.299538000 Z
+  updated_at: 2014-04-13 20:07:33.299538000 Z
+code_object_role_51:
+  id: 51
+  code_object_id: 7
+  code_object_role_name_id: 15
+  ref_name: args
+  priority: 1
+  score: 0
+  created_at: 2014-04-13 20:07:33.300586000 Z
+  updated_at: 2014-04-13 20:07:33.300586000 Z
+code_object_role_52:
+  id: 52
+  code_object_id: 8
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.317953000 Z
+  updated_at: 2014-04-13 20:07:33.317953000 Z
+code_object_role_53:
+  id: 53
+  code_object_id: 8
+  code_object_role_name_id: 3
+  priority: 0
+  potential_score: 50
+  created_at: 2014-04-13 20:07:33.319052000 Z
+  updated_at: 2014-04-13 20:07:33.319052000 Z
+code_object_role_54:
+  id: 54
+  code_object_id: 8
+  code_object_role_name_id: 4
+  priority: 0
+  potential_score: 10
+  created_at: 2014-04-13 20:07:33.320105000 Z
+  updated_at: 2014-04-13 20:07:33.320105000 Z
+code_object_role_55:
+  id: 55
+  code_object_id: 8
+  code_object_role_name_id: 8
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.321134000 Z
+  updated_at: 2014-04-13 20:07:33.321134000 Z
+code_object_role_56:
+  id: 56
+  code_object_id: 8
+  code_object_role_name_id: 17
+  priority: 0
+  score: 30
+  created_at: 2014-04-13 20:07:33.322160000 Z
+  updated_at: 2014-04-13 20:07:33.322160000 Z
+code_object_role_57:
+  id: 57
+  code_object_id: 8
+  code_object_role_name_id: 10
+  ref_name: sep
+  priority: 0
+  score: 20
+  created_at: 2014-04-13 20:07:33.323179000 Z
+  updated_at: 2014-04-13 20:07:33.323179000 Z
+code_object_role_58:
+  id: 58
+  code_object_id: 8
+  code_object_role_name_id: 11
+  ref_name: sep
+  priority: 0
+  score: 20
+  created_at: 2014-04-13 20:07:33.324295000 Z
+  updated_at: 2014-04-13 20:07:33.324295000 Z
+code_object_role_59:
+  id: 59
+  code_object_id: 9
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.343966000 Z
+  updated_at: 2014-04-13 20:07:33.343966000 Z
+code_object_role_60:
+  id: 60
+  code_object_id: 9
+  code_object_role_name_id: 3
+  priority: 0
+  potential_score: 50
+  created_at: 2014-04-13 20:07:33.345397000 Z
+  updated_at: 2014-04-13 20:07:33.345397000 Z
+code_object_role_61:
+  id: 61
+  code_object_id: 9
+  code_object_role_name_id: 4
+  priority: 0
+  potential_score: 10
+  created_at: 2014-04-13 20:07:33.346584000 Z
+  updated_at: 2014-04-13 20:07:33.346584000 Z
+code_object_role_62:
+  id: 62
+  code_object_id: 9
+  code_object_role_name_id: 8
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.347751000 Z
+  updated_at: 2014-04-13 20:07:33.347751000 Z
+code_object_role_63:
+  id: 63
+  code_object_id: 9
+  code_object_role_name_id: 17
+  priority: 0
+  score: 30
+  created_at: 2014-04-13 20:07:33.348921000 Z
+  updated_at: 2014-04-13 20:07:33.348921000 Z
+code_object_role_64:
+  id: 64
+  code_object_id: 9
+  code_object_role_name_id: 13
+  ref_name: _numbers
+  priority: 0
+  potential_score: 20
+  created_at: 2014-04-13 20:07:33.350089000 Z
+  updated_at: 2014-04-13 20:07:33.350089000 Z
+code_object_role_65:
+  id: 65
+  code_object_id: 9
+  code_object_role_name_id: 14
+  ref_name: _numbers
+  priority: 0
+  potential_score: 20
+  created_at: 2014-04-13 20:07:33.351326000 Z
+  updated_at: 2014-04-13 20:07:33.351326000 Z
+code_object_role_66:
+  id: 66
+  code_object_id: 10
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.371610000 Z
+  updated_at: 2014-04-13 20:07:33.371610000 Z
+code_object_role_67:
+  id: 67
+  code_object_id: 10
+  code_object_role_name_id: 3
+  priority: 0
+  potential_score: 50
+  created_at: 2014-04-13 20:07:33.372690000 Z
+  updated_at: 2014-04-13 20:07:33.372690000 Z
+code_object_role_68:
+  id: 68
+  code_object_id: 10
+  code_object_role_name_id: 4
+  priority: 0
+  potential_score: 10
+  created_at: 2014-04-13 20:07:33.373710000 Z
+  updated_at: 2014-04-13 20:07:33.373710000 Z
+code_object_role_69:
+  id: 69
+  code_object_id: 10
+  code_object_role_name_id: 20
+  priority: 0
+  score: 0
+  created_at: 2014-04-13 20:07:33.374783000 Z
+  updated_at: 2014-04-13 20:07:33.374783000 Z
+code_object_role_70:
+  id: 70
+  code_object_id: 10
+  code_object_role_name_id: 8
+  priority: 0
+  score: 0
+  created_at: 2014-04-13 20:07:33.375808000 Z
+  updated_at: 2014-04-13 20:07:33.375808000 Z
+code_object_role_71:
+  id: 71
+  code_object_id: 10
+  code_object_role_name_id: 17
+  priority: 0
+  score: 0
+  created_at: 2014-04-13 20:07:33.376830000 Z
+  updated_at: 2014-04-13 20:07:33.376830000 Z
+code_object_role_72:
+  id: 72
+  code_object_id: 10
+  code_object_role_name_id: 13
+  ref_name: _numbers
+  priority: 0
+  potential_score: 25
+  created_at: 2014-04-13 20:07:33.377854000 Z
+  updated_at: 2014-04-13 20:07:33.377854000 Z
+code_object_role_73:
+  id: 73
+  code_object_id: 10
+  code_object_role_name_id: 14
+  ref_name: _numbers
+  priority: 0
+  potential_score: 25
+  created_at: 2014-04-13 20:07:33.378918000 Z
+  updated_at: 2014-04-13 20:07:33.378918000 Z
+code_object_role_74:
+  id: 74
+  code_object_id: 11
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.391729000 Z
+  updated_at: 2014-04-13 20:07:33.391729000 Z
+code_object_role_75:
+  id: 75
+  code_object_id: 11
+  code_object_role_name_id: 3
+  priority: 0
+  potential_score: 100
+  created_at: 2014-04-13 20:07:33.392820000 Z
+  updated_at: 2014-04-13 20:07:33.392820000 Z
+code_object_role_76:
+  id: 76
+  code_object_id: 11
+  code_object_role_name_id: 4
+  priority: 0
+  potential_score: 10
+  created_at: 2014-04-13 20:07:33.393833000 Z
+  updated_at: 2014-04-13 20:07:33.393833000 Z
+code_object_role_77:
+  id: 77
+  code_object_id: 11
+  code_object_role_name_id: 5
+  priority: 0
+  score: 0
+  created_at: 2014-04-13 20:07:33.394862000 Z
+  updated_at: 2014-04-13 20:07:33.394862000 Z
+code_object_role_78:
+  id: 78
+  code_object_id: 12
+  code_object_role_name_id: 2
+  priority: 2
+  score: 0
+  created_at: 2014-04-13 20:07:33.407552000 Z
+  updated_at: 2014-04-13 20:07:33.407552000 Z
+code_object_role_79:
+  id: 79
+  code_object_id: 12
+  code_object_role_name_id: 3
+  priority: 0
+  potential_score: 100
+  created_at: 2014-04-13 20:07:33.408623000 Z
+  updated_at: 2014-04-13 20:07:33.408623000 Z
+code_object_role_80:
+  id: 80
+  code_object_id: 12
+  code_object_role_name_id: 4
+  priority: 0
+  potential_score: 10
+  created_at: 2014-04-13 20:07:33.409699000 Z
+  updated_at: 2014-04-13 20:07:33.409699000 Z
+code_object_role_81:
+  id: 81
+  code_object_id: 12
+  code_object_role_name_id: 5
+  priority: 0
+  score: 0
+  created_at: 2014-04-13 20:07:33.410733000 Z
+  updated_at: 2014-04-13 20:07:33.410733000 Z
+code_object_role_82:
+  id: 82
+  code_object_id: 13
+  code_object_role_name_id: 21
+  priority: 0
+  potential_score: 100
+  created_at: 2014-04-13 20:07:33.423878000 Z
+  updated_at: 2014-04-13 20:07:33.423878000 Z
+code_object_role_83:
+  id: 83
+  code_object_id: 13
+  code_object_role_name_id: 22
+  priority: -1
+  score: 0
+  created_at: 2014-04-13 20:07:33.424949000 Z
+  updated_at: 2014-04-13 20:07:33.424949000 Z
+code_object_role_84:
+  id: 84
+  code_object_id: 14
+  code_object_role_name_id: 21
+  priority: 0
+  potential_score: 100
+  created_at: 2014-04-13 20:07:33.436772000 Z
+  updated_at: 2014-04-13 20:07:33.436772000 Z
+code_object_role_85:
+  id: 85
+  code_object_id: 14
+  code_object_role_name_id: 22
+  priority: -1
+  score: 0
+  created_at: 2014-04-13 20:07:33.437860000 Z
+  updated_at: 2014-04-13 20:07:33.437860000 Z
+code_object_role_86:
+  id: 86
+  code_object_id: 15
+  code_object_role_name_id: 21
+  priority: 0
+  potential_score: 100
+  created_at: 2014-04-13 20:07:33.448035000 Z
+  updated_at: 2014-04-13 20:07:33.448035000 Z
+code_object_role_87:
+  id: 87
+  code_object_id: 15
+  code_object_role_name_id: 22
+  priority: -1
+  score: 0
+  created_at: 2014-04-13 20:07:33.449114000 Z
+  updated_at: 2014-04-13 20:07:33.449114000 Z
+code_object_role_88:
+  id: 88
+  code_object_id: 16
+  code_object_role_name_id: 23
+  priority: -2
+  score: 0
+  created_at: 2014-04-13 20:07:33.470294000 Z
+  updated_at: 2014-04-13 20:07:33.470294000 Z
+code_object_role_89:
+  id: 89
+  code_object_id: 16
+  code_object_role_name_id: 6
+  priority: 0
+  score: 90
+  created_at: 2014-04-13 20:07:33.471425000 Z
+  updated_at: 2014-04-13 20:07:33.471425000 Z
+code_object_role_90:
+  id: 90
+  code_object_id: 16
+  code_object_role_name_id: 4
+  priority: 0
+  potential_score: 10
+  created_at: 2014-04-13 20:07:33.472448000 Z
+  updated_at: 2014-04-13 20:07:33.472448000 Z
+code_object_role_91:
+  id: 91
+  code_object_id: 16
+  code_object_role_name_id: 8
+  priority: 0
+  score: 10
+  created_at: 2014-04-13 20:07:33.473492000 Z
+  updated_at: 2014-04-13 20:07:33.473492000 Z
+code_object_role_92:
+  id: 92
+  code_object_id: 16
+  code_object_role_name_id: 9
+  priority: 0
+  potential_score: 90
+  created_at: 2014-04-13 20:07:33.474544000 Z
+  updated_at: 2014-04-13 20:07:33.474544000 Z
+code_object_role_93:
+  id: 93
+  code_object_id: 16
+  code_object_role_name_id: 18
+  priority: 0
+  score: 0
+  created_at: 2014-04-13 20:07:33.475575000 Z
+  updated_at: 2014-04-13 20:07:33.475575000 Z

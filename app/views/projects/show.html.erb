@@ -1,0 +1,30 @@
+<div class="repo-wrapper">
+  <div class="repo-card">
+    <%= render "badge_selector" %>
+    <%= render "topbar" %>
+
+    <% if @collection %>
+      <%= render :partial => "stats" %>
+
+      <div class="repo-info">
+        <div class="explanation">
+          <p>
+            This page shows an evaluation of the documentation of <a target="_blank" class="github-link" href="<%= @project.source_code_url %>"><%= @project.name %></a>.
+          </p>
+          <p>
+            Each class, module, method, etc. is given a grade based on how complete the docs are.
+
+            The bar above shows the distribution of these grades.
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <% @collection.each do |grade_list| %>
+            <%= render "shared/grade_list_table", :grade_list => grade_list %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

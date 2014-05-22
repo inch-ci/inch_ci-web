@@ -1,0 +1,11 @@
+---
+build_1:
+  id: 1
+  branch_id: 1
+  revision_id: 1
+  started_at: 2014-04-13 20:07:26.957468000 Z
+  finished_at: 2014-04-13 20:07:28.957947000 Z
+  status: success
+  trigger: manual
+  created_at: 2014-04-13 20:07:26.978345000 Z
+  updated_at: 2014-04-13 20:07:33.605875000 Z

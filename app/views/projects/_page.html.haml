@@ -1,0 +1,28 @@
+.repo-wrapper
+  .repo-card
+    - if @revision.nil?
+      = render "topbar"
+      - if @pending_build
+        = render "wait_for_build", :build => @pending_build
+      - else
+        %p.start_build
+          %em= t('projects.start_build.info')
+          = icon('level-up')
+    - else
+      = render "badge_selector"
+      = render "topbar"
+      - if @pending_build
+        = render "wait_for_build", :build => @pending_build
+      - else
+        = render "stats"
+        .repo-info
+          .explanation
+            %p
+              This page shows an evaluation of the project's documentation.
+            %p
+              Each class, module, method, etc. is given a grade based on how complete the docs are.
+            %p
+              The bar above shows the distribution of these grades.
+          .table-responsive
+            - @collection.each do |grade_list|
+              = render "shared/grade_list_table", :grade_list => grade_list

@@ -1,0 +1,116 @@
+---
+code_object_role_name_1:
+  id: 1
+  name: Object::InRoot
+  created_at: 2014-04-13 20:07:33.061280000 Z
+  updated_at: 2014-04-13 20:07:33.061280000 Z
+code_object_role_name_2:
+  id: 2
+  name: Object::Public
+  created_at: 2014-04-13 20:07:33.085717000 Z
+  updated_at: 2014-04-13 20:07:33.085717000 Z
+code_object_role_name_3:
+  id: 3
+  name: Object::WithoutDoc
+  created_at: 2014-04-13 20:07:33.088523000 Z
+  updated_at: 2014-04-13 20:07:33.088523000 Z
+code_object_role_name_4:
+  id: 4
+  name: Object::WithoutCodeExample
+  created_at: 2014-04-13 20:07:33.090987000 Z
+  updated_at: 2014-04-13 20:07:33.090987000 Z
+code_object_role_name_5:
+  id: 5
+  name: Namespace::WithChildren
+  created_at: 2014-04-13 20:07:33.093427000 Z
+  updated_at: 2014-04-13 20:07:33.093427000 Z
+code_object_role_name_6:
+  id: 6
+  name: Object::WithDoc
+  created_at: 2014-04-13 20:07:33.127808000 Z
+  updated_at: 2014-04-13 20:07:33.127808000 Z
+code_object_role_name_7:
+  id: 7
+  name: Object::WithMultipleCodeExamples
+  created_at: 2014-04-13 20:07:33.130275000 Z
+  updated_at: 2014-04-13 20:07:33.130275000 Z
+code_object_role_name_8:
+  id: 8
+  name: Method::WithReturnType
+  created_at: 2014-04-13 20:07:33.132653000 Z
+  updated_at: 2014-04-13 20:07:33.132653000 Z
+code_object_role_name_9:
+  id: 9
+  name: Method::WithoutReturnDescription
+  created_at: 2014-04-13 20:07:33.135022000 Z
+  updated_at: 2014-04-13 20:07:33.135022000 Z
+code_object_role_name_10:
+  id: 10
+  name: MethodParameter::WithMention
+  created_at: 2014-04-13 20:07:33.137337000 Z
+  updated_at: 2014-04-13 20:07:33.137337000 Z
+code_object_role_name_11:
+  id: 11
+  name: MethodParameter::WithType
+  created_at: 2014-04-13 20:07:33.139667000 Z
+  updated_at: 2014-04-13 20:07:33.139667000 Z
+code_object_role_name_12:
+  id: 12
+  name: MethodParameter::Block
+  created_at: 2014-04-13 20:07:33.143897000 Z
+  updated_at: 2014-04-13 20:07:33.143897000 Z
+code_object_role_name_13:
+  id: 13
+  name: MethodParameter::WithoutMention
+  created_at: 2014-04-13 20:07:33.175468000 Z
+  updated_at: 2014-04-13 20:07:33.175468000 Z
+code_object_role_name_14:
+  id: 14
+  name: MethodParameter::WithoutType
+  created_at: 2014-04-13 20:07:33.177907000 Z
+  updated_at: 2014-04-13 20:07:33.177907000 Z
+code_object_role_name_15:
+  id: 15
+  name: MethodParameter::Splat
+  created_at: 2014-04-13 20:07:33.180240000 Z
+  updated_at: 2014-04-13 20:07:33.180240000 Z
+code_object_role_name_16:
+  id: 16
+  name: Object::WithCodeExample
+  created_at: 2014-04-13 20:07:33.203613000 Z
+  updated_at: 2014-04-13 20:07:33.203613000 Z
+code_object_role_name_17:
+  id: 17
+  name: Method::WithReturnDescription
+  created_at: 2014-04-13 20:07:33.206934000 Z
+  updated_at: 2014-04-13 20:07:33.206934000 Z
+code_object_role_name_18:
+  id: 18
+  name: Method::WithoutParameters
+  created_at: 2014-04-13 20:07:33.234950000 Z
+  updated_at: 2014-04-13 20:07:33.234950000 Z
+code_object_role_name_19:
+  id: 19
+  name: Object::Tagged
+  created_at: 2014-04-13 20:07:33.278566000 Z
+  updated_at: 2014-04-13 20:07:33.278566000 Z
+code_object_role_name_20:
+  id: 20
+  name: Method::Constructor
+  created_at: 2014-04-13 20:07:33.359959000 Z
+  updated_at: 2014-04-13 20:07:33.359959000 Z
+code_object_role_name_21:
+  id: 21
+  name: Constant::WithoutDoc
+  created_at: 2014-04-13 20:07:33.416034000 Z
+  updated_at: 2014-04-13 20:07:33.416034000 Z
+code_object_role_name_22:
+  id: 22
+  name: Constant::Public
+  created_at: 2014-04-13 20:07:33.418829000 Z
+  updated_at: 2014-04-13 20:07:33.418829000 Z
+code_object_role_name_23:
+  id: 23
+  name: Object::Private
+  created_at: 2014-04-13 20:07:33.456576000 Z
+  updated_at: 2014-04-13 20:07:33.456576000 Z

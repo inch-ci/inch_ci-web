@@ -1,0 +1,4 @@
+jQuery('#projects_page').html('<%= escape_javascript render(action_name) %>');
+<% if @pending_build %>
+  I.wait_for_build.resetTimeout();
+<% end %>
