@@ -18,7 +18,13 @@ module InchCI
           private
 
           def grade_counts(code_objects)
-            GradeListCollection.new(code_objects).map(&:count)
+            GradeListCollection.new(filter(code_objects)).map(&:count)
+          end
+
+          def filter(code_objects)
+            code_objects.select do |object|
+              object.priority >= Config::MIN_RELEVANT_PRIORITY
+            end
           end
         end
       end

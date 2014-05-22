@@ -109,7 +109,11 @@ module InchCI
       build.update_attributes!(attributes)
     end
 
+
     FindCodeObjects = -> (revision) { revision.code_objects }
+    FindRelevantCodeObjects = -> (revision) do
+      revision.code_objects.select { |object| object.priority >= Config::MIN_RELEVANT_PRIORITY }
+    end
 
     class BuildCodeObject
       attr_reader :code_object

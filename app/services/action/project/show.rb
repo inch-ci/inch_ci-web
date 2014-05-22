@@ -23,7 +23,7 @@ module Action
 
       def create_collection(revision)
         return if revision.nil?
-        code_objects = InchCI::Store::FindCodeObjects.call(revision)
+        code_objects = InchCI::Store::FindRelevantCodeObjects.call(revision)
         code_objects = code_objects.map { |o| CodeObjectPresenter.new(o) }
         @collection = InchCI::GradeListCollection.new(code_objects)
       end
