@@ -5,6 +5,8 @@ module Action
     class RebuildViaHook
       include InchCI::Action
 
+      TRIGGER = 'hook'
+
       exposes :result
 
       def initialize(params)
@@ -20,7 +22,7 @@ module Action
       private
 
       def enqueue_build(project, branch_name)
-        build = InchCI::Worker::Project::Build.enqueue(project.repo_url, branch_name)
+        build = InchCI::Worker::Project::Build.enqueue(project.repo_url, branch_name, nil, TRIGGER)
       end
 
       def branch_name(payload)
