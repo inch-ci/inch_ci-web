@@ -38,7 +38,7 @@ end
 gem 'sinatra'
 gem 'sidekiq', '>= 3.0'
 gem 'thin'
-gem 'unicorn_rails'
+gem 'unicorn'
 
 gem 'repomen'
 gem 'inch'
