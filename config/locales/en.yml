@@ -100,6 +100,6 @@ en:
   shared:
     back_link: Back
     footer: |
-      An open source project,
+      An [open source project](https://github.com/inch-ci/inch_ci-web),
       created by René Föhring ([@rrrene](https://twitter.com/rrrene)),
       based on [Inch](http://trivelop.de/inch).
