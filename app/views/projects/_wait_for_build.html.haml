@@ -27,9 +27,7 @@
   .explanation
     %p= t('projects.wait_for_build.info')
     %p
-
-    %p
-      = image_tag "loading-bars.svg"
+      %i.fa.fa-cog.fa-spin
 
 :javascript
   I.wait_for_build.initReload('#{url_for(params.merge(:format => :js))}');
