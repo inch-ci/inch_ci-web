@@ -29,9 +29,10 @@ module Action
       end
 
       def project_uid(payload)
-        web_url = payload['repository'] && payload['repository']['url']
-        info = InchCI::RepoURL.new(web_url+'.git')
-        info.project_uid
+        if web_url = payload['repository'] && payload['repository']['url']
+          info = InchCI::RepoURL.new(web_url)
+          info.project_uid
+        end
       end
     end
   end
