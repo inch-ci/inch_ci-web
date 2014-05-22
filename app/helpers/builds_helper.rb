@@ -25,7 +25,8 @@ module BuildsHelper
 
   def build_trigger_icon(build)
     key = {
-      'manual' => :user,
+      'hook' => :git,
+      'manual' => :globe,
       'tag_build' => :tags,
     }[build.trigger]
     icon(key || :question, :title => build.trigger)
