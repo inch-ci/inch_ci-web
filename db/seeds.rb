@@ -7,7 +7,7 @@ COUNT = ENV['COUNT'] || 5
 
 project_names[0...COUNT.to_i].each do |name|
   uid = "github:#{name}"
-  repo_url = "git@github.com:#{name}.git"
+  repo_url = "https://github.com/#{name}.git"
   InchCI::Store::FindProject.call(uid) ||
     InchCI::Store::CreateProject.call(uid, repo_url)
 

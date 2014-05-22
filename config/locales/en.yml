@@ -31,7 +31,7 @@ en:
     abstract: "Let's raise the visibility of code documentation in Ruby!"
     featured: "Join the movement!"
     learn_more: "Lean more"
-    project_placeholder: git@github.com:rrrene/inch.git
+    project_placeholder: https://github.com/rrrene/inch
     add_project: "Add project"
   about:
     headline: "What is Inch CI?"
