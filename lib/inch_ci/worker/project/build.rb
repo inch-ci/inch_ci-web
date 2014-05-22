@@ -1,4 +1,4 @@
-require_relative 'build/handle_worker_output'
+require 'inch_ci/worker/project/build/handle_worker_output'
 
 module InchCI
   module Worker

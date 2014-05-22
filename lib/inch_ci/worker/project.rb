@@ -1,6 +1,6 @@
-require_relative 'project/build'
-require_relative 'project/build_tags'
-require_relative 'project/update_info'
+require 'inch_ci/worker/project/build'
+require 'inch_ci/worker/project/build_tags'
+require 'inch_ci/worker/project/update_info'
 
 module InchCI
   module Worker

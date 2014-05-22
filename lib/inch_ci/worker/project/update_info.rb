@@ -1,4 +1,4 @@
-require_relative 'update_info/git_hub_info'
+require 'inch_ci/worker/project/update_info/git_hub_info'
 
 module InchCI
   module Worker

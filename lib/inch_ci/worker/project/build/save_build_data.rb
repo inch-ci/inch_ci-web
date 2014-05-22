@@ -1,6 +1,6 @@
 require 'inch_ci/repo_url'
-require_relative 'calculate_diff'
-require_relative 'generate_badge'
+require 'inch_ci/worker/project/build/calculate_diff'
+require 'inch_ci/worker/project/build/generate_badge'
 
 module InchCI
   module Worker

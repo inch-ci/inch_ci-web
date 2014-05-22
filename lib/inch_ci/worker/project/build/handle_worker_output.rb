@@ -1,5 +1,5 @@
 require 'yaml'
-require_relative 'save_build_data'
+require 'inch_ci/worker/project/build/save_build_data'
 
 module InchCI
   module Worker
