@@ -12,7 +12,7 @@ I.grade_list_table = (function () {
 }());
 
 jQuery(function($) {
-  $("a[data-show-more]").click(function(evt) {
+  $("body").on('click', 'a[data-show-more]', function(evt) {
     evt.preventDefault();
     var grade = $(this).data('show-more');
     I.grade_list_table.showMore(grade);
