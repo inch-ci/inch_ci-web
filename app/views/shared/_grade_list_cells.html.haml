@@ -2,4 +2,6 @@
   .grade-circle{:class => "grade-circle-#{grade_list.grade}"}
     = grade_list.grade
 %td.fullname= code_object.fullname
-%td.priority= image_tag "priority/#{code_object.priority_symbol}.png"
+%td.priority
+  - # = link_to "Source", "https://github.com/#{@project.user_name}/#{@project.repo_name}/blob/#{@branch.name}/#{code_object.filename}#L#{code_object.line_no}"
+  = image_tag "priority/#{code_object.priority_symbol}.png"
