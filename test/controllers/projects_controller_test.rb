@@ -3,27 +3,14 @@ require 'test_helper'
 class ProjectsControllerTest < ActionController::TestCase
   fixtures :all
 
-  test "should create a project via git-url" do
+  test "should create a project via github web-url" do
+    post :create, :repo_url => "https://github.com/rrrene/inch"
+    assert_response :redirect
+  end
+
+  test "should create a project via github ssh-url" do
     post :create, :repo_url => "git@github.com:rrrene/inch.git"
     assert_response :redirect
-  end
-
-  test "should rebuild a project" do
-    post :rebuild, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master'
-    assert_response :redirect
-  end
-
-
-  test "should rebuild a project via web hook" do
-    post :rebuild_via_hook, :payload => '{"ref": "refs/heads/master","repository":{"url":"https://github.com/rrrene/sparkr"}}'
-    assert_response :success
-  end
-
-  # at least not for now
-  test "should not create a project via github web-url" do
-    post :create, :repo_url => "https://github.com/rrrene/inch"
-    assert_response :success
-    assert_template :welcome
   end
 
   test "should not create a project via git-url that doesnot exist on GitHub" do
@@ -36,6 +23,16 @@ class ProjectsControllerTest < ActionController::TestCase
     post :create, :repo_url => "some mumbo-jumbo"
     assert_response :success
     assert_template :welcome
+  end
+
+  test "should rebuild a project" do
+    post :rebuild, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master'
+    assert_response :redirect
+  end
+
+  test "should rebuild a project via web hook" do
+    post :rebuild_via_hook, :payload => '{"ref": "refs/heads/master","repository":{"url":"https://github.com/rrrene/sparkr"}}'
+    assert_response :success
   end
 
   test "should get :show" do
