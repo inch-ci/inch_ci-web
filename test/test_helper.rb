@@ -2,9 +2,9 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
-require_relative 'support/mini_test_spec'
-require_relative 'support/worker_output_mock'
-require_relative 'support/sidekiq'
+require 'support/mini_test_spec'
+require 'support/worker_output_mock'
+require 'support/sidekiq'
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!

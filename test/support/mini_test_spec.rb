@@ -9,7 +9,9 @@ class MiniTest::Spec
   include ActiveSupport::Testing::Assertions
   include ActiveSupport::Testing::SetupAndTeardown
   include ActiveRecord::TestFixtures
-  alias :method_name :__name__ if defined? :__name__
+
+  alias :method_name :name if defined? :name
+
   self.fixture_path = File.join(Rails.root, 'test', 'fixtures')
 
   def assert_positive_difference(expression, message = nil, &block)
