@@ -42,7 +42,7 @@ en:
       ![Inline docs](%{badge_image_url})
        Get yours below!
 
-      ## What is Inch?
+      ## What is this "Inch"?
 
       Inch is a documentation measurement tool for Ruby that was created to help people document their code.
       It is a command-line utility that gives grades based on how complete the docs are ([screenshots](http://trivelop.de/inch)).
@@ -101,7 +101,7 @@ en:
 
         ### What is the goal of this?
 
-        I really think that posting badges for documentation in READMEs will benefit you (because <strong>people can see that your project is well documented</strong>) and our community in general by improving the visibility of documentation.
+        I really think that posting badges for documentation in READMEs will benefit you (because ***people can see that your project is well documented***) and our community in general by improving the visibility of documentation.
 
 
         Let's start a discussion, let's raise the visibility of documentation, let's talk.
