@@ -44,6 +44,7 @@ class ApplicationController < ActionController::Base
   def project_page_url(*args)
     url_for project_page_path(*args)
   end
+  helper_method :project_page_url
 
   def project_rebuild_path(*args)
     project_path(*args).merge(:action => 'rebuild')

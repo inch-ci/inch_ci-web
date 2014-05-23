@@ -79,11 +79,34 @@ en:
         documentation_url: Documentation
         source_code_url: Source
       rebuild_link: Refresh
+      feedback_link: Feedback
       update_info_link: "Update branches & info"
     wait_for_build:
       info: "Your page is currently building. This page will automatically refresh (can take up to a minute)."
     start_build:
       info: "This branch is not evaluated yet. Press 'Refresh' to add it."
+    page:
+      about: |
+        ## Let's raise the visibility of documentation in Ruby!
+
+        This page is for <code>%{project_nwo}</code> and is part of a project called "Inch CI", showing documentation measurements provided by [Inch](http://trivelop.de/inch).
+        <span style="white-space: nowrap;">Inch CI</span> also provides a badge: <img src="%{badge_image_url}">
+        <small>(<a href="https://github.com/rrrene/inch-pages/commit/51555d50d21e234fa240fc9920cf7c27310ff542">not counting</a> low priority objects)</small>
+
+
+        ### Can I have my own badges?
+
+        [Sure!](/)
+
+
+        ### What is the goal of this?
+
+        I really think that posting badges for documentation in READMEs will benefit you (because <strong>people can see that your project is well documented</strong>) and our community in general by improving the visibility of documentation.
+
+
+        Let's start a discussion, let's raise the visibility of documentation, let's talk.
+
+        ***Suggestions, feedback, critique***: <a target="_blank" href="https://twitter.com/rrrene">Hit me up on Twitter</a> or <a target="_blank" href="%{new_issue_url}">via issue</a>.
 
   badge:
     format:

@@ -1,4 +1,16 @@
 module ProjectsHelper
+  def badge_markup
+    @badge_markup ||= BadgeMarkup.new(@project, @branch)
+  end
+
+  def github_issue_url(options = {})
+    title = ''
+    if project = options[:project]
+      title = "Re: #{project.name}"
+    end
+    "https://github.com/inch-ci/inch_ci-web/issues/new?title=#{title}"
+  end
+
   def link_to_build_history(project)
     url = project_build_history_path(project)
     link = link_to(t("projects.topbar.info.builds_link"), url)

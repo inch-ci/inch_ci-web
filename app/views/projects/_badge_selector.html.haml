@@ -1,12 +1,10 @@
-- markup = BadgeMarkup.new(@project, @branch)
-
 .badge-info
   %a{:href => "#", :"data-show-markup" => true}
-    = image_tag markup.image_path
+    = image_tag badge_markup.image_path
     &#9660;
 
 #badge-image-markup{:style => "display: none;"}
-  - markup.each do |format, string|
+  - badge_markup.each do |format, string|
     %p
       %label= t("badge.format.#{format}")
       %input{:value => string, :type => "text", :class => "url", :"data-select-on-click" => true}
