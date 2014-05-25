@@ -67,8 +67,9 @@ GEM
       yard (~> 0.8.7)
     inch-badge (0.2.2)
       chunky_png
-    inch_ci-worker (0.2.0)
-      inch (~> 0.4)
+    inch_ci-worker (0.2.1)
+      inch (>= 0.4.2)
+      repomen (>= 0.1.7)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -130,7 +131,7 @@ GEM
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
     ref (1.0.5)
-    repomen (0.1.6)
+    repomen (0.1.7)
     ruby-progressbar (1.5.1)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -144,7 +145,7 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
-    sidekiq (3.0.2)
+    sidekiq (3.1.0)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)
       json
@@ -205,7 +206,7 @@ DEPENDENCIES
   haml
   inch
   inch-badge (>= 0.2.2)
-  inch_ci-worker
+  inch_ci-worker (>= 0.2.1)
   jbuilder (~> 1.2)
   jquery-rails
   minitest-reporters
