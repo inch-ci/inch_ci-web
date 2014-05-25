@@ -13,7 +13,6 @@
       %tr
         %th #
         %th Project
-        %th.revision_uid Revision
         %th Branch
         %th.duration Duration
         %th.status{:colspan => 2} Status
@@ -31,11 +30,9 @@
                     = "#{revision.tag_uid}"
                 -else
                   = "(#{revision.uid})"
-
-          %td
           %td.duration
             - if build.finished_at
-              = build.finished_at - build.started_at
+              = (build.finished_at - build.started_at).to_i
               seconds
             - elsif build.started_at
               %span{"data-increment-every-second" => true}
