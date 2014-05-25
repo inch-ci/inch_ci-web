@@ -25,6 +25,7 @@ module BuildsHelper
 
   def build_trigger_icon(build)
     key = {
+      'cron' => :"clock-o",
       'hook' => :git,
       'manual' => :globe,
       'tag_build' => :tags,
