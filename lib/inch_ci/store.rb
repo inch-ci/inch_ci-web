@@ -3,6 +3,7 @@ module InchCI
   # need to use it's API in our own code.
   module Store
     FindProject = -> (uid) { Project.find_by_uid(uid) }
+    FindAllProjects = -> () { Project.all }
     CreateProject = -> (uid, repo_url) { Project.create!(:uid => uid, :repo_url => repo_url) }
     SaveProject = -> (project) { project.save! }
     UpdateDefaultBranch = -> (project, branch) { project.update_attribute(:default_branch, branch) }
@@ -82,6 +83,7 @@ module InchCI
     FindBuild = -> (id) { Build.find(id) }
     FindBuilds = -> (count = 200) { Build.order('id DESC').limit(count).includes(:revision).includes(:branch).includes(:project) }
     FindBuildsInProject = -> (project) { project.builds }
+    FindLatestBuildInProject = -> (project) { project.builds.order('id DESC').first }
 
     CreateBuild = -> (branch, trigger, status = 'created') do
         attributes = {
