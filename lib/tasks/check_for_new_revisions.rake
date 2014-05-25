@@ -9,7 +9,6 @@ task :check_for_new_revisions => :environment do
 
   projects = projects.select do |project|
     if latest = InchCI::Store::FindLatestBuildInProject.call(project)
-      warn latest.finished_at.to_s
       latest.finished_at && latest.finished_at < timestamp
     end
   end
