@@ -6,12 +6,13 @@ module InchCI
     module Project
       module Build
         class HandleWorkerOutput
-          def initialize(output, build = nil, save_service = SaveBuildData)
-            data = YAML.load(output)
+          def initialize(stdout, stderr, build = nil, save_service = SaveBuildData)
+            data = YAML.load(stdout)
             if data && result = data['build']
               save_service.call(build, result)
             else
-              raise "Running worker ".color(:red) + build.inspect.color(:cyan) +  " failed:".color(:red) + " #{output.inspect}"
+              debug = {:stdout => stdout, :stderr => stderr}
+              raise "Running worker ".color(:red) + build.inspect.color(:cyan) +  " failed:".color(:red) + " #{debug.inspect}"
             end
           end
         end

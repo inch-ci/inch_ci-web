@@ -13,13 +13,15 @@ describe ::InchCI::Worker::Project::Build::HandleWorkerOutput do
 
   it 'should work with a valid build' do
     output = WorkerOutputMock.string(:codebase_3_objects)
-    described_class.new(output, build, FakeSaveBuildData)
+    stderr = ''
+    described_class.new(output, stderr, build, FakeSaveBuildData)
   end
 
   it 'should work with an empty output' do
     output = ''
+    stderr = ''
     assert_raises RuntimeError do
-      described_class.new(output, build, FakeSaveBuildData)
+      described_class.new(output, stderr, build, FakeSaveBuildData)
     end
   end
 end

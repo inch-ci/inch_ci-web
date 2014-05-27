@@ -26,8 +26,8 @@ module InchCI
 
           def perform(url, branch_name = 'master', revision_uid = nil, trigger = 'manual', build_id = nil)
             build = ensure_running_build(url, branch_name, trigger, build_id)
-            output = `#{BIN} #{url.inspect} #{branch_name} #{revision_uid}`
-            HandleWorkerOutput.new(output, build)
+            stdout_str, stderr_str, status = Open3.capture3("#{BIN} #{url.inspect} #{branch_name} #{revision_uid}")
+            HandleWorkerOutput.new(stdout_str, stderr_str, build)
           end
 
           private
