@@ -58,6 +58,14 @@ en:
       I'm [@rrrene](https://twitter.com/rrrene), creator of [sparkr](http://trivelop.de/sparkr) and [Inch](http://trivelop.de/inch).
 
       If you have any questions or suggestions: Hit me up [on Twitter](https://twitter.com/rrrene) or [create an issue](https://github.com/rrrene/inch) in the Inch CI project.
+  help_webhook:
+    headline: How to configure a webhook for Inch CI
+    abstract: Using this technique your project is build everytime you push changes to GitHub.
+    howto1: "Go to the *Settings* page of your repository:"
+    howto2: "Select the *Webhooks and Services* submenu:"
+    howto3: "Click the *Add webhook* button ..."
+    howto4: "... and use http://inch-ci.org/rebuild as Payload URL:"
+    howto5: "Click *Add webhook* and you are good to go!"
   builds:
     index:
       title: Recent builds

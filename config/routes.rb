@@ -13,6 +13,7 @@ InchCI::Application.routes.draw do
   get "#{triple}(/branch/:branch)(/revision/:revision)" => 'projects#page', :constraints => triple_constraints
 
   get 'learn_more' => 'page#about', :as => :about
+  get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook
   root 'page#welcome'
 
   post "#{triple}(/branch/:branch)/rebuild" => 'projects#rebuild', :constraints => triple_constraints
