@@ -57,7 +57,7 @@ en:
 
       I'm [@rrrene](https://twitter.com/rrrene), creator of [sparkr](http://trivelop.de/sparkr) and [Inch](http://trivelop.de/inch).
 
-      If you have any questions or suggestions: Hit me up [on Twitter](https://twitter.com/rrrene) or [create an issue](https://github.com/rrrene/inch) in the Inch CI project.
+      If you have any questions or suggestions: Hit me up [on Twitter](https://twitter.com/rrrene) or [create an issue](https://github.com/inch-ci/inch_ci-web) in the Inch CI project.
   help_webhook:
     headline: How to configure a webhook for Inch CI
     abstract: Using this technique your project is build everytime you push changes to GitHub.
@@ -105,6 +105,10 @@ en:
         ### Can I have my own badges?
 
         [Sure!](/)
+
+        ### Can I configure a webhook for continuous integration?
+
+        Of course! [Learn how ...](/howto/webhook)
 
 
         ### What is the goal of this?

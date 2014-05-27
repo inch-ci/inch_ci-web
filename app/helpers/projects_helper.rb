@@ -3,6 +3,10 @@ module ProjectsHelper
     @badge_markup ||= BadgeMarkup.new(@project, @branch)
   end
 
+  def escape_markdown(str)
+    str.to_s.gsub('_', '\_')
+  end
+
   def github_issue_url(options = {})
     title = ''
     if project = options[:project]
