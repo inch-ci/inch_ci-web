@@ -4,10 +4,12 @@ I.wait_for_build = (function ($) {
   var RELOAD_URL = null;
 
   function updateBuildTimers() {
-    var span = jQuery(TIMER_SELECTOR);
-    var seconds = parseInt( span.html() );
-    seconds = seconds + 1;
-    span.html(seconds);
+    jQuery(TIMER_SELECTOR).each(function(index, ele) {
+      var span = $(ele);
+      var seconds = parseInt( span.html() );
+      seconds = seconds + 1;
+      span.html(seconds);
+    });;
   }
 
   function initReload(url) {
