@@ -48,6 +48,8 @@ gem 'inch_ci-worker', '>= 0.2.2'
 gem 'octokit'
 gem 'gems'
 
+gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
+
 gem 'minitest-reporters', :require => false
 
 gem 'rack-mini-profiler'

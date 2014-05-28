@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/getsentry/raven-ruby.git
+  revision: 33c33c898da5ce057fb7cd8c8249ddaf30273784
+  specs:
+    sentry-raven (0.9.1)
+      faraday (>= 0.7.6)
+      hashie (>= 1.1.0)
+      uuidtools
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -58,6 +67,7 @@ GEM
     gems (0.8.3)
     haml (4.0.5)
       tilt
+    hashie (2.1.1)
     hike (1.2.3)
     i18n (0.6.9)
     inch (0.4.6)
@@ -193,6 +203,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uuidtools (2.1.4)
     yard (0.8.7.4)
 
 PLATFORMS
@@ -218,6 +229,7 @@ DEPENDENCIES
   repomen
   sass-rails (~> 4.0.2)
   sdoc
+  sentry-raven!
   sidekiq (>= 3.0)
   sinatra
   sqlite3
