@@ -12,6 +12,9 @@ module ProjectsHelper
     if project = options[:project]
       title = "Re: #{project.name}"
     end
+    if code_object = options[:code_object]
+      title = "Re: #{project.name} [#{code_object.grade}] #{code_object.fullname}"
+    end
     "https://github.com/inch-ci/inch_ci-web/issues/new?title=#{title}"
   end
 

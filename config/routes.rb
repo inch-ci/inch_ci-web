@@ -6,6 +6,8 @@ InchCI::Application.routes.draw do
   triple = ':service/:user/:repo'
   triple_constraints = {:branch => /[^\/]+(?<!\.js)/}
 
+  get "#{triple}/branch/:branch/revision/:revision/code_object/:code_object" => 'code_objects#show', :constraints => triple_constraints
+
   get "#{triple}.png" => 'projects#badge', :constraints => triple_constraints
   get "#{triple}.svg" => 'projects#badge', :constraints => triple_constraints
   get "(#{triple}(/branch/:branch))/builds" => 'builds#index', :as => :builds, :constraints => triple_constraints

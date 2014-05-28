@@ -112,6 +112,7 @@ module InchCI
     end
 
 
+    FindCodeObject = -> (id) { CodeObject.includes(:code_object_roles).find(id) }
     FindCodeObjects = -> (revision) { revision.code_objects }
     FindRelevantCodeObjects = -> (revision) do
       revision.code_objects.select { |object| object.priority >= Config::MIN_RELEVANT_PRIORITY }

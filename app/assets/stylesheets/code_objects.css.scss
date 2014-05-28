@@ -111,11 +111,47 @@
     opacity: 0.2;
     vertical-align: middle;
   }
-  .grade-table td.path {
+  .grade-table td.fullname {
     word-wrap: break-word;
-  }
-  .grade-table td.path em { /* truncate separator */
-    opacity: 0.5;
+    padding-top: 12px;
+    h4 {
+      margin-top: 0;
+      padding-top: 0;
+    }
+    strong {
+      display: block;
+      margin-top: 20px;
+      font-weight: normal;
+    }
+    .pre-container {
+      position: relative;
+      margin: 10px 10px 0 10px;
+      pre {
+        background-color: #eee;
+        border: none;
+      }
+      a {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 4px 6px;
+        font-size: 13px;
+        color: #000;
+        text-decoration: underline;
+        opacity: 0.5;
+      }
+    }
+    ul {
+      margin: 10px 0;
+      padding-left: 30px;
+    }
+    .issue_hint {
+      padding-top: 4px;
+      margin-top: 20px;
+      border-top: 1px solid #aaa;
+      font-size: 13px;
+      opacity: 0.7;
+    }
   }
   .grade-table tr.show_more td:first-child {
     border-left: 4px solid #ccc;

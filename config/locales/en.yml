@@ -134,6 +134,21 @@ en:
     show_more: "Show %{more_count} more ..."
   shared:
     back_link: Back
+    code_object_roles:
+      object:
+        without_doc: "Add a comment describing the %{object_type}."
+        without_code_example: "Add a code example (optional)."
+        without_return_type: "You could add the object\'s return type."
+        without_return_description: "You could describe the return value."
+      method_parameter:
+        without_mention: "Describe the parameter \"%{ref_name}\"."
+        without_type: ""
+      method:
+        without_return_type: ""
+        without_return_description: "Describe what \"%{ref_name}\" returns."
+      constant:
+        without_doc: ""
+        without_code_example: ""
     footer: |
       An [open source project](https://github.com/inch-ci/inch_ci-web),
       created by René Föhring ([@rrrene](https://twitter.com/rrrene)),

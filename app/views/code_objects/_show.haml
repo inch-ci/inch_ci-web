@@ -1,0 +1,22 @@
+%h4= @code_object.fullname
+
+%strong Parsed documentation:
+.pre-container
+  = link_to "View on Github", "https://github.com/#{@project.user_name}/#{@project.repo_name}/blob/#{@branch.name}/#{@code_object.filename}#L#{@code_object.line_no}", :target => '_blank'
+  %pre=@code_object.docstring.presence || "(none)"
+
+- bad_roles = @code_object.bad_code_object_roles
+- if bad_roles.empty?
+  %strong No suggestions.
+- else
+  %strong Suggestions:
+  %ul
+    - bad_roles.each do |code_object_role|
+      - desc = code_object_role.to_desc(@code_object)
+      - if desc.present?
+        %li= desc
+
+.issue_hint
+  Please help!
+  = link_to 'Open an issue on GitHub', github_issue_url(:project => @project, :code_object => @code_object), :target => '_blank'
+  if this assessment is incorrect.
