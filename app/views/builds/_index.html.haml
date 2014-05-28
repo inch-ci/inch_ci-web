@@ -25,23 +25,24 @@
           %td.revision_uid
             - if revision = build.revision
               - if revision.tag_uid
-                %span.badge{:title => revision.uid}
-                  = "#{revision.tag_uid}"
-              -else
-                = "#{revision.uid}"
-          %td.duration
-            - if build.finished_at
+                - if revision.tag_uid.size < 10
+                  %span.badge{:title => revision.uid}= revision.tag_uid
+                - else
+                  %span.badge{:title => revision.tag_uid(false)}= revision.tag_uid
+              - else
+                = revision.uid
+          - if build.finished_at
+            %td.duration
               = (build.finished_at - build.started_at).to_i
               seconds
-            - elsif build.started_at
+            %td.finished_at
+              = t("builds.index.finished_ago", :time_ago => time_ago_in_words(build.finished_at))
+          - elsif build.started_at
+            %td.duration{:colspan => 2}
+              started
               %span{"data-increment-every-second" => true}
                 = (Time.now - build.started_at).to_i
               seconds ago
-          %td.finished_at
-            - if build.finished_at
-              = t("builds.index.finished_ago", :time_ago => time_ago_in_words(build.finished_at))
-            - else
-              = "-"
           %td.status{:class => build_css_class(build)}
             = build_status_icon(build)
           %td.trigger
