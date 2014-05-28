@@ -27,7 +27,7 @@ module BuildsHelper
     key = {
       'cron' => :"clock-o",
       'hook' => :git,
-      'manual' => :globe,
+      'manual' => :user,
       'tag_build' => :tags,
     }[build.trigger]
     icon(key || :question, :title => build.trigger)

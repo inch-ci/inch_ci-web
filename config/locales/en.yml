@@ -70,6 +70,7 @@ en:
     index:
       title: Recent builds
       title_with_project: "Recent builds for %{project_name}"
+      finished_ago: "%{time_ago} ago"
   projects:
     create:
       url_not_found: "No project was found under that URL."
