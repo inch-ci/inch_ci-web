@@ -13,7 +13,7 @@ class BadgeMarkup < Struct.new(:project, :branch)
 
   private
 
-  BASE_URL = "http://inch-pages.github.io"
+  BASE_URL = "http://inch-ci.org"
 
   def format_map
     image = image_url
