@@ -132,6 +132,8 @@ en:
     header_B: "Proper documentation present"
     header_C: "Needs work"
     header_U: "Undocumented"
+    grade_icon_hint: "Grade"
+    priority_icon_hint: "Priority"
     show_more: "Show %{more_count} more ..."
   shared:
     back_link: Back

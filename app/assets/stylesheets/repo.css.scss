@@ -133,43 +133,6 @@ body.repo {
     position: relative;
     min-height: 20rem;
   }
-  .badge-info {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: #f0f0f0;
-    padding: 2px 10px;
-    border-radius: 4px;
-  }
-  .badge-info a,
-  .badge-info a:hover {
-    color: #999;
-    text-decoration: none;
-  }
-  .badge-info a:hover {
-    color: inherit;
-  }
-  .badge-info img {
-    vertical-align: text-bottom;
-  }
-  #badge-image-markup {
-    background: #f0f0f0;
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
-    padding: 1rem 2rem 0.5rem 2rem;
-    border-bottom: 4px solid #ddd;
-  }
-  #badge-image-markup h3 {
-    margin-top: 0;
-  }
-  #badge-image-markup label {
-    float: left;
-    width: 10rem;
-  }
-  #badge-image-markup input.url {
-    width: 40rem;
-    padding: 0.1rem;
-  }
   .topbar,
   .repo-info {
     padding: 6px 20px;
