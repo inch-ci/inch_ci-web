@@ -11,6 +11,7 @@
     - else
       = render "badge_selector"
       = render "topbar"
+      = render "webhook_hint"
       - if @pending_build
         = render "wait_for_build", :build => @pending_build
       - else
