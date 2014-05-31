@@ -53,7 +53,7 @@ module InchCI
           end
 
           def handle_failed_build(branch)
-            Store::UpdateBuild.call(@build, nil, @build_data)
+            Store::UpdateFinishedBuild.call(@build, nil, @build_data)
           end
 
           def handle_successful_build(branch)
@@ -70,7 +70,7 @@ module InchCI
                 generate_badge(branch.project, branch, revision)
               end
             end
-            Store::UpdateBuild.call(@build, revision, @build_data)
+            Store::UpdateFinishedBuild.call(@build, revision, @build_data)
           end
 
           def generate_badge(project, branch, revision)

@@ -94,20 +94,20 @@ module InchCI
         branch.builds.create!(attributes)
       end
 
-    UpdateBuild = -> (build, revision, build_data) do
+    UpdateFinishedBuild = -> (build, revision, build_data) do
         attributes = {
           :revision => revision,
           :status => build_data.status,
-          :finished_at => build_data.finished_at
+          :finished_at => Time.now
         }
         build.update_attributes!(attributes)
       end
 
-    UpdateBuildStatus = -> (build, status, started_at = nil) do
+    UpdateBuildStatus = -> (build, status, started_at) do
       attributes = {
-        :status => status
+        :status => status,
+        :started_at => started_at
       }
-      attributes[:started_at] = started_at unless started_at.nil?
       build.update_attributes!(attributes)
     end
 
