@@ -1,4 +1,5 @@
 require 'inch_ci/worker/project/build/handle_worker_output'
+require 'open3'
 
 module InchCI
   module Worker
