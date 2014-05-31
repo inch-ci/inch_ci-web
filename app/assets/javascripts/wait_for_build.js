@@ -24,6 +24,7 @@ I.wait_for_build = (function ($) {
   }
 
   function resetTimeout() {
+      log("  -> resetTimeout()")
     setTimeout(reload, RELOAD_TIMEOUT);
   }
 
