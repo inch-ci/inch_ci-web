@@ -44,7 +44,7 @@ gem 'repomen'
 gem 'inch'
 
 gem 'inch-badge', '>= 0.2.2'
-gem 'inch_ci-worker', '>= 0.2.2'
+gem 'inch_ci-worker', '>= 0.2.3'
 gem 'octokit'
 gem 'gems'
 
