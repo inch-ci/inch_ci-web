@@ -13,7 +13,7 @@
       %tr
         %th #
         %th Project
-        %th Revision
+        %th.revision_uid Revision
         %th.duration Duration
         %th.finished_at Finished
         %th.status{:colspan => 2} Status
@@ -43,6 +43,8 @@
               %span{"data-increment-every-second" => true}
                 = (Time.now - build.started_at).to_i
               seconds ago
+          - else
+            %td.duration{:colspan => 2}
           %td.status{:class => build_css_class(build)}
             = build_status_icon(build)
           %td.trigger
