@@ -8,8 +8,16 @@ class ProjectsController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:rebuild_via_hook]
 
   def badge
-    badge = InchCI::BadgeRequest.new(params[:service], params[:user], params[:repo], params[:branch])
-    send_file badge.local_filename
+    view = Action::Project::Badge.new(params)
+    if view.project.nil?
+      render :text => "Project not found.", :layout => true, :status => 404
+    else
+      if view.branch.nil?
+        render :text => "Branch not found.", :layout => true, :status => 404
+      else
+        send_file view.badge_filename
+      end
+    end
   end
 
   def create
