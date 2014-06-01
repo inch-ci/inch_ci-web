@@ -3,6 +3,26 @@ require 'test_helper'
 class ProjectsControllerTest < ActionController::TestCase
   fixtures :all
 
+  test "should get :badge" do
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr'
+    assert_response :success
+  end
+
+  test "should get :badge with existing branch" do
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master'
+    assert_response :success
+  end
+
+  test "should get 404 on :badge for missing project" do
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr123'
+    assert_response :not_found
+  end
+
+  test "should get 404 on :badge for missing branch" do
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master123'
+    assert_response :not_found
+  end
+
   test "should create a project via github web-url" do
     post :create, :repo_url => "https://github.com/rrrene/inch"
     assert_response :redirect
