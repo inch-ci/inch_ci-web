@@ -1,6 +1,7 @@
 .stats-wrapper
   .stats
-    .progress
+    .progress.progress-striped.active
+      .progress-bar.progress-bar-U{:style => "width: 100%"}
 
     %table.table.stats-box
       %tr
@@ -18,7 +19,8 @@
         %th.running_time= t('projects.topbar.info.running_time')
         %td.running_time
           - if build.started_at
-            %span{"data-increment-every-second" => true}= (Time.now - build.started_at).to_i
+            %span{"data-increment-every-second" => true}
+              = (Time.now - build.started_at).to_i
             seconds ago
           - else
             = "-"

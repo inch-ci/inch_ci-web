@@ -124,6 +124,15 @@ body.repo {
     font-size: 16px;
   }
 
+  /* Custom default button */
+  .btn,
+  .btn:hover,
+  .btn:focus {
+    border-bottom-width: 2px;
+  }
+
+
+
   h1 {
     font-size: 40px;
     margin: 20px 0;
@@ -136,6 +145,14 @@ body.repo {
   .topbar,
   .repo-info {
     padding: 6px 20px;
+  }
+  .topbar,
+  .stats {
+    background-color: #f5f5f5;
+  }
+  .topbar {
+    border-radius: 4px;
+    padding-bottom: 20px;
   }
   .topbar button em {
     font-style: normal;
