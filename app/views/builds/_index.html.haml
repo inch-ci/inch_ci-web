@@ -8,11 +8,11 @@
     = t("builds.index.title")
 
 - unless @running_builds.empty?
-  %h3.sub-header= t("builds.index.running_header")
+  %h3.sub-header= t("builds.index.running_header", :count => @running_builds.size).html_safe
   = render "table", :builds => @running_builds
 
 - unless @scheduled_builds.empty?
-  %h3.sub-header= t("builds.index.scheduled_header")
+  %h3.sub-header= t("builds.index.scheduled_header", :count => @scheduled_builds.size).html_safe
   = render "table", :builds => @scheduled_builds
 
 - unless @completed_builds.empty?

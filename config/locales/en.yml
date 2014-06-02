@@ -70,8 +70,8 @@ en:
     index:
       title: Recent builds
       title_with_project: "Recent builds for %{project_name}"
-      running_header: Running
-      scheduled_header: Scheduled
+      running_header: "Running <small>(%{count})</small>"
+      scheduled_header: "Scheduled <small>(%{count})</small>"
       completed_header: Completed
       finished_ago: "%{time_ago} ago"
   projects:
