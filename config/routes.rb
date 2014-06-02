@@ -5,11 +5,12 @@ InchCI::Application.routes.draw do
 
   triple = ':service/:user/:repo'
   triple_constraints = {:branch => /[^\/]+(?<!\.js)/}
+  badge_constraints = {:format => /(png|svg)/}.merge(triple_constraints)
 
   get "#{triple}/branch/:branch/revision/:revision/code_object/:code_object" => 'code_objects#show', :constraints => triple_constraints
 
-  get "#{triple}.png" => 'projects#badge', :constraints => triple_constraints
-  get "#{triple}.svg" => 'projects#badge', :constraints => triple_constraints
+  get "#{triple}.:format" => 'projects#badge', :constraints => badge_constraints
+
   get "(#{triple}(/branch/:branch))/builds" => 'builds#index', :as => :builds, :constraints => triple_constraints
   get "#{triple}(/branch/:branch)(/revision/:revision)/list" => 'projects#show', :constraints => triple_constraints
   get "#{triple}(/branch/:branch)(/revision/:revision)" => 'projects#page', :constraints => triple_constraints

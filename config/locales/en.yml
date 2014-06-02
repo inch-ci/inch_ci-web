@@ -136,7 +136,10 @@ en:
         ***Suggestions, feedback, critique***: <a target="_blank" href="https://twitter.com/rrrene">Hit me up on Twitter</a> or <a target="_blank" href="%{new_issue_url}">via issue</a>.
 
   badge:
-    format:
+    image_format:
+      png: PNG
+      svg: SVG
+    markup_format:
       image_url: "Image URL:"
       md: "Markdown:"
       textile: "Textile:"

@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
       if view.branch.nil?
         render :text => "Branch not found.", :layout => true, :status => 404
       else
-        send_file view.badge_filename
+        send_file view.badge_filename, :content_type => view.content_type
       end
     end
   end

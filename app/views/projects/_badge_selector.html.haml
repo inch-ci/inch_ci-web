@@ -1,10 +1,20 @@
 .badge-info
   %a{:href => "#", :"data-show-markup" => true}
-    = image_tag badge_markup.image_path
+    - badge_markup.image_formats.each_with_index do |image_format, index|
+      = image_tag badge_markup.image_path(image_format), :class => "badge-image-markup badge-image-markup-#{image_format}", :style => index == 0 ? nil : "display: none;"
     &#9660;
 
-#badge-image-markup{:style => "display: none;"}
-  - badge_markup.each do |format, string|
-    %p
-      %label= t("badge.format.#{format}")
-      %input{:value => string, :type => "text", :class => "url", :"data-select-on-click" => true}
+#badge-image-markup{:style => "display: __none;"}
+  %form
+    - badge_markup.image_formats.each_with_index do |image_format, index|
+      %label
+        %input{:type => 'radio', :name => 'badge-format', :checked => index == 0 ? :checked : nil, :"data-select-badge" => image_format}
+          = t("badge.image_format.#{image_format}")
+    .clearfix
+
+  - badge_markup.image_formats.each_with_index do |image_format, index|
+    .badge-image-markup{:class => "badge-image-markup-#{image_format}", :style => index == 0 ? nil : "display: none;"}
+      - badge_markup.each(image_format) do |markup_format, string|
+        %p
+          %label= t("badge.markup_format.#{markup_format}")
+          %input{:value => string, :type => "text", :class => "url", :"data-select-on-click" => true}

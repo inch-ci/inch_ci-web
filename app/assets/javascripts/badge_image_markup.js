@@ -1,10 +1,15 @@
 I.badge_image_markup = (function ($) {
+  function selectImageFormat(format) {
+    $('.badge-image-markup').hide();
+    $('.badge-image-markup-'+format).show();
+  }
 
   function showMarkup() {
     $('#badge-image-markup').toggle();
   }
 
   return {
+    selectImageFormat: selectImageFormat,
     showMarkup: showMarkup
   };
 }(jQuery));
@@ -17,5 +22,9 @@ jQuery(function($) {
   }).on("click", "input[data-select-on-click]", function(evt) {
     evt.preventDefault();
     $(this).select();
+  }).on("click", "input[data-select-badge]", function(evt) {
+    var format = $(this).data('select-badge');
+    I.badge_image_markup.selectImageFormat(format);
   });
+
 });

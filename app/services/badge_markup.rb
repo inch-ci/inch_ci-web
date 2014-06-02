@@ -1,22 +1,28 @@
 class BadgeMarkup < Struct.new(:project, :branch)
-  def each(&block)
-    format_map.each(&block)
+  BASE_URL = "http://inch-ci.org"
+  IMAGE_FORMATS = [:png, :svg]
+  DEFAULT_IMAGE_FORMAT = IMAGE_FORMATS.first
+
+  def each(format = DEFAULT_IMAGE_FORMAT, &block)
+    format_map(format).each(&block)
   end
 
-  def image_path(format = :png)
+  def image_formats
+    IMAGE_FORMATS
+  end
+
+  def image_path(format = DEFAULT_IMAGE_FORMAT)
     "#{page_path}.#{format}?branch=#{branch.name}"
   end
 
-  def image_url(format = :png)
+  def image_url(format = DEFAULT_IMAGE_FORMAT)
     "#{BASE_URL}#{image_path(format)}"
   end
 
   private
 
-  BASE_URL = "http://inch-ci.org"
-
-  def format_map
-    image = image_url
+  def format_map(format)
+    image = image_url(format)
     link  =  page_url
     alt   = "Inline docs"
     {
@@ -34,5 +40,4 @@ class BadgeMarkup < Struct.new(:project, :branch)
   def page_url
     "#{BASE_URL}#{page_path}"
   end
-
 end

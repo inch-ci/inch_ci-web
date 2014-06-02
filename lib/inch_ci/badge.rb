@@ -1,14 +1,14 @@
 module InchCI
   module BadgeMethods
-    FORMATS = %w(png svg)
-    DEFAULT_FORMAT = FORMATS.first
+    IMAGE_FORMATS = %w(png svg)
+    DEFAULT_IMAGE_FORMAT = IMAGE_FORMATS.first
 
-    def filename(format = DEFAULT_FORMAT)
+    def filename(format = DEFAULT_IMAGE_FORMAT)
       File.join(*project_triple, "#{branch_name}.#{format}")
     end
 
-    def local_filename(format = DEFAULT_FORMAT)
-      File.join(Rails.root, public_dir, filename)
+    def local_filename(format = DEFAULT_IMAGE_FORMAT)
+      File.join(Rails.root, public_dir, filename(format))
     end
 
     private
@@ -27,7 +27,7 @@ module InchCI
 
     def self.create(project, branch, counts)
       badge = new(project, branch)
-      FORMATS.each do |format|
+      IMAGE_FORMATS.each do |format|
         filename = badge.local_filename(format)
         FileUtils.mkdir_p File.dirname(filename)
         Inch::Badge::Image.create(filename, counts)
