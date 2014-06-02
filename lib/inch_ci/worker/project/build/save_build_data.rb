@@ -66,10 +66,9 @@ module InchCI
                 Store::UpdateLatestRevision.call(branch, revision)
                 diff = CalculateDiff.call(before_revision, revision)
                 Store::CreateRevisionDiff.call(branch, before_revision, revision, diff)
-
-                generate_badge(branch.project, branch, revision)
               end
             end
+            generate_badge(branch.project, branch, revision)
             Store::UpdateFinishedBuild.call(@build, revision, @build_data)
           end
 
