@@ -149,12 +149,15 @@
       margin: 10px 0;
       padding-left: 30px;
     }
-    .issue_hint {
+    .issue-hint {
       padding-top: 4px;
       margin-top: 20px;
       border-top: 1px solid #aaa;
       font-size: 13px;
-      opacity: 0.7;
+      color: #aaa;
+      a {
+        color: rgb(255, 153, 105)
+      }
     }
   }
   .grade-table tr.show_more td:first-child {
