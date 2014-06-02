@@ -4,7 +4,7 @@
       = image_tag badge_markup.image_path(image_format), :class => "badge-image-markup badge-image-markup-#{image_format}", :style => index == 0 ? nil : "display: none;"
     &#9660;
 
-#badge-image-markup{:style => "display: __none;"}
+#badge-image-markup{:style => "display: none;"}
   %form
     - badge_markup.image_formats.each_with_index do |image_format, index|
       %label
