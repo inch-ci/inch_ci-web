@@ -6,6 +6,7 @@ module Action
     include Action::FindProjectAndBranch
 
     exposes :project, :branch, :builds
+    exposes :running_builds, :scheduled_builds, :completed_builds
 
     def initialize(params)
       @project = find_project(params)
@@ -13,6 +14,9 @@ module Action
       @builds = find_builds.map do |build|
           BuildPresenter.new(build)
         end
+      @scheduled_builds = @builds.select { |b| b.status == 'created' }
+      @running_builds = @builds.select { |b| b.status == 'running' }
+      @completed_builds = @builds.select { |b| !%w(created running).include?(b.status) }
     end
 
     private

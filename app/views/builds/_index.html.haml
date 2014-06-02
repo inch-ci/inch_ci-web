@@ -7,45 +7,14 @@
   - else
     = t("builds.index.title")
 
-.table-responsive
-  %table.table.table-striped.builds
-    %thead
-      %tr
-        %th #
-        %th Project
-        %th.revision_uid Revision
-        %th.duration Duration
-        %th.finished_at Finished
-        %th.status{:colspan => 2} Status
-    %tbody
-      - @builds.each do |build|
-        %tr
-          %td= @project ? build.number : build.id
-          %td= link_to_project build.branch.project
-          %td.revision_uid
-            - if revision = build.revision
-              - if revision.tag_uid
-                - if revision.tag_uid.size < 10
-                  %span.badge{:title => revision.uid}= revision.tag_uid
-                - else
-                  %span.badge{:title => revision.tag_uid(false)}= revision.tag_uid
-              - else
-                = revision.uid
-          - if build.finished_at
-            %td.duration
-              = (build.finished_at - build.started_at).to_i
-              seconds
-            %td.finished_at
-              = t("builds.index.finished_ago", :time_ago => time_ago_in_words(build.finished_at))
-          - elsif build.started_at
-            %td.duration{:colspan => 2}
-              started
-              %span{"data-increment-every-second" => true}
-                = (Time.now - build.started_at).to_i
-              seconds ago
-          - else
-            %td.duration{:colspan => 2}
-          %td.status{:class => build_css_class(build)}
-            = build_status_icon(build)
-          %td.trigger
-            = build_trigger_icon(build)
+- unless @running_builds.empty?
+  %h3.sub-header= t("builds.index.running_header")
+  = render "table", :builds => @running_builds
+
+- unless @scheduled_builds.empty?
+  %h3.sub-header= t("builds.index.scheduled_header")
+  = render "table", :builds => @scheduled_builds
+
+- unless @completed_builds.empty?
+  %h3.sub-header= t("builds.index.completed_header")
+  = render "table", :builds => @completed_builds
