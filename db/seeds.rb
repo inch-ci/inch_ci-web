@@ -11,8 +11,8 @@ project_names[0...COUNT.to_i].each do |name|
   InchCI::Store::FindProject.call(uid) ||
     InchCI::Store::CreateProject.call(uid, repo_url)
 
+  InchCI::Worker::Project::UpdateInfo.new.perform(uid)
   InchCI::Worker::Project::Build.enqueue(repo_url)
-  InchCI::Worker::Project::UpdateInfo.enqueue(uid)
 end
 
 puts "Projects: #{Project.count}"
