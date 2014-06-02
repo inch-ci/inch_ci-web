@@ -100,10 +100,12 @@ en:
         documentation_url: Documentation
         source_code_url: Source
       rebuild_link: Refresh
+      rebuild_link_tooltip: "Re-evaluate this project's docs"
       feedback_link: Feedback
+      feedback_link_tooltip: "Post questions, suggestions, and bugs"
       update_info_link: "Update branches & info"
     wait_for_build:
-      info: "Your page is currently building. This page will automatically refresh (can take up to a minute)."
+      info: "Your page is currently building. This page will refresh automatically (can take up to a minute)."
     start_build:
       info: "This branch is not evaluated yet. Press 'Refresh' to add it."
     page:
