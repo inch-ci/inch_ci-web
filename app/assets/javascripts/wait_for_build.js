@@ -3,6 +3,32 @@ I.wait_for_build = (function ($) {
   var RELOAD_TIMEOUT = 4000;
   var RELOAD_URL = null;
 
+  function initBuildChecker(check_build_url, reload_url) {
+    RELOAD_URL = reload_url;
+    checkBuild(check_build_url);
+    enqueueCheckBuild(check_build_url);
+  }
+
+  function checkBuild(check_build_url) {
+    jQuery.ajax(check_build_url, {dataType: 'json', success: function(build) {
+      if( !window.builds ) window.builds = {};
+      if( !window.builds[build.id] ) {
+        window.builds[build.id] = build;
+      } else {
+        var before = window.builds[build.id];
+        if( before.status != build.status ) reload();
+        window.builds[build.id] = build;
+      }
+      enqueueCheckBuild(check_build_url);
+    }});
+  }
+
+  function enqueueCheckBuild(check_build_url) {
+    setTimeout(function() {
+      checkBuild(check_build_url);
+    }, RELOAD_TIMEOUT);
+  }
+
   function updateBuildTimers() {
     jQuery(TIMER_SELECTOR).each(function(index, ele) {
       var span = $(ele);
@@ -12,8 +38,8 @@ I.wait_for_build = (function ($) {
     });;
   }
 
-  function initReload(url) {
-    RELOAD_URL = url;
+  function initReload(reload_url) {
+    RELOAD_URL = reload_url;
     resetTimeout();
   }
 
@@ -24,7 +50,6 @@ I.wait_for_build = (function ($) {
   }
 
   function resetTimeout() {
-      log("  -> resetTimeout()")
     setTimeout(reload, RELOAD_TIMEOUT);
   }
 
@@ -37,6 +62,7 @@ I.wait_for_build = (function ($) {
   }
 
   return {
+    initBuildChecker: initBuildChecker,
     initReload: initReload,
     initTimers: initTimers,
     resetTimeout: resetTimeout

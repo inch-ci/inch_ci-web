@@ -28,8 +28,6 @@
 .repo-info
   .explanation
     %p= t('projects.wait_for_build.info')
-    %p
-      %i.fa.fa-cog.fa-spin
 
 :javascript
-  I.wait_for_build.initReload('#{url_for(params.merge(:format => :js))}');
+  I.wait_for_build.initBuildChecker('#{url_for(@pending_build)}.json', '#{url_for(params.merge(:format => :js))}');

@@ -9,4 +9,10 @@ class BuildsController < ApplicationController
     view = Action::BuildHistory.new(params)
     expose view
   end
+
+  def show
+    view = Action::Build::Show.new(params)
+    expose view
+    render :json => @build
+  end
 end
