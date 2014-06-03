@@ -10,10 +10,10 @@ class ProjectsController < ApplicationController
   def badge
     view = Action::Project::Badge.new(params)
     if view.project.nil?
-      render :text => "Project not found.", :layout => true, :status => 404
+      render :text => "Project not found.", :layout => false, :status => 404
     else
       if view.branch.nil?
-        render :text => "Branch not found.", :layout => true, :status => 404
+        render :text => "Branch not found.", :layout => false, :status => 404
       else
         send_file view.badge_filename, :content_type => view.content_type
       end
@@ -37,7 +37,11 @@ class ProjectsController < ApplicationController
 
   def rebuild
     action = Action::Project::Rebuild.new(params)
-    redirect_to project_page_url(action.project, action.branch.name, :pending_build => action.build_id)
+    if action.project.nil?
+      render :text => "Project not found.", :layout => false, :status => 404
+    else
+      redirect_to project_page_url(action.project, action.branch.name, :pending_build => action.build_id)
+    end
   end
 
   def rebuild_via_hook

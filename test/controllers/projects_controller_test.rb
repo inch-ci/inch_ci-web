@@ -3,25 +3,38 @@ require 'test_helper'
 class ProjectsControllerTest < ActionController::TestCase
   fixtures :all
 
-  test "should get :badge" do
-    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr'
+  #
+  # BADGE
+  #
+
+  test "should get :badge as PNG" do
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :png
+    assert_response :success
+  end
+
+  test "should get :badge as SVG" do
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :svg
     assert_response :success
   end
 
   test "should get :badge with existing branch" do
-    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master'
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master', :format => :png
     assert_response :success
   end
 
   test "should get 404 on :badge for missing project" do
-    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr123'
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr123', :format => :png
     assert_response :not_found
   end
 
   test "should get 404 on :badge for missing branch" do
-    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master123'
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master123', :format => :png
     assert_response :not_found
   end
+
+  #
+  # CREATE
+  #
 
   test "should create a project via github web-url" do
     post :create, :repo_url => "https://github.com/rrrene/inch"
@@ -45,15 +58,37 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_template :welcome
   end
 
+  #
+  # REBUILD
+  #
+
   test "should rebuild a project" do
     post :rebuild, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master'
     assert_response :redirect
   end
 
+  test "should get 404 on :rebuild for missing project" do
+    post :rebuild, :service => 'github', :user => 'rrrene', :repo => 'sparkr123', :branch => 'master'
+    assert_response :not_found
+  end
+
+  #
+  # REBUILD VIA HOOK
+  #
+
   test "should rebuild a project via web hook" do
     post :rebuild_via_hook, :payload => '{"ref": "refs/heads/master","repository":{"url":"https://github.com/rrrene/sparkr"}}'
     assert_response :success
   end
+
+  test "should not rebuild a missing project via web hook" do
+    post :rebuild_via_hook, :payload => '{"ref": "refs/heads/master","repository":{"url":"https://github.com/rrrene/sparkr123"}}'
+    assert_response :success
+  end
+
+  #
+  # SHOW
+  #
 
   test "should get :show" do
     get :show, :service => 'github', :user => 'rrrene', :repo => 'sparkr'
