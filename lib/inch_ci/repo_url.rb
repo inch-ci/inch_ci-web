@@ -3,7 +3,7 @@ module InchCI
     attr_reader :service, :url
 
     def initialize(url)
-      @url = url.to_s
+      @url = url.to_s.gsub(/(\/)\Z/, '')
       [@url, @url + '.git'].each do |_url|
         @service ||= Repomen::Repo::Service.for(_url)
       end

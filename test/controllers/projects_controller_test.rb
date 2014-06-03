@@ -41,6 +41,11 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_response :redirect
   end
 
+  test "should create a project via a slightly malformed github web-url" do
+    post :create, :repo_url => "https://github.com/rrrene/inch/"
+    assert_response :redirect
+  end
+
   test "should create a project via github ssh-url" do
     post :create, :repo_url => "git@github.com:rrrene/inch.git"
     assert_response :redirect

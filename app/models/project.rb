@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  UID_FORMAT = /\A(\w+)\:(\w+)\/(\w+)\Z/
+
   has_many :branches, :dependent => :destroy
   has_many :code_objects, :dependent => :destroy
 
@@ -21,6 +23,6 @@ class Project < ActiveRecord::Base
     uid.split(':').last.split('/').last
   end
 
-  validates :uid, :presence => true, :uniqueness => true
+  validates :uid, :format => UID_FORMAT, :presence => true, :uniqueness => true
   validates :repo_url, :presence => true, :uniqueness => true
 end
