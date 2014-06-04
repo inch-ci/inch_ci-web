@@ -28,7 +28,16 @@ en:
     what_is_this: What is this about?
   welcome:
     headline: "Documentation badges for Ruby projects"
-    abstract: "Let's raise the visibility of code documentation in Ruby!"
+    abstract: |
+      Thanks to [Travis](http://travis-ci.org), the community champions testing.
+
+      Thanks to [Code Climate](http://codeclimate.com), we refactor constantly.
+
+      But there is no way to lint and show off your inline docs. Until now.
+    abstract2: |
+      Let's raise the visibility of code documentation in Ruby!
+
+      Because better inline docs mean easier contribution and more collaboration!
     featured: "Join the movement!"
     learn_more: "Lean more"
     project_placeholder: https://github.com/rrrene/inch
@@ -169,6 +178,7 @@ en:
       constant:
         without_doc: ""
         without_code_example: ""
+    title: "Inch CI - Documentation badges for Ruby projects - Show off your docs"
     footer: |
       An [open source project](https://github.com/inch-ci/inch_ci-web),
       created by René Föhring ([@rrrene](https://twitter.com/rrrene)),
