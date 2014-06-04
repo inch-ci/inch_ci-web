@@ -6,7 +6,6 @@ I.wait_for_build = (function ($) {
   function initBuildChecker(check_build_url, reload_url) {
     RELOAD_URL = reload_url;
     checkBuild(check_build_url);
-    enqueueCheckBuild(check_build_url);
   }
 
   function checkBuild(check_build_url) {
@@ -14,12 +13,16 @@ I.wait_for_build = (function ($) {
       if( !window.builds ) window.builds = {};
       if( !window.builds[build.id] ) {
         window.builds[build.id] = build;
+        enqueueCheckBuild(check_build_url);
       } else {
         var before = window.builds[build.id];
-        if( before.status != build.status ) reload();
+        if( before.status == build.status ) {
+          enqueueCheckBuild(check_build_url);
+        } else {
+          reload();
+        }
         window.builds[build.id] = build;
       }
-      enqueueCheckBuild(check_build_url);
     }});
   }
 
