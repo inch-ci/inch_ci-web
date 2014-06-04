@@ -33,7 +33,7 @@ module InchCI
           def add_revision(branch, build_data, objects)
             revision = Store::CreateRevision.call(branch, build_data.revision_uid, build_data.tag_uid,
               build_data.revision_message, build_data.revision_author_name, build_data.revision_author_email,
-                build_data.revision_authored_at)
+                build_data.badge_in_readme?, build_data.revision_authored_at)
             objects.each do |attributes|
               Store::CreateCodeObject.call(revision, attributes)
             end
@@ -90,6 +90,7 @@ module InchCI
               @trigger = @data['trigger']
               @repo_url = @data['repo_url']
               @branch_name = @data['branch_name']
+              @badge_in_readme = @data['badge_in_readme']
               @revision_uid = @data['revision_uid']
               @revision_message = @data['revision_message']
               @revision_author_name = @data['revision_author_name']
@@ -99,6 +100,10 @@ module InchCI
               @started_at = @data['started_at']
               @finished_at = @data['finished_at']
               @objects = @data['objects']
+            end
+
+            def badge_in_readme?
+              @data['badge_in_readme']
             end
 
             # Returns true if the currently built revision should be treated as

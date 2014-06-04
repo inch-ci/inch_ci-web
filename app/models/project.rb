@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  UID_FORMAT = /\A(\w+)\:(\w+)\/(\w+)\Z/
+  UID_FORMAT = /\A([a-z0-9\-\_\.]+)\:([a-z0-9\-\_\.]+)\/([a-z0-9\-\_\.]+)\Z/i
 
   has_many :branches, :dependent => :destroy
   has_many :code_objects, :dependent => :destroy

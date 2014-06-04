@@ -29,10 +29,11 @@ module InchCI
     FindDefaultBranch = -> (project) { project.default_branch }
 
     FindRevision = -> (branch, uid) { branch.revisions.where(:uid => uid).first }
-    CreateRevision = -> (branch, uid, tag_uid, message, author_name, author_email, authored_at) {
+    CreateRevision = -> (branch, uid, tag_uid, message, author_name, author_email, badge_in_readme, authored_at) {
       attributes = {
         :uid => uid,
         :tag_uid => tag_uid,
+        :badge_in_readme => badge_in_readme,
         :message => message,
         :author_name => author_name,
         :author_email => author_email,
