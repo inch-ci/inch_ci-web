@@ -13,6 +13,7 @@ describe ::InchCI::Worker::Project::Build::SaveBuildData do
       assert_difference(%w(Revision.count RevisionDiff.count), 1) do
         assert_difference(%w(CodeObjectReference.count CodeObject.count CodeObjectDiff.count), 3) do
           described_class.new(build, data['build'])
+          assert Revision.last.badge_in_readme?
         end
       end
     end
@@ -26,6 +27,7 @@ describe ::InchCI::Worker::Project::Build::SaveBuildData do
         assert_difference(%w(CodeObjectReference.count), 3) do
           assert_difference(%w(CodeObject.count CodeObjectDiff.count), 1) do
             described_class.new(build, data['build'])
+            refute Revision.last.badge_in_readme?
           end
         end
       end

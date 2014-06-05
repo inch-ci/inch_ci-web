@@ -90,7 +90,6 @@ module InchCI
               @trigger = @data['trigger']
               @repo_url = @data['repo_url']
               @branch_name = @data['branch_name']
-              @badge_in_readme = @data['badge_in_readme']
               @revision_uid = @data['revision_uid']
               @revision_message = @data['revision_message']
               @revision_author_name = @data['revision_author_name']

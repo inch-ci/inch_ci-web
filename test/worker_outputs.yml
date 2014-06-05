@@ -9,6 +9,7 @@ codebase_3_objects:
     service_name: github
     user_name: rrrene
     repo_name: sparkr_mock
+    badge_in_readme: true
     revision_uid: 8849af2b7ad96c6aa650a6fd5490ef83629faf2a
     revision_author_name: René Föhring
     revision_author_email: rf@bamaru.de
@@ -159,6 +160,7 @@ codebase_3_objects_1_changed:
     service_name: github
     user_name: rrrene
     repo_name: sparkr_mock
+    badge_in_readme: false
     revision_uid: a6fd5490ef83629faf2a89af2b7ad96c6aa65840
     revision_author_name: René Föhring
     revision_author_email: rf@bamaru.de
