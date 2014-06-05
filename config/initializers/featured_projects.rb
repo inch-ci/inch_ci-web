@@ -10,7 +10,6 @@ FEATURED_PROJECT_UIDS = %w(
   github:redis/redis-rb
   github:rkh/mustermann
   github:rom-rb/rom
-  github:rspec/rspec-core
   github:sferik/twitter
   github:solnic/virtus
   github:troessner/reek
