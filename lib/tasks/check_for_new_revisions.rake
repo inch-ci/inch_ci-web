@@ -1,3 +1,9 @@
+task :kill_dead_builds => :environment do
+  timestamp = Time.now - 1000
+
+  builds = Build.where('status = ? AND started_at < ?', 'running', timestamp)
+  builds.update_all(:status => 'failed:dead')
+end
 
 task :check_for_new_revisions => :environment do
   since = 6.hours
