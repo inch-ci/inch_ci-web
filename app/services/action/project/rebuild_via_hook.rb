@@ -30,15 +30,14 @@ module Action
       end
 
       def process_payload(payload)
-        project = InchCI::Store::FindProject.call(project_uid(payload))
-        enqueue_build(project, branch_name(payload))
+        branch = InchCI::Store::EnsureProjectAndBranch.call(project_url(payload), branch_name(payload))
+        enqueue_build(branch.project, branch.name)
         @result = "OK"
       end
 
-      def project_uid(payload)
+      def project_url(payload)
         if web_url = payload['repository'] && payload['repository']['url']
-          info = InchCI::RepoURL.new(web_url)
-          info.project_uid
+          "#{web_url}.git"
         end
       end
     end

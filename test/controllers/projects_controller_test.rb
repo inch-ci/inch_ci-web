@@ -87,8 +87,11 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test "should not rebuild a missing project via web hook" do
-    post :rebuild_via_hook, :payload => '{"ref": "refs/heads/master","repository":{"url":"https://github.com/rrrene/sparkr123"}}'
+    Project.find_by_uid("github:rrrene/sparkr").destroy
+    assert_equal 0, Project.where(:uid => "github:rrrene/sparkr").count
+    post :rebuild_via_hook, :payload => '{"ref": "refs/heads/master","repository":{"url":"https://github.com/rrrene/sparkr"}}'
     assert_response :success
+    assert_equal 1, Project.where(:uid => "github:rrrene/sparkr").count
   end
 
   #
