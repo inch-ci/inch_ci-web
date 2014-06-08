@@ -12,7 +12,7 @@ module Action
 
         info = InchCI::RepoURL.new(params[:repo_url])
         if @project = InchCI::Store::EnsureProject.call(info.repo_url)
-          if @project = update_project
+          if @project = update_project(@project)
             if branch = InchCI::Store::FindDefaultBranch.call(@project)
               @build = InchCI::Worker::Project::Build.enqueue(project.repo_url, branch.name)
             end
@@ -31,10 +31,10 @@ module Action
 
       private
 
-      def update_project
+      def update_project(project)
         worker = InchCI::Worker::Project::UpdateInfo.new
-        worker.perform(@project.uid)
-        InchCI::Store::FindProject.call(@project.uid)
+        worker.perform(project.uid)
+        InchCI::Store::FindProject.call(project.uid)
       end
     end
   end
