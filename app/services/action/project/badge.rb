@@ -4,13 +4,12 @@ module Action
   module Project
     class Badge
       include InchCI::Action
-      include Action::FindProjectAndBranch
+      include Action::SetProjectAndBranch
 
       exposes :project, :branch, :badge_filename, :content_type
 
       def initialize(params)
-        @project = find_project(params)
-        @branch = find_branch(@project, params)
+        set_project_and_branch(params)
         if @project && @branch
           @badge = InchCI::BadgeRequest.new(@project.service_name, @project.user_name, @project.repo_name, @branch.name)
           format = params[:format].to_s

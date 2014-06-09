@@ -4,7 +4,7 @@ module Action
   module CodeObject
     class Show
       include InchCI::Action
-      include Action::FindProjectAndBranch
+      include Action::SetProjectAndBranch
 
       exposes :project, :branch, :revision, :code_object
 

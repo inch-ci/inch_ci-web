@@ -4,7 +4,6 @@ module Action
   module Project
     class RebuildViaHook
       include InchCI::Action
-      include Action::EnsureProjectAndBranch
 
       TRIGGER = 'hook'
 
@@ -31,7 +30,7 @@ module Action
       end
 
       def process_payload(payload)
-        branch = ensure_project_and_branch(project_url(payload), branch_name(payload))
+        branch = EnsureProjectAndBranch.call(project_url(payload), branch_name(payload))
         enqueue_build(branch.project, branch.name)
         @result = "OK"
       end

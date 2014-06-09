@@ -5,14 +5,12 @@ module Action
   module Project
     class Show
       include InchCI::Action
-      include Action::FindProjectAndBranch
+      include Action::SetProjectAndBranch
 
       exposes :project, :branch, :revision, :collection, :pending_build
 
       def initialize(params)
-        @build = find_pending_build(params)
-        @project = find_project(params)
-        @branch = find_branch(@project, params)
+        set_project_and_branch(params)
         if revision = find_revision(@branch, params)
           @revision = RevisionPresenter.new(revision)
           @collection = create_collection(@revision)

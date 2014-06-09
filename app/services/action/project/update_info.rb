@@ -4,13 +4,12 @@ module Action
   module Project
     class UpdateInfo
       include InchCI::Action
-      include Action::FindProjectAndBranch
+      include Action::SetProjectAndBranch
 
       exposes :project, :branch
 
       def initialize(params)
-        @project = find_project(params)
-        @branch = find_branch(@project, params)
+        set_project_and_branch(params)
         update_project
       end
 

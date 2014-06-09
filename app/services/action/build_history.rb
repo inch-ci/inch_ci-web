@@ -3,7 +3,7 @@ require 'inch_ci/action'
 module Action
   class BuildHistory
     include InchCI::Action
-    include Action::FindProjectAndBranch
+    include Action::SetProjectAndBranch
 
     exposes :project, :branch, :builds
     exposes :running_builds, :scheduled_builds, :completed_builds
