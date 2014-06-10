@@ -11,6 +11,7 @@ module Action
 
       def initialize(params)
         set_project_and_branch(params)
+        @build = find_pending_build(params)
         if revision = find_revision(@branch, params)
           @revision = RevisionPresenter.new(revision)
           @collection = create_collection(@revision)

@@ -1,3 +1,5 @@
+require 'inch_ci/project_uid'
+
 module InchCI
   module Action
     def self.included(other)
@@ -32,7 +34,7 @@ module InchCI
       def initialize(params)
         uid = ProjectUID.new(params).project_uid
         @project = InchCI::Store::FindProject.call(uid)
-        @branch = find_branch(params[:branch]) if project
+        @branch = find_branch(params[:branch]) if !@project.nil?
       end
 
       private
