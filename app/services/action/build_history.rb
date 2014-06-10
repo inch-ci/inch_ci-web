@@ -9,8 +9,7 @@ module Action
     exposes :running_builds, :scheduled_builds, :completed_builds
 
     def initialize(params)
-      @project = find_project(params)
-      @branch = find_branch(@project, params)
+      set_project_and_branch(params)
       @builds = find_builds.map do |build|
           BuildPresenter.new(build)
         end
