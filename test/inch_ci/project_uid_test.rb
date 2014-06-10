@@ -1,7 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../test_helper')
 
-require 'inch_ci/project_uid'
-
 describe ::InchCI::ProjectUID do
   fixtures :all
 
