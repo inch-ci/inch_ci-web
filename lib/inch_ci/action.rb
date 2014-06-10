@@ -32,7 +32,7 @@ module InchCI
       end
 
       def initialize(params)
-        uid = project_uid(params)
+        uid = ProjectUID.new(params).project_uid
         @project = InchCI::Store::FindProject.call(uid)
         @branch = find_branch(params[:branch]) if project
       end
@@ -45,10 +45,6 @@ module InchCI
         else
           InchCI::Store::FindDefaultBranch.call(project)
         end
-      end
-
-      def project_uid(params)
-        "#{params[:service]}:#{params[:user]}/#{params[:repo]}"
       end
     end
 
