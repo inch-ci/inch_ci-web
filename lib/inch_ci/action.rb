@@ -13,9 +13,7 @@ module InchCI
 
       def exposes(*names)
         exposures.concat names
-        names.each do |name|
-          send :attr_reader, name
-        end
+        attr_reader *names
       end
 
       def exposures
