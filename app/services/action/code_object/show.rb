@@ -9,8 +9,7 @@ module Action
       exposes :project, :branch, :revision, :code_object
 
       def initialize(params)
-        @project = find_project(params)
-        @branch = find_branch(@project, params)
+        set_project_and_branch(params)
         @revision = find_revision(@branch, params)
         @code_object = find_code_object(params)
       end
