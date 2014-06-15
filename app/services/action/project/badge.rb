@@ -10,6 +10,11 @@ module Action
 
       def initialize(params)
         set_project_and_branch(params)
+        if !@project
+          create_project_and_branch(params)
+          create_badge
+          enqueue_build
+        end
         if @project && @branch
           @badge = InchCI::BadgeRequest.new(@project.service_name, @project.user_name, @project.repo_name, @branch.name)
           format = params[:format].to_s
@@ -24,11 +29,21 @@ module Action
 
       private
 
+      TRIGGER = 'manual'
+
       def content_types
         {
-          'png' => "image/png",
-          'svg' => "image/svg+xml"
+          'png' => 'image/png',
+          'svg' => 'image/svg+xml'
         }
+      end
+
+      def create_badge
+        InchCI::Badge.create(@project, @branch, [0,0,0,0])
+      end
+
+      def enqueue_build
+        InchCI::Worker::Project::Build.enqueue(@project.repo_url, @branch.name, nil, TRIGGER)
       end
     end
   end

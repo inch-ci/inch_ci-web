@@ -22,12 +22,23 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get 404 on :badge for missing project" do
-    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr123', :format => :png
+  test "should get 404 on :badge for non-existing project" do
+    assert_difference(%w(Build.count), 0) do
+      get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr123', :format => :png
+    end
     assert_response :not_found
   end
 
-  test "should get 404 on :badge for missing branch" do
+  test "should get and build :badge for missing project" do
+    Project.find_by_uid("github:rrrene/sparkr").destroy
+    assert_equal 0, Project.where(:uid => "github:rrrene/sparkr").count
+    assert_difference(%w(Build.count Project.count), 1) do
+      get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :png
+    end
+    assert_response :success
+  end
+
+  test "should get and build :badge for missing branch" do
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master123', :format => :png
     assert_response :not_found
   end
@@ -37,18 +48,24 @@ class ProjectsControllerTest < ActionController::TestCase
   #
 
   test "should create a project via github web-url" do
-    post :create, :repo_url => "https://github.com/rrrene/inch"
-    assert_response :redirect
+    assert_difference(%w(Build.count Project.count), 1) do
+      post :create, :repo_url => "https://github.com/rrrene/inch"
+      assert_response :redirect
+    end
   end
 
   test "should create a project via a slightly malformed github web-url" do
-    post :create, :repo_url => "https://github.com/rrrene/inch/"
-    assert_response :redirect
+    assert_difference(%w(Build.count Project.count), 1) do
+      post :create, :repo_url => "https://github.com/rrrene/inch/"
+      assert_response :redirect
+    end
   end
 
   test "should create a project via github ssh-url" do
-    post :create, :repo_url => "git@github.com:rrrene/inch.git"
-    assert_response :redirect
+    assert_difference(%w(Build.count Project.count), 1) do
+      post :create, :repo_url => "git@github.com:rrrene/inch.git"
+      assert_response :redirect
+    end
   end
 
   test "should not create a project via git-url that doesnot exist on GitHub" do

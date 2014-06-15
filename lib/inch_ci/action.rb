@@ -55,10 +55,20 @@ module InchCI
         new(*args).branch
       end
 
-      def initialize(project_url, branch_name)
-        @branch = InchCI::Store::EnsureProjectAndBranch.call(project_url, branch_name)
+      def initialize(url_or_params, branch_name)
+        @branch = InchCI::Store::EnsureProjectAndBranch.call(project_url(url_or_params), branch_name)
         @project = branch.project
         update_project(@project) if !@project.default_branch
+      end
+
+      private
+
+      def project_url(url_or_params)
+        if url_or_params.is_a?(Hash)
+          ProjectUID.new(url_or_params).repo_url
+        else
+          RepoURL.new(url_or_params).repo_url
+        end
       end
 
       def update_project(project)

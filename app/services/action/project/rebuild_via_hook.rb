@@ -36,7 +36,7 @@ module Action
       end
 
       def project_url(payload)
-        if web_url = payload['repository'] && payload['repository']['url']
+        if web_url = (payload['repository'] && payload['repository']['url'])
           "#{web_url}.git"
         end
       end
