@@ -166,6 +166,9 @@ body.repo {
   .repo-info .explanation p {
     margin: 0;
   }
+  .repo-info .explanation p a.btn {
+    margin-top: 10px;
+  }
   .repo-links {
     margin-bottom: 1rem;
     background-color: #eee;
