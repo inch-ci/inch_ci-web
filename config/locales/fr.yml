@@ -19,7 +19,7 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+fr:
   navigation:
     brand: "# Inch CI"
     home: Accueil
@@ -43,9 +43,9 @@ en:
     project_placeholder: https://github.com/rrrene/inch
     add_project: "Ajouter un projet"
   about:
-    headline: "Qu’est-ce que Inch CI?"
+    headline: "Qu’est-ce que Inch CI ?"
     abstract: |
-      Ce project est une tentative pour augmenter la visibilité de la documentation de code en Ruby. Il fournit des badges à inclure dans vos README, pour montrer à tout le monde que la documentation de code est un truc cool.
+      Ce project est une tentative pour augmenter la visibilité de la documentation de code en Ruby. Il fournit des badges à inclure dans vos READMEs, pour montrer à tout le monde que la documentation de code est un truc cool.
 
       Les badges sont basés sur Inch et ressemblent à ça :
       ![Documentation de code](%{badge_image_url})
