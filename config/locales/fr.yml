@@ -1,0 +1,185 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+fr:
+  navigation:
+    brand: "# Inch CI"
+    home: Accueil
+    learn_more: En savoir plus
+    report_card: Carte d’évaluation
+    what_is_this: "C’est quoi ça ?"
+  welcome:
+    headline: "Badges de documentation pour projets Ruby"
+    abstract: |
+      Grâce à [Travis](http://travis-ci.org), la communauté est championne en tests
+
+      Grâce à [Code Climate](http://codeclimate.com), nous améliorons constamment notre code
+
+      Mais il n’y a aucun moyen d’évaluer et de montrer votre documentation de code. Jusqu’à maintenant.
+    abstract2: |
+      Augmentons la visibilité de la documentation de code en Ruby !
+
+      Parce qu’une meilleure documentation du code veut dire une contribution aisée et plus de collaboration !
+    featured: "Rejoignez le mouvement !"
+    learn_more: "En savoir plus"
+    project_placeholder: https://github.com/rrrene/inch
+    add_project: "Ajouter un projet"
+  about:
+    headline: "Qu’est-ce que Inch CI ?"
+    abstract: |
+      Ce project est une tentative pour augmenter la visibilité de la documentation de code en Ruby. Il fournit des badges à inclure dans vos READMEs, pour montrer à tout le monde que la documentation de code est un truc cool.
+
+      Les badges sont basés sur Inch et ressemblent à ça :
+      ![Documentation de code](%{badge_image_url})
+       Obtenez le vôtre ci-dessous !
+
+      ## Qu’est-ce que « Inch » ?
+
+      Inch est un outil de mesure de documentation pour Ruby qui a été créé pour aider les gens à documenter leur code.
+      C’est un outil en ligne de commande qui donne des notes en fonction de la complétion de la documentation ([captures d’écrans](http://trivelop.de/inch)).
+
+      ## Quel est le but ?
+
+      Je suis convaincu que poster ces badges dans un README de projet va bénéficier au projet (parce que les gens peuvent voir qu’il est bien documenté) et à la communauté en améliorant la visibilité de la documentation.
+
+      Discutons, augmentons la visibilité de la documentation.
+
+      ## Attendez, qui est derrière tout ça ?
+
+      Je suis [@rrrene](https://twitter.com/rrrene), le créateur de [sparkr](http://trivelop.de/sparkr) et [Inch](http://trivelop.de/inch).
+
+      N’hésitez pas à me parler [sur Twitter](https://twitter.com/rrrene) ou à [ouvrir un ticket](https://github.com/inch-ci/inch_ci-web) sur le projet Inch CI si vous avez des questions ou suggestions.
+  help_webhook:
+    headline: Comment configurer un webhook pour Inch CI
+    abstract: En utilisant cette technique, votre documentation sera évaluée à chaque fois que vous envoyez des changements sur votre projet sur sur GitHub.
+    howto1: "Allez sur la page *Settings* de votre projet :"
+    howto2: "Sélectionnez le sous-menu *Webhooks and Services* :"
+    howto3: "Cliquez sur le bouton *Add webhook*..."
+    howto4: "... et utilisez http://inch-ci.org/rebuild dans le champ *Payload URL* :"
+    howto5: "Cliquez sur *Add webhook* et c’est parti !"
+  builds:
+    index:
+      title: Évaluations récentes
+      title_with_project: "Évaluations récentes pour %{project_name}"
+      running_header: "<small>(%{count})</small> en cours"
+      scheduled_header: "<small>(%{count})</small> prévues"
+      completed_header: Complétées
+      finished_ago: "Il y a %{time_ago}"
+  code_objects:
+    show:
+      docstring_header: "Documentation extraite :"
+      suggestions_header: "Suggestions :"
+      no_suggestions_header: "Aucune suggestion."
+      view_on_github: "Voir sur GitHub"
+      issue_hint:
+        text: "Aidez-nous ! %{link} si cette suggestion est incorrecte."
+        link: "Ouvrir un ticket sur GitHub"
+  projects:
+    create:
+      url_not_found: "Aucun projet n’a été trouvé à cette adresse."
+    topbar:
+      info:
+        build_number: "Évaluation"
+        builds_all: "(%{link})"
+        builds_link: "toutes"
+        build_status: "Status"
+        running_time: "Commencée"
+        branch_name: Branche
+        revision_uid: "Révision"
+        message: Message
+        author_name: Auteur
+        documentation_url: Documentation
+        source_code_url: Source
+      rebuild_link: "Rafraîchir"
+      rebuild_link_tooltip: "Réévaluer la documentation de ce projet"
+      feedback_link: Commenter
+      feedback_link_tooltip: "Poser une question, suggérer quelque chose ou signaler un problème"
+      update_info_link: "Mettre à jour les branches & infos"
+    wait_for_build:
+      info: "Votre page est en train d’être construite. Cette page va être rafraîchie automatiquement (cela peut prendre jusqu’à une minute)."
+    start_build:
+      info: "Cette branche n’est pas encore évaluée. Cliquez sur « Rafraîchir » pour l’ajouter."
+    page:
+      about: |
+        ## Augmentons la visibilité de la documentation en Ruby !
+
+        Cette page est pour <code>%{project_nwo}</code> et fait partie d’un projet appelé « Inch CI », qui montre des évaluations de documentation fournis par [Inch](http://trivelop.de/inch).
+        <span style="white-space: nowrap;">Inch CI</span> fourni également un badge : <img src="%{badge_image_url}">
+        <small>(<a href="https://github.com/rrrene/inch-pages/commit/51555d50d21e234fa240fc9920cf7c27310ff542">qui ne compte pas</a> les objets de faible priorité)</small>
+
+
+        ### Est-ce que je peux avoir mes propres badges ?
+
+        [Bien sûr !](/)
+
+        ### Est-ce que je peux configurer un webhook pour l’intégration continue ?
+
+        Évidemment ! [Apprenez comment...](/howto/webhook)
+
+
+        ### Quel est le but de tout ça ?
+
+        Je suis convaincu que poster ces badges dans les README de projets va vous servir (parce que ***les gens peuvent voir que votre projet est bien documenté***) ainsi qu’à notre communauté en général en améliorant la visibilité de la documentation.
+
+
+        Discutons, augmentons la visibilité de la documentation.
+
+        ***Suggestions, retours, critiques*** : <a target="_blank" href="https://twitter.com/rrrene">Contactez-moi sur Twitter</a> ou <a target="_blank" href="%{new_issue_url}">via un ticket</a>.
+
+  badge:
+    image_format:
+      png: PNG
+      svg: SVG
+    markup_format:
+      image_url: "adresse de l’image :"
+      md: "Markdown :"
+      textile: "Textile :"
+      rdoc: "RDoc :"
+  grade_list_table:
+    header_A: "Semble vraiment bon"
+    header_B: "Dispose d’une bonne documentation"
+    header_C: "A besoin de travail"
+    header_U: "Non documenté"
+    grade_icon_hint: "Note"
+    priority_icon_hint: "Priorité"
+    show_more: "Montrer %{more_count} de plus..."
+  shared:
+    back_link: Retour
+    code_object_roles:
+      object:
+        without_doc: "Ajoutez un commentaire décrivant %{object_type}."
+        without_code_example: "Ajoutez un exemple de code (optionnel)."
+        without_return_type: "Vous pourriez ajouter le type de retour de l’objet."
+        without_return_description: "Vous pourriez décrire la valeur de retour."
+      method_parameter:
+        without_mention: "Décrivez le paramètre \"%{ref_name}\"."
+        without_type: ""
+      method:
+        without_return_type: ""
+        without_return_description: "Décrivez ce que \"%{ref_name}\" retourne."
+      constant:
+        without_doc: ""
+        without_code_example: ""
+    title: "Inch CI - Badges de documentation pour projets Ruby - Montrer vos docs"
+    footer: |
+      Un [projet open source](https://github.com/inch-ci/inch_ci-web),
+      créé par René Föhring ([@rrrene](https://twitter.com/rrrene)),
+      basé sur [Inch](http://trivelop.de/inch).
