@@ -68,4 +68,3 @@ module InchCI
     end
   end
 end
-
