@@ -18,11 +18,16 @@
         .repo-info
           .explanation
             %p
-              This page shows an evaluation of the project's documentation.
+              This page shows an
+              %strong evaluation
+              of the project's documentation.
             %p
               Each class, module, method, etc. is given a grade based on how complete the docs are.
             %p
               The bar above shows the distribution of these grades.
+            - if @project.documentation_url
+              %p
+                = link_to icon(:search) + ' Read the docs', @project.documentation_url, :target => '_blank', :class => 'btn btn-primary'
           .table-responsive
             - @collection.each do |grade_list|
               = render "shared/grade_list_table", :grade_list => grade_list
