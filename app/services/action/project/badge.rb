@@ -12,8 +12,10 @@ module Action
         set_project_and_branch(params)
         if !@project
           create_project_and_branch(params)
-          create_empty_badge
-          enqueue_build
+          if @project && @branch
+            create_empty_badge
+            enqueue_build
+          end
         end
         if @project && @branch
           @badge = InchCI::BadgeRequest.new(@project.service_name, @project.user_name, @project.repo_name, @branch.name)

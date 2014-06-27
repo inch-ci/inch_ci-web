@@ -56,9 +56,13 @@ module InchCI
       end
 
       def initialize(url_or_params, branch_name)
-        @branch = InchCI::Store::EnsureProjectAndBranch.call(project_url(url_or_params), branch_name)
-        @project = branch.project
-        update_project(@project) if !@project.default_branch
+        @project = InchCI::Store::EnsureProject.call(project_url(url_or_params))
+        @project = update_project(@project) if !@project.default_branch
+        if branch_name.nil?
+          @branch = InchCI::Store::FindDefaultBranch.call(@project)
+        else
+          @branch = InchCI::Store::EnsureProjectAndBranch.call(project_url(url_or_params), branch_name)
+        end
       end
 
       private
@@ -74,6 +78,7 @@ module InchCI
       def update_project(project)
         worker = InchCI::Worker::Project::UpdateInfo.new
         worker.perform(project.uid)
+        InchCI::Store::FindProject.call(project.uid)
       end
     end
   end
