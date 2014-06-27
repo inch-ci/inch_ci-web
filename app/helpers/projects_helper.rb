@@ -43,4 +43,20 @@ module ProjectsHelper
     hostname = URI.parse(url).host.gsub(/^www\./, '')
     link_to hostname, url, options
   end
+
+  def promo_hint
+    """
+    <!--
+Hi there,
+
+this patch adds a docs badge to the README to show off inline-documentation to potential contributors: [![Inline docs](http://inch-ci.org/github/#{@project.name}.png)](http://inch-ci.org/github/#{@project.name})
+
+The badge links to [Inch CI](http://inch-ci.org), a project that tries to raise the visibility of inline-docs to encourage aspiring Rubyists to document their code. Your status page is http://inch-ci.org/github/#{@project.name}/
+
+Inch CI is still in its infancy, but already used by projects like [Bundler](https://github.com/bundler/bundler), [Guard](https://github.com/guard/guard), [Haml](https://github.com/haml/haml), [Pry](https://github.com/pry/pry), and [ROM](https://github.com/rom-rb/rom).
+
+What do you think?
+    -->
+    """
+  end
 end
