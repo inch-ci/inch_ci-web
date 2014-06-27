@@ -12,7 +12,7 @@ module Action
         set_project_and_branch(params)
         if !@project
           create_project_and_branch(params)
-          create_badge
+          create_empty_badge
           enqueue_build
         end
         if @project && @branch
@@ -38,7 +38,7 @@ module Action
         }
       end
 
-      def create_badge
+      def create_empty_badge
         InchCI::Badge.create(@project, @branch, [0,0,0,0])
       end
 
