@@ -156,7 +156,7 @@ en:
   grade_list_table:
     header_A: "Seems really good"
     header_B: "Proper documentation present"
-    header_C: "Needs work"
+    header_C: "Please take a look"
     header_U: "Undocumented"
     grade_icon_hint: "Grade"
     priority_icon_hint: "Priority"

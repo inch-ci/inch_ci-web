@@ -1,10 +1,10 @@
 .stats-wrapper
   .stats
     .progress
-      .progress-bar.progress-bar-A{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('A')}%", :title => 'Really good'}
-      .progress-bar.progress-bar-B{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('B')}%", :title => 'Properly documented'}
-      .progress-bar.progress-bar-C{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('C')}%", :title => 'Needs work'}
-      .progress-bar.progress-bar-U{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('U')}%", :title => 'Undocumented'}
+      .progress-bar.progress-bar-A{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('A')}%", :title => t('grade_list_table.header_A')}
+      .progress-bar.progress-bar-B{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('B')}%", :title => t('grade_list_table.header_B')}
+      .progress-bar.progress-bar-C{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('C')}%", :title => t('grade_list_table.header_C')}
+      .progress-bar.progress-bar-U{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('U')}%", :title => t('grade_list_table.header_U')}
 
     %table.table.stats-box
       %tr
