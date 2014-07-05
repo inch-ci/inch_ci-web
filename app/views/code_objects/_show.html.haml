@@ -17,5 +17,5 @@
         %li= desc
 
 .issue-hint
-  = t('.issue_hint.text', :link => link_to(t('.issue_hint.link'), github_issue_url(:project => @project, :code_object => @code_object), :target => '_blank')).html_safe
+  = t('.issue_hint.text', :link => link_to(t('.issue_hint.link'), github_issue_url(:project => @project, :branch => @branch, :revision => @revision, :code_object => @code_object), :target => '_blank')).html_safe
 

@@ -6,8 +6,4 @@ module CodeObjectsHelper
     path = code_object_path(project, branch.name, revision.uid, :code_object => code_object)
     link_to code_object.fullname, path, :"data-code_object-id" => code_object.id, :remote => true, :method => :get
   end
-
-  def code_object_path(*args)
-    project_path(*args).merge(:controller => 'code_objects', :action => 'show')
-  end
 end

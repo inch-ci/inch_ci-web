@@ -10,12 +10,14 @@ module ProjectsHelper
   def github_issue_url(options = {})
     title = ''
     if project = options[:project]
-      title = "Re: #{project.name}"
+      p_url = project_page_url(project)
+      body = "\n\n---\nRe: [#{project.name}](#{p_url})"
+      if code_object = options[:code_object]
+        c_url = code_object_url(project, options[:branch].name, options[:revision].uid[0..7], :code_object => code_object)
+        body = "\n\n---\nRe: [#{code_object.grade}] [#{code_object.fullname}](#{c_url}) in [#{project.name}](#{p_url})"
+      end
     end
-    if code_object = options[:code_object]
-      title = "Re: #{project.name} [#{code_object.grade}] #{code_object.fullname}"
-    end
-    "https://github.com/inch-ci/inch_ci-web/issues/new?title=#{title}"
+    "https://github.com/inch-ci/inch_ci-web/issues/new?title=#{URI.escape(title)}&body=#{URI.escape(body)}"
   end
 
   def link_to_build_history(project)

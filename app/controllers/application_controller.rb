@@ -10,6 +10,16 @@ class ApplicationController < ActionController::Base
   end
   helper_method :featured_projects
 
+  def code_object_path(*args)
+    project_path(*args).merge(:controller => 'code_objects', :action => 'show')
+  end
+  helper_method :code_object_path
+
+  def code_object_url(*args)
+    url_for code_object_path(*args)
+  end
+  helper_method :code_object_url
+
   def project_path(project, *args)
     options = args.extract_options!
     branch_name = args.shift
