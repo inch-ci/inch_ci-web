@@ -120,6 +120,14 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get :show if the repo name contains a fullstop" do
+    p = Project.create(:uid => 'github:just-testing/web2.0', :repo_url => 'not really there')
+    p.default_branch = p.branches.create(:name => 'master')
+    p.save!
+    get :show, :service => 'github', :user => 'just-testing', :repo => 'web2.0'
+    assert_response :success
+  end
+
   test "should get :show with existing branch" do
     get :show, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master'
     assert_response :success

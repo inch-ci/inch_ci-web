@@ -4,7 +4,7 @@ InchCI::Application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   triple = ':service/:user/:repo'
-  triple_constraints = {:branch => /[^\/]+(?<!\.js)/}
+  triple_constraints = {:repo => /[^\/]+/, :branch => /[^\/]+/}
   badge_constraints = {:format => /(png|svg)/}.merge(triple_constraints)
 
   get "#{triple}/branch/:branch/revision/:revision/code_object/:code_object" => 'code_objects#show', :constraints => triple_constraints
@@ -13,7 +13,7 @@ InchCI::Application.routes.draw do
 
   get "(#{triple}(/branch/:branch))/builds" => 'builds#index', :as => :builds, :constraints => triple_constraints
   get "#{triple}(/branch/:branch)(/revision/:revision)/list" => 'projects#show', :constraints => triple_constraints
-  get "#{triple}(/branch/:branch)(/revision/:revision)" => 'projects#page', :constraints => triple_constraints
+  get "#{triple}(/branch/:branch)(/revision/:revision)" => 'projects#page', :constraints => triple_constraints, :format => false
 
   get 'learn_more' => 'page#about', :as => :about
   get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook
