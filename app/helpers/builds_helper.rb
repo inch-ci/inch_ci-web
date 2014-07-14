@@ -32,4 +32,10 @@ module BuildsHelper
     }[build.trigger]
     icon(key || :question, :title => build.trigger)
   end
+
+  def dashboard_table_project_class(project)
+    classes = []
+    classes << :new if project.created_at > 1.day.ago
+    classes.join(' ')
+  end
 end

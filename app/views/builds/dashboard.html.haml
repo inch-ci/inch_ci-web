@@ -1,0 +1,18 @@
+.repo-wrapper
+  .repo-card
+    .repo-info
+      #builds_dashboard
+        %h2.sub-header
+          = t("builds.dashboard.title")
+
+        - unless @today_builds.empty?
+          %h3.sub-header= t("builds.dashboard.today_header")
+          = render "dashboard_table", :builds => @today_builds
+
+        - unless @yesterday_builds.empty?
+          %h3.sub-header= t("builds.dashboard.yesterday_header")
+          = render "dashboard_table", :builds => @yesterday_builds
+
+        - unless @other_builds.empty?
+          %h3.sub-header= t("builds.dashboard.other_header")
+          = render "dashboard_table", :builds => @other_builds

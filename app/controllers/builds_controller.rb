@@ -10,6 +10,11 @@ class BuildsController < ApplicationController
     expose view
   end
 
+  def dashboard
+    view = Action::Build::Dashboard.new(params)
+    expose view
+  end
+
   def show
     view = Action::Build::Show.new(params)
     expose view

@@ -1,0 +1,51 @@
+.table-responsive
+  %table.table.table-striped.builds
+    %thead
+      %tr
+        %th #
+        %th.revision_uid Revision
+        %th Project
+        %th.duration Duration
+        %th.finished_at Finished
+        %th.status{:colspan => 2} Status
+    %tbody
+      - current_project = nil
+      - project_placeholder_shown = false
+      - builds.each do |build|
+        - project = build.branch.project
+        - if project != current_project
+          %tr{:class => dashboard_table_project_class(project)}
+            %td= build.id
+            %td.revision_uid
+              - if build.finished_at && project.created_at.midnight == build.finished_at.midnight
+                - if revision = build.revision
+                  - if revision.badge_in_readme?
+                    %strong.text-success= "+BADGE"
+            %td
+              = link_to_project project
+            - if build.finished_at
+              %td.duration
+                = (build.finished_at - build.started_at).to_i
+                seconds
+              %td.finished_at
+                = t("builds.index.finished_ago", :time_ago => time_ago_in_words(build.finished_at))
+            - elsif build.started_at
+              %td.duration{:colspan => 2}
+                started
+                %span{"data-increment-every-second" => true}
+                  = (Time.now - build.started_at).to_i
+                seconds ago
+            - else
+              %td.duration{:colspan => 2}
+            %td.status{:class => build_css_class(build)}
+              = build_status_icon(build)
+            %td.trigger
+              = build_trigger_icon(build)
+          - current_project = project
+          - project_placeholder_shown = false
+        - else
+          - unless project_placeholder_shown
+            %tr.placeholder
+              %td= ""
+              %td{:colspan => 7}= "..."
+            - project_placeholder_shown = true
