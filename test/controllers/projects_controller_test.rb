@@ -17,6 +17,16 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get :badge as SVG as 'flat'" do
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :svg, :style => 'flat'
+    assert_response :success
+  end
+
+  test "should get :badge as SVG as unsupported style" do
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :svg, :style => 'something'
+    assert_response :success
+  end
+
   test "should get :badge with existing branch" do
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master', :format => :png
     assert_response :success

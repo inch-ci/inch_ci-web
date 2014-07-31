@@ -6,6 +6,9 @@ module InchCI
     DEFAULT_IMAGE_STYLE = IMAGE_STYLES.first
 
     def filename(format = DEFAULT_IMAGE_FORMAT, style = DEFAULT_IMAGE_STYLE)
+      unless IMAGE_STYLES.include?(style)
+        style = DEFAULT_IMAGE_STYLE
+      end
       File.join(*project_triple, "#{branch_name}.#{style}.#{format}")
     end
 

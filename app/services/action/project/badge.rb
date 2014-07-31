@@ -20,7 +20,8 @@ module Action
         if @project && @branch
           @badge = InchCI::BadgeRequest.new(@project.service_name, @project.user_name, @project.repo_name, @branch.name)
           format = params[:format].to_s
-          @badge_filename = @badge.local_filename(format)
+          style = params[:style]
+          @badge_filename = @badge.local_filename(format, style)
           @content_type = content_types[format]
         end
       end
