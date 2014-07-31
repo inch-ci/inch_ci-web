@@ -75,7 +75,7 @@ GEM
       sparkr (>= 0.2.0)
       term-ansicolor
       yard (~> 0.8.7)
-    inch-badge (0.3.0)
+    inch-badge (0.3.1)
       chunky_png
     inch_ci-worker (0.2.11)
       inch (>= 0.5.0.rc2)
@@ -215,7 +215,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   gems
   haml
-  inch-badge (>= 0.3.0)
+  inch-badge (>= 0.3.1)
   inch_ci-worker (>= 0.2.11)
   jbuilder (~> 1.2)
   jquery-rails
