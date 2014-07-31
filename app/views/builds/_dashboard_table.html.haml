@@ -3,7 +3,6 @@
     %thead
       %tr
         %th #
-        %th.revision_uid Revision
         %th Project
         %th.duration Duration
         %th.finished_at Finished
@@ -16,12 +15,11 @@
         - if project != current_project
           %tr{:class => dashboard_table_project_class(project)}
             %td= build.id
-            %td.revision_uid
+            %td
               - if build.finished_at && project.created_at.midnight == build.finished_at.midnight
                 - if revision = build.revision
                   - if revision.badge_in_readme?
                     %strong.text-success= "+BADGE"
-            %td
               = link_to_project project
             - if build.finished_at
               %td.duration
