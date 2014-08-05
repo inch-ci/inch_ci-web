@@ -41,7 +41,7 @@ gem 'thin'
 gem 'unicorn'
 
 gem 'inch-badge', '>= 0.3.2'
-gem 'inch_ci-worker', '>= 0.2.11'
+gem 'inch_ci-worker', '>= 0.2.12'
 gem 'octokit'
 gem 'gems'
 
