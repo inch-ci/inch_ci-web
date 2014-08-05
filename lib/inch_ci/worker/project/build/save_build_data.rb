@@ -82,6 +82,7 @@ module InchCI
             attr_reader :revision_uid, :tag_uid, :revision_message
             attr_reader :started_at, :finished_at, :trigger, :objects
             attr_reader :revision_author_name, :revision_author_email, :revision_authored_at
+            attr_reader :inch_version
             attr_accessor :status
 
             def initialize(data)
@@ -99,6 +100,7 @@ module InchCI
               @started_at = @data['started_at']
               @finished_at = @data['finished_at']
               @objects = @data['objects']
+              @inch_version = data['inch_version']
             end
 
             def badge_in_readme?

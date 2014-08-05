@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604182559) do
+ActiveRecord::Schema.define(version: 20140805200806) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140604182559) do
     t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "inch_version"
   end
 
   create_table "code_object_diffs", force: true do |t|
