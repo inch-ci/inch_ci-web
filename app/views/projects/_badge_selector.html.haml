@@ -8,7 +8,7 @@
   %form
     - badge_markup.image_formats.each_with_index do |image_format, index|
       %label
-        %input{:type => 'radio', :name => 'badge-format', :checked => index == 0 ? :checked : nil, :"data-select-badge" => image_format}
+        %input{:type => 'radio', :name => 'badge-format', :checked => index == 0 ? :checked : nil, :"data-select-badge-format" => image_format}
           = t("badge.image_format.#{image_format}")
     .clearfix
 

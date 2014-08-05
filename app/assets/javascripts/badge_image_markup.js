@@ -22,8 +22,8 @@ jQuery(function($) {
   }).on("click", "input[data-select-on-click]", function(evt) {
     evt.preventDefault();
     $(this).select();
-  }).on("click", "input[data-select-badge]", function(evt) {
-    var format = $(this).data('select-badge');
+  }).on("click", "input[data-select-badge-format]", function(evt) {
+    var format = $(this).data('select-badge-format');
     I.badge_image_markup.selectImageFormat(format);
   });
 
