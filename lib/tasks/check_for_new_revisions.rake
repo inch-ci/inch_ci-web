@@ -23,14 +23,19 @@ task :check_for_new_revisions => :environment do
 
   projects.each do |project|
     begin
-      branch = project.default_branch
-      last_commit = client.commits(project.name, branch.name).first
-      rev = InchCI::Store::FindRevision.call(branch, last_commit.sha)
-      if rev.nil?
-        enqueued_builds << InchCI::Worker::Project::Build.enqueue(project.repo_url, branch.name, nil, trigger)
+      if branch = InchCI::Store::FindDefaultBranch.call(project)
+        last_commit = client.commits(project.name, branch.name).first
+        rev = InchCI::Store::FindRevision.call(branch, last_commit.sha)
+        if rev.nil?
+          enqueued_builds << InchCI::Worker::Project::Build.enqueue(project.repo_url, branch.name, nil, trigger)
+        end
       end
     rescue Octokit::NotFound
       puts "[Octokit::NotFound] #{project.uid}"
+    rescue Faraday::ConnectionFailed
+      puts "[Faraday::ConnectionFailed] #{project.uid}"
+    rescue Errno::ETIMEDOUT
+      puts "[Errno::ETIMEDOUT] #{project.uid}"
     end
   end
 
