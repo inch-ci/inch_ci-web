@@ -13,8 +13,8 @@ InchCI::Application.routes.draw do
 
   get "/dashboard" => 'builds#dashboard', :as => :dashboard
   get "(#{triple}(/branch/:branch))/builds" => 'builds#index', :as => :builds, :constraints => triple_constraints
-  get "#{triple}(/branch/:branch)(/revision/:revision)/list" => 'projects#show', :constraints => triple_constraints
-  get "#{triple}(/branch/:branch)(/revision/:revision)" => 'projects#page', :constraints => triple_constraints, :format => false
+  #get "#{triple}(/branch/:branch)(/revision/:revision)/list" => 'projects#show', :constraints => triple_constraints
+  get "#{triple}(/branch/:branch)(/revision/:revision)" => 'projects#show', :constraints => triple_constraints, :format => false
 
   get 'learn_more' => 'page#about', :as => :about
   get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook

@@ -1,7 +1,4 @@
 
-require "minitest/reporters"
-Minitest::Reporters.use!
-
 require 'minitest/autorun'
 require 'active_support/testing/assertions'
 

@@ -10,7 +10,7 @@ module ProjectsHelper
   def github_issue_url(options = {})
     title = ''
     if project = options[:project]
-      p_url = project_page_url(project)
+      p_url = project_url(project)
       body = "\n\n---\nRe: [#{project.name}](#{p_url})"
       if code_object = options[:code_object]
         c_url = code_object_url(project, options[:branch].name, options[:revision].uid[0..7], :code_object => code_object)
@@ -27,18 +27,18 @@ module ProjectsHelper
   end
 
   def link_to_project(project)
-    link_to project.name, project_page_path(project)
+    link_to project.name, project_path(project)
   end
 
   def link_to_branch(branch)
     project = branch.project
-    link_to truncate(branch.name), project_page_path(project, branch.name)
+    link_to truncate(branch.name), project_path(project, branch.name)
   end
 
   def link_to_revision(revision)
     branch = revision.branch
     project = branch.project
-    link_to revision.uid[0..7], project_page_path(project, branch.name, revision.uid)
+    link_to revision.uid[0..7], project_path(project, branch.name, revision.uid)
   end
 
   def link_to_with_hostname(url, options)

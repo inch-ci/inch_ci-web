@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
   def create
     action = Action::Project::Create.new(params)
     if action.success?
-      redirect_to project_page_url(action.project, :pending_build => action.build_id)
+      redirect_to project_url(action.project, :pending_build => action.build_id)
     else
       expose action
       flash[:error] = t("projects.create.url_not_found")
@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
     if action.project.nil?
       render :text => "Project not found.", :layout => false, :status => 404
     else
-      redirect_to project_page_url(action.project, action.branch.name, :pending_build => action.build_id)
+      redirect_to project_url(action.project, action.branch.name, :pending_build => action.build_id)
     end
   end
 
@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
 
   def update_info
     action = Action::Project::UpdateInfo.new(params)
-    redirect_to project_page_url(action.project, action.branch.name)
+    redirect_to project_url(action.project, action.branch.name)
   end
 
   def show

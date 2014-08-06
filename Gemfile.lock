@@ -37,7 +37,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
-    ansi (1.4.3)
     arel (5.0.1.20140414130214)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -95,11 +94,6 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     minitest (5.3.5)
-    minitest-reporters (1.0.4)
-      ansi
-      builder
-      minitest (>= 5.0)
-      ruby-progressbar
     multi_json (1.10.1)
     multipart-post (2.0.0)
     mysql2 (0.3.16)
@@ -142,7 +136,6 @@ GEM
       redis (~> 3.0.4)
     ref (1.0.5)
     repomen (0.2.0.rc1)
-    ruby-progressbar (1.5.1)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -219,7 +212,6 @@ DEPENDENCIES
   inch_ci-worker (>= 0.2.13)
   jbuilder (~> 1.2)
   jquery-rails
-  minitest-reporters
   mysql2
   octokit
   rack-mini-profiler
