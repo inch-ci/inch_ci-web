@@ -1,5 +1,5 @@
 class CodeObjectPresenter < BasePresenter
-  def_delegators :code_object, :fullname, :grade, :priority, :docstring
+  def_delegators :code_object, :fullname, :score, :grade, :priority, :docstring
 
   def_delegators :code_object, :project, :branch
   # TODO: use_presenters :project, :branch

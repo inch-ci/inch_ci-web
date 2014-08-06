@@ -2,7 +2,7 @@
 
 %strong= t('.docstring_header')
 .pre-container
-  = link_to t('.view_on_github'), "https://github.com/#{@project.user_name}/#{@project.repo_name}/blob/#{@revision.uid}/#{@code_object.filename}#L#{@code_object.line_no}", :target => '_blank'
+  = link_to t('.view_on_github'), url_on_github(@code_object.filename, @code_object.line_no), :target => '_blank'
   %pre=@code_object.docstring.presence || "(none)"
 
 - bad_roles = @code_object.bad_code_object_roles

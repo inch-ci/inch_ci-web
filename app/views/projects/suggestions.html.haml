@@ -2,12 +2,20 @@
   .repo-info
     .explanation
       %p
-        This page shows some
+        Here are some
         %strong suggestions
-        where the project's documentation can be improved.
+        where the project's documentation can be improved:
 
     .table-responsive
       - @suggestions.each do |grade_list|
         = render "shared/grade_list_table", :grade_list => grade_list, :hide_empty => true, :show_count => 99999
+
+    /
+      %p
+        You might want to look at these files:
+      %ul
+        - @files.each do |filename|
+          %li= link_to filename, url_on_github(filename), :target => '_blank'
+      %hr
 
   = render "about_footer"

@@ -6,4 +6,9 @@ module CodeObjectsHelper
     path = code_object_path(project, branch.name, revision.uid, :code_object => code_object)
     link_to code_object.fullname, path, :"data-code_object-id" => code_object.id, :remote => true, :method => :get
   end
+
+  def url_on_github(filename, line_no = nil)
+    base = "https://github.com/#{@project.user_name}/#{@project.repo_name}/blob/#{@revision.uid}/#{filename}"
+    line_no ? "#{base}#L#{line_no}" : base
+  end
 end
