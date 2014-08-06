@@ -122,6 +122,10 @@ en:
       info: "Your page is currently building. This page will refresh automatically (can take up to a minute)."
     start_build:
       info: "This branch is not evaluated yet. Press 'Refresh' to add it."
+    subnavi:
+      history: History
+      show: Evaluation
+      suggestions: Suggestions <span class=badge>%{suggestion_count}</span>
     page:
       about: |
         ## Let's raise the visibility of documentation in Ruby!

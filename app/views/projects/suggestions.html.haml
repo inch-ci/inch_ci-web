@@ -1,0 +1,13 @@
+= render :layout => "page" do
+  .repo-info
+    .explanation
+      %p
+        This page shows some
+        %strong suggestions
+        where the project's documentation can be improved.
+
+    .table-responsive
+      - @suggestions.each do |grade_list|
+        = render "shared/grade_list_table", :grade_list => grade_list, :hide_empty => true, :show_count => 99999
+
+  = render "about_footer"

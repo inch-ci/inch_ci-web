@@ -41,6 +41,13 @@ module ProjectsHelper
     link_to revision.uid[0..7], project_path(project, branch.name, revision.uid)
   end
 
+  def link_to_subnavi(action, path, i18n_opts = {})
+    text = t("projects.subnavi.#{action}", i18n_opts)
+    classes = %w(btn btn-default)
+    classes << 'active' if controller.action_name == action.to_s
+    link_to text.html_safe, path, :class => classes
+  end
+
   def link_to_with_hostname(url, options)
     hostname = URI.parse(url).host.gsub(/^www\./, '')
     link_to hostname, url, options

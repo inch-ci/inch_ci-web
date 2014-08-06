@@ -31,8 +31,8 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def page
-    show
+  def history
+    process_project_action Action::Project::Show
   end
 
   def rebuild
@@ -49,21 +49,17 @@ class ProjectsController < ApplicationController
     render :text => action.result
   end
 
+  def suggestions
+    process_project_action Action::Project::Suggestions
+  end
+
   def update_info
     action = Action::Project::UpdateInfo.new(params)
     redirect_to project_url(action.project, action.branch.name)
   end
 
   def show
-    view = Action::Project::Show.new(params)
-    expose view
-    if view.project.nil?
-      render :text => "Project not found.", :layout => true, :status => 404
-    else
-      if view.branch.nil?
-        render :text => "Branch not found.", :layout => true, :status => 404
-      end
-    end
+    process_project_action Action::Project::Show
   end
 
   private
@@ -74,6 +70,18 @@ class ProjectsController < ApplicationController
       'cover'
     else
       'page'
+    end
+  end
+
+  def process_project_action(action_class)
+    view = action_class.new(params)
+    expose view
+    if view.project.nil?
+      render :text => "Project not found.", :layout => true, :status => 404
+    else
+      if view.branch.nil?
+        render :text => "Branch not found.", :layout => true, :status => 404
+      end
     end
   end
 end

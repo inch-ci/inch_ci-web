@@ -1,0 +1,5 @@
+.project-navi
+  .btn-group.btn-group-justified
+    / = link_to_subnavi :history, project_history_path(@project, @branch.name)
+    = link_to_subnavi :show, project_path(@project, @branch.name, @revision.uid)
+    = link_to_subnavi :suggestions, project_suggestions_path(@project, @branch.name), :suggestion_count => @suggestion_count
