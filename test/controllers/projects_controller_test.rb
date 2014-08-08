@@ -7,27 +7,39 @@ class ProjectsControllerTest < ActionController::TestCase
   # BADGE
   #
 
+  def fake_badge(service, user, repo)
+    project = Project.find_by_uid("#{service}:#{user}/#{repo}")
+    project.branches.each do |branch|
+      InchCI::Badge.create(project, branch, [0,0,0,0])
+    end
+  end
+
   test "should get :badge as PNG" do
+    fake_badge(:github, :rrrene, :sparkr)
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :png
     assert_response :success
   end
 
   test "should get :badge as SVG" do
+    fake_badge(:github, :rrrene, :sparkr)
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :svg
     assert_response :success
   end
 
   test "should get :badge as SVG as 'flat'" do
+    fake_badge(:github, :rrrene, :sparkr)
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :svg, :style => 'flat'
     assert_response :success
   end
 
   test "should get :badge as SVG as unsupported style" do
+    fake_badge(:github, :rrrene, :sparkr)
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :svg, :style => 'something'
     assert_response :success
   end
 
   test "should get :badge with existing branch" do
+    fake_badge(:github, :rrrene, :sparkr)
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master', :format => :png
     assert_response :success
   end
