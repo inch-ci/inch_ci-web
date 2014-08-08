@@ -73,13 +73,13 @@ class ProjectsControllerTest < ActionController::TestCase
 
   test "should create a project via github ssh-url" do
     assert_difference(%w(Build.count Project.count), 1) do
-      post :create, :repo_url => "git@github.com:rrrene/inch.git"
+      post :create, :repo_url => "https://github.com/rrrene/inch.git"
       assert_response :redirect
     end
   end
 
   test "should not create a project via git-url that doesnot exist on GitHub" do
-    post :create, :repo_url => "git@github.com:rrrene/not-here.git"
+    post :create, :repo_url => "https://github.com/rrrene/not-here.git"
     assert_response :success
     assert_template :welcome
   end
