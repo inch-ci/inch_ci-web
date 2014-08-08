@@ -5,6 +5,10 @@ module InchCI
     DEFAULT_IMAGE_FORMAT = IMAGE_FORMATS.first
     DEFAULT_IMAGE_STYLE = IMAGE_STYLES.first
 
+    def self.included(base)
+      base.extend ClassMethods
+    end
+
     def filename(format = DEFAULT_IMAGE_FORMAT, style = DEFAULT_IMAGE_STYLE)
       unless IMAGE_STYLES.include?(style)
         style = DEFAULT_IMAGE_STYLE
@@ -25,6 +29,16 @@ module InchCI
     def project_triple
       raise "Implement me"
     end
+
+    module ClassMethods
+      def each_image_combination
+        IMAGE_FORMATS.each do |format|
+          IMAGE_STYLES.each do |style|
+            yield format, style
+          end
+        end
+      end
+    end
   end
 
   class Badge < Struct.new(:project, :branch)
@@ -32,12 +46,10 @@ module InchCI
 
     def self.create(project, branch, counts)
       badge = new(project, branch)
-      IMAGE_FORMATS.each do |format|
-        IMAGE_STYLES.each do |style|
-          filename = badge.local_filename(format, style)
-          FileUtils.mkdir_p File.dirname(filename)
-          Inch::Badge::Image.create(filename, counts, {:style => style})
-        end
+      each_image_combination do |format, style|
+        filename = badge.local_filename(format, style)
+        FileUtils.mkdir_p File.dirname(filename)
+        Inch::Badge::Image.create(filename, counts, {:style => style})
       end
     end
 

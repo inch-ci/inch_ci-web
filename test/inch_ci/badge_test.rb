@@ -11,11 +11,6 @@ describe ::InchCI::Badge do
     counts = [0,1,2,3]
     described_class.create(project, branch, counts)
     base = File.join(Rails.root, "tmp", "github", "rrrene", "sparkr")
-    %w(png svg).each do |image_format|
-      %w(default flat).each do |style|
-        file = File.join(base, "master.#{style}.#{image_format}")
-        assert File.exist?(file)
-      end
-    end
+    assert_badge(base)
   end
 end

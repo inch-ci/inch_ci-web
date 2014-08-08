@@ -27,4 +27,11 @@ class MiniTest::Spec
       assert(e.call - before[i] > 0, error)
     end
   end
+
+  def assert_badge(base)
+    InchCI::Badge.each_image_combination do |format, style|
+      file = File.join(base, "master.#{style}.#{format}")
+      assert File.exist?(file), "File #{file} not found"
+    end
+  end
 end
