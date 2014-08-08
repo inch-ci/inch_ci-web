@@ -1,0 +1,10 @@
+script:
+  - mysql -e "create database $DATABASE_NAME"
+  - bundle exec rake db:migrate test
+rvm:
+  - 2.1.2
+env:
+  global:
+    - DATABASE_NAME=inch_ci_test
+  matrix:
+    - DATABASE_URL=mysql2://travis@localhost/$DATABASE_NAME
