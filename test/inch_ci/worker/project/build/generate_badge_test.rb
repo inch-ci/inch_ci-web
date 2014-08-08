@@ -11,11 +11,6 @@ describe ::InchCI::Worker::Project::Build::GenerateBadge do
     code_objects = branch.latest_revision.code_objects
     described_class.new(project, branch, code_objects)
     base = File.join(Rails.root, "tmp", "github", "rrrene", "sparkr")
-    %w(png svg).each do |image_format|
-      %w(default flat).each do |style|
-        file = File.join(base, "master.#{style}.#{image_format}")
-        assert File.exist?(file)
-      end
-    end
+    assert_badge(base)
   end
 end
