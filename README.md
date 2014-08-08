@@ -13,7 +13,7 @@ Fork the project, clone it and then execute:
 
 ### Configuration
 
-As in every Rails app, you have to cnfigure your database via `config/database.yml`. Additionally, you have to add a valid GITHUB_SECRET to `config/access_tokens.yml` (sample files are present in `config/`).
+As in every Rails app, you have to cnfigure your database via `config/database.yml`. Optionally, you can add a valid GitHub access token to `config/access_tokens.yml` (sample files are present in `config/`).
 
 ### Seeding
 
