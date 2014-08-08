@@ -4,6 +4,7 @@ module Action
       FILE_COUNT          = 5
       GRADES_TO_DISPLAY   = %w(B C U)
       GRADE_WEIGHTS       = [0.2, 0.4, 0.4]
+      MIN_PRIORITY        = 0
 
       exposes :project, :branch, :revision, :collection, :suggestion_count
       exposes :suggestions, :files
@@ -30,7 +31,8 @@ module Action
       def filter_suggested_code_objects(code_objects)
         graded_list = GRADES_TO_DISPLAY.map do |grade|
           code_objects.select do |code_object|
-            code_object.grade == grade
+            code_object.grade == grade &&
+              code_object.priority >= MIN_PRIORITY
           end
         end
 
