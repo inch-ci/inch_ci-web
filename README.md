@@ -1,4 +1,4 @@
-# Inch CI
+# Inch CI [![Build Status](https://travis-ci.org/inch-ci/inch_ci-web.svg?branch=master)](https://travis-ci.org/inch-ci/inch_ci-web)
 
 This will become an automated CI service for [Inch](https://github.com/rrrene/inch).
 
