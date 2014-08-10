@@ -3,13 +3,18 @@ require 'inch_ci/worker/project/update_info/git_hub_info'
 module InchCI
   module Worker
     module Project
+      # The UpdateInfo worker is responsible for updating a project's
+      # meta information, like homepage and documentation URLs.
       class UpdateInfo
         include Sidekiq::Worker
 
-        def self.enqueue(*args)
-          perform_async(*args)
+        # @param uid [String]
+        # @return [void]
+        def self.enqueue(uid)
+          perform_async(uid)
         end
 
+        # @api private
         def perform(uid)
           project = Store::FindProject.call(uid)
           arr = uid.split(':')
@@ -19,6 +24,8 @@ module InchCI
             update_via_github(project, user_repo_name)
           end
         end
+
+        private
 
         def update_via_github(project, user_repo_name)
           github = GitHubInfo.new(user_repo_name)

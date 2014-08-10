@@ -1,7 +1,13 @@
 module InchCI
   module Worker
     module Project
+      # The BuildTags worker is responsible for "building" projects,
+      # i.e. cloning the repo, getting all tag names and then
+      # analysing each revision.
       module BuildTags
+        # @param url [String]
+        # @param branch_name [String]
+        # @return [void]
         def self.enqueue(url, branch_name = "master")
           branch = Store::EnsureProjectAndBranch.call(url, branch_name)
           ShellInvocation.perform_async(url, branch_name)
@@ -20,6 +26,7 @@ module InchCI
 
           BIN = "bundle exec inch_ci-worker list-tags"
 
+          # @api private
           def perform(url, branch_name = "master")
             output = `#{BIN} #{url.inspect} #{branch_name}`
             HandleWorkerOutput.new(url, branch_name, output)

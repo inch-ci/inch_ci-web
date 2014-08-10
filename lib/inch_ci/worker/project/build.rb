@@ -4,7 +4,15 @@ require 'open3'
 module InchCI
   module Worker
     module Project
+      # The Build worker is responsible for "building" projects,
+      # i.e. cloning and analysing repos, by utilizing a gem called
+      # "inch_ci-worker".
       module Build
+        # @param url [String]
+        # @param branch_name [String]
+        # @param revision_uid [String]
+        # @param trigger [String]
+        # @return [Build]
         def self.enqueue(url, branch_name = 'master', revision_uid = nil, trigger = 'manual')
           branch = Store::EnsureProjectAndBranch.call(url, branch_name)
           build = Store::CreateBuild.call(branch, trigger)
@@ -25,6 +33,7 @@ module InchCI
 
           BIN = "bundle exec inch_ci-worker build"
 
+          # @api private
           def perform(url, branch_name = 'master', revision_uid = nil, trigger = 'manual', build_id = nil)
             build = ensure_running_build(url, branch_name, trigger, build_id)
             stdout_str, stderr_str, status = Open3.capture3("#{BIN} #{url.inspect} #{branch_name} #{revision_uid}")
