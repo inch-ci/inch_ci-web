@@ -2,7 +2,7 @@
 codebase_3_objects:
   build:
     status: success
-    repo_url: git@github.com:rrrene/sparkr_mock.git
+    repo_url: https://github.com/rrrene/sparkr_mock.git
     branch_name: master
     started_at: &1 2014-04-10 13:18:52.944747927 +02:00
     finished_at: *1
@@ -153,7 +153,7 @@ codebase_3_objects:
 codebase_3_objects_1_changed:
   build:
     status: success
-    repo_url: git@github.com:rrrene/sparkr_mock.git
+    repo_url: https://github.com/rrrene/sparkr_mock.git
     branch_name: master
     started_at: &1 2014-04-10 13:18:52.944747927 +02:00
     finished_at: *1
@@ -304,7 +304,7 @@ codebase_3_objects_1_changed:
 retrieve_failed:
   build:
     status: retrieve_failed
-    repo_url: git@github.com:rrrene/sparkr.git
+    repo_url: https://github.com/rrrene/sparkr.git
     branch_name: master
     started_at: &1 2014-04-11 01:57:44.233056000 +02:00
     finished_at: *1
@@ -312,7 +312,7 @@ retrieve_failed:
 change_branch_failed:
   build:
     status: change_branch_failed
-    repo_url: git@github.com:rrrene/sparkr.git
+    repo_url: https://github.com/rrrene/sparkr.git
     branch_name: master
     started_at: &1 2014-04-11 01:57:44.233056000 +02:00
     finished_at: *1
@@ -320,7 +320,7 @@ change_branch_failed:
 checkout_revision_failed:
   build:
     status: checkout_revision_failed
-    repo_url: git@github.com:rrrene/sparkr.git
+    repo_url: https://github.com/rrrene/sparkr.git
     branch_name: master
     started_at: &1 2014-04-11 01:57:44.233056000 +02:00
     finished_at: *1

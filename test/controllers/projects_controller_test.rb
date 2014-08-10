@@ -7,27 +7,39 @@ class ProjectsControllerTest < ActionController::TestCase
   # BADGE
   #
 
+  def fake_badge(service, user, repo)
+    project = Project.find_by_uid("#{service}:#{user}/#{repo}")
+    project.branches.each do |branch|
+      InchCI::Badge.create(project, branch, [0,0,0,0])
+    end
+  end
+
   test "should get :badge as PNG" do
+    fake_badge(:github, :rrrene, :sparkr)
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :png
     assert_response :success
   end
 
   test "should get :badge as SVG" do
+    fake_badge(:github, :rrrene, :sparkr)
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :svg
     assert_response :success
   end
 
   test "should get :badge as SVG as 'flat'" do
+    fake_badge(:github, :rrrene, :sparkr)
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :svg, :style => 'flat'
     assert_response :success
   end
 
   test "should get :badge as SVG as unsupported style" do
+    fake_badge(:github, :rrrene, :sparkr)
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :svg, :style => 'something'
     assert_response :success
   end
 
   test "should get :badge with existing branch" do
+    fake_badge(:github, :rrrene, :sparkr)
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :branch => 'master', :format => :png
     assert_response :success
   end
@@ -73,13 +85,13 @@ class ProjectsControllerTest < ActionController::TestCase
 
   test "should create a project via github ssh-url" do
     assert_difference(%w(Build.count Project.count), 1) do
-      post :create, :repo_url => "git@github.com:rrrene/inch.git"
+      post :create, :repo_url => "https://github.com/rrrene/inch.git"
       assert_response :redirect
     end
   end
 
   test "should not create a project via git-url that doesnot exist on GitHub" do
-    post :create, :repo_url => "git@github.com:rrrene/not-here.git"
+    post :create, :repo_url => "https://github.com/rrrene/not-here.git"
     assert_response :success
     assert_template :welcome
   end

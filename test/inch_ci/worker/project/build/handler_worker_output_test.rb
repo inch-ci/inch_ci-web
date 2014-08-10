@@ -4,7 +4,7 @@ describe ::InchCI::Worker::Project::Build::HandleWorkerOutput do
   fixtures :builds
 
   let(:described_class) { ::InchCI::Worker::Project::Build::HandleWorkerOutput }
-  let(:repo_url) { 'git@github.com:rrrene/sparkr.git' }
+  let(:repo_url) { 'https://github.com/rrrene/sparkr.git' }
   let(:branch_name) { 'master' }
   let(:trigger) { 'manual' }
   let(:build) { Build.first }
