@@ -30,13 +30,12 @@ module Action
       private
 
       def find_code_objects(revision)
-        return if revision.nil?
+        return [] if revision.nil?
         list = InchCI::Store::FindRelevantCodeObjects.call(revision)
         present_code_objects(list)
       end
 
       def create_collection(code_objects)
-        return if code_objects.empty?
         InchCI::GradeListCollection.new(code_objects)
       end
 
