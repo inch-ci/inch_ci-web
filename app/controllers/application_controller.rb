@@ -42,10 +42,15 @@ class ApplicationController < ActionController::Base
   end
   helper_method :project_build_history_path
 
-  def project_url(*args)
-    url_for project_path(*args)
+  def project_history_path(*args)
+    project_path(*args).merge(:action => 'history')
   end
-  helper_method :project_url
+  helper_method :project_history_path
+
+  def project_suggestions_path(*args)
+    project_path(*args).merge(:action => 'suggestions')
+  end
+  helper_method :project_suggestions_path
 
   def project_rebuild_path(*args)
     project_path(*args).merge(:action => 'rebuild')
@@ -56,4 +61,9 @@ class ApplicationController < ActionController::Base
     project_path(*args).merge(:action => 'update_info')
   end
   helper_method :project_update_info_path
+
+  def project_url(*args)
+    url_for project_path(*args)
+  end
+  helper_method :project_url
 end
