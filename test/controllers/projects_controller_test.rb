@@ -32,6 +32,12 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get :badge as SVG as 'flat-square'" do
+    fake_badge(:github, :rrrene, :sparkr)
+    get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :svg, :style => 'flat-square'
+    assert_response :success
+  end
+
   test "should get :badge as SVG as unsupported style" do
     fake_badge(:github, :rrrene, :sparkr)
     get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :svg, :style => 'something'
