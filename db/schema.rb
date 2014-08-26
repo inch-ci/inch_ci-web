@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805200806) do
+ActiveRecord::Schema.define(version: 20140826124416) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -121,6 +121,14 @@ ActiveRecord::Schema.define(version: 20140805200806) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "badge_in_readme", default: false
+  end
+
+  create_table "statistics", force: true do |t|
+    t.datetime "date"
+    t.string   "name"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -68,6 +68,15 @@ namespace :stats do
 
   desc "Show stats for the app"
   task :daily => :environment do
-    puts "Ran stats:daily"
+    timestamp = ENV['TIMESTAMP'] ? Date.parse(ENV['TIMESTAMP']) : Time.now.midnight
+    stats = StatsRetriever.new(timestamp)
+
+    store = InchCI::Store::CreateStats
+    store.call(timestamp, "projects:all", stats.all_projects)
+    store.call(timestamp, "projects:badges", stats.with_badges)
+    store.call(timestamp, "projects:hooked", stats.hooked_projects)
+    store.call(timestamp, "maintainers:all", stats.users)
+    store.call(timestamp, "maintainers:badges", stats.users_with_badges)
+    store.call(timestamp, "maintainers:hooked", stats.users_with_hooks)
   end
 end

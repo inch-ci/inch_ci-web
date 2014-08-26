@@ -230,5 +230,7 @@ module InchCI
     def self.transaction(&block)
       ActiveRecord::Base.transaction(&block)
     end
+
+    CreateStats = -> (date, name, value) { Statistics.create!(:date => date, :name => name, :value => value) }
   end
 end
