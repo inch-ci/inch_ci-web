@@ -1,6 +1,6 @@
 class Branch < ActiveRecord::Base
   belongs_to :project
-  has_many :revisions, :dependent => :destroy
+  has_many :revisions, -> { order 'created_at DESC' }, :dependent => :destroy
   has_many :revision_diffs, :dependent => :destroy
   has_many :builds, -> { order 'number DESC' }, :dependent => :destroy
 
