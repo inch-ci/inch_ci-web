@@ -6,7 +6,7 @@ task :kill_dead_builds => :environment do
 end
 
 task :check_for_new_revisions => :environment do
-  since = 6.hours
+  since = 1.hour
   timestamp = Time.now - since
   trigger = 'cron'
   client = InchCI::Worker::Project::UpdateInfo::GitHubInfo.client
