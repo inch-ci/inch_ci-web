@@ -56,14 +56,42 @@ class StatsRetriever
 end
 
 namespace :stats do
+
+  def val(stats, key, add_change = true)
+    @old_stats ||= {}
+    value = stats[key]
+    change = value - @old_stats[key].to_i
+    change = "+#{change}" if change > 0
+    @old_stats[key] = value
+    result = value.to_s.rjust(4)
+    result << " (#{change})".ljust(6).color(:dark) if add_change
+    result
+  end
+
   desc "Show stats for the app"
   task :app => :environment do
-    timestamp = ENV['TIMESTAMP'] ? Date.parse(ENV['TIMESTAMP']) : Time.now.midnight
-    stats = StatsRetriever.new(timestamp)
-
-    puts "Projects: #{stats.all_projects} (#{stats.users} maintainers)"
-    puts "Badges:   #{stats.with_badges} (#{stats.users_with_badges} maintainers)"
-    puts "Hooks:    #{stats.hooked_projects} (#{stats.users_with_hooks} maintainers)"
+    DAYS_BACK = 14
+    list = Statistics.where("date > ?", (DAYS_BACK + 1).days.ago).order('date ASC')
+    map = {}
+    list.each do |stat|
+      map[stat.date.midnight] ||= {}
+      map[stat.date.midnight][stat.name] = stat.value
+    end
+    puts "Read: date, badges/maintainers, hooks/maintainers".cyan
+    lines = map.keys.sort.map do |date|
+      stats = map[date]
+      [
+        date.strftime("%a, %Y-%m-%d") + " ",
+        val(stats, 'projects:badges'),
+        val(stats, 'maintainers:badges'),
+        val(stats, 'projects:hooked'),
+        val(stats, 'maintainers:hooked'),
+        #val(stats, 'projects:all'),
+        #val(stats, 'maintainers:all'),
+      ].join("")
+    end
+    lines.shift # first row has changes calculated against zero
+    puts lines.join("\n")
   end
 
   desc "Show stats for the app"
