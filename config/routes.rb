@@ -3,6 +3,9 @@ require 'sidekiq/web'
 InchCI::Application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
+  get 'api/cli' => 'api#cli'
+  post 'api/cli' => 'api#cli'
+
   triple = ':service/:user/:repo'
   triple_constraints = {:repo => /[^\/]+/, :branch => /[^\/]+/}
   badge_constraints = {:format => /(png|svg)/}.merge(triple_constraints)
