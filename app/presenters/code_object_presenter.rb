@@ -32,7 +32,7 @@ class CodeObjectPresenter < BasePresenter
   end
 
   def type
-    @resource.type.downcase
+    @resource.type.split('::').last.downcase
   end
 
   private

@@ -19,6 +19,7 @@ class CodeObjectRolePresenter < BasePresenter
 
   def to_i18n_key
     to_partial.gsub('/', '.')
+      .gsub(/\.inch\.language\.([^\.]+)\.evaluation\.role\./, '.\1.')
   end
 
   def to_partial
