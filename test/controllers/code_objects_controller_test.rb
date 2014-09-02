@@ -19,6 +19,8 @@ class CodeObjectsControllerTest < ActionController::TestCase
         }
         get :show, params
         assert_response :success
+
+        refute_match /translation\ missing/, response.body
       end
     end
   end
