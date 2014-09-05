@@ -33,10 +33,12 @@ class ApiCliControllerTest < ActionController::TestCase
   end
 
   test "should run nothing with invalid args" do
-    params = {"language" => "elixir", "objects" => []}
-    post :run, params
-    assert_response :success
-    assert_match /error/i, response.body
+    %w(inspect console).each do |arg|
+      params = {"language" => "elixir", args: [arg], "objects" => []}
+      post :run, params
+      assert_response :success
+      assert_match /error/i, response.body, "should error for arg: #{arg}"
+    end
   end
 
   test "should run with invalid params" do
