@@ -40,8 +40,9 @@ gem 'sidekiq', '>= 3.0'
 gem 'thin'
 gem 'unicorn'
 
+gem 'inch'
 gem 'inch-badge', '>= 0.3.5'
-gem 'inch_ci-worker', '>= 0.3.0.rc2'
+gem 'inch_ci-worker', '>= 0.3.0.rc3'
 gem 'octokit'
 gem 'gems'
 
