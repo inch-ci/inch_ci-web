@@ -69,15 +69,15 @@ GEM
     hashie (3.0.0)
     hike (1.2.3)
     i18n (0.6.9)
-    inch (0.5.0.rc5)
+    inch (0.5.0.rc6)
       pry
       sparkr (>= 0.2.0)
       term-ansicolor
       yard (~> 0.8.7)
     inch-badge (0.3.5)
       chunky_png
-    inch_ci-worker (0.3.0.rc2)
-      inch (= 0.5.0.rc5)
+    inch_ci-worker (0.3.0.rc3)
+      inch (= 0.5.0.rc6)
       repomen (>= 0.2.0.rc1)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -208,8 +208,9 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   gems
   haml
+  inch
   inch-badge (>= 0.3.5)
-  inch_ci-worker (>= 0.3.0.rc2)
+  inch_ci-worker (>= 0.3.0.rc3)
   jbuilder (~> 1.2)
   jquery-rails
   mysql2

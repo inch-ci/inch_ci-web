@@ -18,3 +18,5 @@ config/access_tokens.yml
 /tmp
 /public/github
 /public/assets
+
+/dumps

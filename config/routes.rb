@@ -3,8 +3,8 @@ require 'sidekiq/web'
 InchCI::Application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
-  get 'api/cli' => 'api#cli'
-  post 'api/cli' => 'api#cli'
+  get 'api/v1/cli' => 'api/cli#hint'
+  post 'api/v1/cli' => 'api/cli#run'
 
   triple = ':service/:user/:repo'
   triple_constraints = {:repo => /[^\/]+/, :branch => /[^\/]+/}
