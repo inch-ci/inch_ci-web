@@ -73,13 +73,13 @@ module Api
       file
     end
 
-    VERBOTEN_COMMANDS = %w(inspect console)
+    VERBOTEN_COMMANDS = %w(diff inspect console)
     def valid_params?
       if language_from_params.to_s.empty?
         @param_errors = "No language defined."
       end
       if VERBOTEN_COMMANDS.include?(command_from_args)
-        @param_errors = "Command '#{command_from_args}' not supported via API."
+        @param_errors = "The '#{command_from_args}' command is not supported via API.\n\nIf you want to use it, you have to install Inch locally."
       end
       @param_errors.nil?
     end
