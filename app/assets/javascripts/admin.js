@@ -15,4 +15,3 @@
 //= require bootstrap
 //= require rdash
 //= require base
-//= require_tree .

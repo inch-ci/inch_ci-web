@@ -32,4 +32,6 @@ InchCI::Application.routes.draw do
 
   resources :builds
   resources :projects
+
+  get 'admin/overview' => 'admin/overview#index'
 end
