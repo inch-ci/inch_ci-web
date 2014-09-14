@@ -15,3 +15,12 @@
 //= require bootstrap
 //= require rdash
 //= require base
+
+
+jQuery(function($) {
+
+  $("[data-scroll-down]").each(function(index, element) {
+    element.scrollTop = element.scrollHeight;
+  });
+
+});

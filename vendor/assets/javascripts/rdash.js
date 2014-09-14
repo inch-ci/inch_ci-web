@@ -49,8 +49,9 @@ $(function() {
        */
       toggleSidebar: function(e) {
         this.$pageWrapper.toggleClass('active');
-
+        /*
         $.cookie('toggle', this.$pageWrapper.hasClass("active"));
+        */
       },
 
       /**
@@ -58,6 +59,7 @@ $(function() {
        */
       checkViewport: function() {
         if (getWidth() >= MOBILE_VIEW) {
+          /*
             if ($.cookie('toggle') === undefined) {
                 this.$pageWrapper.addClass("active");
             } else {
@@ -67,6 +69,7 @@ $(function() {
                     this.$pageWrapper.removeClass("active");
                 }
             }
+            */
         } else {
             this.$pageWrapper.removeClass("active");
         }
