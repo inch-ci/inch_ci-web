@@ -42,7 +42,7 @@ gem 'unicorn'
 
 gem 'inch'
 gem 'inch-badge', '>= 0.3.5'
-gem 'inch_ci-worker', '>= 0.3.0.rc5'
+gem 'inch_ci-worker', '>= 0.3.0.rc6'
 gem 'octokit'
 gem 'gems'
 
