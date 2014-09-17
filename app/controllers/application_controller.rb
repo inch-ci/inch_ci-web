@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     branch_name = args.shift
     revision_uid = args.shift
     hash = {
-      :controller => 'projects',
+      :controller => '/projects',
       :action => 'show',
       :service => project.service_name,
       :user => project.user_name,

@@ -3,6 +3,7 @@ class Admin::OverviewController < ApplicationController
 
   def index
     set_stats
+    set_projects
   end
 
   private
@@ -12,8 +13,9 @@ class Admin::OverviewController < ApplicationController
     list = Statistics.where("date > ?", (DAYS_BACK + 1).days.ago).order('date ASC')
     map = {}
     list.each do |stat|
-      map[stat.date.midnight] ||= {}
-      map[stat.date.midnight][stat.name] = stat.value
+      date = stat.date.midnight
+      map[date] ||= {'date' => date.strftime("%Y-%m-%d")}
+      map[date][stat.name] = stat.value
     end
     @stats_headers = %w(Day Date Badges Users Hooks Users Repos Users)
     @stats = map.keys.sort.map do |date|
@@ -30,6 +32,12 @@ class Admin::OverviewController < ApplicationController
         val(stats, 'maintainers:all'),
       ]
     end
+    @stats_badges = Statistics.where(:name => 'projects:badges').last.value
+    @stats_chart_data = map.values
+  end
+
+  def set_projects
+    @new_projects = Project.order('created_at ASC').last(30)
   end
 
   def val(stats, key, add_change = true)

@@ -1,0 +1,31 @@
+
+.col-lg-6
+  .widget
+    .widget-title
+      = icon :bars
+      Charts
+
+    .widget-body{:"data-scroll-down" => true}
+      #myfirstchart{:style => "height: 210px"}
+
+:javascript
+  new Morris.Line({
+    // ID of the element in which to draw the chart.
+    element: 'myfirstchart',
+    hideHover: true,
+    // Chart data records -- each entry in this array corresponds to a point on
+    // the chart.
+    data: #{@stats_chart_data.to_json.html_safe},
+    // The name of the data record attribute that contains x-values.
+    xkey: 'date',
+    // A list of names of data record attributes that contain y-values.
+    ykeys: [
+        'projects:all', 'projects:badges', 'projects:hooked'
+      ],
+    // Labels for the ykeys -- will be displayed when you hover over the
+    // chart.
+    labels: ['Projects', 'Badges', 'Hooks'],
+    lineColors: ['#ccc', '#8c3', '#428bca']
+  });
+
+

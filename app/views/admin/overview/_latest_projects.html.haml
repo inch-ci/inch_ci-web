@@ -1,0 +1,15 @@
+
+.col-lg-6
+  .widget
+    .widget-title
+      = icon :task
+      Latest projects
+
+    .widget-body.medium.no-padding{:"data-scroll-down" => true}
+      .table-responsive
+        %table.table
+          %tbody
+            - @new_projects.each do |project|
+              %tr
+                %td= link_to_project(project, project.id)
+                %td= link_to(project.name, project.source_code_url, :target => '_blank')

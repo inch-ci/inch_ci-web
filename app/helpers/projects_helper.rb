@@ -26,8 +26,8 @@ module ProjectsHelper
     t("projects.topbar.info.builds_all", :link => link).html_safe
   end
 
-  def link_to_project(project)
-    link_to project.name, project_path(project)
+  def link_to_project(project, text = project.name)
+    link_to text, project_path(project)
   end
 
   def link_to_branch(branch)

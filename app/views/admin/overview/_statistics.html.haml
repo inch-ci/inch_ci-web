@@ -1,0 +1,20 @@
+
+.col-lg-6
+  .widget
+    .widget-title
+      = icon :bars
+      Raw numbers
+
+    .widget-body.medium.no-padding{:"data-scroll-down" => true}
+      .table-responsive
+        %table.table
+          %tbody
+            %thead
+              %tr
+                - @stats_headers.each do |value|
+                  %th= value
+            %tbody
+              - @stats.each do |stats|
+                %tr
+                  - stats.each do |value|
+                    %td= value
