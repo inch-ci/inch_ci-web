@@ -1,0 +1,12 @@
+- icon_name ||= 'info'
+- icon_class ||= 'green'
+
+.col-lg-3.col-md-6.col-xs-12
+  .widget
+    .widget-body
+      .widget-icon.pull-left{:class => icon_class}
+        = icon(icon_name)
+      .widget-content.pull-left
+        .title= number
+        .comment= label
+      .clearfix

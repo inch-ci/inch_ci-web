@@ -1,0 +1,16 @@
+.row
+  = render "admin/overview/charts/absolutes_by_week"
+  = render "admin/overview/charts/growth_by_week"
+
+.row
+  = render "stat_value", :number => @stats_badges, :label => "READMEs with badges", :icon_name => 'code-fork'
+
+  = render "stat_value", :number => @stats_badge_users, :label => "Maintainers sporting badges", :icon_class => 'blue', :icon_name => 'users'
+
+  = render "stat_value", :number => @stats_badges_per_user, :label => "Badges per maintainer", :icon_class => 'orange', :icon_name => 'code'
+
+  = render "stat_value", :number => @stats_hooks_per_user, :label => "Hooks per maintainer", :icon_class => 'red', :icon_name => 'code'
+
+.row
+  = render "statistics"
+  = render "latest_projects"

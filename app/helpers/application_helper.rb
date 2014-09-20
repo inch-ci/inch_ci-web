@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def icon(key, options = {})
     opts = {:class => "fa fa-#{key}"}.merge(options)
-    content_tag(:span, "", opts).html_safe
+    content_tag(:i, "", opts).html_safe
   end
 
   def markdown(text)

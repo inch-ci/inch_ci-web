@@ -1,8 +1,7 @@
-
 .col-lg-6
   .widget
     .widget-title
-      = icon :task
+      = icon :database
       Latest projects
 
     .widget-body.medium.no-padding{:"data-scroll-down" => true}
@@ -10,6 +9,12 @@
         %table.table
           %tbody
             - @new_projects.each do |project|
-              %tr
-                %td= link_to_project(project, project.id)
-                %td= link_to(project.name, project.source_code_url, :target => '_blank')
+              - if project.default_branch
+                %tr
+                  %td= link_to_project(project, project.id)
+                  %td= link_to(project.name, project.source_code_url, :target => '_blank')
+                  - if project.default_branch.latest_revision
+                    %td.text-right
+                      - if project.default_branch.latest_revision.badge_in_readme?
+                        %span.text-success= icon(:check)
+                      = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg))

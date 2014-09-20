@@ -1,31 +1,28 @@
-
 .col-lg-6
   .widget
     .widget-title
-      = icon :bars
-      Charts
+      = icon :'line-chart'
+      Numbers by week
 
     .widget-body{:"data-scroll-down" => true}
-      #myfirstchart{:style => "height: 210px"}
+      #chart_absolutes_by_week{:style => "height: 300px"}
 
 :javascript
   new Morris.Line({
     // ID of the element in which to draw the chart.
-    element: 'myfirstchart',
+    element: 'chart_absolutes_by_week',
     hideHover: true,
     // Chart data records -- each entry in this array corresponds to a point on
     // the chart.
-    data: #{@stats_chart_data.to_json.html_safe},
+    data: #{@absolutes_by_week.to_json.html_safe},
     // The name of the data record attribute that contains x-values.
     xkey: 'date',
     // A list of names of data record attributes that contain y-values.
     ykeys: [
-        'projects:all', 'projects:badges', 'projects:hooked'
+        'projects:all', 'projects:badges', 'maintainers:badges'
       ],
     // Labels for the ykeys -- will be displayed when you hover over the
     // chart.
-    labels: ['Projects', 'Badges', 'Hooks'],
-    lineColors: ['#ccc', '#8c3', '#428bca']
+    labels: ['Projects', 'Badges', 'Maintainers', 'Hooks'],
+    lineColors: ['#ccc', '#88cc33', '#428bca', '#66FF99']
   });
-
-

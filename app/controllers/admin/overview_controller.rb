@@ -3,6 +3,7 @@ class Admin::OverviewController < ApplicationController
 
   def index
     set_stats
+    set_chart_data
     set_projects
   end
 
@@ -11,12 +12,7 @@ class Admin::OverviewController < ApplicationController
   DAYS_BACK = 30
   def set_stats
     list = Statistics.where("date > ?", (DAYS_BACK + 1).days.ago).order('date ASC')
-    map = {}
-    list.each do |stat|
-      date = stat.date.midnight
-      map[date] ||= {'date' => date.strftime("%Y-%m-%d")}
-      map[date][stat.name] = stat.value
-    end
+    map = map_stats_to_dates(list)
     @stats_headers = %w(Day Date Badges Users Hooks Users Repos Users)
     @stats = map.keys.sort.map do |date|
       stats = map[date]
@@ -32,12 +28,54 @@ class Admin::OverviewController < ApplicationController
         val(stats, 'maintainers:all'),
       ]
     end
-    @stats_badges = Statistics.where(:name => 'projects:badges').last.value
+    @stats_badges = stat('projects:badges')
+    @stats_badge_users = stat('maintainers:badges')
+    @stats_badges_per_user = quotient('projects:badges', 'maintainers:badges')
+    @stats_hooks_per_user = quotient('projects:hooked', 'maintainers:hooked')
     @stats_chart_data = map.values
+  end
+
+  def set_chart_data
+    list = Statistics.order('date ASC').group('name, WEEK(date)')
+    map = map_stats_to_dates(list)
+    @absolutes_by_week = map.values
+
+    @growth_by_week = []
+    @absolutes_by_week.each_with_index do |value, index|
+      if index > 0
+        last_value = @absolutes_by_week[index-1]
+        new_value = {'date' => value['date']}
+        value.each do |key, v|
+          if v.is_a?(Fixnum)
+            new_value[key] = v - last_value[key]
+          end
+        end
+        @growth_by_week << new_value
+      end
+    end
+  end
+
+  # Maps the given list of Statistic objects to their date's day.
+  def map_stats_to_dates(list)
+    map = {}
+    list.each do |stat|
+      date = stat.date.midnight
+      map[date] ||= {'date' => date.strftime("%Y-%m-%d")}
+      map[date][stat.name] = stat.value
+    end
+    map
   end
 
   def set_projects
     @new_projects = Project.order('created_at ASC').last(30)
+  end
+
+  def stat(name)
+    Statistics.where(:name => name).last.value
+  end
+
+  def quotient(name1, name2, digits = 2)
+    (stat(name1).to_f / stat(name2).to_f).round(digits)
   end
 
   def val(stats, key, add_change = true)

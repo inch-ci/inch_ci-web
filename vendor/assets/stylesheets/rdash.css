@@ -56,16 +56,16 @@
     transition: all .4s ease 0s;
   }
   .green {
-    background: #23ae89 !important;
+    background: #88cc33 !important;
   }
   .blue {
-    background: #2361ae !important;
+    background: #428bca !important;
   }
   .orange {
-    background: #d3a938 !important;
+    background: #FF9900 !important;
   }
   .red {
-    background: #ae2323 !important;
+    background: #FF704D !important;
   }
   .form-group .help-block.form-group-inline-message {
     padding-top: 5px;
