@@ -1,3 +1,9 @@
 // Place all the styles related to the admin/builds controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#page-wrapper {
+  padding-top: 8px;
+  background-image: image-url("topbar.png");
+  background-repeat: repeat-x;
+}

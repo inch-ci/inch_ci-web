@@ -11,11 +11,6 @@
  *= require bootstrap
  *= require font-awesome
  *= require rdash
+ *= require_tree .
  *= require_self
  */
-
-#page-wrapper {
-  padding-top: 8px;
-  background-image: url("/assets/topbar.png");
-  background-repeat: repeat-x;
-}
