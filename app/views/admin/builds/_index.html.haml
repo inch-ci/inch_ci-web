@@ -1,0 +1,26 @@
+.row
+  - unless @completed_builds.empty?
+    .col-lg-6
+      .widget
+        .widget-title
+          = icon :calculator
+          = t("builds.index.completed_header")
+      .widget-body.medium.no-padding
+        = render "table", :builds => @completed_builds
+
+  .col-lg-6
+    - unless @scheduled_builds.empty?
+      .widget
+        .widget-title
+          = icon :calculator
+          = t("builds.index.scheduled_header", :count => @scheduled_builds.size).html_safe
+      .widget-body.medium.no-padding
+        = render "table", :builds => @scheduled_builds
+
+    - unless @running_builds.empty?
+      .widget
+        .widget-title
+          = icon :calculator
+          = t("builds.index.running_header", :count => @running_builds.size).html_safe
+        .widget-body.medium.no-padding
+          = render "table", :builds => @running_builds

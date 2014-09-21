@@ -1,0 +1,4 @@
+#builds_index= render "index"
+
+:javascript
+  I.wait_for_build.initReload('#{url_for(params.merge(:format => :js))}');
