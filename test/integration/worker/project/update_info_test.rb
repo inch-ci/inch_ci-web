@@ -8,6 +8,5 @@ describe ::InchCI::Worker::Project::UpdateInfo do
 
   it "should work using .enqueue" do
     described_class.enqueue(project_uid)
-    p Project.find_by_uid(project_uid)
   end
 end
