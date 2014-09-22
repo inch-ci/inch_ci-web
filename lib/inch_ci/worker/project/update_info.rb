@@ -32,6 +32,7 @@ module InchCI
 
           project.name = github.name
           project.description = github.description
+          project.language = github.language
           project.homepage_url = github.homepage_url
           project.documentation_url = github.documentation_url
           project.source_code_url = github.source_code_url

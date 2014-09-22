@@ -30,6 +30,10 @@ module InchCI
             @repo[:homepage]
           end
 
+          def language
+            @repo[:language]
+          end
+
           def name
             @repo[:full_name]
           end
