@@ -13,6 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require rdash
-//= require base
-//= require_tree .
+//= require application/base
+//= require_tree ./application

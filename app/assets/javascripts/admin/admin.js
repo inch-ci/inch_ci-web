@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require rdash
-//= require base
 
 
 jQuery(function($) {
