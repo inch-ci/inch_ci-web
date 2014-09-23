@@ -4,7 +4,7 @@ module Admin::OverviewHelper
     created = project.created_at.midnight
     [
       created == today ? 'today' : nil,
-      created == today - 1 ? 'yesterday' : nil,
+      created == today - 1.day ? 'yesterday' : nil,
     ]
   end
 end
