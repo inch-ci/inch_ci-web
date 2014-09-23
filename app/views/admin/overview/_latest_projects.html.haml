@@ -3,18 +3,20 @@
     .widget-title
       = icon :database
       Latest projects
+      %small.text-muted
+        (Live)
 
     .widget-body.medium.no-padding{:"data-scroll-down" => true}
       .table-responsive
-        %table.table
+        %table.table.latest_projects
           %tbody
             - @new_projects.each do |project|
               - if project.default_branch
-                %tr
+                %tr{:class => created_at_classes(project)}
                   %td= link_to_project(project, project.id)
                   %td= link_to(project.name, project.source_code_url, :target => '_blank')
-                  - if project.default_branch.latest_revision
-                    %td.text-right
+                  %td.text-right
+                    - if project.default_branch.latest_revision
                       - if project.default_branch.latest_revision.badge_in_readme?
                         %span.text-success= icon(:check)
                       = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg))

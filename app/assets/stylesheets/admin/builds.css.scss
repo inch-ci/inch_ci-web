@@ -7,3 +7,14 @@
   background-image: image-url("topbar.png");
   background-repeat: repeat-x;
 }
+
+.latest_projects tr td {
+  height: 38px;
+}
+
+.latest_projects tr.yesterday td {
+  background: #f0f0f0;
+}
+.latest_projects tr.today td {
+  background: #d9edf7;
+}
