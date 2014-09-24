@@ -1,6 +1,6 @@
 class BadgeMarkup < Struct.new(:project, :branch)
   BASE_URL = "http://inch-ci.org"
-  IMAGE_FORMATS = [:png, :svg]
+  IMAGE_FORMATS = [:svg, :png]
   DEFAULT_IMAGE_FORMAT = IMAGE_FORMATS.first
 
   def each(format = DEFAULT_IMAGE_FORMAT, &block)
