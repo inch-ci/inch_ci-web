@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20140922200938) do
     t.datetime "updated_at"
   end
 
-  add_index "branches", ["project_id", "name"], name: "index_branches_on_project_id_and_name", using: :btree
+  add_index "branches", ["project_id", "name"], name: "index_branches_on_project_id_and_name"
 
   create_table "builds", force: true do |t|
     t.integer  "branch_id"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20140922200938) do
     t.datetime "updated_at"
   end
 
-  add_index "code_objects", ["digest"], name: "index_code_objects_on_digest", using: :btree
+  add_index "code_objects", ["digest"], name: "index_code_objects_on_digest"
 
   create_table "projects", force: true do |t|
     t.string   "uid"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20140922200938) do
     t.string   "language"
   end
 
-  add_index "projects", ["uid"], name: "index_projects_on_uid", using: :btree
+  add_index "projects", ["uid"], name: "index_projects_on_uid"
 
   create_table "revision_diffs", force: true do |t|
     t.integer  "branch_id"

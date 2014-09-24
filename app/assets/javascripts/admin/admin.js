@@ -14,12 +14,29 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require rdash
+//= require ../application/base
+//= require_tree ../application
 
 
 jQuery(function($) {
 
   $("[data-scroll-down]").each(function(index, element) {
     element.scrollTop = element.scrollHeight;
+  });
+
+  var applyTriggerCheckbox = function(element) {
+    var what = $(element).data("filter-build-trigger");
+    if( element.checked ) {
+      $("[data-build-trigger="+what+"]").show();
+    } else {
+      $("[data-build-trigger="+what+"]").hide();
+    }
+  };
+
+  $("[data-filter-build-trigger]").each(function(index, element) {
+    applyTriggerCheckbox(element);
+  }).click(function(event) {
+    applyTriggerCheckbox(event.target);
   });
 
 });

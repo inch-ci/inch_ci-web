@@ -10,7 +10,7 @@
         %th.status{:colspan => 2} Status
     %tbody
       - builds.each do |build|
-        %tr
+        %tr{:"data-build-trigger" => build.trigger}
           %td= @project ? build.number : build.id
           %td= link_to_project build.branch.project
           %td.revision_uid

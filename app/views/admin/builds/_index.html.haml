@@ -5,6 +5,12 @@
         .widget-title
           = icon :calculator
           = t("builds.index.completed_header")
+
+          .pull-right
+            - build_trigger_icon_map.keys.each do |trigger|
+              %label
+                = check_box_tag "bla", "1", true, :"data-filter-build-trigger" => trigger
+                = icon( build_trigger_icon_map[trigger])
       .widget-body.medium.no-padding
         = render "table", :builds => @completed_builds
 

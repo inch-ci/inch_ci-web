@@ -24,13 +24,17 @@ module BuildsHelper
   end
 
   def build_trigger_icon(build)
-    key = {
+    key = build_trigger_icon_map[build.trigger]
+    icon(key || :question, :title => build.trigger)
+  end
+
+  def build_trigger_icon_map
+    {
       'cron' => :"clock-o",
       'hook' => :git,
       'manual' => :user,
       'tag_build' => :tags,
-    }[build.trigger]
-    icon(key || :question, :title => build.trigger)
+    }
   end
 
   def dashboard_table_project_class(project)
