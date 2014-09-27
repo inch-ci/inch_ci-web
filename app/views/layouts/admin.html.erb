@@ -46,6 +46,9 @@
         <li class="sidebar-list">
           <a href="<%= admin_builds_path %>">Builds <span class="menu-icon fa fa-tasks"></span></a>
         </li>
+        <li class="sidebar-list">
+          <a href="<%= admin_projects_path %>">Projects <span class="menu-icon fa fa-truck"></span></a>
+        </li>
         <li class="sidebar-title separator"><span>QUICK LINKS</span></li>
         <li class="sidebar-list">
           <a href="/dashboard" target="_blank">Dashboard <span class="menu-icon fa fa-external-link"></span></a>
@@ -87,6 +90,9 @@
                 Home / Dashboard
               </div>
             </div>
+            <div class="meta pull-right">
+              <%= render "admin/projects/form_new" %>
+              </div>
             <div class="user pull-right">
               <div class="item dropdown">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown">

@@ -55,8 +55,8 @@ module InchCI
         new(*args).branch
       end
 
-      def initialize(url_or_params, branch_name)
-        @project = InchCI::Store::EnsureProject.call(project_url(url_or_params))
+      def initialize(url_or_params, branch_name, origin = nil)
+        @project = InchCI::Store::EnsureProject.call(project_url(url_or_params), origin)
         @project = update_project(@project) if !@project.default_branch
         if branch_name.nil?
           @branch = InchCI::Store::FindDefaultBranch.call(@project)

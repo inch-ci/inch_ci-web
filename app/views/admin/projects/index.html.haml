@@ -1,0 +1,29 @@
+.col-lg-6
+  .widget
+    .widget-title
+      = icon :database
+      Latest projects
+
+    .widget-body
+      .table-responsive
+        %table.table
+          %thead
+            %tr
+              %th #
+              %th GitHub
+              %th Origin
+              %th Language
+              %th
+          %tbody
+            - @projects.each do |project|
+              - if project.default_branch
+                %tr{:class => created_at_classes(project)}
+                  %td= link_to_project(project, project.id)
+                  %td= link_to(project.name, project.source_code_url, :target => '_blank')
+                  %td=project.origin
+                  %td=project.language
+                  %td.text-right
+                    - if project.default_branch.latest_revision
+                      - if project.default_branch.latest_revision.badge_in_readme?
+                        %span.text-success= icon(:check)
+                      = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg))

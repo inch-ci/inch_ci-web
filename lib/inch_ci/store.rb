@@ -4,16 +4,16 @@ module InchCI
   module Store
     FindProject = -> (uid) { Project.find_by_uid(uid) }
     FindAllProjects = -> () { Project.all }
-    CreateProject = -> (uid, repo_url) { Project.create!(:uid => uid, :repo_url => repo_url) }
+    CreateProject = -> (uid, repo_url, origin = nil) { Project.create!(:uid => uid, :repo_url => repo_url, :origin => origin.to_s) }
     SaveProject = -> (project) { project.save! }
     UpdateDefaultBranch = -> (project, branch) { project.update_attribute(:default_branch, branch) }
 
     # this does not belong here
-    EnsureProject = -> (url) {
+    EnsureProject = -> (url, origin = nil) {
       info = RepoURL.new(url)
       if info.project_uid
         Store::FindProject.call(info.project_uid) ||
-          Store::CreateProject.call(info.project_uid, info.url)
+          Store::CreateProject.call(info.project_uid, info.url, origin)
       end
     }
     # this does not belong here

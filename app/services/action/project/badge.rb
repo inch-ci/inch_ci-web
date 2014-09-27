@@ -33,6 +33,7 @@ module Action
       private
 
       TRIGGER = 'manual'
+      ORIGIN  = :badge_request
 
       def content_types
         {
@@ -43,6 +44,15 @@ module Action
 
       def create_empty_badge
         InchCI::Badge.create(@project, @branch, [0,0,0,0])
+      end
+
+      def create_project_and_branch(url_or_params, _branch_name = nil)
+        branch_name = url_or_params.is_a?(Hash) ? url_or_params[:branch] : nil
+        branch_name ||= _branch_name
+        if @branch = InchCI::Action::EnsureProjectAndBranch.call(url_or_params, branch_name, ORIGIN)
+          @project = @branch.project
+          @branch
+        end
       end
 
       def enqueue_build

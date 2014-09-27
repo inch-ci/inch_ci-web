@@ -58,12 +58,17 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test "should get and build :badge for missing project" do
-    Project.find_by_uid("github:rrrene/sparkr").destroy
-    assert_equal 0, Project.where(:uid => "github:rrrene/sparkr").count
+    project_uid = "github:rrrene/sparkr"
+    Project.find_by_uid(project_uid).destroy
+    assert_equal 0, Project.where(:uid => project_uid).count
     assert_difference(%w(Build.count Project.count), 1) do
       get :badge, :service => 'github', :user => 'rrrene', :repo => 'sparkr', :format => :png
     end
     assert_response :success
+
+    project = Project.where(:uid => project_uid).first
+    refute project.nil?
+    assert_equal 'badge_request', project.origin
   end
 
   test "should get and build :badge for missing branch" do
@@ -80,6 +85,10 @@ class ProjectsControllerTest < ActionController::TestCase
       post :create, :repo_url => "https://github.com/rrrene/inch"
       assert_response :redirect
     end
+
+    project = Project.where(:uid => 'github:rrrene/inch').first
+    refute project.nil?
+    assert_equal 'homepage', project.origin
   end
 
   test "should create a project via a slightly malformed github web-url" do

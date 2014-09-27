@@ -7,11 +7,11 @@ module Action
 
       exposes :project
 
-      def initialize(params)
+      def initialize(params, origin = nil)
         return unless params[:repo_url].present?
 
         info = InchCI::RepoURL.new(params[:repo_url])
-        if @project = InchCI::Store::EnsureProject.call(info.repo_url)
+        if @project = InchCI::Store::EnsureProject.call(info.repo_url, origin)
           if @project = update_project(@project)
             if branch = InchCI::Store::FindDefaultBranch.call(@project)
               @build = InchCI::Worker::Project::Build.enqueue(project.repo_url, branch.name)

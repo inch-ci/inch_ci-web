@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    action = Action::Project::Create.new(params)
+    action = Action::Project::Create.new(params, :homepage)
     if action.success?
       redirect_to project_url(action.project, :pending_build => action.build_id)
     else

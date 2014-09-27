@@ -1,0 +1,7 @@
+= form_tag(admin_projects_path, :method => :post, :class => 'form-inline') do
+  .form-group{:class => flash[:error] ? 'has-error' : nil}
+    = text_field_tag "repo_url", params[:repo_url], :class => "form-control", :placeholder => t("welcome.project_placeholder")
+    = submit_tag t("welcome.add_project"), :class => "btn btn-default"
+    - flash[:error].tap do |error_message|
+      .error
+        = error_message
