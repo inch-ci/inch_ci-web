@@ -1,1 +1,7 @@
-jQuery('#projects_page').html('<%= escape_javascript render(action_name) %>');
+<% if grade = params[:grade_list] %>
+  jQuery('#projects_page tr[data-insert-<%= grade %>]')
+    .after('<%= escape_javascript render("show_grade_list", :grade_list => @collection[grade]) %>')
+    .remove();
+<% else %>
+  jQuery('#projects_page').html('<%= escape_javascript render(action_name) %>');
+<% end %>

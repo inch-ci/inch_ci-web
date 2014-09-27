@@ -1,0 +1,5 @@
+- show_count ||= 5
+
+- grade_list.code_objects[show_count..-1].each do |code_object|
+  %tr
+    = render "shared/grade_list_cells", :grade_list => grade_list, :code_object => code_object

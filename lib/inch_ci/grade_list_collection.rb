@@ -12,6 +12,10 @@ module InchCI
       end
     end
 
+    def [](grade)
+      @grade_lists[grade]
+    end
+
     def each(&block)
       GRADES.each do |grade|
         block.call(@grade_lists[grade])
