@@ -1,0 +1,53 @@
+.col-lg-6
+  .widget
+    .widget-title
+      = icon :database
+      Latest
+      = @filenames.size if @filenames
+      = @language
+      CLI requests
+
+      .pull-right
+        - @languages.each do |language|
+          = link_to_unless @language == language, language, params.merge(:language => language)
+
+    .widget-body
+      .table-responsive
+        - if @dates
+          - @dates.keys.sort.reverse.each do |date|
+            %table.table.dumps
+              %thead
+                %tr
+                  %th
+                    = date
+                    %small.pull-right
+                      = @dates[date].size
+                      requests
+              %tbody
+                - @dates[date].each do |filename|
+                  %tr{:class => params[:filename] == filename ? :active : nil}
+                    %td= link_to filename, params.merge(:filename => filename)
+
+
+- if @filename
+  .col-lg-6
+    .widget
+      .widget-title
+        = icon :terminal
+        Output
+
+      .widget-body
+        .table-responsive
+          .terminal
+            - @out.lines.each do |line|
+              = line
+              %br
+
+    .widget
+      .widget-title
+        = icon :database
+        Request data
+
+      .widget-body
+        .table-responsive
+          = @json[0..1024] + " ..."
