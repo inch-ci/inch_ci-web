@@ -9,7 +9,7 @@ module Action
 
       def initialize(params)
         if @filename = params[:filename]
-          @json = File.read( filename_from_params(@filename, :json) )
+          @json = JSON[ File.read( filename_from_params(@filename, :json) ) ]
           @out  = terminal File.read( filename_from_params(@filename, :out) )
         end
       end

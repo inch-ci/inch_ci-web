@@ -36,18 +36,27 @@
         = icon :terminal
         Output
 
-      .widget-body
-        .table-responsive
-          .terminal
-            - @out.lines.each do |line|
-              = line
-              %br
+      .table-responsive
+        .terminal
+          - @out.lines.each do |line|
+            = line
+            %br
 
     .widget
       .widget-title
         = icon :database
         Request data
 
-      .widget-body
-        .table-responsive
-          = @json[0..1024] + " ..."
+      .table-responsive
+        %table.table.dump-info
+          %tbody
+            %tr
+              %th Arguments
+              %td= @json['args']
+            %tr
+              %th Objects
+              %td= @json['objects'].size
+            %tr
+              %th Dump
+              %td= @json.inspect[0..1024] + " ..."
+
