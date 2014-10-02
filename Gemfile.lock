@@ -76,7 +76,7 @@ GEM
       yard (~> 0.8.7)
     inch-badge (0.3.5)
       chunky_png
-    inch_ci-worker (0.3.0.rc9)
+    inch_ci-worker (0.3.0.rc11)
       inch (= 0.5.0.rc11)
       repomen (>= 0.2.0.rc1)
     jbuilder (1.5.3)
@@ -210,7 +210,7 @@ DEPENDENCIES
   haml
   inch
   inch-badge (>= 0.3.5)
-  inch_ci-worker (>= 0.3.0.rc9)
+  inch_ci-worker (>= 0.3.0.rc11)
   jbuilder (~> 1.2)
   jquery-rails
   mysql2

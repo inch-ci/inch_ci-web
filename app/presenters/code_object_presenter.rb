@@ -38,6 +38,6 @@ class CodeObjectPresenter < BasePresenter
   private
 
   def location
-    @__location ||= code_object.to_model.location.partition(':')
+    @__location ||= code_object.to_model.location.to_s.partition(':')
   end
 end
