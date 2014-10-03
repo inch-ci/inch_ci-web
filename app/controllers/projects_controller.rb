@@ -8,15 +8,11 @@ class ProjectsController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:rebuild_via_hook]
 
   def badge
-    view = Action::Project::Badge.new(params)
-    if view.project.nil?
-      render :text => "Project not found.", :layout => false, :status => 404
+    action = Action::Project::Badge.new(params)
+    if action.success?
+      send_file action.badge_filename, :content_type => action.content_type, :disposition => 'inline'
     else
-      if view.branch.nil?
-        render :text => "Branch not found.", :layout => false, :status => 404
-      else
-        send_file view.badge_filename, :content_type => view.content_type, :disposition => 'inline'
-      end
+      render :text => "Project or branch not found.", :layout => false, :status => 404
     end
   end
 
@@ -37,10 +33,10 @@ class ProjectsController < ApplicationController
 
   def rebuild
     action = Action::Project::Rebuild.new(params)
-    if action.project.nil?
-      render :text => "Project not found.", :layout => false, :status => 404
-    else
+    if action.success?
       redirect_to project_url(action.project, action.branch.name, :pending_build => action.build_id)
+    else
+      render :text => "Project not found.", :layout => false, :status => 404
     end
   end
 
@@ -74,12 +70,12 @@ class ProjectsController < ApplicationController
   end
 
   def process_project_action(action_class)
-    view = action_class.new(params)
-    expose view
-    if view.project.nil?
+    action = action_class.new(params)
+    expose action
+    if action.project.nil?
       render :text => "Project not found.", :layout => true, :status => 404
     else
-      if view.branch.nil?
+      if action.branch.nil?
         render :text => "Branch not found.", :layout => true, :status => 404
       end
     end

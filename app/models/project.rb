@@ -1,3 +1,5 @@
+require 'inch_ci/project_uid'
+
 class Project < ActiveRecord::Base
   UID_FORMAT = /\A([a-z0-9\-\_\.]+)\:([a-z0-9\-\_\.]+)\/([a-z0-9\-\_\.]+)\Z/i
 
@@ -10,17 +12,17 @@ class Project < ActiveRecord::Base
 
   # TODO: implement another way
   def service_name
-    uid.split(':').first
+    @service_name ||= InchCI::ProjectUID.new(uid).service
   end
 
   # TODO: implement another way
   def user_name
-    uid.split(':').last.split('/').first
+    @user_name ||= InchCI::ProjectUID.new(uid).user_name
   end
 
   # TODO: implement another way
   def repo_name
-    uid.split(':').last.split('/').last
+    @repo_name ||= InchCI::ProjectUID.new(uid).repo_name
   end
 
   validates :uid, :format => UID_FORMAT, :presence => true, :uniqueness => true

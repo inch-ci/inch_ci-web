@@ -19,6 +19,10 @@ module Action
       def build_id
         @build.id
       end
+
+      def success?
+        !@build.nil?
+      end
     end
   end
 end

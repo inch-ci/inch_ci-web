@@ -14,9 +14,21 @@ describe ::InchCI::ProjectUID do
     assert_equal 'https://github.com/user_name/with-numbers-1232.git', info.repo_url
   end
 
-  it "should return project_uid for malformed params" do
+  it "should not return project_uid for malformed params" do
     params = {:service => 'github', :user_name => 'user_name'}
     info = described_class.new(params)
+    assert_nil info.project_uid
+    assert_nil info.repo_url
+  end
+
+  it "should return project_uid for a uid" do
+    info = described_class.new('github:user_name/with-numbers-1232')
+    assert_equal 'github:user_name/with-numbers-1232', info.project_uid
+    assert_equal 'https://github.com/user_name/with-numbers-1232.git', info.repo_url
+  end
+
+  it "should not return project_uid for malformed uid" do
+    info = described_class.new('github:user_name/')
     assert_nil info.project_uid
     assert_nil info.repo_url
   end
