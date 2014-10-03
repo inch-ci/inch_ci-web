@@ -18,8 +18,12 @@
           %li{:class => branch == @branch ? :active : nil}= link_to_branch branch
         %li.divider
         %li= link_to t('projects.topbar.update_info_link'), project_update_info_path(@project, @branch.name), :method => :post
-    - if show_rebuild_link?
+
+    - if @project.build_on_inch_ci?
       = link_to t('projects.topbar.rebuild_link'), project_rebuild_path(@project, @branch.name), :method => :post, :class => 'btn btn-default btn-sm', :"data-toggle" => 'tooltip', :title => t('projects.topbar.rebuild_link_tooltip')
+    - if @project.build_on_travis?
+      = link_to t('projects.topbar.rebuild_on_travis_link'), project_path(@project, @branch.name), :class => 'btn btn-default btn-sm', :"data-toggle" => 'tooltip', :title => t('projects.topbar.rebuild_on_travis_link_tooltip')
+
     = link_to t('projects.topbar.feedback_link'), github_issue_url(:project => @project), :target => '_blank', :class => 'btn btn-success btn-sm', :"data-toggle" => 'tooltip', :title => t('projects.topbar.feedback_link_tooltip')
   .clearfix
 

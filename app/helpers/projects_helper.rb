@@ -70,6 +70,6 @@ What do you think?
   end
 
   def show_rebuild_link?
-    ['ruby', ''].include?(@project.language.to_s.downcase)
+    @project.build_on_inch_ci?
   end
 end

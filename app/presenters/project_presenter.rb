@@ -7,4 +7,11 @@ class ProjectPresenter < BasePresenter
 
   def_delegators :project, :default_branch, :branches
 
+  def build_on_inch_ci?
+    ['ruby', ''].include?(language.to_s.downcase)
+  end
+
+  def build_on_travis?
+    !build_on_inch_ci?
+  end
 end
