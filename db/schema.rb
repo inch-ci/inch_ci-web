@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927081335) do
+ActiveRecord::Schema.define(version: 20141003104039) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20140927081335) do
     t.datetime "updated_at"
   end
 
-  add_index "branches", ["project_id", "name"], name: "index_branches_on_project_id_and_name"
+  add_index "branches", ["project_id", "name"], name: "index_branches_on_project_id_and_name", using: :btree
 
   create_table "builds", force: true do |t|
     t.integer  "branch_id"
@@ -85,12 +85,12 @@ ActiveRecord::Schema.define(version: 20140927081335) do
     t.datetime "updated_at"
   end
 
-  add_index "code_objects", ["digest"], name: "index_code_objects_on_digest"
+  add_index "code_objects", ["digest"], name: "index_code_objects_on_digest", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "uid"
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.string   "homepage_url"
     t.string   "source_code_url"
     t.string   "repo_url"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20140927081335) do
     t.string   "origin"
   end
 
-  add_index "projects", ["uid"], name: "index_projects_on_uid"
+  add_index "projects", ["uid"], name: "index_projects_on_uid", using: :btree
 
   create_table "revision_diffs", force: true do |t|
     t.integer  "branch_id"
