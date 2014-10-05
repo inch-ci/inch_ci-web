@@ -20,3 +20,4 @@ config/access_tokens.yml
 /public/assets
 
 /dumps
+*.sh
