@@ -11,6 +11,9 @@ module Action
         return unless params[:repo_url].present?
 
         info = InchCI::RepoURL.new(params[:repo_url])
+        if info.repo_url.nil?
+          info = InchCI::RepoURL.new("https://github.com/#{params[:repo_url]}")
+        end
         if @project = InchCI::Store::EnsureProject.call(info.repo_url, origin)
           if @project = update_project(@project)
             if branch = InchCI::Store::FindDefaultBranch.call(@project)

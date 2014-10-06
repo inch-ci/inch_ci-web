@@ -105,6 +105,13 @@ class ProjectsControllerTest < ActionController::TestCase
     end
   end
 
+  test "should create a project via github nwo" do
+    assert_difference(%w(Build.count Project.count), 1) do
+      post :create, :repo_url => "rrrene/inch"
+      assert_response :redirect
+    end
+  end
+
   test "should not create a project via git-url that doesnot exist on GitHub" do
     post :create, :repo_url => "https://github.com/rrrene/not-here.git"
     assert_response :success
