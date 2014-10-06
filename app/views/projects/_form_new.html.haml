@@ -2,6 +2,7 @@
   .form-group{:class => flash[:error] ? 'has-error' : nil}
     = text_field_tag "repo_url", params[:repo_url], :class => "form-control input-lg", :placeholder => t("welcome.project_placeholder")
     = submit_tag t("welcome.add_project"), :class => "btn btn-lg btn-default"
+    %small= t("welcome.project_hint")
     - flash[:error].tap do |error_message|
       .error
         = error_message

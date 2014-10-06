@@ -92,7 +92,8 @@ en:
       Because better inline docs mean easier contribution and more collaboration!
     featured: "Join the movement!"
     learn_more: "Learn more"
-    project_placeholder: https://github.com/rrrene/inch
+    project_placeholder: rrrene/inch
+    project_hint: "Simply type your GitHub username/reponame"
     add_project: "Evaluate"
   about:
     headline: "What is Inch CI?"
