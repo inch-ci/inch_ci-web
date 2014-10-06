@@ -5,7 +5,7 @@ class ProjectPresenter < BasePresenter
   def_delegators :project, :service_name, :user_name, :repo_name
   def_delegators :project, :created_at, :updated_at
 
-  def_delegators :project, :default_branch, :branches
+  def_delegators :project, :default_branch, :branches, :builds
 
   def build_on_inch_ci?
     ['ruby', ''].include?(language.to_s.downcase)

@@ -34,6 +34,7 @@ module BuildsHelper
       'hook' => :git,
       'manual' => :user,
       'tag_build' => :tags,
+      'travis' => :"cloud-upload",
     }
   end
 

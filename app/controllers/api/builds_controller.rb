@@ -12,11 +12,14 @@ module Api
 
     def run
       if valid_params?
-        build = enqueue_build(dump_request_to_file.path)
-        update_project_if_necessary(build.project)
+        if build = enqueue_build(dump_request_to_file.path)
+          update_project_if_necessary(build.project)
 
-        render_text "Successfully created build ##{build.number}\n" \
+          render_text "Successfully created build ##{build.number}\n" \
                     "URL: #{project_url(build.project)}\n"
+        else
+          render_text "[ERROR] Build could not be created.\n"
+        end
       else
         render_text "[ERROR] #{@param_errors}\n"
       end

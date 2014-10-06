@@ -10,14 +10,19 @@ module InchCI
       # "inch_ci-worker".
       module BuildJSON
         # @return [Build]
-        def self.enqueue(filename, trigger = 'manual')
+        def self.enqueue(filename, trigger = nil)
           # this is invoked from the inch_ci-worker gem
           json = InchCI::Worker::BuildJSON.json(filename)
+          if trigger.nil?
+            trigger = json.travis? ? 'travis' : 'ci'
+          end
 
-          branch = Store::EnsureProjectAndBranch.call(json.url, json.branch_name)
-          build = Store::CreateBuild.call(branch, trigger)
-          ShellInvocation.perform_async(filename, json.url, json.branch_name, trigger, build.id)
-          build
+          if json.url
+            branch = Store::EnsureProjectAndBranch.call(json.url, json.branch_name)
+            build = Store::CreateBuild.call(branch, trigger)
+            ShellInvocation.perform_async(filename, json.url, json.branch_name, trigger, build.id)
+            build
+          end
         end
 
         # The ShellInvocation class spawns another shell in which the given
@@ -34,7 +39,7 @@ module InchCI
           BIN = "bundle exec inch_ci-worker build-from-json"
 
           # @api private
-          def perform(filename, url, branch_name = 'master', trigger = 'manual', build_id = nil)
+          def perform(filename, url, branch_name = 'master', trigger = 'ci', build_id = nil)
             build = ensure_running_build(url, branch_name, trigger, build_id)
             stdout_str, stderr_str, status = Open3.capture3("#{BIN} #{filename}")
             Project::Build::HandleWorkerOutput.new(stdout_str, stderr_str, build)

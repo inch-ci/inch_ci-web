@@ -34,10 +34,18 @@ module InchCI
             revision = Store::CreateRevision.call(branch, build_data.revision_uid, build_data.tag_uid,
               build_data.revision_message, build_data.revision_author_name, build_data.revision_author_email,
                 build_data.badge_in_readme?, build_data.revision_authored_at)
+            create_objects_in_revision(revision, objects)
+            revision
+          end
+
+          def allow_revision_rewrite?
+            @build_data.trigger == 'travis'
+          end
+
+          def create_objects_in_revision(revision, objects)
             objects.each do |attributes|
               Store::CreateCodeObject.call(revision, attributes)
             end
-            revision
           end
 
           def ensure_project_and_branch_exist
@@ -52,13 +60,23 @@ module InchCI
               Store::CreateBranch.call(project, branch_name)
           end
 
+          def generate_badge(project, branch, revision)
+            code_objects = Store::FindCodeObjects.call(revision)
+            GenerateBadge.call(project, branch, code_objects)
+          end
+
           def handle_failed_build(branch)
             Store::UpdateFinishedBuild.call(@build, nil, @build_data)
           end
 
           def handle_successful_build(branch)
-            if revision = Store::FindRevision.call(branch, @build_data.revision_uid)
-              @build_data.status = DUPLICATE_STATUS
+            revision = Store::FindRevision.call(branch, @build_data.revision_uid)
+            if revision
+              if allow_revision_rewrite?
+                rewrite_revision(revision, @build_data.objects)
+              else
+                @build_data.status = DUPLICATE_STATUS
+              end
             else
               revision = add_revision(branch, @build_data, @build_data.objects)
               if @build_data.latest_revision?
@@ -72,9 +90,8 @@ module InchCI
             Store::UpdateFinishedBuild.call(@build, revision, @build_data)
           end
 
-          def generate_badge(project, branch, revision)
-            code_objects = Store::FindCodeObjects.call(revision)
-            GenerateBadge.call(project, branch, code_objects)
+          def rewrite_revision(revision, objects)
+            create_objects_in_revision(revision, objects)
           end
 
           class BuildData
