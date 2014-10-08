@@ -17,7 +17,7 @@ module Action
         if @project = InchCI::Store::EnsureProject.call(info.repo_url, origin)
           if @project = update_project(@project)
             if branch = InchCI::Store::FindDefaultBranch.call(@project)
-              @build = InchCI::Worker::Project::Build.enqueue(project.repo_url, branch.name)
+              create_build_if_possible(@project, branch)
             end
           end
         end
@@ -33,6 +33,12 @@ module Action
       end
 
       private
+
+      def create_build_if_possible(project, branch)
+        if InchCI::Worker::Project.build_on_inch_ci?(project.language)
+          @build = InchCI::Worker::Project::Build.enqueue(project.repo_url, branch.name)
+        end
+      end
 
       def update_project(project)
         worker = InchCI::Worker::Project::UpdateInfo.new
