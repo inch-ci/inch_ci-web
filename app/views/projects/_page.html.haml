@@ -6,7 +6,10 @@
         = render "wait_for_build", :build => @pending_build
       - else
         - if @project.build_on_travis?
-          / pass
+          .repo-info
+            .how_to_travis
+              - if @project.language?(:elixir)
+                = render "shared/how_to_travis_elixir"
         - else
           %p.start_build
             %em= t('projects.start_build.info')

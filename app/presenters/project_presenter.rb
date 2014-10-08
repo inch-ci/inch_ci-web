@@ -14,4 +14,8 @@ class ProjectPresenter < BasePresenter
   def build_on_travis?
     !build_on_inch_ci?
   end
+
+  def language?(language)
+    project.language.to_s.underscore == language.to_s.underscore
+  end
 end
