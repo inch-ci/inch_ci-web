@@ -12,7 +12,9 @@ module Api
 
     def run
       if valid_params?
-        if build = enqueue_build(dump_request_to_file.path)
+        file = dump_request_to_file
+        if build = enqueue_build(file.path)
+          move_file(file, build)
           update_project_if_necessary(build.project)
 
           render_text "Successfully created build ##{build.number}\n" \
@@ -28,20 +30,25 @@ module Api
     private
 
     def dump_request_to_file
-      write_file filename_with_extension(:json), JSON.pretty_generate(params)
+      write_file filename_with_extension, JSON.pretty_generate(params)
     end
 
     def enqueue_build(filename)
       InchCI::Worker::Project::BuildJSON.enqueue(filename)
     end
 
-    def filename_with_extension(ext)
+    def filename_with_extension(build = nil)
       dir = Rails.root.join('dumps', 'builds', language_from_params, Time.now.strftime('%Y%m%d'))
-      File.join(dir, request.object_id.to_s + '.' + ext.to_s)
+      basename = build.nil? ? request.object_id.to_s : "build-#{build.id}"
+      File.join(dir, basename + '.json')
     end
 
     def language_from_params
       params[:language]
+    end
+
+    def move_file(file, build)
+      FileUtils.mv file.path, filename_with_extension(build)
     end
 
     def render_text(text)
