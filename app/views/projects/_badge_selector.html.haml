@@ -18,3 +18,6 @@
         %p
           %label= t("badge.markup_format.#{markup_format}")
           %input{:value => string, :type => "text", :class => "url", :"data-select-on-click" => true}
+
+      - if image_format == :svg
+        .flat_hint= t("badge.flat_hint").html_safe

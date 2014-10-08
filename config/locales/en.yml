@@ -15,6 +15,7 @@ en:
       md: "Markdown:"
       textile: "Textile:"
       rdoc: "RDoc:"
+    flat_hint: "<b>Pro-Tip:</b> You can use <code>&style=flat</code> and <code>&style=flat-square</code> to display flat badges."
   grade_list_table:
     header_A: "Seems really good"
     header_B: "Proper documentation present"
