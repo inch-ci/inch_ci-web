@@ -24,8 +24,7 @@ module Action
       end
 
       def build_id
-        return unless success?
-        @build.id
+        @build.id if @build
       end
 
       def success?
