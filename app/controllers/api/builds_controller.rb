@@ -49,7 +49,7 @@ module Api
     end
 
     def update_project_if_necessary(project)
-      if !project.default_branch
+      if !project.default_branch # this project is new
         worker = InchCI::Worker::Project::UpdateInfo.new
         worker.perform(project.uid)
       end
