@@ -29,7 +29,7 @@ class ApiCliControllerTest < ActionController::TestCase
     post :run, params
     assert_response :success
     refute_match /Grade distribution \(undocumented, C, B, A\)\:/, response.body
-    assert_match /This output omitted/, response.body
+    assert_match /Seems really good/, response.body
   end
 
   test "should run nothing with invalid args" do
