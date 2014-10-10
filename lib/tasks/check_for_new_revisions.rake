@@ -14,8 +14,10 @@ task :check_for_new_revisions => :environment do
   projects = InchCI::Store::FindAllProjects.call()
 
   projects = projects.select do |project|
-    if latest = InchCI::Store::FindLatestBuildInProject.call(project)
-      latest.finished_at && latest.finished_at < timestamp
+    if InchCI::Worker::Project.build_on_inch_ci?(project.language)
+      if latest = InchCI::Store::FindLatestBuildInProject.call(project)
+        latest.finished_at && latest.finished_at < timestamp
+      end
     end
   end
 
