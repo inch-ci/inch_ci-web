@@ -47,7 +47,9 @@ module InchCI
           end
 
           def documentation_url
-            "http://rubydoc.info/github/#{@nwo}/master/frames"
+            if language.to_s.downcase == "ruby"
+              "http://rubydoc.info/github/#{@nwo}/master/frames"
+            end
           end
         end
       end
