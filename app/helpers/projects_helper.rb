@@ -58,7 +58,7 @@ module ProjectsHelper
     <!--
 Hi there,
 
-this patch adds a docs badge to the README to show off inline-documentation to potential contributors: [![Inline docs](http://inch-ci.org/github/#{@project.name}.png)](http://inch-ci.org/github/#{@project.name})
+this patch adds a docs badge to the README to show off inline-documentation to potential contributors: [![Inline docs](http://inch-ci.org/github/#{@project.name}.svg)](http://inch-ci.org/github/#{@project.name})
 
 The badge links to [Inch CI](http://inch-ci.org), a project that tries to raise the visibility of inline-docs to encourage aspiring Rubyists to document their code. Your status page is http://inch-ci.org/github/#{@project.name}/
 
