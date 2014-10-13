@@ -39,7 +39,7 @@ module InchCI
           end
 
           def allow_revision_rewrite?
-            @build_data.trigger == 'travis'
+            false #@build.trigger == 'travis'
           end
 
           def create_objects_in_revision(revision, objects)
