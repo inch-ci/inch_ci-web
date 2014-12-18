@@ -31,7 +31,10 @@ module Action
 
       def process_payload(payload)
         branch = EnsureProjectAndBranch.call(project_url(payload), branch_name(payload))
-        enqueue_build(branch.project, branch.name)
+        language = branch.project.language
+        if language.blank? || InchCI::Worker::Project.build_on_inch_ci?(language)
+          enqueue_build(branch.project, branch.name)
+        end
         @result = "OK"
       end
 
