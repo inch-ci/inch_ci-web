@@ -17,6 +17,15 @@ class Admin::ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.order('created_at DESC').limit(50)
+    @projects = filter_collection(Project).order('created_at DESC').limit(50)
+  end
+
+  private
+
+  def filter_collection(arel)
+    if params[:language]
+      arel = arel.where('LOWER(language) = ?', params[:language])
+    end
+    arel
   end
 end
