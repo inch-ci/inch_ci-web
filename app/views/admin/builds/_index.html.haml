@@ -1,20 +1,5 @@
 .row
-  - unless @completed_builds.empty?
-    .col-lg-6
-      .widget
-        .widget-title
-          = icon :calculator
-          = t("builds.index.completed_header")
-
-          .pull-right
-            - build_trigger_icon_map.keys.each do |trigger|
-              %label
-                = check_box_tag "bla", "1", true, :"data-filter-build-trigger" => trigger
-                = icon( build_trigger_icon_map[trigger])
-      .widget-body.medium.no-padding
-        = render "table", :builds => @completed_builds
-
-  .col-lg-6
+  .col-lg-12
     - unless @scheduled_builds.empty?
       .widget
         .widget-title
@@ -30,3 +15,18 @@
           = t("builds.index.running_header", :count => @running_builds.size).html_safe
         .widget-body.medium.no-padding
           = render "table", :builds => @running_builds
+
+  - unless @completed_builds.empty?
+    .col-lg-12
+      .widget
+        .widget-title
+          = icon :calculator
+          = t("builds.index.completed_header")
+
+          .pull-right
+            - build_trigger_icon_map.keys.each do |trigger|
+              %label
+                = check_box_tag "bla", "1", true, :"data-filter-build-trigger" => trigger
+                = icon( build_trigger_icon_map[trigger])
+      .widget-body.medium.no-padding
+        = render "table", :builds => @completed_builds

@@ -4,15 +4,20 @@
       %tr
         %th #
         %th Project
+        %th Builds
+        %th Language
         %th.revision_uid Revision
         %th.duration Duration
         %th.finished_at Finished
         %th.status{:colspan => 2} Status
     %tbody
       - builds.each do |build|
+        - project = build.branch.project
         %tr{:"data-build-trigger" => build.trigger}
           %td= @project ? build.number : build.id
-          %td= link_to_project build.branch.project
+          %td= link_to_project project
+          %td= link_to icon(:'bar-chart'), :service => project.service_name, :user => project.user_name, :repo => project.repo_name
+          %td= link_to project.language, :language => project.language
           %td.revision_uid
             - if revision = build.revision
               - if revision.tag_uid

@@ -24,7 +24,7 @@ class Admin::ProjectsController < ApplicationController
 
   def filter_collection(arel)
     if params[:language]
-      arel = arel.where('LOWER(language) = ?', params[:language])
+      arel = arel.where('LOWER(language) = ?', params[:language].to_s.downcase)
     end
     arel
   end
