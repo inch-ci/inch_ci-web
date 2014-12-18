@@ -39,7 +39,7 @@ module Action
 
     def filter_collection(arel)
       if @language
-        arel = arel.select { |b| b.branch.project.language.downcase ==  @language.downcase}
+        arel = arel.select { |b| b.branch.project.language.to_s.downcase ==  @language.downcase}
       end
       arel
     end
