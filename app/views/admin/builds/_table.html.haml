@@ -16,7 +16,7 @@
         %tr{:"data-build-trigger" => build.trigger}
           %td= @project ? build.number : build.id
           %td= link_to_project project
-          %td= link_to icon(:'bar-chart'), :service => project.service_name, :user => project.user_name, :repo => project.repo_name
+          %td= link_to icon(:signal), :service => project.service_name, :user => project.user_name, :repo => project.repo_name
           %td= link_to project.language, :language => project.language
           %td.revision_uid
             - if revision = build.revision
