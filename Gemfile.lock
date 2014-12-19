@@ -44,6 +44,9 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    bullet (4.14.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     chunky_png (1.3.1)
@@ -88,6 +91,10 @@ GEM
     json (1.8.1)
     kgio (2.9.2)
     libv8 (3.16.14.3)
+    lol_dba (1.6.4)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      railties (>= 3.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -196,6 +203,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.6.2)
     uuidtools (2.1.4)
     yard (0.8.7.6)
 
@@ -205,6 +213,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  bullet
   coffee-rails (~> 4.0.0)
   gems
   haml
@@ -213,6 +222,7 @@ DEPENDENCIES
   inch_ci-worker (>= 0.3.3)
   jbuilder (~> 1.2)
   jquery-rails
+  lol_dba
   mysql2
   octokit
   rack-mini-profiler

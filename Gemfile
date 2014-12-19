@@ -46,10 +46,12 @@ gem 'inch_ci-worker', '>= 0.3.3'
 gem 'octokit'
 gem 'gems'
 
-gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
+gem 'sentry-raven', :git => 'https://github.com/getsentry/raven-ruby.git'
 
 gem 'rack-mini-profiler'
 group :development do
-  gem "better_errors"
+  gem 'better_errors'
+  gem 'lol_dba'
+  gem 'bullet'
 end
 gem 'binding_of_caller'
