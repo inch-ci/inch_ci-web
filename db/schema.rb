@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003104039) do
+ActiveRecord::Schema.define(version: 20141219090021) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20141003104039) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "code_object_references", ["code_object_id", "revision_id"], name: "index_code_object_references_on_code_object_id_and_revision_id", unique: true, using: :btree
 
   create_table "code_object_role_names", force: true do |t|
     t.string   "name"
