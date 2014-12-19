@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219090021) do
+ActiveRecord::Schema.define(version: 20141219114822) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 20141219090021) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "code_object_roles", ["code_object_id"], name: "index_code_object_roles_on_code_object_id", using: :btree
 
   create_table "code_objects", force: true do |t|
     t.integer  "project_id"
