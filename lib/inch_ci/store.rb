@@ -2,8 +2,10 @@ module InchCI
   # ActiveRecordStore provides a thin layer on top of ActiveRecord so we do not
   # need to use it's API in our own code.
   module Store
+    FindUser = -> (service_name, user_name) { User.where(:provider => service_name, :user_name => user_name).first }
+
     FindProject = -> (uid) { Project.find_by_uid(uid) }
-    FindAllProjects = -> () { Project.all }
+    FindAllProjects = -> (user = nil) { user.nil? ? Project.all : user.projects }
     CreateProject = -> (uid, repo_url, origin = nil) { Project.create!(:uid => uid, :repo_url => repo_url, :origin => origin.to_s) }
     SaveProject = -> (project) { project.save! }
     UpdateDefaultBranch = -> (project, branch) { project.update_attribute(:default_branch, branch) }

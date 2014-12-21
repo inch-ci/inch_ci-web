@@ -151,6 +151,9 @@ en:
       issue_hint:
         text: "Please help! %{link} if this assessment is incorrect."
         link: "Open an issue on GitHub"
+  users:
+    show:
+      title: "%{name} (@%{user_name})"
   projects:
     create:
       url_not_found: "No project was found under that URL."

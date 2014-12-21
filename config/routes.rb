@@ -3,6 +3,9 @@ require 'sidekiq/web'
 InchCI::Application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
+  get "/auth/:provider/callback" => "sessions#create"
+  get "/signout" => "sessions#destroy", :as => :signout
+
   namespace :api do
     get 'v1/cli' => 'cli#hint'
     post 'v1/cli' => 'cli#run'
@@ -10,6 +13,7 @@ InchCI::Application.routes.draw do
     post 'v1/builds' => 'builds#run'
   end
 
+  duo    = ':service/:user'
   triple = ':service/:user/:repo'
   triple_constraints = {:repo => /[^\/]+/, :branch => /[^\/]+/}
   badge_constraints = {:format => /(png|svg)/}.merge(triple_constraints)
@@ -24,6 +28,8 @@ InchCI::Application.routes.draw do
   get "#{triple}(/branch/:branch)(/revision/:revision)/suggestions" => 'projects#suggestions', :constraints => triple_constraints
   get "#{triple}(/branch/:branch)(/revision/:revision)/history" => 'projects#history', :constraints => triple_constraints
   get "#{triple}(/branch/:branch)(/revision/:revision)" => 'projects#show', :constraints => triple_constraints, :format => false
+
+  get "#{duo}" => 'users#show', :format => false
 
   get 'learn_more' => 'page#about', :as => :about
   get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook

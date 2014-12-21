@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
   include InchCI::Controller
 
   layout :determine_layout
+
   skip_before_action :verify_authenticity_token, :only => [:rebuild_via_hook]
 
   def badge
