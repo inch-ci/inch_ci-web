@@ -7,6 +7,12 @@ module ProjectsHelper
     str.to_s.gsub('_', '\_')
   end
 
+  def tweet_url(project)
+    url = project_url(project)
+    text = t("shared.twitter_text", :project_language => project.language, :project_name => project.name)
+    "https://twitter.com/share?url=#{url}&text=#{text} &via=InchCI"
+  end
+
   def github_issue_url(options = {})
     title = ''
     if project = options[:project]

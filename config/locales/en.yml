@@ -31,6 +31,7 @@ en:
     show_more: "Show %{more_count} more ..."
   shared:
     back_link: Back
+    twitter_text: "Docs badges for %{project_language} projects:"
     code_object_roles:
       # legacy roles:
       object:
@@ -178,6 +179,8 @@ en:
       rebuild_on_travis_link_tooltip: "Learn how-to re-evaluate this project's docs"
       feedback_link: Feedback
       feedback_link_tooltip: "Post questions, suggestions, and bugs"
+      tweet_link: Tweet
+      tweet_link_tooltip: Spread the word!
       update_info_link: "Update branches & info"
     wait_for_build:
       info: "Your page is currently building. This page will refresh automatically (can take up to a minute)."
