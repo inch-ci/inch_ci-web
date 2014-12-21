@@ -10,12 +10,17 @@ en:
     image_format:
       png: PNG
       svg: SVG
+    image_style:
+      default: Default
+      flat: Flat
+      flat-square: Flat (squared)
     markup_format:
       image_url: "Image URL:"
       md: "Markdown:"
       textile: "Textile:"
       rdoc: "RDoc:"
-    flat_hint: "<b>Pro-Tip:</b> You can use <code>&style=flat</code> and <code>&style=flat-square</code> to display flat badges."
+    choose_hint: "<b>Styles:</b> Choose the one fitting your lifestyle!"
+    pro_hint: "<b>Pro-Tip:</b> "
   grade_list_table:
     header_A: "Seems really good"
     header_B: "Proper documentation present"

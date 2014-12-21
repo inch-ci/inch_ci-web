@@ -3,9 +3,17 @@
     = @project.name
     = link_to image_tag("GitHub-Mark-32px.png", :class => "github-logo"), @project.source_code_url, :target => '_blank'
 
+    - unless @pending_build
+      %a{:href => "#", :"data-show-markup" => true}
+        - badge_markup.styles.each_with_index do |style, index|
+          %span.badge-image-markup{:class => "badge-image-markup-#{style || 'default'}", :style => index == 0 ? nil : "display: none;"}
+            = image_tag badge_markup.image_path(:svg, style)
+
+
+
   .pull-left
     %p.description
-      = @project.description
+      = truncate @project.description, :length => 60
 
   .pull-right
     .btn-group
