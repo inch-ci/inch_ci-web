@@ -40,9 +40,7 @@ module InchCI
     end
 
     def languages
-      io = open(@repo.languages_url)
-      hash = JSON.load(io)
-      hash.keys
+      @languages ||= retrieve_languages
     end
 
     def name
@@ -61,6 +59,14 @@ module InchCI
       if language.to_s.downcase == "ruby"
         "http://rubydoc.info/github/#{@nwo}/master/frames"
       end
+    end
+
+    private
+
+    def retrieve_languages
+      io = open(@repo.languages_url)
+      hash = JSON.load(io)
+      hash.keys
     end
   end
 end
