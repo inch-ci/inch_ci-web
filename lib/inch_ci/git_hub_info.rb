@@ -1,3 +1,4 @@
+require 'open-uri'
 require 'inch_ci/access_token'
 
 module InchCI
@@ -7,10 +8,14 @@ module InchCI
       @client ||= Octokit::Client.new :access_token => AccessToken[:github]
     end
 
+    def self.from_nwo(nwo)
+      new(nwo, client.repository(nwo))
+    end
+
     # @param nwo [String] name with owner (e.g. "rrrene/inch")
-    def initialize(nwo)
+    def initialize(nwo, repo)
       @nwo = nwo
-      @repo = self.class.client.repository(nwo)
+      @repo = repo
     end
 
     def branches
@@ -22,12 +27,22 @@ module InchCI
       @repo[:default_branch]
     end
 
+    def fork?
+      @repo[:fork]
+    end
+
     def homepage_url
       @repo[:homepage]
     end
 
     def language
       @repo[:language]
+    end
+
+    def languages
+      io = open(@repo.languages_url)
+      hash = JSON.load(io)
+      hash.keys
     end
 
     def name

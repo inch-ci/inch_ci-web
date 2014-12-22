@@ -28,11 +28,13 @@ module InchCI
         private
 
         def update_via_github(project, user_repo_name)
-          github = GitHubInfo.new(user_repo_name)
+          github = GitHubInfo.from_nwo(user_repo_name)
 
           project.name = github.name
           project.description = github.description
           project.language = github.language
+          project.languages = github.languages
+          project.fork = github.fork?
           project.homepage_url = github.homepage_url
           project.documentation_url = github.documentation_url
           project.source_code_url = github.source_code_url
