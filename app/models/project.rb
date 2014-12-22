@@ -10,6 +10,8 @@ class Project < ActiveRecord::Base
 
   has_many :builds, :through => :branches
 
+  serialize :languages
+
   # TODO: implement another way
   def service_name
     @service_name ||= InchCI::ProjectUID.new(uid).service

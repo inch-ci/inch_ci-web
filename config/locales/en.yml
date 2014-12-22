@@ -10,12 +10,17 @@ en:
     image_format:
       png: PNG
       svg: SVG
+    image_style:
+      default: Default
+      flat: Flat
+      flat-square: Flat (squared)
     markup_format:
       image_url: "Image URL:"
       md: "Markdown:"
       textile: "Textile:"
       rdoc: "RDoc:"
-    flat_hint: "<b>Pro-Tip:</b> You can use <code>&style=flat</code> and <code>&style=flat-square</code> to display flat badges."
+    choose_hint: "<b>Styles:</b> Choose the one fitting your lifestyle!"
+    pro_hint: "<b>Pro-Tip:</b> "
   grade_list_table:
     header_A: "Seems really good"
     header_B: "Proper documentation present"
@@ -26,6 +31,7 @@ en:
     show_more: "Show %{more_count} more ..."
   shared:
     back_link: Back
+    twitter_text: "Docs badges for %{project_language} projects:"
     code_object_roles:
       # legacy roles:
       object:
@@ -176,6 +182,8 @@ en:
       rebuild_on_travis_link_tooltip: "Learn how-to re-evaluate this project's docs"
       feedback_link: Feedback
       feedback_link_tooltip: "Post questions, suggestions, and bugs"
+      tweet_link: Tweet
+      tweet_link_tooltip: Spread the word!
       update_info_link: "Update branches & info"
     wait_for_build:
       info: "Your page is currently building. This page will refresh automatically (can take up to a minute)."

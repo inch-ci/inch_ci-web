@@ -3,9 +3,17 @@
     = @project.name
     = link_to image_tag("GitHub-Mark-32px.png", :class => "github-logo"), @project.source_code_url, :target => '_blank'
 
+    - unless @pending_build
+      %a{:href => "#", :"data-show-markup" => true}
+        - badge_markup.styles.each_with_index do |style, index|
+          %span.badge-image-markup{:class => "badge-image-markup-#{style || 'default'}", :style => index == 0 ? nil : "display: none;"}
+            = image_tag badge_markup.image_path(:svg, style)
+
+
+
   .pull-left
     %p.description
-      = @project.description
+      = truncate @project.description, :length => 60
 
   .pull-right
     .btn-group
@@ -24,7 +32,9 @@
     - if false && @project.build_on_travis?
       = link_to t('projects.topbar.rebuild_on_travis_link'), project_path(@project, @branch.name), :class => 'btn btn-default btn-sm', :"data-toggle" => 'tooltip', :title => t('projects.topbar.rebuild_on_travis_link_tooltip')
 
-    = link_to t('projects.topbar.feedback_link'), github_issue_url(:project => @project), :target => '_blank', :class => 'btn btn-success btn-sm', :"data-toggle" => 'tooltip', :title => t('projects.topbar.feedback_link_tooltip')
+    - #= link_to t('projects.topbar.feedback_link'), github_issue_url(:project => @project), :target => '_blank', :class => 'btn btn-success btn-sm', :"data-toggle" => 'tooltip', :title => t('projects.topbar.feedback_link_tooltip')
+
+    = link_to icon(:twitter) + ' ' + t('projects.topbar.tweet_link'), tweet_url(@project), :target => '_blank', :class => 'btn btn-tweet btn-sm', :"data-toggle" => 'tooltip', :title => t('projects.topbar.tweet_link_tooltip')
   .clearfix
 
   = render "webhook_hint"

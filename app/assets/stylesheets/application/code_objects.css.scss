@@ -34,7 +34,13 @@
     font-weight: normal;
   }
   #badge-image-markup form label {
-    width: 4rem;
+    width: 7.5rem;
+  }
+  #badge-image-markup form label img {
+    cursor: pointer;
+  }
+  #badge-image-markup form {
+    margin-bottom: 1rem;
   }
   #badge-image-markup input.url {
     width: 30rem;
