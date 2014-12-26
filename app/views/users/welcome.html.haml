@@ -1,0 +1,43 @@
+.repo-wrapper
+  .repo-card
+    .repo-info
+      %h2.sub-header
+        Things you need to know before getting started ...
+
+
+
+      %h3 1. Think of docs as copywriting for hackers
+
+      %p Documentation is more often than not interface copywriting; just not for the end-user, but a fellow coder.
+
+      %hr
+
+
+
+      %h3 2. Visibility counts
+
+      %p Projects from GitHub already sporting Inch CI badges in their README:
+      .row
+        - @followed_projects.each do |project|
+          - if project.badge?
+            .col-lg-5
+              %p
+                = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path)
+                = link_to_project(project)
+
+      %hr
+
+      %h3 3. It's not about the numbers!
+
+      %p Inch's docs badges show the documentation coverage in a colored bar, kind of like a progress bar.
+
+      %p
+        This way, you do not have to worry whether the coverage is 69.7 or 71.2%. Any amount of green signals a sufficient amount of docs.
+
+      %hr
+
+
+
+      %h3 4. Join the movement!
+
+      %p= link_to "Let's look at my projects", user_path(current_user), :class => "btn btn-success"

@@ -18,7 +18,7 @@
                 <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to t("navigation.learn_more"), about_path %></li>
                 <li>
                   <% if current_user %>
-                    <%= "Welcome #{current_user.display_name}" %>
+                    <%= link_to current_user.display_name, user_path(current_user) %>
                     <%= "|" %>
                     <%= link_to "Sign out", signout_path %>
                   <% else %>

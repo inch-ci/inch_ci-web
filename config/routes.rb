@@ -18,6 +18,10 @@ InchCI::Application.routes.draw do
   triple_constraints = {:repo => /[^\/]+/, :branch => /[^\/]+/}
   badge_constraints = {:format => /(png|svg)/}.merge(triple_constraints)
 
+  get "#{duo}" => 'users#show', :format => false
+  post "sync_projects/#{duo}" => 'users#sync_projects'
+  get "welcome" => 'users#welcome', :as => :welcome
+
   get "#{triple}/branch/:branch/revision/:revision/code_object/:code_object" => 'code_objects#show', :constraints => triple_constraints
 
   get "#{triple}.:format" => 'projects#badge', :constraints => badge_constraints
@@ -29,16 +33,14 @@ InchCI::Application.routes.draw do
   get "#{triple}(/branch/:branch)(/revision/:revision)/history" => 'projects#history', :constraints => triple_constraints
   get "#{triple}(/branch/:branch)(/revision/:revision)" => 'projects#show', :constraints => triple_constraints, :format => false
 
-  get "#{duo}" => 'users#show', :format => false
-
-  get 'learn_more' => 'page#about', :as => :about
-  get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook
-  root 'page#welcome'
-
   post "#{triple}(/branch/:branch)/rebuild" => 'projects#rebuild', :constraints => triple_constraints
   post "#{triple}(/branch/:branch)/update_info" => 'projects#update_info', :constraints => triple_constraints
 
   post 'rebuild' => 'projects#rebuild_via_hook'
+
+  get 'learn_more' => 'page#about', :as => :about
+  get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook
+  root 'page#welcome'
 
   resources :builds
   resources :projects

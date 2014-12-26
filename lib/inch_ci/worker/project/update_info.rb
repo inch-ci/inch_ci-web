@@ -15,20 +15,21 @@ module InchCI
         end
 
         # @api private
-        def perform(uid)
+        # @param github_repo_object [] used to directly update a project
+        def perform(uid, github_repo_object = nil)
           project = Store::FindProject.call(uid)
           arr = uid.split(':')
           service_name = arr[0]
           user_repo_name = arr[1]
           if service_name == "github"
-            update_via_github(project, user_repo_name)
+            update_via_github(project, user_repo_name, github_repo_object)
           end
         end
 
         private
 
-        def update_via_github(project, user_repo_name)
-          github = GitHubInfo.from_nwo(user_repo_name)
+        def update_via_github(project, user_repo_name, github_repo_object = nil)
+          github = github_repo_object || GitHubInfo.repo(user_repo_name)
 
           project.name = github.name
           project.description = github.description

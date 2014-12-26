@@ -16,6 +16,13 @@
               <ul class="nav masthead-nav">
                 <li class="active"><%= link_to t("navigation.report_card"), params %></li>
                 <li><%= link_to t("navigation.what_is_this"), about_path %></li>
+
+                <% if current_user %>
+                  <li><%= link_to current_user.display_name, user_path(current_user) %></li>
+                  <li><%= link_to "Sign out", signout_path %></li>
+                <% else %>
+                  <li><%= link_to "Sign in with Github", signin_path %></li>
+                <% end %>
               </ul>
             </div>
           </div>

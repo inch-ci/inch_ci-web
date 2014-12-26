@@ -1,4 +1,7 @@
 module ApplicationHelper
+  def current_user?(user = @user)
+    user.id == current_user.id
+  end
 
   def icon(key, options = {})
     opts = {:class => "fa fa-#{key}"}.merge(options)

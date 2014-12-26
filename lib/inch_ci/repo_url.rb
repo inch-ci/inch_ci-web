@@ -16,7 +16,7 @@ module InchCI
 
     def repo_url
       return if service.nil?
-      if service.name == :github
+      if service.name.to_s == 'github'
         "https://github.com/#{service.user_name}/#{service.repo_name}.git"
       else
         url

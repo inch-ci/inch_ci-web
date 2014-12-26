@@ -1,0 +1,16 @@
+.repo-wrapper
+  .repo-card
+    .repo-info
+      %h2.sub-header
+        = t("users.show.title", :name => @user.name, :user_name => @user.user_name)
+        = link_to image_tag("GitHub-Mark-32px.png", :class => "github-logo"), @user.github_url, :target => '_blank'
+      - if current_user?
+        .hint
+          = t(@projects.empty? ? ".empty_hint" : ".sync_hint", :time_ago => @user.last_synced_projects_at && time_ago_in_words(@user.last_synced_projects_at))
+          = link_to t(".sync_now"), sync_projects_path(@user), :class => "btn btn-default", :method => :post, :"data-sync-projects" => true
+          %div{:style => 'clear:both'}
+        #syncing{:style => 'display:none'}
+          .progress.progress-striped.active
+            .progress-bar.progress-bar-U{:style => "width: 100%"}
+
+      = render "projects" unless @projects.empty?

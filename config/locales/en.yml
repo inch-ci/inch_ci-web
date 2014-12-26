@@ -160,6 +160,22 @@ en:
   users:
     show:
       title: "%{name} (@%{user_name})"
+      empty_hint: "Your projects have not yet been synced."
+      sync_hint: "Your GitHub projects have last been synced: %{time_ago} ago."
+      sync_now: "Sync now!"
+      languages:
+        Ruby:
+          header: "Ruby projects"
+          intro: "Inch was originally designed to evaluate the inline-docs of Ruby projects"
+        Elixir:
+          header: "Elixir projects"
+          intro: "Inch CI can now also evaluate Elixir projects, but they have to be build by Travis"
+          how_to_build: "How to configure Travis to build this project"
+        other:
+          header: "Other projects"
+          intro: "Here you see all your other none-forked projects"
+
+
   projects:
     create:
       url_not_found: "No project was found under that URL."

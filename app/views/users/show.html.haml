@@ -1,14 +1,5 @@
-.repo-wrapper
-  .repo-card
-    .repo-info
-      %h2.sub-header
-        = t("users.show.title", :name => @user.name, :user_name => @user.user_name)
-      .table-responsive
-        %table.table.table-striped.builds
-          %thead
-            %tr
-              %th Project
-          %tbody
-            - @projects.each do |project|
-              %tr
-                %td= link_to_project project
+#users_show= render 'show'
+
+- if current_user? && @user.last_synced_projects_at.nil?
+  :javascript
+    I.user.syncProjects(#{sync_projects_url(@user).to_json});

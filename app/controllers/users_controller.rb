@@ -5,8 +5,24 @@ class UsersController < ApplicationController
 
   before_action :require_login
 
+  layout 'page'
+
+  def sync_projects
+    action = Action::User::SyncProjects.new(current_user, params)
+    expose action
+    respond_to do |format|
+      format.html { redirect_to user_url(action.user) }
+      format.js
+    end
+  end
+
   def show
-    action = Action::User::Show.new(params)
+    action = Action::User::Show.new(current_user, params)
+    expose action
+  end
+
+  def welcome
+    action = Action::User::Welcome.new(current_user)
     expose action
   end
 end

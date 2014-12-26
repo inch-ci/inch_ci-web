@@ -2,16 +2,15 @@ require 'inch_ci/action'
 
 module Action
   module User
-    class Show
+    class SyncProjects
       include InchCI::Action
 
-      exposes :user, :projects, :languages
+      exposes :user, :projects
 
       def initialize(current_user, params)
         if user = find_user(params)
           @user = UserPresenter.new(user)
-          @projects = find_projects(@user) #.map { |p| ProjectPresenter.new(p) }
-          @languages = ['Ruby', 'Elixir']
+          @projects = retrieve_projects(@user).map { |p| ProjectPresenter.new(p) }
         else
           raise "Not found: #{params}"
         end
@@ -23,7 +22,8 @@ module Action
         InchCI::Store::FindUser.call(params[:service], params[:user])
       end
 
-      def find_projects(user)
+      def retrieve_projects(user)
+        InchCI::Worker::User::UpdateProjects.new.perform(user.id)
         InchCI::Store::FindAllProjects.call(user)
       end
     end

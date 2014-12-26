@@ -1,0 +1,28 @@
+#user-projects
+  .table-responsive
+    %table.table.table-striped.projects
+      - (@languages + [nil]).each do |language|
+        %thead
+          %tr
+            %th{:colspan => 3}
+              = t("users.show.languages.#{language || :other}.header")
+              %small= t("users.show.languages.#{language || :other}.intro")
+        %tbody
+          - list = @projects.select { |p| language.nil? ? !@languages.include?(p.language) : p.language == language }
+          - list.each do |project|
+            %tr
+              %td= link_to_project project, project.name_without_owner
+              %td= project.language
+              %td.options
+                - if project.build_on_inch_ci?
+                  - if project.builds.count > 0
+                    -# = link_to "Evaluate: On", "", :class => "btn btn-success"
+                    = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg, :flat))
+                  - else
+                    - #= link_to "Evaluate now", project_rebuild_path(project, project.default_branch.name), :method => :post, :class => "btn btn-default"
+                  - if project.hooked?
+                    = link_to "Disable webhook", project_path(project), :method => :post, :class => "btn btn-success"
+                  - else
+                    = link_to "Enable webhook", project_path(project), :method => :post, :class => "btn btn-default"
+                - else
+                  %small= link_to_project project, t("users.show.languages.#{language || :other}.how_to_build")

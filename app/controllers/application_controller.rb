@@ -74,6 +74,38 @@ class ApplicationController < ActionController::Base
   end
   helper_method :signin_path
 
+  def user_path(user, *args)
+    options = args.extract_options!
+    hash = {
+      :controller => '/users',
+      :action => 'show',
+      :service => user.service_name,
+      :user => user.user_name,
+    }
+    hash.merge(options)
+  end
+  helper_method :user_path
+
+  def user_url(*args)
+    url_for user_path(*args)
+  end
+
+  def sync_projects_path(*args)
+    user_path(*args, :action => 'sync_projects')
+  end
+  helper_method :sync_projects_path
+
+  def sync_projects_url(*args)
+    user_url(*args, :action => 'sync_projects')
+  end
+  helper_method :sync_projects_url
+
+  def current_user=(user)
+    session[:user_id] = user.id
+    user.update_attribute(:last_signin_at, Time.now)
+    user
+  end
+
   def current_user
     if session[:user_id]
       @current_user ||= UserPresenter.new(User.find(session[:user_id]))
