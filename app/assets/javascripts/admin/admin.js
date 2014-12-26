@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require morris
 //= require rdash
 //= require ../application/base
 //= require_tree ../application
