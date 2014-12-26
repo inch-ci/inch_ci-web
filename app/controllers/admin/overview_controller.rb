@@ -67,7 +67,9 @@ class Admin::OverviewController < ApplicationController
   end
 
   def set_projects
-    @new_projects = Project.order('created_at ASC').last(30)
+    @new_projects = Project.includes(:default_branch)
+                            .order('created_at ASC')
+                            .last(30)
   end
 
   def stat(name)
