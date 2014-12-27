@@ -235,6 +235,15 @@ module InchCI
       ActiveRecord::Base.transaction(&block)
     end
 
-    CreateStats = -> (date, name, value) { Statistics.create!(:date => date, :name => name, :value => value) }
+    CreateStats = -> (name, value, date = Time.now.midnight) { Statistics.create!(:date => date, :name => name, :value => value) }
+    IncreaseStats = -> (name, date = Time.now.midnight, init_value = 0) {
+      stat = Statistics.where(:date => date, :name => name).first
+      if stat
+        stat.update_attribute(:value, stat.value + 1)
+        stat
+      else
+        Statistics.create!(:date => date, :name => name, :value => init_value + 1)
+      end
+    }
   end
 end
