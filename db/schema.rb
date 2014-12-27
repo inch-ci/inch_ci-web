@@ -154,4 +154,6 @@ ActiveRecord::Schema.define(version: 20141223134843) do
     t.datetime "updated_at"
   end
 
+  add_index "users", ["provider", "user_name"], name: "index_users_on_provider_and_user_name", unique: true, using: :btree
+
 end

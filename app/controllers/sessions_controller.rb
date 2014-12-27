@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def create
     action = Action::User::Signin.new(request)
     self.current_user = action.user
-    redirect_to welcome_url
+    redirect_to action.new_user? ? welcome_url : user_url(current_user)
   end
 
   def destroy

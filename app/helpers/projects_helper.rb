@@ -7,9 +7,9 @@ module ProjectsHelper
     str.to_s.gsub('_', '\_')
   end
 
-  def tweet_url(project)
-    url = project_url(project)
-    text = t("shared.twitter_text", :project_language => project.language, :project_name => project.name)
+  def tweet_url(project = nil)
+    url = project ? project_url(project) : root_url
+    text = project ? t("shared.twitter_text", :project_language => project.language, :project_name => project.name) : t("shared.twitter_text_wo_project")
     "https://twitter.com/share?url=#{url}&text=#{text} &via=InchCI"
   end
 

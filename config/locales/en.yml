@@ -32,6 +32,7 @@ en:
   shared:
     back_link: Back
     twitter_text: "Docs badges for %{project_language} projects:"
+    twitter_text_wo_project: "Docs badges for Ruby projects:"
     code_object_roles:
       # legacy roles:
       object:
@@ -163,6 +164,12 @@ en:
       empty_hint: "Your projects have not yet been synced."
       sync_hint: "Your GitHub projects have last been synced: %{time_ago} ago."
       sync_now: "Sync now!"
+      hook_create: "Add webhook"
+      hook_create_hint: "Inch CI will update the badge whenever you push code to GitHub."
+      hook_remove: "Webhook: enabled"
+      add_project:
+        header: "Add forked/other projects"
+        intro: "You can add any project by typing it's full name below:"
       languages:
         Ruby:
           header: "Ruby projects"

@@ -2,42 +2,45 @@
   .repo-card
     .repo-info
       %h2.sub-header
-        Things you need to know before getting started ...
+        The rules of Inch CI Club:
 
 
 
-      %h3 1. Think of docs as copywriting for hackers
+      %h3
+        1st rule: Think of docs as
+        %a{:href => 'http://trivelop.de/2014/01/26/about-documentation/', :target => '_blank'} copywriting for hackers
 
-      %p Documentation is more often than not interface copywriting; just not for the end-user, but a fellow coder.
+      / %p Documentation is more often than not interface copywriting; just not for the end-user, but a fellow coder.
 
       %hr
 
 
 
-      %h3 2. Visibility counts
+      %h3 2nd rule: We talk about Inch CI
 
-      %p Projects from GitHub already sporting Inch CI badges in their README:
-      .row
+      = link_to icon(:twitter) + ' ' + t('projects.topbar.tweet_link'), tweet_url, :target => '_blank', :class => 'btn btn-default btn-lg'
+      %hr
+
+      %h3 3rd rule: It's not about numbers!
+
+      / %p Inch's docs badges show the documentation coverage in a colored bar, kind of like a progress bar.
+
+      / %p
+      /  This way, you do not have to worry whether the coverage is 69.7 or 71.2%. Any amount of green signals a sufficient amount of docs.
+
+      / %p Projects from GitHub already sporting Inch CI badges in their README:
+      .row.follows
         - @followed_projects.each do |project|
           - if project.badge?
-            .col-lg-5
+            .col-lg-4
               %p
-                = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path)
+                = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg, :flat))
                 = link_to_project(project)
 
       %hr
 
-      %h3 3. It's not about the numbers!
-
-      %p Inch's docs badges show the documentation coverage in a colored bar, kind of like a progress bar.
-
-      %p
-        This way, you do not have to worry whether the coverage is 69.7 or 71.2%. Any amount of green signals a sufficient amount of docs.
-
-      %hr
 
 
+      %h3 4th rule: Join the movement!
 
-      %h3 4. Join the movement!
-
-      %p= link_to "Let's look at my projects", user_path(current_user), :class => "btn btn-success"
+      %p= link_to(("Let's look at my projects" + ' ' + icon(:'arrow-right')).html_safe, user_path(current_user), :class => 'btn btn-lg btn-default')

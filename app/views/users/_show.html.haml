@@ -1,7 +1,7 @@
 .repo-wrapper
   .repo-card
     .repo-info
-      %h2.sub-header
+      %h1.sub-header
         = t("users.show.title", :name => @user.name, :user_name => @user.user_name)
         = link_to image_tag("GitHub-Mark-32px.png", :class => "github-logo"), @user.github_url, :target => '_blank'
       - if current_user?

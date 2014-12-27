@@ -14,22 +14,27 @@ module Action
 
       def initialize(request)
         @user = find_or_create_user(request.env["omniauth.auth"])
-        if @user.last_signin_at.nil?
-          # sync_and_build_projects
+        @new_user = @user.last_signin_at.nil?
+        if @new_user
           t1 = Time.now.to_f
           InchCI::Worker::User::UpdateProjects.new.perform(@user.id)
           projects = InchCI::Store::FindAllProjects.call(@user)
-          projects.each do |project|
-            if project.language == 'Ruby'
-              InchCI::Worker::Project::UpdateHook.enqueue project.uid, @user.github_access_token
-              InchCI::Worker::Project::Build.enqueue project.repo_url, project.default_branch.name, nil, TRIGGER
-            end
+          projects.select do |project|
+            project.language == 'Ruby'
+          end.each do |project|
+            InchCI::Worker::Project::UpdateHook.enqueue project.uid, @user.github_access_token
+          end.each do |project|
+            InchCI::Worker::Project::Build.enqueue project.repo_url, project.default_branch.name, nil, TRIGGER
           end
           t2 = Time.now.to_f
           p :DIFF => t2-t1
         end
         @user.last_signin_at = Time.now
         @user.save
+      end
+
+      def new_user?
+        @new_user
       end
 
       private
