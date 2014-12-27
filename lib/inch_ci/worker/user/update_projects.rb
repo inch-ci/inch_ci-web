@@ -35,7 +35,7 @@ module InchCI
             repo = GitHubInfo::Repo.new(_repo)
             unless repo.fork?
               project = ensure_project_and_branch(repo.url, repo.default_branch)
-              update_project(project, repo)
+              update_project(project, repo, user)
             end
           end
 
@@ -49,7 +49,7 @@ module InchCI
           project
         end
 
-        def update_project(project, repo)
+        def update_project(project, repo, user)
           Worker::Project::UpdateInfo.new.perform(project.uid, repo)
         end
       end
