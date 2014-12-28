@@ -19,7 +19,8 @@ InchCI::Application.routes.draw do
   badge_constraints = {:format => /(png|svg)/}.merge(triple_constraints)
 
   get "#{duo}" => 'users#show', :format => false
-  post "sync_projects/#{duo}" => 'users#sync_projects'
+  post "init_projects" => 'users#init_projects', :as => :init_projects
+  post "sync_projects" => 'users#sync_projects', :as => :sync_projects
   get "welcome" => 'users#welcome', :as => :welcome
 
   get "#{triple}/branch/:branch/revision/:revision/code_object/:code_object" => 'code_objects#show', :constraints => triple_constraints

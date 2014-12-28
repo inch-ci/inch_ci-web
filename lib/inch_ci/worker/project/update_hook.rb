@@ -33,13 +33,11 @@ module InchCI
         def update_via_github(project, user_access_token)
           client = Octokit::Client.new(access_token: user_access_token)
           hooks = client.hooks(project.name)
-          p :HOOKS => hooks
           hooks.each do |hash|
             if hash['config'] && hash['config']['url'] =~ REBUILD_URL_PATTERN
               project.github_hook_id = hash['id']
             end
           end
-
           Store::SaveProject.call(project)
         end
       end

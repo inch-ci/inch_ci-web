@@ -8,12 +8,8 @@ module Action
       exposes :user, :projects
 
       def initialize(current_user, params)
-        if user = find_user(params)
-          @user = UserPresenter.new(user)
-          @projects = retrieve_projects(@user).map { |p| ProjectPresenter.new(p) }
-        else
-          raise "Not found: #{params}"
-        end
+        @user = UserPresenter.new(current_user)
+        @projects = retrieve_projects(current_user).map { |p| ProjectPresenter.new(p) }
       end
 
       private

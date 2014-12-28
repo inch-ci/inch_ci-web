@@ -5,6 +5,7 @@ module InchCI
     FindUser = -> (service_name, user_name) { User.where(:provider => service_name, :user_name => user_name).first }
     FindUserById = -> (id) { User.find(id) }
     UpdateLastProjectSync = -> (user, time = Time.now) { user.update_attribute(:last_synced_projects_at, time) }
+    SaveUser = -> (user) { user.save! }
 
     FindProject = -> (uid) { Project.find_by_uid(uid) }
     FindAllProjects = -> (user = nil) { user.nil? ? Project.all : user.projects }

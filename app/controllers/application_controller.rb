@@ -90,16 +90,6 @@ class ApplicationController < ActionController::Base
     url_for user_path(*args)
   end
 
-  def sync_projects_path(*args)
-    user_path(*args, :action => 'sync_projects')
-  end
-  helper_method :sync_projects_path
-
-  def sync_projects_url(*args)
-    user_url(*args, :action => 'sync_projects')
-  end
-  helper_method :sync_projects_url
-
   def current_user=(user)
     session[:user_id] = user.id
     user.update_attribute(:last_signin_at, Time.now)

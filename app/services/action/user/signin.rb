@@ -8,29 +8,13 @@ module Action
       CLIENT_ID     = InchCI::AccessToken[:github_client_id]
       CLIENT_SECRET = InchCI::AccessToken[:github_secret]
 
-      TRIGGER = 'first_signin'
-
       exposes :user
 
       def initialize(request)
         @user = find_or_create_user(request.env["omniauth.auth"])
         @new_user = @user.last_signin_at.nil?
-        if @new_user
-          t1 = Time.now.to_f
-          InchCI::Worker::User::UpdateProjects.new.perform(@user.id)
-          projects = InchCI::Store::FindAllProjects.call(@user)
-          projects.select do |project|
-            project.language == 'Ruby'
-          end.each do |project|
-            InchCI::Worker::Project::UpdateHook.enqueue project.uid, @user.github_access_token
-          end.each do |project|
-            InchCI::Worker::Project::Build.enqueue project.repo_url, project.default_branch.name, nil, TRIGGER
-          end
-          t2 = Time.now.to_f
-          p :DIFF => t2-t1
-        end
         @user.last_signin_at = Time.now
-        @user.save
+        InchCI::Store::SaveUser.call(@user)
       end
 
       def new_user?

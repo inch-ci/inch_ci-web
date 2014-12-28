@@ -7,6 +7,14 @@ class UsersController < ApplicationController
 
   layout :determine_layout
 
+  def init_projects
+    action = Action::User::InitProjects.new(current_user, params)
+    expose action
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def sync_projects
     action = Action::User::SyncProjects.new(current_user, params)
     expose action
