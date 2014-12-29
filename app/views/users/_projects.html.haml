@@ -49,7 +49,7 @@
         .error
           = error_message
 
-- if !@projects_without_badges.empty?
+- if !@projects_without_badges.blank?
   :javascript
     setTimeout(function() {
       jQuery.ajax(#{url_for(params.merge(:format => :js)).to_json});

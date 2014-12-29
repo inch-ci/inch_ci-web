@@ -7,7 +7,7 @@
       - if current_user?
         .hint
           = t(@projects.empty? ? ".empty_hint" : ".sync_hint", :time_ago => @user.last_synced_projects_at && time_ago_in_words(@user.last_synced_projects_at))
-          = link_to t(".sync_now"), sync_projects_path(@user), :class => "btn btn-default", :method => :post, :"data-sync-projects" => true
+          = link_to t(".sync_now"), sync_projects_path, :class => "btn btn-default", :method => :post, :"data-sync-projects" => true
           %div{:style => 'clear:both'}
         #syncing{:style => 'display:none'}
           .progress.progress-striped.active

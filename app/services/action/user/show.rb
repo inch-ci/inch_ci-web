@@ -5,12 +5,14 @@ module Action
     class Show
       include InchCI::Action
 
+      LANGUAGES = ['Ruby', 'Elixir']
+
       exposes :user, :projects, :projects_without_badges, :languages
 
       def initialize(current_user, params)
         if user = find_user(params)
           @user = UserPresenter.new(user)
-          @languages = ['Ruby', 'Elixir']
+          @languages = LANGUAGES
           @projects = find_projects(@user) #.map { |p| ProjectPresenter.new(p) }
           @projects_without_badges = @projects.select do |project|
             project.language == 'Ruby' &&

@@ -5,10 +5,11 @@ module Action
     class SyncProjects
       include InchCI::Action
 
-      exposes :user, :projects
+      exposes :user, :projects, :languages
 
       def initialize(current_user, params)
         @user = UserPresenter.new(current_user)
+        @languages = Action::User::Show::LANGUAGES
         @projects = retrieve_projects(current_user).map { |p| ProjectPresenter.new(p) }
       end
 

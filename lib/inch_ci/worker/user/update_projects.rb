@@ -31,21 +31,30 @@ module InchCI
         def update_via_github(user, user_name)
           github = GitHubInfo.user(user_name)
 
-          github.repos.each do |_repo|
+          repos = github.repos.map do |_repo|
             repo = GitHubInfo::Repo.new(_repo)
-            unless repo.fork?
-              project = ensure_project_and_branch(repo.url, repo.default_branch)
-              update_project(project, repo, user)
-            end
+            repo.fork? ? nil : repo
+          end.compact
+          find_not_existing_repos(repos).each do |repo|
+            project = create_project_and_branch(repo.url, repo.default_branch)
+            update_project(project, repo, user)
           end
 
           Store::UpdateLastProjectSync.call(user)
         end
 
-        def ensure_project_and_branch(url, branch_name)
-          project = Store::EnsureProject.call(url, ORIGIN)
-          Store::FindBranch.call(project, branch_name) ||
-            Store::CreateBranch.call(project, branch_name)
+        def find_not_existing_repos(repos)
+          all_uids = repos.map { |r| "github:#{r.name}" }
+          existing = ::Project.where(:uid => all_uids).pluck(:uid)
+          p :EXISTING => existing
+          repos.reject { |r| existing.include?("github:#{r.name}") }
+        end
+
+        def create_project_and_branch(url, branch_name)
+          info = RepoURL.new(url)
+          return if info.project_uid.nil?
+          project = Store::CreateProject.call(info.project_uid, info.url, ORIGIN)
+          Store::CreateBranch.call(project, branch_name)
           project
         end
 
