@@ -9,7 +9,7 @@ task :check_for_new_revisions => :environment do
   since = 24.hour
   timestamp = Time.now - since
   trigger = 'cron'
-  client = InchCI::Worker::Project::UpdateInfo::GitHubInfo.client
+  client = InchCI::GitHubInfo.client
 
   projects = InchCI::Store::FindAllProjects.call()
 
