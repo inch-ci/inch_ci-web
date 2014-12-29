@@ -9,10 +9,12 @@ module Action
 
       MAX_SUGGESTIONS = 20
 
-      exposes :project, :branch, :revision, :collection, :suggestion_count, :pending_build
+      exposes :project, :branch, :revision, :user,
+              :collection, :suggestion_count, :pending_build
 
       def initialize(params)
         set_project_and_branch(params)
+        @user = project.user
         @build = find_pending_build(params)
         if revision = find_revision(@branch, params)
           @revision = RevisionPresenter.new(revision)
