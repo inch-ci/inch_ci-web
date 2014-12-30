@@ -84,9 +84,13 @@ en:
           without_code_example: ""
     title: "Inch CI - Documentation badges for Ruby projects - Show off your docs"
     footer: |
-      An [open source project](https://github.com/inch-ci/inch_ci-web),
+      Inch CI evaluates your project's inline code documentation and reports grades for each class, module and method.
+
+      It is an [open source project](https://github.com/inch-ci/inch_ci-web),
       created by René Föhring ([@rrrene](https://twitter.com/rrrene)),
       based on [Inch](http://trivelop.de/inch).
+
+      Please [create an issue](https://github.com/inch-ci/inch_ci-web/issues/new) if anything seems broken or worthy of improvement.
 
   welcome:
     headline: "Documentation badges for Ruby projects"
@@ -165,14 +169,16 @@ en:
       title: "%{name} (@%{user_name})"
       empty_hint: "Your projects have not yet been synced."
       sync_hint: "Your GitHub projects have last been synced: %{time_ago} ago."
-      only_public_hint: "Showing only public, none-forked projects. Add forked projects at the end of the page."
+      only_public_hint: "Showing only <strong>public, none-forked</strong> projects you own.<br> Add other projects at the end of the page."
       sync_now: "Sync now!"
       hook_create: "Add webhook"
       hook_create_hint: "Inch CI will update the badge whenever you push code to GitHub."
       hook_remove: "Webhook: enabled"
       add_project:
-        header: "Add forked/other projects"
+        header: "Add forked/organization projects"
         intro: "You can add any project by typing it's full name below:"
+        placeholder: "username/repo"
+        submit: "Evaluate"
       languages:
         Ruby:
           header: "Ruby projects"
