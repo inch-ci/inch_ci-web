@@ -16,7 +16,7 @@ module Action
           @projects = find_projects(@user) #.map { |p| ProjectPresenter.new(p) }
           @projects_without_badges = @projects.select do |project|
             project.language == 'Ruby' &&
-              project.default_branch.latest_revision_id.nil?
+              project.default_branch.try(:latest_revision_id).nil?
           end
         else
           raise "Not found: #{params}"

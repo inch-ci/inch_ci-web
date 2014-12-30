@@ -44,11 +44,14 @@
 
       %h3 4th rule: Join the movement!
 
-      %p= link_to(("Let's look at my projects" + ' ' + icon(:'arrow-right')).html_safe, user_path(current_user), :class => 'btn btn-lg btn-default')
-
-      - if current_user? && @user.last_synced_projects_at.nil?
+      - start_sync = current_user? && @user.last_synced_projects_at.nil?
+      - if start_sync
         #syncing
-          Syncing projects ...
-          This may take up to a minute.
+          %p= icon(:cog, :class => 'fa-spin')
+          %small
+            Syncing projects. This may take 10-30 seconds, if you have many.
         :javascript
           I.user.syncProjects(#{init_projects_url.to_json});
+
+      %p#synced{:style => start_sync ? 'display:none' : nil}
+        = link_to(("Let's look at my projects" + ' ' + icon(:'arrow-right')).html_safe, user_path(current_user), :class => 'btn btn-lg btn-default')

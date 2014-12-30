@@ -9,7 +9,7 @@ class ProjectPresenter < BasePresenter
   def_delegators :project, :default_branch, :branches, :builds, :user
 
   def badge?
-    default_branch && !default_branch.latest_revision_id.nil?
+    default_branch && !default_branch.try(:latest_revision_id).nil?
   end
 
   def build_on_inch_ci?
@@ -29,6 +29,6 @@ class ProjectPresenter < BasePresenter
   end
 
   def name_without_owner
-    name.split('/').last
+    name.to_s.split('/').last
   end
 end

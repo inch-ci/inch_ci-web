@@ -13,6 +13,18 @@ InchCI::Application.routes.draw do
     post 'v1/builds' => 'builds#run'
   end
 
+  get 'learn_more' => 'page#about', :as => :about
+  get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook
+  root 'page#welcome'
+
+  namespace :admin do
+    get 'overview' => 'overview#index'
+    get 'cli' => 'cli#index'
+    get 'builds' => 'builds#index'
+
+    resources :projects
+  end
+
   duo    = ':service/:user'
   triple = ':service/:user/:repo'
   triple_constraints = {:repo => /[^\/]+/, :branch => /[^\/]+/}
@@ -41,18 +53,7 @@ InchCI::Application.routes.draw do
 
   post 'rebuild' => 'projects#rebuild_via_hook'
 
-  get 'learn_more' => 'page#about', :as => :about
-  get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook
-  root 'page#welcome'
-
   resources :builds
   resources :projects
 
-  namespace :admin do
-    get 'overview' => 'overview#index'
-    get 'cli' => 'cli#index'
-    get 'builds' => 'builds#index'
-
-    resources :projects
-  end
 end

@@ -5,6 +5,8 @@ en:
     learn_more: Learn more
     report_card: Report card
     what_is_this: What is this about?
+    signin: "Sign in with GitHub"
+    signout: "Sign out"
 
   badge:
     image_format:
@@ -163,6 +165,7 @@ en:
       title: "%{name} (@%{user_name})"
       empty_hint: "Your projects have not yet been synced."
       sync_hint: "Your GitHub projects have last been synced: %{time_ago} ago."
+      only_public_hint: "Showing only public, none-forked projects. Add forked projects at the end of the page."
       sync_now: "Sync now!"
       hook_create: "Add webhook"
       hook_create_hint: "Inch CI will update the badge whenever you push code to GitHub."
