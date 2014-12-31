@@ -14,9 +14,9 @@ module Action
 
       def initialize(params)
         set_project_and_branch(params)
-        @user = project.user
         @build = find_pending_build(params)
         if revision = find_revision(@branch, params)
+          @user = project.user
           @revision = RevisionPresenter.new(revision)
           @code_objects = find_code_objects(revision)
           @collection = create_collection(@code_objects)

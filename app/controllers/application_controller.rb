@@ -110,7 +110,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless logged_in?
-      render :text => 'You need to be signed in.'
+      render :text => 'You need to be signed in.', :status => 401
       false
     end
   end
