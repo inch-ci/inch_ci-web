@@ -26,7 +26,7 @@ namespace :db do
         fixture_filename = File.join(fixture_path, basename)
 
         puts "Dumping #{basename}"
-        records = model.find(:all, :order => 'id ASC')
+        records = model.order('id ASC')
         prefix = model.to_s.underscore.gsub('/', '_')
 
         File.open(fixture_filename.to_s, 'w') do |f|
