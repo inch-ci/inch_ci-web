@@ -1,0 +1,54 @@
+#user-projects
+  .table-responsive
+    %table.table.table-striped.projects
+      - (@languages + [nil]).each do |language|
+        %thead
+          %tr
+            %th{:colspan => 4}
+              = t("users.show.languages.#{language || :other}.header")
+              %small= t("users.show.languages.#{language || :other}.intro")
+        %tbody
+          - list = @projects.select { |p| language.nil? ? !@languages.include?(p.language) : p.language == language }
+          - list.sort_by(&:name).each do |project|
+            %tr
+              %td= link_to_project project
+              %td= project.language
+              %td.hook
+                - if project.build_on_inch_ci?
+                  - if project.language == 'Ruby'
+                    - if project.hooked?
+                      = link_to t("users.show.hook_remove"), project_path(project, :action => 'remove_hook'), :method => :post, :class => "btn btn-success"
+                    - else
+                      = link_to t("users.show.hook_create"), project_path(project, :action => 'create_hook'), :method => :post, :class => "btn btn-default", :"data-toggle" => 'tooltip', :title => t("users.show.hook_create_hint")
+                - else
+                  %small= link_to_project project, t("users.show.languages.#{language || :other}.how_to_build")
+
+              %td.last
+                - if project.build_on_inch_ci?
+                  - if project.default_branch.try(:latest_revision_id)
+                    -# = link_to "Evaluate: On", "", :class => "btn btn-success"
+                    = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg, :flat))
+                  - else
+                    - if project.builds.count > 0
+                      .progress.progress-striped.active
+                        .progress-bar{:style => "width: 100%"}
+
+      %thead
+        %tr
+          %th{:colspan => 4}
+            = t("users.show.add_project.header")
+            %small= t("users.show.add_project.intro")
+
+  = form_tag(projects_path, :method => :post, :class => 'form-inline') do
+    .form-group{:class => flash[:error] ? 'has-error' : nil}
+      = text_field_tag "repo_url", nil, :class => "form-control", :placeholder => t("users.show.add_project.placeholder")
+      = submit_tag t("users.show.add_project.submit"), :class => "btn btn-default"
+      - flash[:error].tap do |error_message|
+        .error
+          = error_message
+
+- if !@projects_without_badges.blank?
+  :javascript
+    setTimeout(function() {
+      jQuery.ajax(#{url_for(params.merge(:format => :js)).to_json});
+    }, 4000)

@@ -4,4 +4,9 @@
     %p
       = markdown t("shared.footer")
 
-
+    - if current_user
+      = link_to current_user.display_name, user_path(current_user)
+      = "|"
+      = link_to "Sign out", signout_path
+    - else
+      = link_to "Sign in with Github", signin_path

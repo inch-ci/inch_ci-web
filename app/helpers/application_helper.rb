@@ -1,7 +1,10 @@
 module ApplicationHelper
+  def current_user?(user = @user)
+    user.id == current_user.id
+  end
 
   def icon(key, options = {})
-    opts = {:class => "fa fa-#{key}"}.merge(options)
+    opts = options.merge(:class => "fa fa-#{key} #{options[:class]}".strip)
     content_tag(:i, "", opts).html_safe
   end
 

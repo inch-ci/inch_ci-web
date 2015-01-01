@@ -1,0 +1,5 @@
+#users_show= render 'show'
+
+- if current_user? && @user.last_synced_projects_at.nil?
+  :javascript
+    I.user.syncProjects(#{sync_projects_url.to_json});

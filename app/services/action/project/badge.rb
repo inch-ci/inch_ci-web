@@ -23,6 +23,10 @@ module Action
           style = params[:style]
           @badge_filename = @badge.local_filename(format, style)
           @content_type = content_types[format]
+          if !File.exist?(@badge_filename)
+            @badge_filename = Rails.root.join('app/assets/images/transparent.png')
+            @content_type = content_types['png']
+          end
         end
       end
 

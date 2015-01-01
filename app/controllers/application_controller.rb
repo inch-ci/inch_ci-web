@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  private
+
   def featured_projects
     @featured_projects ||= FEATURED_PROJECT_UIDS.map do |uid|
       InchCI::Store::FindProject.call(uid)
@@ -66,4 +68,50 @@ class ApplicationController < ActionController::Base
     url_for project_path(*args)
   end
   helper_method :project_url
+
+  def signin_path(provider = :github)
+    "/auth/#{provider}"
+  end
+  helper_method :signin_path
+
+  def user_path(user, *args)
+    options = args.extract_options!
+    hash = {
+      :controller => '/users',
+      :action => 'show',
+      :service => user.service_name,
+      :user => user.user_name,
+    }
+    hash.merge(options)
+  end
+  helper_method :user_path
+
+  def user_url(*args)
+    url_for user_path(*args)
+  end
+
+  def current_user=(user)
+    session[:user_id] = user.id
+    user.update_attribute(:last_signin_at, Time.now)
+    user
+  end
+
+  def current_user
+    if session[:user_id]
+      @current_user ||= UserPresenter.new(User.find(session[:user_id]))
+    end
+  end
+  helper_method :current_user
+
+  def logged_in?
+    !current_user.nil?
+  end
+  helper_method :logged_in?
+
+  def require_login
+    unless logged_in?
+      render :text => 'You need to be signed in.', :status => 401
+      false
+    end
+  end
 end

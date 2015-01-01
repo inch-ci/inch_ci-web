@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222100946) do
+ActiveRecord::Schema.define(version: 20141223134843) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20141222100946) do
     t.string   "origin"
     t.text     "languages"
     t.boolean  "fork"
+    t.integer  "github_hook_id"
   end
 
   add_index "projects", ["uid"], name: "index_projects_on_uid", using: :btree
@@ -142,11 +143,17 @@ ActiveRecord::Schema.define(version: 20141222100946) do
   create_table "users", force: true do |t|
     t.string   "provider"
     t.string   "uid"
+    t.string   "github_access_token"
     t.string   "display_name"
     t.string   "user_name"
     t.string   "email"
+    t.text     "follows"
+    t.datetime "last_signin_at"
+    t.datetime "last_synced_projects_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["provider", "user_name"], name: "index_users_on_provider_and_user_name", unique: true, using: :btree
 
 end

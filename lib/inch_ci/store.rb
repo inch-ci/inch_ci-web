@@ -2,8 +2,13 @@ module InchCI
   # ActiveRecordStore provides a thin layer on top of ActiveRecord so we do not
   # need to use it's API in our own code.
   module Store
+    FindUser = -> (service_name, user_name) { User.where(:provider => service_name, :user_name => user_name).first }
+    FindUserById = -> (id) { User.find(id) }
+    UpdateLastProjectSync = -> (user, time = Time.now) { user.update_attribute(:last_synced_projects_at, time) }
+    SaveUser = -> (user) { user.save! }
+
     FindProject = -> (uid) { Project.find_by_uid(uid) }
-    FindAllProjects = -> () { Project.all }
+    FindAllProjects = -> (user = nil) { user.nil? ? Project.all : user.projects }
     CreateProject = -> (uid, repo_url, origin = nil) { Project.create!(:uid => uid, :repo_url => repo_url, :origin => origin.to_s) }
     SaveProject = -> (project) { project.save! }
     UpdateDefaultBranch = -> (project, branch) { project.update_attribute(:default_branch, branch) }
@@ -231,6 +236,15 @@ module InchCI
       ActiveRecord::Base.transaction(&block)
     end
 
-    CreateStats = -> (date, name, value) { Statistics.create!(:date => date, :name => name, :value => value) }
+    CreateStats = -> (name, value, date = Time.now.midnight) { Statistics.create!(:date => date, :name => name, :value => value) }
+    IncreaseStats = -> (name, date = Time.now.midnight, init_value = 0) {
+      stat = Statistics.where(:date => date, :name => name).first
+      if stat
+        stat.update_attribute(:value, stat.value + 1)
+        stat
+      else
+        Statistics.create!(:date => date, :name => name, :value => init_value + 1)
+      end
+    }
   end
 end

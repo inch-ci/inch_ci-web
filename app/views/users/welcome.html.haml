@@ -1,0 +1,57 @@
+
+.repo-wrapper
+  .repo-card
+    .repo-info
+      %h2.sub-header
+        The rules of Inch CI Club:
+
+
+
+      %h3
+        1st rule: Think of docs as
+        %a{:href => 'http://trivelop.de/2014/01/26/about-documentation/', :target => '_blank'} copywriting for hackers
+
+      / %p Documentation is more often than not interface copywriting; just not for the end-user, but a fellow coder.
+
+      %hr
+
+
+
+      %h3 2nd rule: We DO talk about Inch CI
+
+      = link_to icon(:twitter) + ' ' + t('projects.topbar.tweet_link'), tweet_url, :target => '_blank', :class => 'btn btn-default btn-lg'
+      %hr
+
+      %h3 3rd rule: It's not about numbers!
+
+      / %p Inch's docs badges show the documentation coverage in a colored bar, kind of like a progress bar.
+
+      / %p
+      /  This way, you do not have to worry whether the coverage is 69.7 or 71.2%. Any amount of green signals a sufficient amount of docs.
+
+      / %p Projects from GitHub already sporting Inch CI badges in their README:
+      .row.follows
+        - @followed_projects.each do |project|
+          - if project.badge?
+            .col-lg-4
+              %p
+                = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg, :flat))
+                = link_to_project(project)
+
+      %hr
+
+
+
+      %h3 4th rule: Join the movement!
+
+      - start_sync = current_user? && @user.last_synced_projects_at.nil?
+      - if start_sync
+        #syncing
+          %p= icon(:cog, :class => 'fa-spin')
+          %small
+            Syncing projects. This may take 10-30 seconds, if you have many.
+        :javascript
+          I.user.syncProjects(#{init_projects_url.to_json});
+
+      %p#synced{:style => start_sync ? 'display:none' : nil}
+        = link_to(("Let's look at my projects" + ' ' + icon(:'arrow-right')).html_safe, user_path(current_user), :class => 'btn btn-lg btn-default')

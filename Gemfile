@@ -40,6 +40,8 @@ gem 'sidekiq', '>= 3.0'
 gem 'thin'
 gem 'unicorn'
 
+gem "omniauth-github", '1.1.1'
+
 gem 'inch'
 gem 'inch-badge', '>= 0.3.5'
 gem 'inch_ci-worker', '>= 0.3.3'
@@ -49,6 +51,7 @@ gem 'gems'
 gem 'sentry-raven', :git => 'https://github.com/getsentry/raven-ruby.git'
 
 gem 'rack-mini-profiler'
+
 group :development do
   gem 'better_errors'
   gem 'lol_dba'

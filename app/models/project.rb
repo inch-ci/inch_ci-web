@@ -12,6 +12,10 @@ class Project < ActiveRecord::Base
 
   serialize :languages
 
+  def user
+    User.where(:provider => service_name, :user_name => user_name).first
+  end
+
   # TODO: implement another way
   def service_name
     @service_name ||= InchCI::ProjectUID.new(uid).service

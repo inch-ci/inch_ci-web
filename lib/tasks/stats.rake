@@ -100,11 +100,11 @@ namespace :stats do
     stats = StatsRetriever.new(timestamp)
 
     store = InchCI::Store::CreateStats
-    store.call(timestamp, "projects:all", stats.all_projects)
-    store.call(timestamp, "projects:badges", stats.with_badges)
-    store.call(timestamp, "projects:hooked", stats.hooked_projects)
-    store.call(timestamp, "maintainers:all", stats.users)
-    store.call(timestamp, "maintainers:badges", stats.users_with_badges)
-    store.call(timestamp, "maintainers:hooked", stats.users_with_hooks)
+    store.call("projects:all", stats.all_projects, timestamp)
+    store.call("projects:badges", stats.with_badges, timestamp)
+    store.call("projects:hooked", stats.hooked_projects, timestamp)
+    store.call("maintainers:all", stats.users, timestamp)
+    store.call("maintainers:badges", stats.users_with_badges, timestamp)
+    store.call("maintainers:hooked", stats.users_with_hooks, timestamp)
   end
 end
