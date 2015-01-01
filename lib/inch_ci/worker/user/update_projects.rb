@@ -37,7 +37,7 @@ module InchCI
             unless repo.fork?
               project = ensure_project_and_branch(repo.url, repo.default_branch)
               update_project(project, repo, user)
-              build(project) if project.language == 'Ruby' && project.builds.count == 0
+              #build(project) if project.language == 'Ruby' && project.builds.count == 0
             end
           end
 
