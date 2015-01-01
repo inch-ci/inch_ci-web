@@ -28,7 +28,6 @@ module Action
         if project.github_hook_id
           response = client.edit_hook(project.name, project.github_hook_id,
                         hook_service, hook_url_config, hook_deactivate_options)
-          p :RESPONSE => response
           if response.active == false
             project.github_hook_active = false
             InchCI::Store::SaveProject.call(project)

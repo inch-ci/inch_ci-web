@@ -29,7 +29,6 @@ module Action
         if project.github_hook_id
           response = client.edit_hook(project.name, project.github_hook_id,
                           hook_service, hook_url_config, hook_activate_options)
-          p :RESPONSE => response
         else
           hook = client.create_hook(project.name, hook_service,
                                           hook_url_config, hook_create_options)

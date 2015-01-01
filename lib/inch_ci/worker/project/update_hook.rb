@@ -35,7 +35,6 @@ module InchCI
           hooks = client.hooks(project.name)
           hooks.each do |hash|
             if hash['config'] && hash['config']['url'] =~ REBUILD_URL_PATTERN
-              p :HASH => hash
               project.github_hook_id = hash['id']
               project.github_hook_active = hash['active']
             end
