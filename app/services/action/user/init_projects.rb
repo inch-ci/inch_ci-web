@@ -22,9 +22,11 @@ module Action
 
           find_ruby_projects.each do |project|
             update_hook(project)
-          end.each do |project|
-            build(project)
           end
+          # we disable auto-building all projects for now
+          #.each do |project|
+          #  build(project)
+          #end
           t2 = Time.now.to_f
 
           Rails.logger.info "InitProjects: user=#{@user.user_name} projects=#{@user.projects.count} delta=#{t2-t1}"

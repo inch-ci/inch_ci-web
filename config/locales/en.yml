@@ -220,7 +220,7 @@ en:
     wait_for_build:
       info: "Your page is currently building. This page will refresh automatically (can take up to a minute)."
     start_build:
-      info: "This branch is not evaluated yet. Press 'Refresh' to add it."
+      info: "This is not evaluated yet. Press 'Refresh' to evaluate now!"
     subnavi:
       history: History
       show: Evaluation
