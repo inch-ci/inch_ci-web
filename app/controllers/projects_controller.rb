@@ -30,13 +30,11 @@ class ProjectsController < ApplicationController
 
   def create_hook
     action = Action::Project::CreateHook.new(current_user, params)
-    if action.success?
-      redirect_to user_url(current_user)
-    else
+    if !action.success?
       expose action
       flash[:error] = "Could not create hook for #{@project.name}"
-      render :template => "page/welcome"
     end
+    redirect_to user_url(current_user)
   end
 
   def history
@@ -59,13 +57,11 @@ class ProjectsController < ApplicationController
 
   def remove_hook
     action = Action::Project::RemoveHook.new(current_user, params)
-    if action.success?
-      redirect_to user_url(current_user)
-    else
+    if !action.success?
       expose action
       flash[:error] = "Could not remove hook for #{@project.name}"
-      render :template => "page/welcome"
     end
+    redirect_to user_url(current_user)
   end
 
   def suggestions

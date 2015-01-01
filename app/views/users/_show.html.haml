@@ -24,4 +24,9 @@
       .explanation
         %p
           = t(".only_public_hint").html_safe
+
+        - flash[:error].tap do |error_message|
+          %p.error
+            = error_message
+
       = render "projects" unless @projects.empty?
