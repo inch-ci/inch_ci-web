@@ -6,6 +6,7 @@ module Action
       include InchCI::Action
       include Action::SetProjectAndBranch
 
+      TRIGGER = 'activate_hook'
 
       exposes :project
 
@@ -13,6 +14,9 @@ module Action
         set_project_and_branch(params)
         if user_access_token = user.github_access_token
           process_via_github(@project.to_model, user_access_token)
+          if @project.to_model.builds.count == 0
+            build(project)
+          end
         else
           raise "Need access token!"
         end
@@ -23,6 +27,10 @@ module Action
       end
 
       private
+
+      def build(project)
+        InchCI::Worker::Project::Build.enqueue project.repo_url, project.default_branch.name, nil, TRIGGER
+      end
 
       def process_via_github(project, user_access_token)
         client = Octokit::Client.new(access_token: user_access_token)
