@@ -52,7 +52,7 @@ class StatsRetriever
   end
 
   def calc_serve_stats
-    timestamp = @timestamp.strftime('%Y-%m-%d')
+    timestamp = (@timestamp - 24.hours).strftime('%Y-%m-%d')
     @badges_served_in_last24h = `grep "#{timestamp}" log/production.log | grep -c "Processing by ProjectsController#badge as"`
   end
 
