@@ -3,9 +3,18 @@ class StatsRetriever
 
   def initialize(timestamp)
     @timestamp = timestamp
-
     @all_projects = Project.all.where('created_at <= ?', timestamp)
                           .includes(:default_branch)
+    calc_project_and_badge_usage_stats
+    calc_maintainers_stats
+    calc_user_stats
+    calc_serve_stats
+  end
+
+  #
+  # Project and badges stats
+  #
+  def calc_project_and_badge_usage_stats
     default_branches = @all_projects.map(&:default_branch).compact
     current_revisions = default_branches.map { |b|
                           b.revisions.where('created_at <= ?', timestamp).first
@@ -20,14 +29,31 @@ class StatsRetriever
         @hooked_projects << branch.project
       end
     end
+  end
 
-    @users = @all_projects.map(&:user_name).uniq
-
-    @users_with_badges = @with_badges.map do |revision|
+  #
+  # Project-based maintainer stats
+  # ('users' being signed in users of Inch CI and maintainers being people/organisations identified via project names)
+  #
+  def calc_maintainers_stats
+    @maintainers = @all_projects.map(&:user_name).uniq
+    @maintainers_with_badges = @with_badges.map do |revision|
       revision.branch.project.user_name
     end.uniq
+    @maintainers_with_hooks = @hooked_projects.map(&:user_name).uniq
+  end
 
-    @users_with_hooks = @hooked_projects.map(&:user_name).uniq
+  # User stats
+  # ('users' being signed in users of Inch CI and maintainers being people/organisations identified via project names)
+  #
+  def calc_user_stats
+    @users_connected_via_github = User.where(:provider => 'github').where('created_at <= ?', @timestamp)
+    @users_signed_in_last24h = User.where('last_signin_at > ? AND last_signin_at <= ?', @timestamp-24.hours, @timestamp)
+  end
+
+  def calc_serve_stats
+    timestamp = @timestamp.strftime('%Y-%m-%d')
+    @badges_served_in_last24h = `grep "#{timestamp}" log/production.log | grep -c "Processing by ProjectsController#badge as"`
   end
 
   def all_projects
@@ -42,17 +68,30 @@ class StatsRetriever
     @hooked_projects.size
   end
 
-  def users
-    @users.size
+  def maintainers
+    @maintainers.size
   end
 
-  def users_with_badges
-    @users_with_badges.size
+  def maintainers_with_badges
+    @maintainers_with_badges.size
   end
 
-  def users_with_hooks
-    @users_with_hooks.size
+  def maintainers_with_hooks
+    @maintainers_with_hooks.size
   end
+
+  def users_connected_via_github
+    @users_connected_via_github.size
+  end
+
+  def users_signed_in_last24h
+    @users_signed_in_last24h.size
+  end
+
+  def badges_served_in_last24h
+    @badges_served_in_last24h.to_i
+  end
+
 end
 
 namespace :stats do
@@ -69,29 +108,22 @@ namespace :stats do
   end
 
   desc "Show stats for the app"
-  task :app => :environment do
-    DAYS_BACK = 14
-    list = Statistics.where("date > ?", (DAYS_BACK + 1).days.ago).order('date ASC')
-    map = {}
-    list.each do |stat|
-      map[stat.date.midnight] ||= {}
-      map[stat.date.midnight][stat.name] = stat.value
-    end
-    puts "Read: date, badges/maintainers, hooks/maintainers".cyan
-    lines = map.keys.sort.map do |date|
-      stats = map[date]
-      [
-        date.strftime("%a, %Y-%m-%d") + " ",
-        val(stats, 'projects:badges'),
-        val(stats, 'maintainers:badges'),
-        val(stats, 'projects:hooked'),
-        val(stats, 'maintainers:hooked'),
-        #val(stats, 'projects:all'),
-        #val(stats, 'maintainers:all'),
-      ].join("")
-    end
-    lines.shift # first row has changes calculated against zero
-    puts lines.join("\n")
+  task :live => :environment do
+    timestamp = ENV['TIMESTAMP'] ? Date.parse(ENV['TIMESTAMP']) : Time.now.midnight
+    stats = StatsRetriever.new(timestamp)
+
+    store = -> (name, count, timestamp) {
+      puts "#{timestamp.strftime('%Y-%m-%d')}\t#{name.ljust(20)}\t#{count.to_s.rjust(5)}"
+    }
+    store.call("projects:all", stats.all_projects, timestamp)
+    store.call("projects:badges", stats.with_badges, timestamp)
+    store.call("projects:hooked", stats.hooked_projects, timestamp)
+    store.call("maintainers:all", stats.maintainers, timestamp)
+    store.call("maintainers:badges", stats.maintainers_with_badges, timestamp)
+    store.call("maintainers:hooked", stats.maintainers_with_hooks, timestamp)
+    store.call("users:github", stats.users_connected_via_github, timestamp)
+    store.call("users:signins:<24h", stats.users_signed_in_last24h, timestamp)
+    store.call("badges:served:<24h", stats.badges_served_in_last24h, timestamp)
   end
 
   desc "Show stats for the app"
@@ -103,8 +135,11 @@ namespace :stats do
     store.call("projects:all", stats.all_projects, timestamp)
     store.call("projects:badges", stats.with_badges, timestamp)
     store.call("projects:hooked", stats.hooked_projects, timestamp)
-    store.call("maintainers:all", stats.users, timestamp)
-    store.call("maintainers:badges", stats.users_with_badges, timestamp)
-    store.call("maintainers:hooked", stats.users_with_hooks, timestamp)
+    store.call("maintainers:all", stats.maintainers, timestamp)
+    store.call("maintainers:badges", stats.maintainers_with_badges, timestamp)
+    store.call("maintainers:hooked", stats.maintainers_with_hooks, timestamp)
+    store.call("users:github", stats.users_connected_via_github, timestamp)
+    store.call("users:signins:<24h", stats.users_signed_in_last24h, timestamp)
+    store.call("badges:served:<24h", stats.badges_served_in_last24h, timestamp)
   end
 end

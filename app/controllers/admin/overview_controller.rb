@@ -47,7 +47,7 @@ class Admin::OverviewController < ApplicationController
         new_value = {'date' => value['date']}
         value.each do |key, v|
           if v.is_a?(Fixnum)
-            new_value[key] = v - last_value[key]
+            new_value[key] = v - last_value[key].to_i
           end
         end
         @growth_by_week << new_value
