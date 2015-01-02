@@ -23,6 +23,7 @@ InchCI::Application.routes.draw do
     get 'builds' => 'builds#index'
 
     resources :projects
+    resources :users
   end
 
   duo    = ':service/:user'

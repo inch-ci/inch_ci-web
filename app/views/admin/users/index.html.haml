@@ -1,0 +1,32 @@
+.col-lg-9
+  .widget
+    .widget-title
+      = icon :users
+      Latest users
+
+    .widget-body
+      .table-responsive
+        %table.table.users
+          %thead
+            %tr
+              %th #
+              %th GitHub
+              %th E-Mail
+              %th Projects
+              - @languages.each do |language|
+                %th= language
+              %th w/ badges
+              %th first signin
+              %th last signin
+          %tbody
+            - @users.each do |user|
+              %tr{:class => created_at_classes(user)}
+                %td= user.id
+                %td= link_to(user.user_name, "https://github.com/#{user.user_name}", :target => '_blank', :class => 'external')
+                %td= user.email
+                %td= link_to_user_projects(user)
+                - @languages.each do |language|
+                  %td= link_to_user_projects(user, language)
+                %td= user.projects.select { |p| p.default_branch.latest_revision.try(:badge_in_readme?) }.size
+                %td= user.created_at
+                %td= user.last_signin_at

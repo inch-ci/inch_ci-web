@@ -26,6 +26,13 @@ class Admin::ProjectsController < ApplicationController
     if params[:language]
       arel = arel.where('LOWER(language) = ?', params[:language].to_s.downcase)
     end
+    if service = params[:service]
+      like = "#{service}:"
+      if user_name = params[:user]
+        like << "#{user_name}/"
+      end
+      arel = arel.where('uid LIKE ?', like+'%')
+    end
     arel
   end
 end
