@@ -177,6 +177,16 @@
     display: none;
   }
 
+  .grade-table-added th {
+    background-color: #90C790;
+  }
+  .grade-table-added th {
+    border-color: #90C790;
+  }
+  .grade-table-added td:first-child {
+    border-left-color: #90C790;
+  }
+
   .grade-table-A th {
     background-color: #00A300;
   }

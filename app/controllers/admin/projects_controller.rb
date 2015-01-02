@@ -17,7 +17,7 @@ class Admin::ProjectsController < ApplicationController
   end
 
   def index
-    @projects = filter_collection(Project).order('created_at DESC').limit(50)
+    @projects = filter_collection(Project.includes(:default_branch)).order('created_at DESC').limit(50)
   end
 
   private
