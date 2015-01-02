@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150101142423) do
+ActiveRecord::Schema.define(version: 20150101181738) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20150101142423) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "code_object_diffs", ["revision_diff_id"], name: "index_code_object_diffs_on_revision_diff_id", using: :btree
 
   create_table "code_object_references", force: true do |t|
     t.integer  "revision_id"
@@ -119,6 +121,8 @@ ActiveRecord::Schema.define(version: 20150101142423) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "revision_diffs", ["branch_id"], name: "index_revision_diffs_on_branch_id", using: :btree
 
   create_table "revisions", force: true do |t|
     t.integer  "branch_id"
