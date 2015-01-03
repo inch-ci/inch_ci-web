@@ -100,6 +100,7 @@ en:
       Thanks to [Code Climate](http://codeclimate.com), we refactor constantly.
 
       But there is no way to lint and show off your inline docs. Until now.
+    signin_hint: "You can also see an overview of all your projects:"
     abstract2: |
       Let's raise the visibility of code documentation in Ruby!
 

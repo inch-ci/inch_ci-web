@@ -15,18 +15,23 @@
               <h3 class="masthead-brand"><a href="/"># Inch CI</a></h3>
               <ul class="nav masthead-nav">
                 <% if logged_in? %>
-                  <li class="<%= current_page?(user_path(current_user)) ? 'active' : nil %>">
+                  <li class="nav <%= current_page?(user_path(current_user)) ? 'active' : nil %>">
                     <%= link_to current_user.name, user_path(current_user) %>
                   </li>
                 <% end %>
                 <% if @project %>
-                  <li class="<%= @project && current_page?(project_path(@project)) ? 'active' : nil %>">
+                  <li class="nav <%= @project && current_page?(project_path(@project)) ? 'active' : nil %>">
                     <%= link_to t("navigation.report_card"), params %>
                   </li>
                 <% end %>
-                <li>
+                <li class="nav">
                   <%= link_to t("navigation.what_is_this"), about_path %>
                 </li>
+                <% unless logged_in? %>
+                  <li>
+                    <%= link_to icon(:github)+' '+t("navigation.signin"), signin_path, :class => 'btn btn-signin' %>
+                  </li>
+                <% end %>
               </ul>
             </div>
           </div>

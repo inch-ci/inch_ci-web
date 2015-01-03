@@ -9,6 +9,11 @@
 
 %hr
 
+%p= t('welcome.signin_hint')
+%p= link_to icon(:github)+' '+t("navigation.signin"), signin_path, :class => 'btn btn-lg btn-signin'
+
+%hr
+
 %h1= t('welcome.featured')
 
 = render "projects/featured"
