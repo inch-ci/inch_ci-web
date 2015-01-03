@@ -54,7 +54,10 @@ class StatsRetriever
   def calc_serve_stats
     timestamp = (@timestamp - 24.hours).strftime('%Y-%m-%d')
     @badges_served_in_last24h = `grep "#{timestamp}" log/production.log | grep -c "Processing by ProjectsController#badge as"`
-    @builds_in_last24h = Build.where('created_at > ? AND created_at <= ?', @timestamp-24.hours, @timestamp).count
+    builds_in_last24h = Build.where('created_at > ? AND created_at <= ?', @timestamp-24.hours, @timestamp)
+    @manual_builds_in_last24h = builds_in_last24h.select { |b| b.trigger == 'manual' }
+    @hooked_builds_in_last24h = builds_in_last24h.select { |b| b.trigger == 'hook' }
+    @travis_builds_in_last24h = builds_in_last24h.select { |b| b.trigger == 'travis' }
   end
 
   def all_projects
@@ -93,8 +96,16 @@ class StatsRetriever
     @badges_served_in_last24h.to_i
   end
 
-  def builds_in_last24h
-    @builds_in_last24h.to_i
+  def manual_builds_in_last24h
+    @manual_builds_in_last24h.size
+  end
+
+  def hooked_builds_in_last24h
+    @hooked_builds_in_last24h.size
+  end
+
+  def travis_builds_in_last24h
+    @travis_builds_in_last24h.size
   end
 end
 
@@ -112,7 +123,9 @@ namespace :stats do
     store.call("users:github", stats.users_connected_via_github, timestamp)
     store.call("users:signins:<24h", stats.users_signed_in_last24h, timestamp)
     store.call("badges:served:<24h", stats.badges_served_in_last24h, timestamp)
-    store.call("builds:created:<24h", stats.builds_in_last24h, timestamp)
+    store.call("builds:manual:<24h", stats.manual_builds_in_last24h, timestamp)
+    store.call("builds:hooked:<24h", stats.hooked_builds_in_last24h, timestamp)
+    store.call("builds:travis:<24h", stats.travis_builds_in_last24h, timestamp)
   end
 
   desc "Show stats for the app"
