@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150101181738) do
+ActiveRecord::Schema.define(version: 20150103111834) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20150101181738) do
     t.datetime "updated_at"
     t.string   "inch_version"
   end
+
+  add_index "builds", ["branch_id"], name: "index_builds_on_branch_id", using: :btree
 
   create_table "code_object_diffs", force: true do |t|
     t.integer  "revision_diff_id"
