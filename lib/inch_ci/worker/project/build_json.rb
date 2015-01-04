@@ -14,7 +14,9 @@ module InchCI
           # this is invoked from the inch_ci-worker gem
           json = InchCI::Worker::BuildJSON.json(filename)
           if trigger.nil?
-            trigger = json.travis? ? 'travis' : 'ci'
+            trigger = 'ci'
+            trigger = 'travis' if json.travis?
+            trigger = 'circleci' if json.circleci?
           end
 
           if json.url
