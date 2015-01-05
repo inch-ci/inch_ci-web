@@ -27,6 +27,6 @@
                 %td= link_to_user_projects(user)
                 - @languages.each do |language|
                   %td= link_to_user_projects(user, language)
-                %td= user.projects.select { |p| p.default_branch.latest_revision.try(:badge_in_readme?) }.size
+                %td= user.projects.select { |p| p.default_branch.try(:latest_revision).try(:badge_in_readme?) }.size
                 %td= user.created_at
                 %td= user.last_signin_at
