@@ -1,0 +1,73 @@
+.row
+  .col-lg-6
+    .widget
+      .widget-title
+        = icon :calculator
+        = "Build ##{@build.id}"
+    .widget-body.medium.no-padding
+      .table-responsive
+        %table.table.table-striped.builds
+          %tbody
+            - project = @build.branch.project
+            %tr
+              %th #
+              %td= link_to @build.id, admin_build_path(@build.id)
+            %tr
+              %th Project
+              %td= link_to_project project
+            %tr
+              %th Builds
+              %td= link_to icon(:signal), admin_builds_path(:service => project.service_name, :user => project.user_name, :repo => project.repo_name)
+            %tr
+              %th Language
+              %td= link_to project.language, :language => project.language
+            %tr
+              %th.revision_uid Revision
+              %td.revision_uid
+                - if revision = @build.revision
+                  - if revision.tag_uid
+                    - if revision.tag_uid.size < 10
+                      %span.badge{:title => revision.uid}= revision.tag_uid
+                    - else
+                      %span.badge{:title => revision.tag_uid(false)}= revision.tag_uid
+                  - else
+                    = revision.uid
+            %tr
+              %th.duration Duration
+              %td.duration
+                - if @build.finished_at
+                  = (@build.finished_at - @build.started_at).to_i
+                  seconds
+                - elsif @build.started_at
+                  started
+                  %span{"data-increment-every-second" => true}
+                    = (Time.now - @build.started_at).to_i
+                  seconds ago
+            %tr
+              %th.finished_at Finished
+              %td.finished_at
+                - if @build.finished_at
+                  = t("builds.index.finished_ago", :time_ago => time_ago_in_words(@build.finished_at))
+            %tr
+              %th.finished_at Status
+              %td.status{:class => build_css_class(@build)}
+                = build_status_icon(@build)
+                = @build.status
+            %tr
+              %th.status trigger
+              %td.trigger
+                = build_trigger_icon(@build)
+                = @build.trigger
+
+  .col-lg-6
+    .widget
+      .widget-title
+        = icon :terminal
+        Request
+
+      .table-responsive
+        - if @dump
+          .terminal
+            - @dump.lines.each do |line|
+              = line
+              %br

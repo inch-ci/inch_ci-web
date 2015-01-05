@@ -9,4 +9,9 @@ class Admin::BuildsController < ApplicationController
     view = Action::BuildHistory.new(params)
     expose view
   end
+
+  def show
+    view = Action::Build::Show.new(params, load_dump: true)
+    expose view
+  end
 end

@@ -20,8 +20,8 @@ InchCI::Application.routes.draw do
   namespace :admin do
     get 'overview' => 'overview#index'
     get 'cli' => 'cli#index'
-    get 'builds' => 'builds#index'
 
+    resources :builds
     resources :projects
     resources :users
   end
