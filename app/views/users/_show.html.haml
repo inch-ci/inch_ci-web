@@ -6,7 +6,6 @@
         = link_to image_tag("GitHub-Mark-32px.png", :class => "github-logo"), @user.github_url, :target => '_blank'
 
       - if current_user?
-
         .pull-left
           %p.description
             = t(@projects.empty? ? ".empty_hint" : ".sync_hint", :time_ago => @user.last_synced_projects_at && time_ago_in_words(@user.last_synced_projects_at))

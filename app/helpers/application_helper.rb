@@ -1,6 +1,6 @@
 module ApplicationHelper
   def current_user?(user = @user)
-    user.id == current_user.id
+    logged_in? && user && user.id == current_user.id
   end
 
   def icon(key, options = {})
