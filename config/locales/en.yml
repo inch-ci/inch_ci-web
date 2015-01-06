@@ -210,6 +210,7 @@ en:
         author_name: Author
         documentation_url: Documentation
         source_code_url: Source
+      profile_link: "← Back to my projects"
       rebuild_link: Refresh
       rebuild_link_tooltip: "Re-evaluate this project's docs"
       rebuild_on_travis_link: Build via Travis

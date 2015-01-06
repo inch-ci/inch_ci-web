@@ -158,6 +158,15 @@ body.repo {
     border-radius: 4px;
     padding-bottom: 20px;
   }
+  .topbar {
+    padding-top: 10px;
+  }
+  .topbar h1 {
+    margin-top: 10px;
+  }
+  .topbar .back-to-profile {
+    padding: 10px 0;
+  }
   .topbar button em {
     font-style: normal;
     color: #aaa;

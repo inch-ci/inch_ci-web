@@ -1,4 +1,6 @@
 .topbar
+  - if logged_in?
+    .back-to-profile= link_to t('projects.topbar.profile_link'), user_path(current_user)
   %h1
     = @project.name
     = link_to image_tag("GitHub-Mark-32px.png", :class => "github-logo"), @project.source_code_url, :target => '_blank'
