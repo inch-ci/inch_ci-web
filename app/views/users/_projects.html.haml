@@ -15,23 +15,25 @@
               %td= project.language
               %td.hook
                 - if project.build_on_inch_ci?
-                  - if project.language == 'Ruby'
-                    - if project.hooked?
-                      = link_to t("users.show.hook_remove"), project_path(project, :action => 'remove_hook'), :method => :post, :class => "btn btn-success"
-                    - else
-                      = link_to t("users.show.hook_create"), project_path(project, :action => 'create_hook'), :method => :post, :class => "btn btn-default", :"data-toggle" => 'tooltip', :title => t("users.show.hook_create_hint")
+                  - if project.builds.count > 0
+                    - if project.language == 'Ruby'
+                      - if project.hooked?
+                        = link_to t("users.show.hook_remove"), project_path(project, :action => 'remove_hook'), :method => :post, :class => "btn btn-success"
+                      - else
+                        = link_to t("users.show.hook_create"), project_path(project, :action => 'create_hook'), :method => :post, :class => "btn btn-default", :"data-toggle" => 'tooltip', :title => t("users.show.hook_create_hint")
                 - else
                   %small= link_to_project project, t("users.show.languages.#{language || :other}.how_to_build")
 
               %td.last
-                - if project.build_on_inch_ci?
-                  - if project.default_branch.try(:latest_revision_id)
-                    -# = link_to "Evaluate: On", "", :class => "btn btn-success"
-                    = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg, :flat))
-                  - else
+                - if project.try(:default_branch).try(:latest_revision_id)
+                  = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg, :flat))
+                - else
+                  - if project.build_on_inch_ci?
                     - if project.builds.count > 0
                       .progress.progress-striped.active
                         .progress-bar{:style => "width: 100%"}
+                    - else
+                      = link_to t("users.show.evaluate_now"), project_rebuild_path(project), :method => :post, :class => "btn btn-default"
 
       %thead
         %tr

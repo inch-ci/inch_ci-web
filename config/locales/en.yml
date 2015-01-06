@@ -100,7 +100,7 @@ en:
       Thanks to [Code Climate](http://codeclimate.com), we refactor constantly.
 
       But there is no way to lint and show off your inline docs. Until now.
-    signin_hint: "You can also see an overview of all your projects:"
+    signin_hint: "You can also add your projects via GitHub:"
     abstract2: |
       Let's raise the visibility of code documentation in Ruby!
 
@@ -175,6 +175,7 @@ en:
       hook_create: "Add webhook"
       hook_create_hint: "Inch CI will update the badge whenever you push code to GitHub."
       hook_remove: "Webhook: enabled"
+      evaluate_now: "Evaluate"
       add_project:
         header: "Add forked/organization projects"
         intro: "You can add any project by typing it's full name below:"
