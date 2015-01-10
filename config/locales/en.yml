@@ -29,6 +29,7 @@ en:
     header_C: "Please take a look"
     header_U: "Undocumented"
     grade_icon_hint: "Grade"
+    location_in_name: "in %{filename}"
     priority_icon_hint: "Priority"
     show_more: "Show %{more_count} more ..."
   shared:

@@ -11,4 +11,8 @@ module CodeObjectsHelper
     base = "https://github.com/#{@project.user_name}/#{@project.repo_name}/blob/#{@revision.uid}/#{filename}"
     line_no ? "#{base}#L#{line_no}" : base
   end
+
+  def show_code_object_location?(project = @project)
+    %w(javascript nodejs).include?(project.language.to_s.downcase)
+  end
 end

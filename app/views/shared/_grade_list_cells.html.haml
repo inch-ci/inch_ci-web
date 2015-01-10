@@ -1,6 +1,10 @@
 %td.grade
   .grade-circle{:class => "grade-circle-#{grade_list.grade}", :title => t("grade_list_table.grade_icon_hint")}
     = grade_list.grade
-%td.fullname= link_to_code_object @revision, code_object
+%td.fullname
+  = link_to_code_object @revision, code_object
+  - if show_code_object_location?
+    %span.location
+      = t("grade_list_table.location_in_name", :filename => code_object.filename)
 %td.priority
   = image_tag "priority/#{code_object.priority_symbol}.png", :title => t("grade_list_table.priority_icon_hint")
