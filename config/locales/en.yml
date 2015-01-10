@@ -82,6 +82,21 @@ en:
         constant:
           without_doc: ""
           without_code_example: ""
+      nodejs:
+        object:
+          without_doc: "Add a comment describing the %{object_type}."
+          without_code_example: "Add a code example (optional)."
+          without_return_type: "You could add the object\'s return type."
+          without_return_description: "You could describe the return value."
+        function_parameter:
+          without_mention: "Describe the parameter \"%{ref_name}\"."
+          without_type: ""
+        function:
+          without_return_type: ""
+          without_return_description: "Describe what \"%{ref_name}\" returns."
+        constant:
+          without_doc: ""
+          without_code_example: ""
     title: "Inch CI - Documentation badges for Ruby projects - Show off your docs"
     footer: |
       Inch CI evaluates your project's inline code documentation and reports grades for each class, module and method.
