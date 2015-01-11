@@ -18,6 +18,7 @@ class Admin::ProjectsController < ApplicationController
 
   def index
     @projects = filter_collection(Project).order('created_at DESC').limit(50)
+    @languages = %w(Elixir JavaScript Ruby)
   end
 
   private

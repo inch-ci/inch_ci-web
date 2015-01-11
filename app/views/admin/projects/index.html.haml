@@ -3,6 +3,9 @@
     .widget-title
       = icon :database
       Latest projects
+      .pull-right
+        - @languages.each do |language|
+          = link_to_unless @language == language, language, params.merge(:language => language)
 
     .widget-body
       .table-responsive
