@@ -3,7 +3,7 @@ module InchCI
     IMAGE_FORMATS = %w(png svg)
     IMAGE_STYLES = %w(default flat flat-square)
     DEFAULT_IMAGE_FORMAT = IMAGE_FORMATS.first
-    DEFAULT_IMAGE_STYLE = IMAGE_STYLES.first
+    DEFAULT_IMAGE_STYLE = 'flat'
 
     def self.included(base)
       base.extend ClassMethods
