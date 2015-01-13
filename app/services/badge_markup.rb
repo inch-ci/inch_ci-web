@@ -2,7 +2,7 @@ class BadgeMarkup < Struct.new(:project, :branch)
   BASE_URL = "http://inch-ci.org"
   IMAGE_FORMATS = [:svg, :png]
   DEFAULT_IMAGE_FORMAT = IMAGE_FORMATS.first
-  IMAGE_STYLES = ['flat', 'flat-square', nil]
+  IMAGE_STYLES = [nil, 'flat-square', 'shields']
 
   def each(format = DEFAULT_IMAGE_FORMAT, style = nil, &block)
     format_map(format, style).each(&block)

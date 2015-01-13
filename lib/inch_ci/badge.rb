@@ -1,9 +1,9 @@
 module InchCI
   module BadgeMethods
     IMAGE_FORMATS = %w(png svg)
-    IMAGE_STYLES = %w(default flat flat-square)
+    IMAGE_STYLES = %w(default shields flat flat-square)
     DEFAULT_IMAGE_FORMAT = IMAGE_FORMATS.first
-    DEFAULT_IMAGE_STYLE = 'flat'
+    DEFAULT_IMAGE_STYLE = IMAGE_STYLES.first
 
     def self.included(base)
       base.extend ClassMethods

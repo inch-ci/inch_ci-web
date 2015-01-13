@@ -15,7 +15,8 @@ en:
     image_style:
       default: Default
       flat: Flat
-      flat-square: Flat (squared)
+      flat-square: "Square style"
+      shields: "shields.io style"
     markup_format:
       image_url: "Image URL:"
       md: "Markdown:"

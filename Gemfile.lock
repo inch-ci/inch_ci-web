@@ -77,7 +77,7 @@ GEM
       sparkr (>= 0.2.0)
       term-ansicolor
       yard (~> 0.8.7.5)
-    inch-badge (0.3.6)
+    inch-badge (0.4.0)
       chunky_png
     inch_ci-worker (0.3.4)
       inch
