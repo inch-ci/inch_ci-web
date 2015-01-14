@@ -16,8 +16,9 @@ class Admin::ProjectsController < ApplicationController
     end
   end
 
+  PER_PAGE = 200
   def index
-    @projects = filter_collection(Project).order('created_at DESC').limit(50)
+    @projects = filter_collection(Project).order('created_at DESC').limit(PER_PAGE)
     @languages = %w(Elixir JavaScript Ruby)
   end
 

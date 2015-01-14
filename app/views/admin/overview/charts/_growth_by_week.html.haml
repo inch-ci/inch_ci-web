@@ -2,7 +2,7 @@
   .widget
     .widget-title
       = icon :'bar-chart'
-      Growth by week
+      = link_to "Growth by week", weekly_admin_statistics_path
 
     .widget-body{:"data-scroll-down" => true}
       #chart_growth_by_week{:style => "height: 150px"}

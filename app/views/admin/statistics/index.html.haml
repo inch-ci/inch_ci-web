@@ -1,11 +1,13 @@
-
-.col-lg-6
+.col-lg-10
   .widget
     .widget-title
       = icon :calculator
-      = link_to "Raw daily numbers", daily_admin_statistics_path
+      - if action_name == 'days'
+        Raw daily numbers
+      - else
+        Raw weekly numbers
 
-    .widget-body.medium.no-padding{:"data-scroll-down" => true}
+    .widget-body
       .table-responsive
         %table.table
           %tbody
@@ -18,3 +20,12 @@
                 %tr
                   - stats.each do |value|
                     %td= value
+
+
+
+.col-lg-2
+  .widget
+    .widget-title
+      Filters
+
+    .widget-body

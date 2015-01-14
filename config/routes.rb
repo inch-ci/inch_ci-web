@@ -23,6 +23,12 @@ InchCI::Application.routes.draw do
 
     resources :builds
     resources :projects
+    resources :statistics do
+      collection do
+        get 'days', :as => :daily
+        get 'weeks', :as => :weekly
+      end
+    end
     resources :users
   end
 
