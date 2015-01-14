@@ -1,4 +1,4 @@
-.col-lg-9
+.col-lg-10
   .widget
     .widget-title
       = icon :users
@@ -30,3 +30,10 @@
                 %td= user.projects.select { |p| p.default_branch.try(:latest_revision).try(:badge_in_readme?) }.size
                 %td= user.created_at
                 %td= user.last_signin_at
+
+.col-lg-2
+  .widget
+    .widget-title
+      Filters
+
+    .widget-body

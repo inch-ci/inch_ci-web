@@ -2,10 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#page-wrapper {
+body {
   padding-top: 8px;
   background-image: image-url("topbar.png");
   background-repeat: repeat-x;
+}
+.navbar {
+  border-radius: 0;
+}
+.navbar-inverse {
+  background-color: #273759;
+  border-color: #273759;
 }
 
 .projects tr td {
