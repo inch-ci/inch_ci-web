@@ -15,3 +15,11 @@ FEATURED_PROJECT_UIDS = %w(
   github:troessner/reek
   github:visionmedia/commander
   )
+
+FEATURED_ELIXIR_PROJECT_UIDS = %w(
+  github:elixir-lang/ecto
+  github:elixir-lang/plug
+  github:phoenixframework/phoenix
+  github:edgurgel/poxa
+  github:pma/amqp
+  )

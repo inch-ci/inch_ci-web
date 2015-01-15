@@ -12,6 +12,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :featured_projects
 
+  def featured_elixir_projects
+    @featured_elixir_projects ||= FEATURED_ELIXIR_PROJECT_UIDS.map do |uid|
+      InchCI::Store::FindProject.call(uid)
+    end.compact
+  end
+  helper_method :featured_elixir_projects
+
   def code_object_path(*args)
     project_path(*args).merge(:controller => 'code_objects', :action => 'show')
   end

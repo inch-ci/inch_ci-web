@@ -122,7 +122,8 @@ en:
       Let's raise the visibility of code documentation in Ruby & Elixir!
 
       Because better inline docs mean easier contribution and more collaboration!
-    featured: "Join the movement!"
+    featured_elixir_projects: "Now with Elixir support:"
+    featured_ruby_projects: "Join hundreds of Ruby projects!"
     learn_more: "Learn more"
     project_placeholder: rrrene/inch
     project_hint: "Simply type your GitHub username/reponame"
