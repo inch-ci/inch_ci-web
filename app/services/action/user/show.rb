@@ -30,7 +30,7 @@ module Action
       end
 
       def find_projects(user)
-        InchCI::Store::FindAllProjects.call(user)
+        InchCI::Store::FindAllProjects.call(user).select(&:name)
       end
     end
   end
