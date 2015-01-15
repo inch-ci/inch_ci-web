@@ -99,7 +99,7 @@ en:
         constant:
           without_doc: ""
           without_code_example: ""
-    title: "Inch CI - Documentation badges for Ruby projects - Show off your docs"
+    title: "Inch CI - Documentation badges for Ruby & Elixir projects - Show off your docs"
     footer: |
       Inch CI evaluates your project's inline code documentation and reports grades for each class, module and method.
 
@@ -110,7 +110,7 @@ en:
       Please [create an issue](https://github.com/inch-ci/inch_ci-web/issues/new) if anything seems broken or worthy of improvement.
 
   welcome:
-    headline: "Documentation badges for Ruby projects"
+    headline: "Documentation badges for Ruby & Elixir"
     abstract: |
       Thanks to [Travis](http://travis-ci.org), the community champions testing.
 
@@ -119,7 +119,7 @@ en:
       But there is no way to lint and show off your inline docs. Until now.
     signin_hint: "You can also add your projects via GitHub:"
     abstract2: |
-      Let's raise the visibility of code documentation in Ruby!
+      Let's raise the visibility of code documentation in Ruby & Elixir!
 
       Because better inline docs mean easier contribution and more collaboration!
     featured: "Join the movement!"
