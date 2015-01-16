@@ -19,7 +19,7 @@ class StatsRetriever
     current_revisions = default_branches.map { |b|
                           b.revisions.where('created_at <= ?', timestamp).first
                         }.compact
-    @with_badges = current_revisions.select(&:badge_in_readme)
+    @projects_with_badges = current_revisions.select(&:badge_in_readme).map { |r| r.branch.project }
 
     @hooked_projects = []
     default_branches.each do |branch|
@@ -37,9 +37,7 @@ class StatsRetriever
   #
   def calc_maintainers_stats
     @maintainers = @all_projects.map(&:user_name).uniq
-    @maintainers_with_badges = @with_badges.map do |revision|
-      revision.branch.project.user_name
-    end.uniq
+    @maintainers_with_badges = @projects_with_badges.map(&:user_name)
     @maintainers_with_hooks = @hooked_projects.map(&:user_name).uniq
   end
 
@@ -65,7 +63,15 @@ class StatsRetriever
   end
 
   def with_badges
-    @with_badges.size
+    @projects_with_badges.size
+  end
+
+  def elixir_with_badges
+    @projects_with_badges.select { |p| p.language.to_s.downcase == 'elixir' }.size
+  end
+
+  def javascript_with_badges
+    @projects_with_badges.select { |p| p.language.to_s.downcase == 'javascript' }.size
   end
 
   def hooked_projects
@@ -116,6 +122,8 @@ namespace :stats do
 
     store.call("projects:all", stats.all_projects, timestamp)
     store.call("projects:badges", stats.with_badges, timestamp)
+    store.call("projects:badges:elixir", stats.elixir_with_badges, timestamp)
+    store.call("projects:badges:javascript", stats.javascript_with_badges, timestamp)
     store.call("projects:hooked", stats.hooked_projects, timestamp)
     store.call("maintainers:all", stats.maintainers, timestamp)
     store.call("maintainers:badges", stats.maintainers_with_badges, timestamp)
@@ -137,6 +145,14 @@ namespace :stats do
       formatted = timestamp.strftime('%Y-%m-%d')
       puts "#{formatted}\t#{name.ljust(20)}\t#{count.to_s.rjust(5)}"
     end
+  end
+
+  desc "Fixes stats for past TIMESTAMP"
+  task :fix => :environment do
+    timestamp = ENV['TIMESTAMP'] ? Date.parse(ENV['TIMESTAMP']) : Time.now.midnight
+
+    stats = StatsRetriever.new(timestamp)
+    store_stats(timestamp, stats, InchCI::Store::CreateOrUpdateStats)
   end
 
   desc "Show stats for the app"

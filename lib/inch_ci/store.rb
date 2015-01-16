@@ -237,6 +237,14 @@ module InchCI
     end
 
     CreateStats = -> (name, value, date = Time.now.midnight) { Statistics.create!(:date => date, :name => name, :value => value) }
+    CreateOrUpdateStats = -> (name, value, date = Time.now.midnight) {
+      existing = Statistics.where(:date => date, :name => name).first
+      if existing
+        existing.update_attribute(:value, value)
+      else
+        Statistics.create!(:date => date, :name => name, :value => value)
+      end
+    }
     IncreaseStats = -> (name, date = Time.now.midnight, init_value = 0) {
       stat = Statistics.where(:date => date, :name => name).first
       if stat
