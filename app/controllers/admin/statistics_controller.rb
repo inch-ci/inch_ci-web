@@ -21,6 +21,14 @@ class Admin::StatisticsController < ApplicationController
     render :action => "index"
   end
 
+  MONTHS_BACK = 24
+  def months
+    set_stats do
+      Statistics.where("DAY(date) = 2 AND date > ?", (MONTHS_BACK + 1).months.ago)
+    end
+    render :action => "index"
+  end
+
   private
 
   def set_stats(&block)
@@ -36,7 +44,7 @@ class Admin::StatisticsController < ApplicationController
       [
         shown_date.strftime("%a"),
         shown_date.strftime("%Y-%m-%d"),
-        val(stats, "projects:badges"),
+        val(stats, "projects:badges", false),
         val(stats, "projects:badges:ruby"),
         val(stats, "projects:badges:elixir"),
         val(stats, "projects:badges:javascript"),

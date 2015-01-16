@@ -56,6 +56,15 @@
           <li>
             <a href="<%= admin_cli_path %>"><span class="menu-icon fa fa-terminal"></span> CLI</a>
           </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="menu-icon fa fa-calendar"></span> Statistics <span class="caret"></span></a>
+
+            <ul class="dropdown-menu">
+              <li><a href="<%= daily_admin_statistics_path %>"><span class="menu-icon fa fa-calendar"></span> Daily</a></li>
+              <li><a href="<%= weekly_admin_statistics_path %>"><span class="menu-icon fa fa-calendar"></span> Weekly</a></li>
+              <li><a href="<%= monthly_admin_statistics_path %>"><span class="menu-icon fa fa-calendar"></span> Monthly</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>

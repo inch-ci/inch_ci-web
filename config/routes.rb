@@ -27,6 +27,7 @@ InchCI::Application.routes.draw do
       collection do
         get 'days', :as => :daily
         get 'weeks', :as => :weekly
+        get 'months', :as => :monthly
       end
     end
     resources :users
