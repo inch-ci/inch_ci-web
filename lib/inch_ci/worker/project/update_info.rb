@@ -33,12 +33,12 @@ module InchCI
 
           project.name = github.name
           project.description = github.description
-          project.language = github.language
-          project.languages = github.languages
           project.fork = github.fork?
           project.homepage_url = github.homepage_url
-          project.documentation_url = github.documentation_url
           project.source_code_url = github.source_code_url
+          project.documentation_url = github.documentation_url unless project.documentation_url
+          project.language = github.language unless project.language
+          project.languages = github.languages
 
           Store::SaveProject.call(project)
 
