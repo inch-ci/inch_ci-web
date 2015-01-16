@@ -1,42 +1,38 @@
-#user-projects
-  .table-responsive
-    %table.table.table-striped.projects
-      - (@languages + [nil]).each do |language|
-        %thead
-          %tr
-            %th{:colspan => 4}
-              = t("users.show.languages.#{language || :other}.header")
-              %small= t("users.show.languages.#{language || :other}.intro")
-        %tbody
-          - list = @projects.select { |p| language.nil? ? !@languages.include?(p.language) : p.language == language }
-          - list.sort_by(&:name).each do |project|
-            %tr
-              %td= link_to_project project
-              %td= project.language
-              %td.hook
-                - if project.build_on_inch_ci?
-                  - if project.builds.count > 0
-                    - if project.language == 'Ruby'
-                      - if project.hooked?
-                        = link_to t("users.show.hook_remove"), project_path(project, :action => 'remove_hook'), :method => :post, :class => "btn btn-success"
-                      - else
-                        = link_to t("users.show.hook_create"), project_path(project, :action => 'create_hook'), :method => :post, :class => "btn btn-default", :"data-toggle" => 'tooltip', :title => t("users.show.hook_create_hint")
+- _language = language || :other
+%table.table.table-striped.projects{:id => "projects-#{_language}"}
+  %thead
+    %tr
+      %th{:colspan => 4}
+        = t("users.show.languages.#{_language}.header")
+        %small= t("users.show.languages.#{_language}.intro")
+  %tbody
+    - list = @projects.select { |p| language.nil? ? !@languages.include?(p.language) : p.language == language }
+    - list.sort_by(&:name).each do |project|
+      %tr
+        %td= link_to_project project
+        %td
+          = project.language
+          - if !logged_in? || (logged_in? && current_user?)
+            %small
+              = link_to_edit_project(project)
+        %td.hook
+          - if project.build_on_inch_ci?
+            - if project.builds.count > 0
+              - if project.language == 'Ruby'
+                - if project.hooked?
+                  = link_to t("users.show.hook_remove"), project_path(project, :action => 'remove_hook'), :method => :post, :class => "btn btn-success"
                 - else
-                  %small= link_to_project project, t("users.show.languages.#{language || :other}.how_to_build")
+                  = link_to t("users.show.hook_create"), project_path(project, :action => 'create_hook'), :method => :post, :class => "btn btn-default", :"data-toggle" => 'tooltip', :title => t("users.show.hook_create_hint")
+          - else
+            %small= link_to_project project, t("users.show.languages.#{_language}.how_to_build")
 
-              %td.last
-                - if project.try(:default_branch).try(:latest_revision_id)
-                  = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg, :flat))
-                - else
-                  - if project.build_on_inch_ci?
-                    - if project.builds.count > 0
-                      .progress.progress-striped.active
-                        .progress-bar{:style => "width: 100%"}
-                    - else
-                      = link_to t("users.show.evaluate_now"), project_rebuild_path(project), :method => :post, :class => "btn btn-default"
-
-- if !@projects_without_badges.blank?
-  :javascript
-    setTimeout(function() {
-      jQuery.ajax(#{url_for(params.merge(:format => :js)).to_json});
-    }, 4000)
+        %td.last
+          - if project.try(:default_branch).try(:latest_revision_id)
+            = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg, :flat))
+          - else
+            - if project.build_on_inch_ci?
+              - if project.builds.count > 0
+                .progress.progress-striped.active
+                  .progress-bar{:style => "width: 100%"}
+              - else
+                = link_to t("users.show.evaluate_now"), project_rebuild_path(project), :method => :post, :class => "btn btn-default"
