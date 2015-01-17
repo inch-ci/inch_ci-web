@@ -4,8 +4,10 @@
       = icon :calculator
       - if action_name == 'days'
         Raw daily numbers
-      - else
+      - elsif action_name == 'weeks'
         Raw weekly numbers
+      - else
+        Raw monthly numbers
 
     .widget-body
       .table-responsive
@@ -29,3 +31,15 @@
       Filters
 
     .widget-body
+      - if action_name == 'days'
+        Days back:
+      - elsif action_name == 'weeks'
+        Weeks back:
+      - else
+        Months back:
+
+      = link_to "48", :time_units_back => 48
+      = '|'
+      = link_to "96", :time_units_back => 96
+      = '|'
+      = link_to "All", :time_units_back => 'all'

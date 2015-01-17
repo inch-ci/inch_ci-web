@@ -8,7 +8,7 @@ class Admin::StatisticsController < ApplicationController
   DAYS_BACK = 28
   def days
     set_stats do
-      Statistics.where("date > ?", (DAYS_BACK + 1).days.ago)
+      Statistics.where("date > ?", time_units_back(:days, DAYS_BACK))
     end
     render :action => "index"
   end
@@ -16,7 +16,7 @@ class Admin::StatisticsController < ApplicationController
   WEEKS_BACK = 20
   def weeks
     set_stats do
-      Statistics.where("WEEKDAY(date) = 0 AND date > ?", (WEEKS_BACK + 1).weeks.ago)
+      Statistics.where("WEEKDAY(date) = 0 AND date > ?", time_units_back(:weeks, WEEKS_BACK))
     end
     render :action => "index"
   end
@@ -24,12 +24,25 @@ class Admin::StatisticsController < ApplicationController
   MONTHS_BACK = 24
   def months
     set_stats do
-      Statistics.where("DAY(date) = 2 AND date > ?", (MONTHS_BACK + 1).months.ago)
+      Statistics.where("DAY(date) = 2 AND date > ?",time_units_back(:months, MONTHS_BACK))
     end
     render :action => "index"
   end
 
   private
+
+  def time_units_back(unit, default)
+    time_units = default
+    if val = params[:time_units_back]
+      if val == 'all'
+        return 0
+      else
+        time_units = val.to_i
+      end
+    end
+    time_units += 1 # we shift the first line in the stats
+    time_units.send(unit).ago
+  end
 
   def set_stats(&block)
     list = block.call.order('date ASC')
