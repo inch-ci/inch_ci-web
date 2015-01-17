@@ -37,7 +37,7 @@ class StatsRetriever
   #
   def calc_maintainers_stats
     @maintainers = @all_projects.map(&:user_name).uniq
-    @maintainers_with_badges = @projects_with_badges.map(&:user_name)
+    @maintainers_with_badges = @projects_with_badges.map(&:user_name).uniq
     @maintainers_with_hooks = @hooked_projects.map(&:user_name).uniq
   end
 
