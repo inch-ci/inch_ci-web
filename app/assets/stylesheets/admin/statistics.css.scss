@@ -1,3 +1,20 @@
 // Place all the styles related to the admin/statistics controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.stats-table tr td:nth-child(3),
+.stats-table tr td:nth-child(7),
+.stats-table tr td:nth-child(10) {
+    background: #FFA;
+}
+
+.stats-table tr td:nth-child(4),
+.stats-table tr td:nth-child(5),
+.stats-table tr td:nth-child(6) {
+    background: #FCE5CD;
+}
+
+
+.stats-table tr td:nth-child(13) {
+    border-right: 1px solid #ccc;
+}
