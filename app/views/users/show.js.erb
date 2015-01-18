@@ -1,1 +1,5 @@
-jQuery('#users_show').html('<%= escape_javascript render("show") %>');
+jQuery('#user-projects').html('<%= escape_javascript render("projects") %>');
+
+<% if @projects_without_badges.blank? %>
+  jQuery('#syncing').hide();
+<% end %>

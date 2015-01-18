@@ -188,7 +188,7 @@ en:
       title: "%{name} (@%{user_name})"
       empty_hint: "Your projects have not yet been synced."
       sync_hint: "Your GitHub projects have last been synced: %{time_ago} ago."
-      only_public_hint: "Showing only <strong>public, none-forked</strong> projects you own.<br> Add other projects at the end of the page."
+      only_public_hint: "<p>Showing only <strong>public, none-forked</strong> projects you own.</p><p>Add any other project by typing their <code>username/repo</code>:</p>"
       sync_now: "Sync now!"
       hook_create: "Add webhook"
       hook_create_hint: "Inch CI will update the badge whenever you push code to GitHub."
