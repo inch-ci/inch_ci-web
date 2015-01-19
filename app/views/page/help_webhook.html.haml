@@ -1,26 +1,28 @@
-.help-wrapper
-  .help-inner
-    %h1.cover-heading
-      = t('help_webhook.headline')
+.repo-wrapper
+  .repo-card
+    .repo-info
+      = render "help_header"
 
-    = markdown t('help_webhook.abstract')
+      %h2= t('help_webhook.headline')
 
-    = markdown t('help_webhook.howto1')
+      = markdown t('help_webhook.abstract')
 
-    %p.image= image_tag "help-webhook/1-repo.png"
+      = markdown t('help_webhook.howto1')
 
-    = markdown t('help_webhook.howto2')
+      %p.help-image= image_tag "help-webhook/1-repo.png"
 
-    %p.image= image_tag "help-webhook/2-settings.png"
+      = markdown t('help_webhook.howto2')
 
-    = markdown t('help_webhook.howto3')
+      %p.help-image= image_tag "help-webhook/2-settings.png"
 
-    %p.image= image_tag "help-webhook/3-webhooks.png"
+      = markdown t('help_webhook.howto3')
 
-    = markdown t('help_webhook.howto4')
+      %p.help-image= image_tag "help-webhook/3-webhooks.png"
 
-    %p.image= image_tag "help-webhook/4-add-webhook.png"
+      = markdown t('help_webhook.howto4')
 
-    = markdown t('help_webhook.howto5')
+      %p.help-image= image_tag "help-webhook/4-add-webhook.png"
 
-    %p.image= image_tag "help-webhook/5-done.png"
+      = markdown t('help_webhook.howto5')
+
+      %p.help-image= image_tag "help-webhook/5-done.png"

@@ -153,6 +153,19 @@ en:
       I'm [@rrrene](https://twitter.com/rrrene), creator of [sparkr](http://trivelop.de/sparkr) and [Inch](http://trivelop.de/inch).
 
       If you have any questions or suggestions: Hit me up [on Twitter](https://twitter.com/rrrene) or [create an issue](https://github.com/inch-ci/inch_ci-web) in the Inch CI project.
+  help_header:
+    headline: Configuration
+  help_configuration:
+    headline: ".inch.yml file - include/exclude stuff"
+    inchyml1: |
+      By default, Inch looks into `{app,lib}/**/*.rb` for Ruby source files.
+
+      You can configure which files and objects Inch considers by creating a file named `.inch.yml` in your project directory:
+    inchyml2: |
+      As you would expect, `included` sets an array of included files (or globs). This way you can point Inch to where your sources are, if they are not in `app/` or `lib/`.
+
+      `excluded` sets an array of files (or globs) to exclude from the evaluation.
+
   help_webhook:
     headline: How to configure a webhook for Inch CI
     abstract: Using this technique your project is build everytime you push changes to GitHub.
@@ -259,11 +272,14 @@ en:
 
         [Sure!](/)
 
-      about_webhook: |
+      about_help: |
+        ### Can I tell Inch which files to evaluate?
+
+        No problemo! [Learn how ...](/howto/configuration)
+
         ### Can I configure a webhook for continuous integration?
 
         Of course! [Learn how ...](/howto/webhook)
-
       about4: |
         ### What is the goal of this?
 

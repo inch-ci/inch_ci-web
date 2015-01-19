@@ -1,0 +1,21 @@
+.repo-wrapper
+  .repo-card
+    .repo-info
+      = render "help_header"
+
+      %h2= t('help_configuration.headline')
+
+      = markdown t('help_configuration.inchyml1')
+
+      %pre.code
+        = preserve do
+          :escaped
+            files:
+              # define files included in the analysis (defaults to ["{app,lib}/**/*.rb"])
+              included:
+                - plugins/**/*.rb
+              # define files excluded from the analysis (defaults to [])
+              excluded:
+                - plugins/vendor/sparkr/sparkr.rb
+
+      = markdown t('help_configuration.inchyml2')

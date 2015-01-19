@@ -15,6 +15,7 @@ InchCI::Application.routes.draw do
 
   get 'learn_more' => 'page#about', :as => :about
   get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook
+  get 'howto/configuration' => 'page#help_configuration', :as => :help_configuration
   root 'page#welcome'
 
   namespace :admin do
