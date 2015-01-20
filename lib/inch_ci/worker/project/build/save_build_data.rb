@@ -18,12 +18,17 @@ module InchCI
           def initialize(build, build_data)
             @build = build
             @build_data = BuildData.new(build_data)
-            Store.transaction do
-              branch = ensure_project_and_branch_exist
-              if @build_data.success?
-                handle_successful_build(branch)
-              else
-                handle_failed_build(branch)
+            if @build_data.status == 'deffered'
+              # project will build through JSON API
+              Store::RemoveBuild.call(@build)
+            else
+              Store.transaction do
+                branch = ensure_project_and_branch_exist
+                if @build_data.success?
+                  handle_successful_build(branch)
+                else
+                  handle_failed_build(branch)
+                end
               end
             end
           end

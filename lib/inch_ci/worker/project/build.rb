@@ -15,8 +15,9 @@ module InchCI
         # @return [Build]
         def self.enqueue(url, branch_name = 'master', revision_uid = nil, trigger = 'manual')
           branch = Store::EnsureProjectAndBranch.call(url, branch_name)
+          project = branch.project
           build = Store::CreateBuild.call(branch, trigger)
-          ShellInvocation.perform_async(url, branch_name, revision_uid, trigger, build.id)
+          ShellInvocation.perform_async(url, branch_name, revision_uid, trigger, build.id, project.language)
           build
         end
 
@@ -34,9 +35,9 @@ module InchCI
           BIN = "bundle exec inch_ci-worker build"
 
           # @api private
-          def perform(url, branch_name = 'master', revision_uid = nil, trigger = 'manual', build_id = nil)
+          def perform(url, branch_name = 'master', revision_uid = nil, trigger = 'manual', build_id = nil, language = nil)
             build = ensure_running_build(url, branch_name, trigger, build_id)
-            stdout_str, stderr_str, status = Open3.capture3("#{BIN} #{url.inspect} #{branch_name} #{revision_uid}")
+            stdout_str, stderr_str, status = Open3.capture3("#{BIN} #{url.inspect} #{branch_name} #{revision_uid} --language=#{language}")
             HandleWorkerOutput.new(stdout_str, stderr_str, build)
           end
 
