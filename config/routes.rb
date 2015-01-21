@@ -21,11 +21,13 @@ InchCI::Application.routes.draw do
   namespace :admin do
     get 'overview' => 'overview#index'
     get 'cli' => 'cli#index'
+    get 'badges/added' => 'badges#added'
 
     resources :builds
     resources :projects
     resources :statistics do
       collection do
+        get 'added_badges', :as => :added_badges
         get 'days', :as => :daily
         get 'weeks', :as => :weekly
         get 'months', :as => :monthly
