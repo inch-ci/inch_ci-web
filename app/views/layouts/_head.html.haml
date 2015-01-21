@@ -1,0 +1,16 @@
+%head
+  %title
+    = @project ? "#{@project.name} - " : nil
+    = t("shared.title")
+  = stylesheet_link_tag    "application", media: "all"
+  = javascript_include_tag "application"
+  = csrf_meta_tags
+  %meta{:charset => "utf-8"}
+  %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+  %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+  %meta{:content => "", :name => "description"}
+  %meta{:content => "", :name => "author"}
+
+  /[if lt IE 9]
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
