@@ -175,6 +175,8 @@ en:
     howto4: "... and use http://inch-ci.org/rebuild as Payload URL:"
     howto5: "Click *Add webhook* and you are good to go!"
   builds:
+    status:
+      deffered: "prepare"
     index:
       title: Recent builds
       title_with_project: "Recent builds for %{project_name}"

@@ -7,6 +7,7 @@ module BuildsHelper
     {
       'created' => '',
       'running' => :info,
+      'deffered' => :success,
       'success' => :success,
       'duplicate' => :warning,
     }[build.status] || :danger
@@ -16,11 +17,13 @@ module BuildsHelper
     key = {
       'created' => :"circle-o",
       'running' => :"dot-circle-o",
+      'deffered' => :"arrow-up",
       'duplicate' => :"check-square",
       'success' => :check,
       'failed:retriever' => :exclamation,
     }[build.status]
-    icon(key || :question, :title => build.status)
+    title = t("builds.status.#{build.status}", :default => build.status)
+    icon(key || :question, :title => title)
   end
 
   def build_trigger_icon(build)
