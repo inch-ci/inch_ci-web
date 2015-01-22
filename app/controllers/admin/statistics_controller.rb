@@ -100,10 +100,18 @@ class Admin::StatisticsController < ApplicationController
     value = stats[key].to_i
     change = value - @old_stats[key].to_i
     change = "+#{change}" if change > 0
-    @old_stats[key] = value
     result = value.to_s
-    result << " (#{change})" if add_change
-    result
+    if key == "projects:badges"
+      url = url_for(:controller => 'admin/badges', :action => 'added',
+        :date_to => stats['date'], :date_from => @old_stats['date'])
+      result << " (<a href=\"#{url}\">#{change}</a>)"
+    end
+    if add_change
+      result << " (#{change})"
+    end
+    @old_stats['date'] = stats['date']
+    @old_stats[key] = value
+    result.html_safe
   end
 
 end

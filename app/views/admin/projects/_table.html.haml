@@ -1,0 +1,26 @@
+.table-responsive
+  %table.table.projects
+    %thead
+      %tr
+        %th #
+        %th GitHub
+        %th Origin
+        %th Date added
+        %th Language
+        %th Builds
+        %th
+    %tbody
+      - projects.each do |project|
+        - if project.default_branch
+          %tr{:class => created_at_classes(project)}
+            %td= link_to_project(project, project.id)
+            %td= link_to(project.name, project.source_code_url, :target => '_blank', :class => 'external')
+            %td= project.origin
+            %td= project.created_at.strftime('%Y-%m-%d')
+            %td= link_to project.language, :language => project.language
+            %td= link_to icon(:signal), admin_builds_path(:service => project.service_name, :user => project.user_name, :repo => project.repo_name)
+            %td.text-right
+              - if project.default_branch.latest_revision
+                - if project.default_branch.latest_revision.badge_in_readme?
+                  %span.text-success= icon(:check)
+                = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg))

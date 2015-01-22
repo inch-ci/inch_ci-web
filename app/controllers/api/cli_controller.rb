@@ -13,6 +13,9 @@ module Api
     end
 
     def run
+      # let's ensure backwards compatibility
+      params[:language] = 'javascript' if params[:language] == 'nodejs'
+
       if valid_params?
         dump = dump_request_to_file
         args = cli_args(dump) + [{:ui => buffered_ui}]
