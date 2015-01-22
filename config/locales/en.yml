@@ -131,7 +131,7 @@ en:
   about:
     headline: "What is Inch CI?"
     abstract: |
-      This project is an attempt to raise the visibility of code documentation in Ruby. It provides badges to include in your project's README, to show people that documenting code is a cool thing.
+      This project is an attempt to raise the visibility of documentation in Open Source. It provides badges to include in your project's README, to show people that documenting code is a cool thing.
 
       The badges are based on Inch and look like this:
       ![Inline docs](%{badge_image_url})
@@ -261,7 +261,7 @@ en:
       suggestions: Suggestions <span class=badge>%{suggestion_count}</span>
     page:
       about1: |
-        ## Let's raise the visibility of documentation in %{project_language}!
+        ## Let's raise the visibility of documentation in Open Source!
 
         This page is for <code>%{project_nwo}</code> and is part of a project called "Inch CI", showing documentation measurements provided by [Inch](http://trivelop.de/inch).
         <span style="white-space: nowrap;">Inch CI</span> also provides a badge: <img src="%{badge_image_url}">
