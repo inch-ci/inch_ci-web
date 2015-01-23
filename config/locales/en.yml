@@ -84,7 +84,7 @@ en:
         constant:
           without_doc: ""
           without_code_example: ""
-      nodejs:
+      java_script:
         object:
           without_doc: "Add a comment describing the %{object_type}."
           without_code_example: "Add a code example (optional)."
