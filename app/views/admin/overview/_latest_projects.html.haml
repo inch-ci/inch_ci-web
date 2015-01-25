@@ -15,6 +15,7 @@
                 %tr{:class => created_at_classes(project)}
                   %td= link_to_project(project, project.id)
                   %td= link_to(project.name, project.source_code_url, :target => '_blank')
+                  %td= link_to project.language, admin_projects_path(:language => project.language)
                   %td.text-right
                     - if project.default_branch.latest_revision
                       - if project.default_branch.latest_revision.badge_in_readme?
