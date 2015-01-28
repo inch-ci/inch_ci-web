@@ -33,14 +33,14 @@
   .table-responsive{:role => 'tabpanel'}
     %ul.nav.nav-tabs{:role => 'tablist'}
       - (@languages + [nil]).each_with_index do |language, index|
-        - _language = language || :other
-        %li{:role => 'presentation', :class => index == 0 ? :active : nil}
+        - _language = language || 'other'
+        %li{:role => 'presentation', :class => _language == @active_tab ? :active : nil}
           = link_to t("users.show.languages.#{_language}.header"), "##{_language}", :role => 'tab', :"data-toggle" => 'tab'
 
     .tab-content
       - (@languages + [nil]).each_with_index do |language, index|
-        - _language = language || :other
-        .tab-pane{:role => 'tabpanel', :id => _language, :class => index == 0 ? :active : nil}
+        - _language = language || 'other'
+        .tab-pane{:role => 'tabpanel', :id => _language, :class => _language == @active_tab ? :active : nil}
           = render "projects", :language => language
 
     %table.table.table-striped.projects
