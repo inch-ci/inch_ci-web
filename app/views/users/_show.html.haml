@@ -49,12 +49,3 @@
           %th{:colspan => 4}
             = t("users.show.add_project.header")
             %small= t("users.show.add_project.intro")
-
-
-  = form_tag(projects_path, :method => :post, :class => 'form-inline') do
-    .form-group{:class => flash[:error] ? 'has-error' : nil}
-      = text_field_tag "repo_url", nil, :class => "form-control", :placeholder => t("users.show.add_project.placeholder")
-      = submit_tag t("users.show.add_project.submit"), :class => "btn btn-default"
-      - flash[:error].tap do |error_message|
-        .error
-          = error_message
