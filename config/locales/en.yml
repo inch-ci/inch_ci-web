@@ -220,6 +220,10 @@ en:
           header: "Elixir projects"
           intro: "Inch CI can now also evaluate Elixir projects, but they have to be build by Travis"
           how_to_build: "How to configure Travis to build this project"
+        JavaScript:
+          header: "JavaScript projects"
+          intro: "The next language to be supported by Inch CI"
+          how_to_build: "How to join the JavaScript beta"
         other:
           header: "Other projects"
           intro: "Here you see all your other none-forked projects"

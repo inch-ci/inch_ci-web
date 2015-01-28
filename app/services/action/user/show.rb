@@ -5,7 +5,7 @@ module Action
     class Show
       include InchCI::Action
 
-      LANGUAGES = %w(Ruby Elixir)
+      LANGUAGES = %w(Ruby Elixir JavaScript)
 
       exposes :user, :projects, :projects_without_badges, :languages
 
