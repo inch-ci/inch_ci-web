@@ -32,6 +32,8 @@
         = render "wait_for_build", :build => @pending_build
       - else
         = render "stats"
+        = yield(:after_stats)
+
         = render "subnavi"
 
         = yield

@@ -228,6 +228,11 @@ en:
   projects:
     create:
       url_not_found: "No project was found under that URL."
+    form_edit:
+      label:
+        language: "Language:"
+        documentation_url: "Documentation URL:"
+      submit: "Save changes"
     topbar:
       info:
         build_number: "Build"
@@ -237,6 +242,11 @@ en:
         running_time: "Started"
         branch_name: Branch
         revision_uid: Revision
+        language: Language
+        edit_all: "(%{link})"
+        edit_link: "change"
+        edit_submit: "Change"
+        edit_signin_hint: "Only the owner of this project can change the evaluation language. Please sign in via GitHub."
         message: Message
         author_name: Author
         documentation_url: Documentation

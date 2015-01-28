@@ -32,6 +32,12 @@ module ProjectsHelper
     t("projects.topbar.info.builds_all", :link => link).html_safe
   end
 
+  def link_to_edit_project(project)
+    url = edit_project_path(project)
+    link = link_to(t("projects.topbar.info.edit_link"), url)
+    t("projects.topbar.info.edit_all", :link => link).html_safe
+  end
+
   def link_to_project(project, text = project.name)
     link_to text, project_path(project)
   end

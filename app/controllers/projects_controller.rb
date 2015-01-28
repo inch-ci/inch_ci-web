@@ -37,6 +37,19 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+    process_project_action Action::Project::Show
+  end
+
+  def update
+    action = Action::Project::Update.new(current_user, params)
+    if action.success?
+      redirect_to project_url(action.project)
+    else
+      redirect_to edit_project_url(action.project)
+    end
+  end
+
   def history
     process_project_action Action::Project::Show
   end

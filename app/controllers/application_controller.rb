@@ -46,6 +46,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :project_path
 
+  def edit_project_path(*args)
+    project_path(*args).merge(:action => 'edit')
+  end
+  helper_method :edit_project_path
+
   def project_build_history_path(*args)
     project_path(*args).merge(:controller => 'builds', :action => 'index')
   end
@@ -109,6 +114,11 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :current_user
+
+  def current_user?(user = @user)
+    logged_in? && user && user.id == current_user.id
+  end
+  helper_method :current_user?
 
   def logged_in?
     !current_user.nil?

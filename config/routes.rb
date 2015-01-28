@@ -63,6 +63,9 @@ InchCI::Application.routes.draw do
   post "#{triple}(/branch/:branch)/create_hook" => 'projects#create_hook', :constraints => triple_constraints
   post "#{triple}(/branch/:branch)/remove_hook" => 'projects#remove_hook', :constraints => triple_constraints
 
+  get  "#{triple}/edit" => 'projects#edit', :constraints => triple_constraints
+  put  "#{triple}" => 'projects#update', :constraints => triple_constraints
+
   post 'rebuild' => 'projects#rebuild_via_hook'
 
   resources :builds
