@@ -1,12 +1,11 @@
-- content_for(:after_stats) do
-  - if logged_in?
-    = render "form_edit"
-  - else
-    .edit-signin-hint
-      %p= t("projects.topbar.info.edit_signin_hint")
+.repo-wrapper
+  .repo-card
+    = render "badge_selector"
 
+    = render "topbar"
 
-
-#projects_page= render 'show'
-
-= promo_hint.html_safe
+    - if logged_in?
+      = render "form_edit"
+    - else
+      .edit-signin-hint
+        %p= t("projects.topbar.info.edit_signin_hint")
