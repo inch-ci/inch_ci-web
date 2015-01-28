@@ -67,6 +67,14 @@
                   %a{:href => monthly_admin_statistics_path}
                     = icon :calendar
                     Monthly
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              %a{:href => root_path, :title => "Homepage", :target => "_blank"}
+                = icon :home
+            %li
+              %a{:href => "https://github.com/inch-ci/inch_ci-web/issues", :title => "GitHub Issues", :target => "_blank"}
+                = icon :'github-alt'
+
     #page-wrapper.active
       #content-wrapper
         .page-content
