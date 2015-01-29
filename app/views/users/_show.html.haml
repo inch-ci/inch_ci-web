@@ -42,10 +42,3 @@
         - _language = language || 'other'
         .tab-pane{:role => 'tabpanel', :id => _language, :class => _language == @active_tab ? :active : nil}
           = render "projects", :language => language
-
-    %table.table.table-striped.projects
-      %thead
-        %tr
-          %th{:colspan => 4}
-            = t("users.show.add_project.header")
-            %small= t("users.show.add_project.intro")
