@@ -9,6 +9,10 @@ class Admin::BadgesController < ApplicationController
     @projects = @projects_to - @projects_from
   end
 
+  def in_readme
+    @projects = _projects_with_badges_before(Time.now)
+  end
+
   private
 
   def projects_with_badges_before(timestamp)

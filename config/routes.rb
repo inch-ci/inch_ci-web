@@ -23,6 +23,7 @@ InchCI::Application.routes.draw do
     get 'overview' => 'overview#index'
     get 'cli' => 'cli#index'
     get 'badges/added' => 'badges#added'
+    get 'badges/in_readme' => 'badges#in_readme'
 
     resources :builds
     resources :projects
