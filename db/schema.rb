@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150103111834) do
+ActiveRecord::Schema.define(version: 20150201151745) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -111,7 +111,12 @@ ActiveRecord::Schema.define(version: 20150103111834) do
     t.text     "languages"
     t.boolean  "fork"
     t.integer  "github_hook_id"
-    t.boolean  "github_hook_active", default: false
+    t.boolean  "github_hook_active",         default: false
+    t.boolean  "badge_generated",            default: false
+    t.integer  "badge_filled_in_percent"
+    t.boolean  "badge_in_readme",            default: false
+    t.datetime "badge_in_readme_added_at"
+    t.datetime "badge_in_readme_removed_at"
   end
 
   add_index "projects", ["uid"], name: "index_projects_on_uid", using: :btree

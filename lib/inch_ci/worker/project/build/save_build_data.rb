@@ -65,6 +65,29 @@ module InchCI
             GenerateBadge.call(project, branch, code_objects)
           end
 
+          def update_badge_information(project, branch, revision)
+            return unless branch == project.default_branch
+
+            relevant_code_objects = InchCI::Store::FindRelevantCodeObjects.call(revision)
+            undocumented_code_objects = relevant_code_objects.select { |code_object| code_object.grade == 'U' }
+
+            project.badge_generated = true
+            project.badge_in_readme = revision.badge_in_readme
+            if relevant_code_objects.size > 0
+              project.badge_filled_in_percent = 100 - (undocumented_code_objects.size / relevant_code_objects.size.to_f * 100).to_i
+            end
+
+            if project.badge_in_readme_added_at.nil? && revision.badge_in_readme
+              project.badge_in_readme_added_at = revision.created_at
+            end
+            if project.badge_in_readme_added_at && !revision.badge_in_readme &&
+                                    project.badge_in_readme_removed_at.nil?
+              project.badge_in_readme_removed_at = revision.created_at
+            end
+
+            Store::SaveProject.call(project)
+          end
+
           def handle_failed_build(branch)
             Store::UpdateFinishedBuild.call(@build, nil, @build_data)
           end
@@ -87,6 +110,7 @@ module InchCI
               end
             end
             generate_badge(branch.project, branch, revision)
+            update_badge_information(branch.project, branch, revision)
             Store::UpdateFinishedBuild.call(@build, revision, @build_data)
           end
 
