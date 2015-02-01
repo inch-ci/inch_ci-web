@@ -20,7 +20,7 @@
             %td= link_to project.language, :language => project.language
             %td= link_to icon(:signal), admin_builds_path(:service => project.service_name, :user => project.user_name, :repo => project.repo_name)
             %td.text-right
-              - if project.default_branch.latest_revision
-                - if project.default_branch.latest_revision.badge_in_readme?
+              - if project.badge_generated?
+                - if project.badge_in_readme?
                   %span.text-success= icon(:check)
                 = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg))

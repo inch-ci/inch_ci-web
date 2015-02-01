@@ -28,6 +28,12 @@ class Admin::ProjectsController < ApplicationController
     if params[:language]
       arel = arel.where('LOWER(language) = ?', params[:language].to_s.downcase)
     end
+    if params[:badge_in_readme]
+      arel = arel.where(:badge_in_readme => true)
+    end
+    if params[:badge_generated]
+      arel = arel.where(:badge_generated => true)
+    end
     if service = params[:service]
       like = "#{service}:"
       if user_name = params[:user]

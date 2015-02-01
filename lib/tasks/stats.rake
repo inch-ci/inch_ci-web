@@ -15,15 +15,14 @@ class StatsRetriever
   # Project and badges stats
   #
   def calc_project_and_badge_usage_stats
-    default_branches = @all_projects.map(&:default_branch).compact
-    current_revisions = default_branches.map { |b|
-                          b.revisions.where('created_at <= ?', timestamp).first
-                        }.compact
-    @projects_with_badges = current_revisions.select(&:badge_in_readme).map { |r| r.branch.project }
+    @projects_with_badges = @all_projects
+                              .where('badge_in_readme_added_at <= ?', @timestamp)
+                              .where('badge_in_readme_removed_at IS NULL OR badge_in_readme_removed_at > ?', @timestamp)
 
     @hooked_projects = []
+    default_branches = @all_projects.map(&:default_branch).compact
     default_branches.each do |branch|
-      arel = Build.where('created_at <= ?', timestamp)
+      arel = Build.where('created_at <= ?', @timestamp)
                   .where(:branch_id => branch.id, :trigger => 'hook')
       if arel.count > 0
         @hooked_projects << branch.project
@@ -116,7 +115,6 @@ class StatsRetriever
 end
 
 namespace :stats do
-
   def store_stats(timestamp, stats, store = nil, &block)
     store = store || block
 
