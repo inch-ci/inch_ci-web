@@ -34,6 +34,12 @@ class Admin::ProjectsController < ApplicationController
     if params[:badge_generated]
       arel = arel.where(:badge_generated => true)
     end
+    if filled = params[:badge_filled_greater_than]
+      arel = arel.where('badge_filled_in_percent >= ?', filled)
+    end
+    if uid = params[:uid]
+      arel = arel.where('uid LIKE ?', "%#{uid}%")
+    end
     if service = params[:service]
       like = "#{service}:"
       if user_name = params[:user]

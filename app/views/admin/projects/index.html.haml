@@ -1,11 +1,48 @@
-.col-lg-12
+.col-lg-10
   .widget
     .widget-title
       = icon :database
       Latest projects
-      .pull-right
-        - @languages.each do |language|
-          = link_to_unless @language == language, language, params.merge(:language => language)
 
     .widget-body
       = render 'table', :projects => @projects
+
+.col-lg-2
+  .widget
+    .widget-title
+      Filters
+
+    .widget-body
+      = form_tag(params, :method => :get) do
+        .form-group
+          = label_tag :language, "Language"
+          = select_tag(:language, options_for_select(['', *@languages], params[:language]), :class => 'form-control')
+
+        .form-group
+          = label_tag :badge_filled_greater_than, "Only badges filled more than"
+          = select_tag(:badge_filled_greater_than, options_for_select(['', 0, 25, 50, 75], params[:badge_filled_greater_than]), :class => 'form-control')
+
+        .form-group
+          = check_box_tag :badge_generated, '1', !!params[:badge_generated]
+          = label_tag :badge_generated, "Filter to generated badges"
+
+        .form-group
+          = check_box_tag :badge_in_readme, '1', !!params[:badge_in_readme]
+          = label_tag :badge_in_readme, "Only projects sporting badges"
+
+        = submit_tag "Show projects"
+
+    .widget-title
+      Search
+
+    .widget-body
+      = form_tag(params, :method => :get) do
+        .form-group
+          = text_field_tag :uid, params[:uid], :class => 'form-control'
+
+        = submit_tag "Search"
+
+    .widget-title
+      Displaying
+      = @projects.size
+      projects.
