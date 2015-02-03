@@ -25,7 +25,7 @@ class Admin::ProjectsController < ApplicationController
   private
 
   def filter_collection(arel)
-    if params[:language]
+    if params[:language].present?
       arel = arel.where('LOWER(language) = ?', params[:language].to_s.downcase)
     end
     if params[:badge_in_readme]
@@ -34,10 +34,10 @@ class Admin::ProjectsController < ApplicationController
     if params[:badge_generated]
       arel = arel.where(:badge_generated => true)
     end
-    if filled = params[:badge_filled_greater_than]
+    if filled = params[:badge_filled_greater_than].present?
       arel = arel.where('badge_filled_in_percent >= ?', filled)
     end
-    if uid = params[:uid]
+    if uid = params[:uid].present?
       arel = arel.where('uid LIKE ?', "%#{uid}%")
     end
     if service = params[:service]
