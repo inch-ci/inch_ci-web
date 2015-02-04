@@ -19,7 +19,7 @@ module Action
         end
         if @project && @branch
           @badge = InchCI::BadgeRequest.new(@project.service_name, @project.user_name, @project.repo_name, @branch.name)
-          format = params[:format].to_s
+          format = 'svg' # we only serve SVG badges
           style = params[:style]
           @badge_filename = @badge.local_filename(format, style)
           @content_type = content_types[format]

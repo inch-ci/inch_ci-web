@@ -25,7 +25,7 @@ class ProjectPresenter < BasePresenter
   end
 
   def language?(language)
-    project.language.to_s.underscore == language.to_s.underscore
+    project.language.to_s.downcase == language.to_s.downcase
   end
 
   def name_without_owner

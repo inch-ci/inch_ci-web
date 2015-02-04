@@ -84,7 +84,7 @@ en:
         constant:
           without_doc: ""
           without_code_example: ""
-      nodejs:
+      java_script:
         object:
           without_doc: "Add a comment describing the %{object_type}."
           without_code_example: "Add a code example (optional)."
@@ -131,7 +131,7 @@ en:
   about:
     headline: "What is Inch CI?"
     abstract: |
-      This project is an attempt to raise the visibility of code documentation in Ruby. It provides badges to include in your project's README, to show people that documenting code is a cool thing.
+      This project is an attempt to raise the visibility of documentation in Open Source. It provides badges to include in your project's README, to show people that documenting code is a cool thing.
 
       The badges are based on Inch and look like this:
       ![Inline docs](%{badge_image_url})
@@ -203,7 +203,7 @@ en:
       title: "%{name} (@%{user_name})"
       empty_hint: "Your projects have not yet been synced."
       sync_hint: "Your GitHub projects have last been synced: %{time_ago} ago."
-      only_public_hint: "<p>Showing only <strong>public, none-forked</strong> projects you own.</p><p>Add any other project by typing their <code>username/repo</code>:</p>"
+      only_public_hint: "<p>Showing only <strong>public, none-forked</strong> projects you own.</p><p>Add any other project by typing its <code>username/repo</code>:</p>"
       sync_now: "Sync now!"
       hook_create: "Add webhook"
       hook_create_hint: "Inch CI will update the badge whenever you push code to GitHub."
@@ -222,6 +222,10 @@ en:
           header: "Elixir projects"
           intro: "Inch CI can now also evaluate Elixir projects, but they have to be build by Travis"
           how_to_build: "How to configure Travis to build this project"
+        JavaScript:
+          header: "JavaScript projects"
+          intro: "The next language to be supported by Inch CI"
+          how_to_build: "How to join the JavaScript beta"
         other:
           header: "Other projects"
           intro: "Here you see all your other none-forked projects"
@@ -230,6 +234,11 @@ en:
   projects:
     create:
       url_not_found: "No project was found under that URL."
+    form_edit:
+      label:
+        language: "Language:"
+        documentation_url: "Documentation URL:"
+      submit: "Save changes"
     topbar:
       info:
         build_number: "Build"
@@ -239,6 +248,11 @@ en:
         running_time: "Started"
         branch_name: Branch
         revision_uid: Revision
+        language: Language
+        edit_all: "(%{link})"
+        edit_link: "change"
+        edit_submit: "Change"
+        edit_signin_hint: "Only the owner of this project can change the evaluation language. Please sign in via GitHub."
         message: Message
         author_name: Author
         documentation_url: Documentation
@@ -263,7 +277,7 @@ en:
       suggestions: Suggestions <span class=badge>%{suggestion_count}</span>
     page:
       about1: |
-        ## Let's raise the visibility of documentation in %{project_language}!
+        ## Let's raise the visibility of documentation in Open Source!
 
         This page is for <code>%{project_nwo}</code> and is part of a project called "Inch CI", showing documentation measurements provided by [Inch](http://trivelop.de/inch).
         <span style="white-space: nowrap;">Inch CI</span> also provides a badge: <img src="%{badge_image_url}">

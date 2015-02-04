@@ -14,6 +14,7 @@ InchCI::Application.routes.draw do
   end
 
   get 'learn_more' => 'page#about', :as => :about
+  get 'lets_do_javascript' => 'page#help_javascript_beta', :as => :lets_do_javascript
   get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook
   get 'howto/configuration' => 'page#help_configuration', :as => :help_configuration
   root 'page#welcome'
@@ -22,6 +23,7 @@ InchCI::Application.routes.draw do
     get 'overview' => 'overview#index'
     get 'cli' => 'cli#index'
     get 'badges/added' => 'badges#added'
+    get 'badges/in_readme' => 'badges#in_readme'
 
     resources :builds
     resources :projects
@@ -61,6 +63,9 @@ InchCI::Application.routes.draw do
   post "#{triple}(/branch/:branch)/update_info" => 'projects#update_info', :constraints => triple_constraints
   post "#{triple}(/branch/:branch)/create_hook" => 'projects#create_hook', :constraints => triple_constraints
   post "#{triple}(/branch/:branch)/remove_hook" => 'projects#remove_hook', :constraints => triple_constraints
+
+  get  "#{triple}/edit" => 'projects#edit', :constraints => triple_constraints
+  put  "#{triple}" => 'projects#update', :constraints => triple_constraints
 
   post 'rebuild' => 'projects#rebuild_via_hook'
 

@@ -8,15 +8,6 @@ class ProjectsController < ApplicationController
 
   skip_before_action :verify_authenticity_token, :only => [:rebuild_via_hook]
 
-  def create_hook
-    action = Action::Project::ActivateHook.new(current_user, params)
-    if !action.success?
-      expose action
-      flash[:error] = "Could not create hook for #{@project.name}"
-    end
-    redirect_to user_url(current_user)
-  end
-
   def badge
     action = Action::Project::Badge.new(params)
     if action.success?
@@ -34,6 +25,28 @@ class ProjectsController < ApplicationController
       expose action
       flash[:error] = t("projects.create.url_not_found")
       render :template => "page/welcome"
+    end
+  end
+
+  def create_hook
+    action = Action::Project::ActivateHook.new(current_user, params)
+    expose action
+    if !action.success?
+      flash[:error] = "Could not create hook for #{@project.name}"
+    end
+    redirect_to user_url(current_user, :tab => @project.language)
+  end
+
+  def edit
+    process_project_action Action::Project::Show
+  end
+
+  def update
+    action = Action::Project::Update.new(current_user, params)
+    if action.success?
+      redirect_to project_url(action.project)
+    else
+      redirect_to edit_project_url(action.project)
     end
   end
 
@@ -57,11 +70,11 @@ class ProjectsController < ApplicationController
 
   def remove_hook
     action = Action::Project::DeactivateHook.new(current_user, params)
+    expose action
     if !action.success?
-      expose action
       flash[:error] = "Could not remove hook for #{@project.name}"
     end
-    redirect_to user_url(current_user)
+    redirect_to user_url(current_user, :tab => @project.language)
   end
 
   def suggestions

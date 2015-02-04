@@ -1,0 +1,11 @@
+.repo-wrapper
+  .repo-card
+    = render "badge_selector"
+
+    = render "topbar"
+
+    - if logged_in?
+      = render "form_edit"
+    - else
+      .edit-signin-hint
+        %p= t("projects.topbar.info.edit_signin_hint")

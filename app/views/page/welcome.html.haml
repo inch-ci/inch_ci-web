@@ -9,14 +9,18 @@
 
 %hr
 
-%h1= t('welcome.featured_elixir_projects')
-
-= render "projects/featured", :featured_projects => featured_elixir_projects
+.well
+  %p
+    Coming soon:
+    Let's do JavaScript on Inch CI!
+  %p
+    = link_to "Learn how to help ...", lets_do_javascript_path
 
 %hr
 
-%p= t('welcome.signin_hint')
-%p= link_to icon(:github)+' '+t("navigation.signin"), signin_path, :class => 'btn btn-lg btn-signin'
+%h1= t('welcome.featured_elixir_projects')
+
+= render "projects/featured", :featured_projects => featured_elixir_projects
 
 %hr
 
@@ -28,3 +32,8 @@
 
 %p.lead
   = link_to t('welcome.learn_more'), about_path, :class => 'btn btn-lg btn-default'
+
+%hr
+
+%p= t('welcome.signin_hint')
+%p= link_to icon(:github)+' '+t("navigation.signin"), signin_path, :class => 'btn btn-lg btn-signin'

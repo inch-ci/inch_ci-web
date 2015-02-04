@@ -5,9 +5,11 @@ module Action
     class Show
       include InchCI::Action
 
-      LANGUAGES = ['Ruby', 'Elixir']
+      LANGUAGES = %w(Ruby Elixir JavaScript)
+      DEFAULT_TAB = LANGUAGES.first
 
-      exposes :user, :projects, :projects_without_badges, :languages
+      exposes :user, :projects, :projects_without_badges, :languages,
+              :active_tab
 
       def initialize(current_user, params)
         if user = find_user(params)
@@ -18,6 +20,7 @@ module Action
             project.language == 'Ruby' &&
               project.default_branch.try(:latest_revision_id).nil?
           end
+          @active_tab = params[:tab] || DEFAULT_TAB
         else
           raise "Not found: #{params}"
         end

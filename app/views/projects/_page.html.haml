@@ -10,19 +10,30 @@
             .how_to_travis
               - if @project.language?(:elixir)
                 = render "shared/how_to_travis_elixir"
+              - elsif @project.language?(:javascript)
+                .promo-text
+                  %p
+                    JavaScript support is not yet public.
+                  %p
+                    The good news is you can
+                    = link_to "help and get a badge anyway!", lets_do_javascript_path
         - else
-          %p.start_build
-            %em= t('projects.start_build.info')
-            = icon('level-up')
+          - if !@project.language?(:javascript)
+            %p.start_build
+              %em= t('projects.start_build.info')
+              = icon('level-up')
 
     - else
       = render "badge_selector"
 
       = render "topbar"
+
       - if @pending_build
         = render "wait_for_build", :build => @pending_build
       - else
         = render "stats"
+        = yield(:after_stats)
+
         = render "subnavi"
 
         = yield

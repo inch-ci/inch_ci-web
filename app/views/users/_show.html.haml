@@ -1,0 +1,44 @@
+.topbar
+  %h1
+    = t("users.show.title", :name => @user.name, :user_name => @user.user_name)
+    = link_to image_tag("GitHub-Mark-32px.png", :class => "github-logo"), @user.github_url, :target => '_blank'
+
+  - if current_user?
+    .pull-left
+      %p.description
+        = t(@projects.empty? ? ".empty_hint" : ".sync_hint", :time_ago => @user.last_synced_projects_at && time_ago_in_words(@user.last_synced_projects_at))
+
+    .pull-right
+      .btn-group
+        = link_to t(".sync_now"), sync_projects_path, :class => "btn btn-default", :method => :post, :"data-sync-projects" => true
+    %div{:style => 'clear:both'}
+
+.stats#syncing{:style => 'display:none'}
+  .progress.progress-striped.active
+    .progress-bar.progress-bar-U{:style => "width: 100%"}
+
+.repo-info
+  .explanation
+    %p
+      = t(".only_public_hint").html_safe
+
+    = form_tag(projects_path, :method => :post, :class => 'form-inline', :id => 'add-user-project') do
+      .form-group{:class => flash[:error] ? 'has-error' : nil}
+        = text_field_tag "repo_url", nil, :class => "form-control", :placeholder => t("users.show.add_project.placeholder")
+        = submit_tag t("users.show.add_project.submit"), :class => "btn btn-default"
+        - flash[:error].tap do |error_message|
+          .error
+            = error_message
+
+  .table-responsive{:role => 'tabpanel'}
+    %ul.nav.nav-tabs{:role => 'tablist'}
+      - (@languages + [nil]).each_with_index do |language, index|
+        - _language = language || 'other'
+        %li{:role => 'presentation', :class => _language == @active_tab ? :active : nil}
+          = link_to t("users.show.languages.#{_language}.header"), "##{_language}", :role => 'tab', :"data-toggle" => 'tab'
+
+    .tab-content
+      - (@languages + [nil]).each_with_index do |language, index|
+        - _language = language || 'other'
+        .tab-pane{:role => 'tabpanel', :id => _language, :class => _language == @active_tab ? :active : nil}
+          = render "projects", :language => language

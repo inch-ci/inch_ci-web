@@ -1,5 +1,11 @@
-jQuery('#user-projects').html('<%= escape_javascript render("projects") %>');
+<% @languages.each do |language| %>
+  jQuery('#projects-<%= language %>').html('<%= escape_javascript render("projects", :language => language) %>');
+<% end %>
 
 <% if @projects_without_badges.blank? %>
   jQuery('#syncing').hide();
+<% else %>
+  setTimeout(function() {
+    jQuery.ajax(<%= url_for(params).to_json %>);
+  }, 4000)
 <% end %>

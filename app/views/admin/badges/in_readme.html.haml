@@ -1,0 +1,10 @@
+.col-lg-12
+  .widget
+    .widget-title
+      = icon :calculator
+      Projects who sport badges:
+
+      = @projects.size
+
+    .widget-body
+      = render '/admin/projects/table', :projects => @projects

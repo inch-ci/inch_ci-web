@@ -68,6 +68,7 @@ class Admin::OverviewController < ApplicationController
 
   def set_projects
     @new_projects = Project.includes(:default_branch)
+                            .where(:badge_generated => true)
                             .order('created_at ASC')
                             .last(30)
   end

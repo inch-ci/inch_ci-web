@@ -12,6 +12,11 @@ class Project < ActiveRecord::Base
 
   serialize :languages
 
+  def self.find_by_uid(uid)
+    uid = "github:#{uid}" if uid !~ /\:/
+    where(:uid => uid).first
+  end
+
   def user
     User.where(:provider => service_name, :user_name => user_name).first
   end

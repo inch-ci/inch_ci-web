@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>[ADMIN] <%= @project ? "#{@project.name} - " : nil %> <%= t("shared.title") %></title>
+  <%= stylesheet_link_tag    "admin/admin", media: "all" %>
+  <%= javascript_include_tag "admin/admin" %>
+
+  <link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.5.1.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src="//cdn.oesmith.co.uk/morris-0.5.1.min.js"></script>
+
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+  <div class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <%= link_to "Admin » Overview", admin_overview_path, :class => 'navbar-brand' %>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li>
+            <a href="<%= admin_builds_path %>"><span class="menu-icon fa fa-signal"></span> Builds</a>
+          </li>
+          <li>
+            <a href="<%= admin_projects_path %>"><span class="menu-icon fa fa-truck"></span> Projects</span></a>
+          </li>
+          <li>
+            <a href="<%= admin_users_path %>"><span class="menu-icon fa fa-users"></span> Users</a>
+          </li>
+          <li>
+            <a href="<%= admin_cli_path %>"><span class="menu-icon fa fa-terminal"></span> CLI</a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="menu-icon fa fa-calendar"></span> Statistics <span class="caret"></span></a>
+
+            <ul class="dropdown-menu">
+              <li><a href="<%= daily_admin_statistics_path %>"><span class="menu-icon fa fa-calendar"></span> Daily</a></li>
+              <li><a href="<%= weekly_admin_statistics_path %>"><span class="menu-icon fa fa-calendar"></span> Weekly</a></li>
+              <li><a href="<%= monthly_admin_statistics_path %>"><span class="menu-icon fa fa-calendar"></span> Monthly</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="<%= root_path %>" title="Homepage" target="_blank"><span class="menu-icon fa fa-home"></span></a></li>
+          <li><a href="https://github.com/inch-ci/inch_ci-web/issues" title="GitHub Issues" target="_blank"><span class="menu-icon fa fa-github-alt"></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="page-wrapper" class="active">
+    <div id="content-wrapper">
+      <div class="page-content">
+        <%= yield %>
+      </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+  </div><!-- End Page Wrapper -->
+</body>
+</html>

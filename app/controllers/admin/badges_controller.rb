@@ -9,15 +9,15 @@ class Admin::BadgesController < ApplicationController
     @projects = @projects_to - @projects_from
   end
 
+  def in_readme
+    @projects = projects_with_badges_before(Time.now)
+  end
+
   private
 
   def projects_with_badges_before(timestamp)
-    all_projects = Project.all.where('created_at <= ?', timestamp)
-                          .includes(:default_branch)
-    default_branches = all_projects.map(&:default_branch).compact
-    current_revisions = default_branches.map { |b|
-                          b.revisions.where('created_at <= ?', timestamp).first
-                        }.compact
-    current_revisions.select(&:badge_in_readme).map { |r| r.branch.project }.uniq
+    Project.all.where(:badge_in_readme => true)
+      .where('created_at <= ?', timestamp)
+      .where('badge_in_readme_added_at <= ?', timestamp)
   end
 end
