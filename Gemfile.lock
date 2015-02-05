@@ -72,7 +72,7 @@ GEM
     hashie (3.3.2)
     hike (1.2.3)
     i18n (0.6.9)
-    inch (0.6.0.rc2)
+    inch (0.6.0.rc3)
       pry
       sparkr (>= 0.2.0)
       term-ansicolor
@@ -209,7 +209,7 @@ GEM
     thread_safe (0.3.4)
     tilt (1.4.1)
     timers (1.1.0)
-    tins (1.3.3)
+    tins (1.3.4)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -236,7 +236,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   gems
   haml
-  inch (= 0.6.0.rc2)
+  inch (= 0.6.0.rc3)
   inch-badge (>= 0.3.5)
   inch_ci-worker (>= 0.3.4)
   jbuilder (~> 1.2)
