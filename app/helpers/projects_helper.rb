@@ -66,19 +66,21 @@ module ProjectsHelper
   end
 
   def promo_hint
-    """
+    <<-PROMO
     <!--
 Hi there,
 
-this patch adds a docs badge to the README to show off inline-documentation to potential contributors: [![Inline docs](http://inch-ci.org/github/#{@project.name}.svg)](http://inch-ci.org/github/#{@project.name})
+I want to propose to add this badge to the README to show off inline-documentation: [![Inline docs](http://inch-ci.org/github/#{@project.name}.svg)](http://inch-ci.org/github/#{@project.name})
 
-The badge links to [Inch CI](http://inch-ci.org), a project that tries to raise the visibility of inline-docs to encourage aspiring Rubyists to document their code. Your status page is http://inch-ci.org/github/#{@project.name}/
+The badge links to [Inch CI](http://inch-ci.org) and shows an evaluation by [InchJS](http://trivelop.de/inchjs), a project that tries to raise the visibility of inline-docs. Besides testing and other coverage, documenting your code is often neglected although it is a very engaging part of Open Source.
 
-Inch CI is still in its infancy, but already used by projects like [Bundler](https://github.com/bundler/bundler), [Guard](https://github.com/guard/guard), [Haml](https://github.com/haml/haml), [Pry](https://github.com/pry/pry), and [ROM](https://github.com/rom-rb/rom).
+So far over 500 **Ruby** projects are sporting these badges to raise awareness for the importance of inline-docs and to show potential contributors that they can expect a certain level of code documentation when they dive into your project's code and motivate them to eventually document their own. I would really like to do the same for the **JavaScript** community and roll out support for JS over the coming weeks (early adopters are [forever](https://github.com/foreverjs/forever), [node-sass](https://github.com/sass/node-sass) and [Shipit](https://github.com/shipitjs/shipit)).
+
+Although this is "only" a passion project, I really would like to hear your thoughts, critique and suggestions. Your status page is http://inch-ci.org/github/#{@project.name}
 
 What do you think?
     -->
-    """
+    PROMO
   end
 
   def show_rebuild_link?
