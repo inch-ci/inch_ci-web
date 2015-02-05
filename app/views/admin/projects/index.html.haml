@@ -37,6 +37,9 @@
             = "Limit to users sporting badges"
 
         = submit_tag "Show projects"
+        - if params.size > 2
+          or
+          = link_to "clear filters", admin_projects_path
 
     .widget-title
       = icon :search
