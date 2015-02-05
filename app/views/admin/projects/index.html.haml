@@ -30,6 +30,11 @@
           = check_box_tag :badge_in_readme, '1', !!params[:badge_in_readme]
           = label_tag :badge_in_readme, "Only projects sporting badges"
 
+        .form-group
+          %label
+            = check_box_tag :maintainers_with_badge_in_readme, '1', !!params[:maintainers_with_badge_in_readme]
+            = "Limit to users sporting badges"
+
         = submit_tag "Show projects"
 
     .widget-title
