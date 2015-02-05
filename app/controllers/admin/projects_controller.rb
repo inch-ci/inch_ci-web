@@ -29,7 +29,13 @@ class Admin::ProjectsController < ApplicationController
       arel = arel.where('LOWER(language) = ?', params[:language].to_s.downcase)
     end
     if params[:badge_in_readme].present?
-      arel = arel.where(:badge_in_readme => true)
+      arel = arel.where(:badge_in_readme => params[:badge_in_readme] == '1')
+    end
+    if params[:badge_generated].present?
+      arel = arel.where(:badge_generated => params[:badge_generated] == '1')
+    end
+    if filled = params[:badge_filled_greater_than].present?
+      arel = arel.where('badge_filled_in_percent >= ?', filled)
     end
     if params[:maintainers_with_badge_in_readme].present?
       projects = Project.where(:badge_in_readme => true)
@@ -38,12 +44,6 @@ class Admin::ProjectsController < ApplicationController
       end.uniq
       conditions = (['uid LIKE ?'] * likes.size).join(' OR ')
       arel = arel.where(conditions, *likes)
-    end
-    if params[:badge_generated].present?
-      arel = arel.where(:badge_generated => true)
-    end
-    if filled = params[:badge_filled_greater_than].present?
-      arel = arel.where('badge_filled_in_percent >= ?', filled)
     end
     if uid = params[:uid].present?
       arel = arel.where('uid LIKE ?', "%#{uid}%")
