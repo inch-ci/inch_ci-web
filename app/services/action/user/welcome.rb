@@ -31,7 +31,11 @@ module Action
 
       def featured_projects(limit)
         present ::Project.includes(:default_branch)
-                  .where(:id => FEATURED_PROJECT_UIDS[0...limit])
+                  .where(:id => featured_projects_uids(limit, :ruby))
+      end
+
+      def featured_projects_uids(limit, language)
+        FEATURED_PROJECT_UIDS[language][0...limit]
       end
 
       def present(projects)

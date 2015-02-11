@@ -5,19 +5,13 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def featured_projects
-    @featured_projects ||= FEATURED_PROJECT_UIDS.map do |uid|
+  def featured_projects(language)
+    @featured_projects ||= {}
+    @featured_projects[language] ||= FEATURED_PROJECT_UIDS[language].map do |uid|
       InchCI::Store::FindProject.call(uid)
     end.compact
   end
   helper_method :featured_projects
-
-  def featured_elixir_projects
-    @featured_elixir_projects ||= FEATURED_ELIXIR_PROJECT_UIDS.map do |uid|
-      InchCI::Store::FindProject.call(uid)
-    end.compact
-  end
-  helper_method :featured_elixir_projects
 
   def code_object_path(*args)
     project_path(*args).merge(:controller => 'code_objects', :action => 'show')
