@@ -54,7 +54,7 @@ class Admin::ProjectsController < ApplicationController
     arel
   end
 
-  def filter_by_service_and_user(arel, service, user)
+  def filter_by_service_and_user(arel, service, user_name)
     like = "#{service}:"
     if user_name
       like << "#{user_name}/"

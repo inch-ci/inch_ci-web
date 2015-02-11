@@ -1,5 +1,5 @@
 .row
-  .col-lg-12
+  .col-lg-10
     - unless @scheduled_builds.empty?
       .widget
         .widget-title
@@ -16,17 +16,61 @@
         .widget-body.medium.no-padding
           = render "table", :builds => @running_builds
 
-  - unless @completed_builds.empty?
-    .col-lg-12
+    - unless @completed_builds.empty?
       .widget
         .widget-title
           = icon :calculator
           = t("builds.index.completed_header")
 
           .pull-right
-            - build_trigger_icon_map.keys.each do |trigger|
-              %label
-                = check_box_tag "bla", "1", true, :"data-filter-build-trigger" => trigger
-                = icon( build_trigger_icon_map[trigger])
       .widget-body.medium.no-padding
         = render "table", :builds => @completed_builds
+
+  .col-lg-2
+    .widget
+      .widget-title
+        = icon :filter
+        Filters
+
+      .widget-body
+        = form_tag(params, :method => :get) do
+          .form-group
+            = label_tag :language, "Language"
+            = select_tag(:language, options_for_select(['', *@languages], params[:language]), :class => 'form-control')
+
+          .form-group
+            %label Status
+            %br
+            - build_status_icon_map.keys.each do |status|
+              %label
+                = check_box_tag "statuses[]", status, @statuses ? @statuses.include?(status) : false
+                = icon(build_status_icon_map[status], :title => status)
+
+          .form-group
+            %label Trigger
+            %br
+            - build_trigger_icon_map.keys.each do |trigger|
+              %label
+                = check_box_tag "triggers[]", trigger, @triggers ? @triggers.include?(trigger) : false
+                = icon(build_trigger_icon_map[trigger], :title => trigger)
+
+          = submit_tag "Show Builds"
+          - if params.size > 2
+            or
+            = link_to "clear filters", admin_builds_path
+
+      .widget-title
+        = icon :search
+        Search
+
+      .widget-body
+        = form_tag(params, :method => :get) do
+          .form-group
+            = text_field_tag :uid, params[:uid], :class => 'form-control'
+
+          = submit_tag "Search"
+
+      .widget-title
+        Displaying
+        = @builds.size
+        builds.
