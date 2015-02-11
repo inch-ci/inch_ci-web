@@ -34,7 +34,7 @@ class Admin::ProjectsController < ApplicationController
     if params[:badge_generated].present?
       arel = arel.where(:badge_generated => params[:badge_generated] == '1')
     end
-    if filled = params[:badge_filled_greater_than].present?
+    if filled = params[:badge_filled_greater_than].presence
       arel = arel.where('badge_filled_in_percent >= ?', filled)
     end
     if params[:maintainers_with_badge_in_readme].present?
@@ -45,7 +45,7 @@ class Admin::ProjectsController < ApplicationController
       conditions = (['uid LIKE ?'] * likes.size).join(' OR ')
       arel = arel.where(conditions, *likes)
     end
-    if uid = params[:uid].present?
+    if uid = params[:uid].presence
       arel = arel.where('uid LIKE ?', "%#{uid}%")
     end
     if params[:service]
