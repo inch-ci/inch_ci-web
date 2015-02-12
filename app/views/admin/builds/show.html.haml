@@ -13,14 +13,8 @@
               %th #
               %td= link_to @build.id, admin_build_path(@build.id)
             %tr
-              %th Project
-              %td= link_to_project project
-            %tr
               %th Builds
               %td= link_to icon(:signal), admin_builds_path(:service => project.service_name, :user => project.user_name, :repo => project.repo_name)
-            %tr
-              %th Language
-              %td= link_to project.language, :language => project.language
             %tr
               %th.revision_uid Revision
               %td.revision_uid
@@ -49,15 +43,100 @@
                 - if @build.finished_at
                   = t("builds.index.finished_ago", :time_ago => time_ago_in_words(@build.finished_at))
             %tr
+              %th.status Trigger
+              %td.trigger
+                = build_trigger_icon(@build)
+                = @build.trigger
+            %tr
               %th.finished_at Status
               %td.status{:class => build_css_class(@build)}
                 = build_status_icon(@build)
                 = @build.status
+            - if @build.stderr.present?
+              %tr
+                %th.finished_at stderr
+                %td.terminal
+                  - @build.stderr.lines.each do |line|
+                    = line
+                    %br
+
+    - project = @build.branch.project
+    .widget
+      .widget-title
+        = icon :calculator
+        = "Project ##{project.id}"
+    .widget-body.medium.no-padding
+      .table-responsive
+        %table.table.table-striped.builds
+          %tbody
             %tr
-              %th.status trigger
-              %td.trigger
-                = build_trigger_icon(@build)
-                = @build.trigger
+              %th Project
+              %td= link_to_project project
+            %tr
+              %th Language
+              %td= link_to project.language, :language => project.language
+
+            %tr
+              %th description
+              %td= project.description
+
+            %tr
+              %th origin
+              %td= project.origin
+
+            %tr
+              %th fork
+              %td= project.fork
+
+            %tr
+              %th github_hook_id
+              %td= project.github_hook_id
+
+            %tr
+              %th github_hook_active
+              %td= project.github_hook_active
+
+            %tr
+              %th badge_generated
+              %td= project.badge_generated
+
+            %tr
+              %th badge_filled_in_percent
+              %td= project.badge_filled_in_percent
+
+            %tr
+              %th badge_in_readme
+              %td= project.badge_in_readme
+
+            %tr
+              %th badge_in_readme_added_at
+              %td= project.badge_in_readme_added_at
+
+            %tr
+              %th badge_in_readme_removed_at
+              %td= project.badge_in_readme_removed_at
+
+            %tr
+              %th created_at
+              %td= project.created_at
+
+            %tr
+              %th homepage_url
+              %td= project.homepage_url
+
+            %tr
+              %th source_code_url
+              %td= project.source_code_url
+
+            %tr
+              %th repo_url
+              %td= project.repo_url
+
+            %tr
+              %th documentation_url
+              %td= project.documentation_url
+
+
 
   .col-lg-6
     .widget
