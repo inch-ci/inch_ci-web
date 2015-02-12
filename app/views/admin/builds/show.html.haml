@@ -6,7 +6,7 @@
         = "Build ##{@build.id}"
     .widget-body.medium.no-padding
       .table-responsive
-        %table.table.table-striped.builds
+        %table.table.table-striped.build
           %tbody
             - project = @build.branch.project
             %tr
@@ -67,7 +67,7 @@
         = "Project ##{project.id}"
     .widget-body.medium.no-padding
       .table-responsive
-        %table.table.table-striped.builds
+        %table.table.table-striped.project
           %tbody
             %tr
               %th Project
@@ -77,63 +77,64 @@
               %td= link_to project.language, :language => project.language
 
             %tr
-              %th description
+              %th Description
               %td= project.description
 
             %tr
-              %th origin
+              %th Origin
               %td= project.origin
 
             %tr
-              %th fork
+              %th Forked
               %td= project.fork
 
             %tr
-              %th github_hook_id
-              %td= project.github_hook_id
-
-            %tr
-              %th github_hook_active
+              %th Hooked?
               %td= project.github_hook_active
 
             %tr
-              %th badge_generated
-              %td= project.badge_generated
+              %th Badge
+              %td
+                - if project.badge_generated
+                  = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg))
+                  = "(#{project.badge_filled_in_percent}%)"
+                - else
+                  &ndash;
+
+            - if project.badge_generated
+              %tr
+                %th Badge in README
+                %td
+                  - if project.badge_in_readme?
+                    %span.text-success= icon(:check)
+                  - else
+                    no
+
+            - if project.badge_in_readme_added_at
+              %tr
+                %th Badge added
+                %td= project.badge_in_readme_added_at
+
+            - if project.badge_in_readme_removed_at
+              %tr
+                %th Badge removed
+                %td= project.badge_in_readme_removed_at
 
             %tr
-              %th badge_filled_in_percent
-              %td= project.badge_filled_in_percent
-
-            %tr
-              %th badge_in_readme
-              %td= project.badge_in_readme
-
-            %tr
-              %th badge_in_readme_added_at
-              %td= project.badge_in_readme_added_at
-
-            %tr
-              %th badge_in_readme_removed_at
-              %td= project.badge_in_readme_removed_at
-
-            %tr
-              %th created_at
+              %th Created
               %td= project.created_at
 
             %tr
-              %th homepage_url
+              %th Homepage URL
               %td= project.homepage_url
-
             %tr
-              %th source_code_url
+              %th Source Code URL
               %td= project.source_code_url
-
             %tr
-              %th repo_url
+              %th Repo URL
               %td= project.repo_url
-
             %tr
-              %th documentation_url
+              %th Documentation URL
               %td= project.documentation_url
 
 
