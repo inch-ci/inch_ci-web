@@ -104,6 +104,7 @@ module InchCI
         attributes = {
           :revision => revision,
           :status => build_data.status,
+          :stderr => build_data.stderr,
           :inch_version => build_data.inch_version,
           :finished_at => Time.now
         }

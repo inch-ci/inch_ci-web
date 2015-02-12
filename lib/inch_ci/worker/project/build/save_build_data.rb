@@ -15,9 +15,10 @@ module InchCI
 
           # @param build_data [Hash] a Hash built from the 'build:' section
           #   of the worker output
-          def initialize(build, build_data)
+          def initialize(build, build_data, stderr)
             @build = build
             @build_data = BuildData.new(build_data)
+            @build_data.stderr = stderr
             Store.transaction do
               branch = ensure_project_and_branch_exist
               if @build_data.success?
@@ -124,7 +125,8 @@ module InchCI
             attr_reader :started_at, :finished_at, :trigger, :objects
             attr_reader :revision_author_name, :revision_author_email, :revision_authored_at
             attr_reader :inch_version
-            attr_accessor :status
+
+            attr_accessor :status, :stderr
 
             def initialize(data)
               @data = data
