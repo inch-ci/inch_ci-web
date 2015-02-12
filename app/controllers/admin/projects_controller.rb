@@ -28,25 +28,37 @@ class Admin::ProjectsController < ApplicationController
     if params[:language].present?
       arel = arel.where('LOWER(language) = ?', params[:language].to_s.downcase)
     end
-    if params[:badge_in_readme]
-      arel = arel.where(:badge_in_readme => true)
+    if params[:badge_in_readme].present?
+      arel = arel.where(:badge_in_readme => params[:badge_in_readme] == '1')
     end
-    if params[:badge_generated]
-      arel = arel.where(:badge_generated => true)
+    if params[:badge_generated].present?
+      arel = arel.where(:badge_generated => params[:badge_generated] == '1')
     end
-    if filled = params[:badge_filled_greater_than].present?
+    if filled = params[:badge_filled_greater_than].presence
       arel = arel.where('badge_filled_in_percent >= ?', filled)
     end
-    if uid = params[:uid].present?
+    if params[:maintainers_with_badge_in_readme].present?
+      projects = Project.where(:badge_in_readme => true)
+      likes = projects.map do |project|
+        "#{project.service_name}:#{project.user_name}/%"
+      end.uniq
+      conditions = (['uid LIKE ?'] * likes.size).join(' OR ')
+      arel = arel.where(conditions, *likes)
+    end
+    if uid = params[:uid].presence
       arel = arel.where('uid LIKE ?', "%#{uid}%")
     end
-    if service = params[:service]
-      like = "#{service}:"
-      if user_name = params[:user]
-        like << "#{user_name}/"
-      end
-      arel = arel.where('uid LIKE ?', like+'%')
+    if params[:service]
+      arel = filter_by_service_and_user(arel, params[:service], params[:user])
     end
     arel
+  end
+
+  def filter_by_service_and_user(arel, service, user_name)
+    like = "#{service}:"
+    if user_name
+      like << "#{user_name}/"
+    end
+    arel.where('uid LIKE ?', like+'%')
   end
 end

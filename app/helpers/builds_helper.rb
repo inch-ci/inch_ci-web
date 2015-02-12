@@ -14,16 +14,19 @@ module BuildsHelper
   end
 
   def build_status_icon(build)
-    key = {
+    key = build_status_icon_map[build.status]
+    icon(key || :question, :title => build.status)
+  end
+
+  def build_status_icon_map
+    {
       'created' => :"circle-o",
       'running' => :"dot-circle-o",
       'deffered' => :"arrow-up",
       'duplicate' => :"check-square",
       'success' => :check,
       'failed:retriever' => :exclamation,
-    }[build.status]
-    title = t("builds.status.#{build.status}", :default => build.status)
-    icon(key || :question, :title => title)
+    }
   end
 
   def build_trigger_icon(build)
@@ -37,6 +40,7 @@ module BuildsHelper
       'hook' => :git,
       'manual' => :user,
       'tag_build' => :tags,
+      'ci' => :terminal,
       'travis' => :"cloud-upload",
     }
   end

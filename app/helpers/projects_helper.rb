@@ -66,19 +66,22 @@ module ProjectsHelper
   end
 
   def promo_hint
-    """
+    <<-PROMO
     <!--
 Hi there,
 
-this patch adds a docs badge to the README to show off inline-documentation to potential contributors: [![Inline docs](http://inch-ci.org/github/#{@project.name}.svg)](http://inch-ci.org/github/#{@project.name})
+I want to propose to add this badge to the README to show off inline-documentation: [![Inline docs](http://inch-ci.org/github/#{@project.name}.svg)](http://inch-ci.org/github/#{@project.name})
 
-The badge links to [Inch CI](http://inch-ci.org), a project that tries to raise the visibility of inline-docs to encourage aspiring Rubyists to document their code. Your status page is http://inch-ci.org/github/#{@project.name}/
+The badge links to [Inch CI](http://inch-ci.org) and shows an evaluation by [InchJS](http://trivelop.de/inchjs), a project that tries to raise the visibility of inline-docs (early adopters include [forever](https://github.com/foreverjs/forever), [node-sass](https://github.com/sass/node-sass) and [when](https://github.com/cujojs/when)).
 
-Inch CI is still in its infancy, but already used by projects like [Bundler](https://github.com/bundler/bundler), [Guard](https://github.com/guard/guard), [Haml](https://github.com/haml/haml), [Pry](https://github.com/pry/pry), and [ROM](https://github.com/rom-rb/rom).
+The idea is to motivate aspiring Node developers to dive into Open Source projects and read the code.
+It's about *engagement*, because, while testing and code coverage are important, inline-docs are the humanly engaging factor in Open Source. This project is about making people less adverse to jumping into the code and see whats happening, because they are not left alone while doing so. I know that, because I put off reading other people's code way too long in my life.
+
+Although this is "only" a passion project, I really would like to hear your thoughts, critique and suggestions. Your status page is http://inch-ci.org/github/#{@project.name}
 
 What do you think?
     -->
-    """
+    PROMO
   end
 
   def show_rebuild_link?

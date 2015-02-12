@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201151745) do
+ActiveRecord::Schema.define(version: 20150212200619) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150201151745) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "inch_version"
+    t.text     "stderr"
   end
 
   add_index "builds", ["branch_id"], name: "index_builds_on_branch_id", using: :btree

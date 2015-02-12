@@ -9,7 +9,7 @@ module InchCI
           def initialize(stdout, stderr, build = nil, save_service = SaveBuildData)
             data = handle_stdout(stdout)
             if data && result = data['build']
-              save_service.call(build, result)
+              save_service.call(build, result, stderr)
             else
               debug = {:stdout => stdout, :stderr => stderr}
               raise "Running worker ".color(:red) + build.inspect.color(:cyan) +  " failed:".color(:red) + " #{debug.inspect}"

@@ -9,6 +9,7 @@
         %th Language
         %th Builds
         %th
+        %th
     %tbody
       - projects.each do |project|
         - if project.default_branch
@@ -24,3 +25,5 @@
                 - if project.badge_in_readme?
                   %span.text-success= icon(:check)
                 = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg))
+            %td.text-right
+              = link_to icon(:refresh), project_rebuild_path(project), :method => :post

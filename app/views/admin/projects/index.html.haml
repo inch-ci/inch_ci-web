@@ -10,6 +10,7 @@
 .col-lg-2
   .widget
     .widget-title
+      = icon :filter
       Filters
 
     .widget-body
@@ -23,16 +24,25 @@
           = select_tag(:badge_filled_greater_than, options_for_select(['', 0, 25, 50, 75], params[:badge_filled_greater_than]), :class => 'form-control')
 
         .form-group
-          = check_box_tag :badge_generated, '1', !!params[:badge_generated]
-          = label_tag :badge_generated, "Filter to generated badges"
+          = label_tag :badge_generated, "Badge status"
+          = select_tag(:badge_generated, options_for_select([[''], ['Badge generated', '1'], ['No badge generated', '0']], params[:badge_generated]), :class => 'form-control')
 
         .form-group
-          = check_box_tag :badge_in_readme, '1', !!params[:badge_in_readme]
-          = label_tag :badge_in_readme, "Only projects sporting badges"
+          = label_tag :badge_in_readme, "README status"
+          = select_tag(:badge_in_readme, options_for_select([[''], ['Badge in README', '1'], ['No badge in README', '0']], params[:badge_in_readme]), :class => 'form-control')
+
+        .form-group
+          %label
+            = check_box_tag :maintainers_with_badge_in_readme, '1', !!params[:maintainers_with_badge_in_readme]
+            = "Limit to users sporting badges"
 
         = submit_tag "Show projects"
+        - if params.size > 2
+          or
+          = link_to "clear filters", admin_projects_path
 
     .widget-title
+      = icon :search
       Search
 
     .widget-body

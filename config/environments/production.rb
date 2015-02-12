@@ -64,7 +64,7 @@ InchCI::Application.configure do
 
   # Adding Webfonts to the Asset Pipeline
   config.assets.precompile << Proc.new { |path|
-    if path =~ /\.(eot|svg|ttf|woff)\z/
+    if path =~ /\.(eot|svg|ttf|woff|woff2)\z/
       true
     end
   }
