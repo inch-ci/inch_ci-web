@@ -7,4 +7,8 @@ class BuildPresenter < BasePresenter
   def duration
     finished_at.to_i - started_at.to_i
   end
+
+  def no_sources_found?
+    !!(stderr.to_s =~ /no sources found/i)
+  end
 end

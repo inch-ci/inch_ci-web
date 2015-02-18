@@ -23,6 +23,11 @@
               %em= t('projects.start_build.info')
               = icon('level-up')
 
+          - if @project.language?(:javascript) && @project.last_build.no_sources_found?
+            .repo-info
+              .explanation
+                = markdown t("projects.start_build.javascript_sources_not_found")
+
     - else
       = render "badge_selector"
 

@@ -155,16 +155,27 @@ en:
       If you have any questions or suggestions: Hit me up [on Twitter](https://twitter.com/rrrene) or [create an issue](https://github.com/inch-ci/inch_ci-web) in the Inch CI project.
   help_header:
     headline: Configuration
-  help_configuration:
+  help_configuration_yaml:
     headline: ".inch.yml file - include/exclude stuff"
-    inchyml1: |
+    body1: |
       By default, Inch looks into `{app,lib}/**/*.rb` for Ruby source files.
 
       You can configure which files and objects Inch considers by creating a file named `.inch.yml` in your project directory:
-    inchyml2: |
+    body2: |
       As you would expect, `included` sets an array of included files (or globs). This way you can point Inch to where your sources are, if they are not in `app/` or `lib/`.
 
-      `excluded` sets an array of files (or globs) to exclude from the evaluation.
+      `excluded` sets an array of files (or globs) to exclude files from the evaluation.
+
+  help_configuration_json:
+    headline: "inch.json file - include/exclude stuff"
+    body1: |
+      By default, Inch looks into `lib/` and `src/` for JavaScript source files.
+
+      You can configure which files and objects Inch considers by creating a file named `inch.json` in your project directory:
+    body2: |
+      As you would expect, `included` sets an array of included files (or globs). This way you can point Inch to where your sources are, if they are not in `lib/` or `src/`.
+
+      `excluded` sets an array of files (or globs) to exclude files from the evaluation.
 
   help_webhook:
     headline: How to configure a webhook for Inch CI
@@ -174,6 +185,7 @@ en:
     howto3: "Click the *Add webhook* button ..."
     howto4: "... and use http://inch-ci.org/rebuild as Payload URL:"
     howto5: "Click *Add webhook* and you are good to go!"
+
   builds:
     status:
       deffered: "prepare"
@@ -271,6 +283,12 @@ en:
       info: "Your page is currently building. This page will refresh automatically (can take up to a minute)."
     start_build:
       info: "This is not evaluated yet. Press 'Refresh' to evaluate now!"
+      javascript_sources_not_found:  |
+        It seems that Inch can't find the sources on this project.
+
+        ### Can I tell Inch which files to evaluate?
+
+        No problemo! [Learn how ...](/howto/configuration_json)
     subnavi:
       history: History
       show: Evaluation

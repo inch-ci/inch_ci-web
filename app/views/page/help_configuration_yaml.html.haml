@@ -3,9 +3,9 @@
     .repo-info
       = render "help_header"
 
-      %h2= t('help_configuration.headline')
+      %h2= t('help_configuration_yaml.headline')
 
-      = markdown t('help_configuration.inchyml1')
+      = markdown t('help_configuration_yaml.body1')
 
       %pre.code
         = preserve do
@@ -18,4 +18,4 @@
               excluded:
                 - plugins/vendor/sparkr/sparkr.rb
 
-      = markdown t('help_configuration.inchyml2')
+      = markdown t('help_configuration_yaml.body2')
