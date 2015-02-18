@@ -25,3 +25,9 @@ tr.today td {
 tr.yesterday td {
   background: #fffbcd;
 }
+table.project,
+table.build {
+  th {
+    width: 30%;
+  }
+}

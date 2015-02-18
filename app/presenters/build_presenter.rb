@@ -1,6 +1,6 @@
 class BuildPresenter < BasePresenter
   def_delegators :build, :status, :trigger, :started_at, :finished_at
-  def_delegators :build, :branch, :revision, :number
+  def_delegators :build, :branch, :revision, :number, :stderr
 
   use_presenters :revision
 

@@ -72,10 +72,9 @@ Hi there,
 
 I want to propose to add this badge to the README to show off inline-documentation: [![Inline docs](http://inch-ci.org/github/#{@project.name}.svg)](http://inch-ci.org/github/#{@project.name})
 
-The badge links to [Inch CI](http://inch-ci.org) and shows an evaluation by [InchJS](http://trivelop.de/inchjs), a project that tries to raise the visibility of inline-docs (early adopters include [forever](https://github.com/foreverjs/forever), [node-sass](https://github.com/sass/node-sass) and [when](https://github.com/cujojs/when)).
+The badge links to [Inch CI](http://inch-ci.org) and shows an evaluation by [InchJS](http://trivelop.de/inchjs), a project that tries to raise the visibility of inline-docs. Besides testing and other coverage, documenting your code is often neglected although it is a very engaging part of Open Source.
 
-The idea is to motivate aspiring Node developers to dive into Open Source projects and read the code.
-It's about *engagement*, because, while testing and code coverage are important, inline-docs are the humanly engaging factor in Open Source. This project is about making people less adverse to jumping into the code and see whats happening, because they are not left alone while doing so. I know that, because I put off reading other people's code way too long in my life.
+So far over 500 **Ruby** projects are sporting these badges to raise awareness for the importance of inline-docs and to show potential contributors that they can expect a certain level of code documentation when they dive into your project's code and motivate them to eventually document their own. I would really like to do the same for the **JavaScript** community and roll out support for JS over the coming weeks (early adopters are [forever](https://github.com/foreverjs/forever), [node-sass](https://github.com/sass/node-sass) and [when](https://github.com/cujojs/when)).
 
 Although this is "only" a passion project, I really would like to hear your thoughts, critique and suggestions. Your status page is http://inch-ci.org/github/#{@project.name}
 

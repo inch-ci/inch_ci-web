@@ -6,21 +6,15 @@
         = "Build ##{@build.id}"
     .widget-body.medium.no-padding
       .table-responsive
-        %table.table.table-striped.builds
+        %table.table.table-striped.build
           %tbody
             - project = @build.branch.project
             %tr
               %th #
               %td= link_to @build.id, admin_build_path(@build.id)
             %tr
-              %th Project
-              %td= link_to_project project
-            %tr
               %th Builds
               %td= link_to icon(:signal), admin_builds_path(:service => project.service_name, :user => project.user_name, :repo => project.repo_name)
-            %tr
-              %th Language
-              %td= link_to project.language, :language => project.language
             %tr
               %th.revision_uid Revision
               %td.revision_uid
@@ -49,15 +43,101 @@
                 - if @build.finished_at
                   = t("builds.index.finished_ago", :time_ago => time_ago_in_words(@build.finished_at))
             %tr
+              %th.status Trigger
+              %td.trigger
+                = build_trigger_icon(@build)
+                = @build.trigger
+            %tr
               %th.finished_at Status
               %td.status{:class => build_css_class(@build)}
                 = build_status_icon(@build)
                 = @build.status
+            - if @build.stderr.present?
+              %tr
+                %th.finished_at stderr
+                %td.terminal
+                  - @build.stderr.lines.each do |line|
+                    = line
+                    %br
+
+    - project = @build.branch.project
+    .widget
+      .widget-title
+        = icon :calculator
+        = "Project ##{project.id}"
+    .widget-body.medium.no-padding
+      .table-responsive
+        %table.table.table-striped.project
+          %tbody
             %tr
-              %th.status trigger
-              %td.trigger
-                = build_trigger_icon(@build)
-                = @build.trigger
+              %th Project
+              %td= link_to_project project
+            %tr
+              %th Language
+              %td= link_to project.language, :language => project.language
+
+            %tr
+              %th Description
+              %td= project.description
+
+            %tr
+              %th Origin
+              %td= project.origin
+
+            %tr
+              %th Forked
+              %td= project.fork
+
+            %tr
+              %th Hooked?
+              %td= project.github_hook_active
+
+            %tr
+              %th Badge
+              %td
+                - if project.badge_generated
+                  = link_to_project project, image_tag(BadgeMarkup.new(project, project.default_branch).image_path(:svg))
+                  = "(#{project.badge_filled_in_percent}%)"
+                - else
+                  &ndash;
+
+            - if project.badge_generated
+              %tr
+                %th Badge in README
+                %td
+                  - if project.badge_in_readme?
+                    %span.text-success= icon(:check)
+                  - else
+                    no
+
+            - if project.badge_in_readme_added_at
+              %tr
+                %th Badge added
+                %td= project.badge_in_readme_added_at
+
+            - if project.badge_in_readme_removed_at
+              %tr
+                %th Badge removed
+                %td= project.badge_in_readme_removed_at
+
+            %tr
+              %th Created
+              %td= project.created_at
+
+            %tr
+              %th Homepage URL
+              %td= project.homepage_url
+            %tr
+              %th Source Code URL
+              %td= project.source_code_url
+            %tr
+              %th Repo URL
+              %td= project.repo_url
+            %tr
+              %th Documentation URL
+              %td= project.documentation_url
+
+
 
   .col-lg-6
     .widget
