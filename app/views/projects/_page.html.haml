@@ -33,6 +33,13 @@
 
       = render "topbar"
 
+      - if @project.language?(:javascript)
+        .javascript-beta-hint
+          %strong JavaScript support
+          is still young. Please
+          = link_to "report any mistakes", github_issue_url(:project => @project)
+          Inch makes!
+
       - if @pending_build
         = render "wait_for_build", :build => @pending_build
       - else
