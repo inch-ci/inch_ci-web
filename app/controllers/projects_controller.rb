@@ -11,7 +11,11 @@ class ProjectsController < ApplicationController
   def badge
     action = Action::Project::Badge.new(params)
     if action.success?
-      send_file action.badge_filename, :content_type => action.content_type, :disposition => 'inline'
+      response.headers['Expires'] = Time.now.to_s
+      response.headers['Pragma'] = 'no-cache'
+      response.headers['Cache-Control'] = 'no-cache'
+      send_file action.badge_filename, :content_type => action.content_type,
+                                        :disposition => 'inline'
     else
       render :text => "Project or branch not found.", :layout => false, :status => 404
     end
