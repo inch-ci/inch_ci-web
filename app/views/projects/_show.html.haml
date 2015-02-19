@@ -5,6 +5,14 @@
         This page shows an
         %strong evaluation
         of the project's documentation.
+
+      - if @project.language?(:javascript)
+        .javascript-beta-hint
+          %strong JavaScript support
+          is still young. Please
+          = link_to "report any mistakes", github_issue_url(:project => @project)
+          Inch makes!
+
       %p
         Each class, module, method, etc. is given a grade based on how complete the docs are.
       %p
