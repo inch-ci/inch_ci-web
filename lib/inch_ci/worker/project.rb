@@ -7,8 +7,7 @@ require 'inch_ci/worker/project/update_info'
 module InchCI
   module Worker
     module Project
-      EXTERNALLY_BUILD = ['elixir', 'javascript'] # javascript is on this list
-                                                  # until the "beta" is over
+      EXTERNALLY_BUILD = ['elixir']
 
       # @return [Boolean]
       #   whether or not the given +language+ can be built locally on Inch CI

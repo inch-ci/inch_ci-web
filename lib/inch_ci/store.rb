@@ -100,6 +100,8 @@ module InchCI
         branch.builds.create!(attributes)
       end
 
+    RemoveBuild = -> (build) { build.destroy }
+
     UpdateFinishedBuild = -> (build, revision, build_data) do
         attributes = {
           :revision => revision,

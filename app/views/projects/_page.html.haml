@@ -10,15 +10,12 @@
             .how_to_travis
               - if @project.language?(:elixir)
                 = render "shared/how_to_travis_elixir"
-              - elsif @project.language?(:javascript)
-                .promo-text
-                  %p
-                    JavaScript support is not yet public.
-                  %p
-                    The good news is you can
-                    = link_to "help and get a badge anyway!", lets_do_javascript_path
         - else
-          - if !@project.language?(:javascript)
+          - if @project.language?(:javascript) && @project.last_build.no_sources_found?
+            .repo-info
+              .explanation
+                = markdown t("projects.start_build.javascript_sources_not_found")
+          - else
             %p.start_build
               %em= t('projects.start_build.info')
               = icon('level-up')

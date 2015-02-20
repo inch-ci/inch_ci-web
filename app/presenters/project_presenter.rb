@@ -28,6 +28,10 @@ class ProjectPresenter < BasePresenter
     project.language.to_s.downcase == language.to_s.downcase
   end
 
+  def last_build
+    builds.first.to_presenter
+  end
+
   def name_without_owner
     name.to_s.split('/').last
   end

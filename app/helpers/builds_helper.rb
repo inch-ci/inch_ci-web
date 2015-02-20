@@ -7,6 +7,7 @@ module BuildsHelper
     {
       'created' => '',
       'running' => :info,
+      'deffered' => :success,
       'success' => :success,
       'duplicate' => :warning,
     }[build.status] || :danger
@@ -21,6 +22,7 @@ module BuildsHelper
     {
       'created' => :"circle-o",
       'running' => :"dot-circle-o",
+      'deffered' => :"arrow-up",
       'duplicate' => :"check-square",
       'success' => :check,
       'failed:retriever' => :exclamation,

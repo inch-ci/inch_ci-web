@@ -11,5 +11,7 @@
   = markdown t("projects.page.about1", :project_language => @project.language, :project_nwo => escape_markdown(@project.name), :badge_image_url => badge_markup.image_path, :new_issue_url => github_issue_url(:project => @project))
 
   = markdown t("projects.page.about2")
-  = markdown t("projects.page.about_help") if @project.build_on_inch_ci?
+  - if @project.build_on_inch_ci?
+    - path = @project.language?(:javascript) ? help_configuration_json_path : help_configuration_yaml_path
+    = markdown t("projects.page.about_help", :config_path => path)
   = markdown t("projects.page.about4")

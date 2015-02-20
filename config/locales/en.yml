@@ -99,7 +99,7 @@ en:
         constant:
           without_doc: ""
           without_code_example: ""
-    title: "Inch CI - Documentation badges for Ruby & Elixir projects - Show off your docs"
+    title: "Inch CI - Documentation badges for Ruby, JS & Elixir projects - Show off your docs"
     footer: |
       Inch CI evaluates your project's inline code documentation and reports grades for each class, module and method.
 
@@ -110,7 +110,7 @@ en:
       Please [create an issue](https://github.com/inch-ci/inch_ci-web/issues/new) if anything seems broken or worthy of improvement.
 
   welcome:
-    headline: "Documentation badges for Ruby & Elixir"
+    headline: "Documentation badges for Ruby, JS & Elixir"
     abstract: |
       Thanks to [Travis](http://travis-ci.org), the community champions testing.
 
@@ -119,11 +119,12 @@ en:
       But there is no way to lint and show off your inline docs. Until now.
     signin_hint: "You can also add your projects via GitHub:"
     abstract2: |
-      Let's raise the visibility of code documentation in Ruby & Elixir!
+      Let's raise the visibility of code documentation in Ruby, JS & Elixir!
 
       Because better inline docs mean easier contribution and more collaboration!
     featured_elixir_projects: "Now with Elixir support:"
     featured_ruby_projects: "Join hundreds of Ruby projects!"
+    featured_javascript_projects: "NEW: Let's do JavaScript on Inch CI!"
     learn_more: "Learn more"
     project_placeholder: rrrene/inch
     project_hint: "Simply type your GitHub username/reponame"
@@ -155,16 +156,27 @@ en:
       If you have any questions or suggestions: Hit me up [on Twitter](https://twitter.com/rrrene) or [create an issue](https://github.com/inch-ci/inch_ci-web) in the Inch CI project.
   help_header:
     headline: Configuration
-  help_configuration:
+  help_configuration_yaml:
     headline: ".inch.yml file - include/exclude stuff"
-    inchyml1: |
+    body1: |
       By default, Inch looks into `{app,lib}/**/*.rb` for Ruby source files.
 
       You can configure which files and objects Inch considers by creating a file named `.inch.yml` in your project directory:
-    inchyml2: |
+    body2: |
       As you would expect, `included` sets an array of included files (or globs). This way you can point Inch to where your sources are, if they are not in `app/` or `lib/`.
 
-      `excluded` sets an array of files (or globs) to exclude from the evaluation.
+      `excluded` sets an array of files (or globs) to exclude files from the evaluation.
+
+  help_configuration_json:
+    headline: "inch.json file - include/exclude stuff"
+    body1: |
+      By default, Inch looks into `lib/` and `src/` for JavaScript source files.
+
+      You can configure which files and objects Inch considers by creating a file named `inch.json` in your project directory:
+    body2: |
+      As you would expect, `included` sets an array of included files (or globs). This way you can point Inch to where your sources are, if they are not in `lib/` or `src/`.
+
+      `excluded` sets an array of files (or globs) to exclude files from the evaluation.
 
   help_webhook:
     headline: How to configure a webhook for Inch CI
@@ -174,7 +186,10 @@ en:
     howto3: "Click the *Add webhook* button ..."
     howto4: "... and use http://inch-ci.org/rebuild as Payload URL:"
     howto5: "Click *Add webhook* and you are good to go!"
+
   builds:
+    status:
+      deffered: "prepare"
     index:
       title: Recent builds
       title_with_project: "Recent builds for %{project_name}"
@@ -269,6 +284,12 @@ en:
       info: "Your page is currently building. This page will refresh automatically (can take up to a minute)."
     start_build:
       info: "This is not evaluated yet. Press 'Refresh' to evaluate now!"
+      javascript_sources_not_found:  |
+        It seems that Inch can't find the sources on this project.
+
+        ### Can I tell Inch which files to evaluate?
+
+        No problemo! [Learn how ...](/howto/configuration_json)
     subnavi:
       history: History
       show: Evaluation
@@ -289,7 +310,7 @@ en:
       about_help: |
         ### Can I tell Inch which files to evaluate?
 
-        No problemo! [Learn how ...](/howto/configuration)
+        No problemo! [Learn how ...](%{config_path})
 
         ### Can I configure a webhook for continuous integration?
 
