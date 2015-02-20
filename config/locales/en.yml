@@ -5,6 +5,7 @@ en:
     learn_more: Learn more
     report_card: Report card
     what_is_this: What is this about?
+    help: Help
     signin: "Sign in with GitHub"
     signout: "Sign out"
 
@@ -154,8 +155,22 @@ en:
       I'm [@rrrene](https://twitter.com/rrrene), creator of [sparkr](http://trivelop.de/sparkr) and [Inch](http://trivelop.de/inch).
 
       If you have any questions or suggestions: Hit me up [on Twitter](https://twitter.com/rrrene) or [create an issue](https://github.com/inch-ci/inch_ci-web) in the Inch CI project.
-  help_header:
-    headline: Configuration
+  help:
+    header:
+      headline: Inch CI Documentation
+    index:
+      headline: "Getting started"
+      abstract: |
+        Inch CI is a hosted continuous integration service that evaluates inline code documentation for a variety of programming languages and is integrated with GitHub.
+
+        Supported languages at this point are:
+
+        * Ruby
+        * JavaScript
+        * Elixir
+
+        After evaluating your codebase, Inch CI reports grades for each class, module, method, function etc.
+
   help_configuration_yaml:
     headline: ".inch.yml file - include/exclude stuff"
     body1: |
@@ -179,8 +194,15 @@ en:
       `excluded` sets an array of files (or globs) to exclude files from the evaluation.
 
   help_webhook:
-    headline: How to configure a webhook for Inch CI
-    abstract: Using this technique your project is build everytime you push changes to GitHub.
+    headline: Webhooks - Continuous Evaluation
+    abstract: |
+      ### Configure webhooks via your profile page
+
+      You can [sign in](/auth/github) with your GitHub account and configure which projects are build automatically each time you push your code to GitHub.
+
+      ### How to manually configure a webhook
+
+      Do not want to sign in? No problem! You can configure your hook manually via the GitHub settings of each project.
     howto1: "Go to the *Settings* page of your repository:"
     howto2: "Select the *Webhooks and Services* submenu:"
     howto3: "Click the *Add webhook* button ..."
@@ -289,7 +311,7 @@ en:
 
         ### Can I tell Inch which files to evaluate?
 
-        No problemo! [Learn how ...](/howto/configuration_json)
+        No problemo! [Learn how ...](/help/config_file_json)
     subnavi:
       history: History
       show: Evaluation
@@ -314,7 +336,7 @@ en:
 
         ### Can I configure a webhook for continuous integration?
 
-        Of course! [Learn how ...](/howto/webhook)
+        Of course! [Learn how ...](/help/webhook)
       about4: |
         ### What is the goal of this?
 

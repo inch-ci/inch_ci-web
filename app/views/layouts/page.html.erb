@@ -27,6 +27,9 @@
                 <li class="nav">
                   <%= link_to t("navigation.what_is_this"), about_path %>
                 </li>
+                <li class="nav <%= controller.controller_name.to_s == 'help' ? 'active' : nil %>">
+                  <%= link_to t("navigation.help"), help_path %>
+                </li>
                 <!--
                 <% unless logged_in? %>
                   <li>

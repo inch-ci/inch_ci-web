@@ -13,11 +13,20 @@ InchCI::Application.routes.draw do
     post 'v1/builds' => 'builds#run'
   end
 
-  get 'learn_more' => 'page#about', :as => :about
-  get 'lets_do_javascript' => 'page#help_javascript_beta', :as => :lets_do_javascript
-  get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook
-  get 'howto/configuration' => 'page#help_configuration_yaml', :as => :help_configuration_yaml
-  get 'howto/configuration_json' => 'page#help_configuration_json', :as => :help_configuration_json
+  # Help section
+  get 'learn_more' => 'help#about', :as => :about
+  get 'help' => 'help#index', :as => :help
+  get 'lets_do_javascript' => 'help#javascript_beta', :as => :lets_do_javascript
+
+  get 'help/webhook' => 'help#webhook', :as => :help_webhook
+  get 'help/config_file_yaml' => 'help#config_file_yaml', :as => :help_configuration_yaml
+  get 'help/config_file_json' => 'help#config_file_json', :as => :help_configuration_json
+
+  # legacy URLs
+  get 'howto/webhook' => 'help#webhook'
+  get 'howto/config_file_yaml' => 'help#config_file_yaml'
+  get 'howto/config_file_json' => 'help#config_file_json'
+
   root 'page#welcome'
 
   namespace :admin do

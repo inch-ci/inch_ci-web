@@ -1,0 +1,4 @@
+= render :layout => "page" do
+  %h2= t('help.index.headline')
+
+  = markdown t('help.index.abstract', :badge_image_url => image_path('badge-example.png'))

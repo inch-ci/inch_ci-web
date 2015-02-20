@@ -1,0 +1,21 @@
+= render :layout => "page" do
+  %h2= t('help_configuration_json.headline')
+
+  = markdown t('help_configuration_json.body1')
+
+  %pre.code
+    = preserve do
+      :escaped
+        {
+          "files": {
+            "included": [
+              "plugins/**/*.js"
+            ],
+            "excluded": [
+              "plugins/vendor/sparkr/sparkr.js",
+              "plugins/vendor/**/*.js",
+              "!regexp:/vendor/"
+            ]
+          }
+        }
+  = markdown t('help_configuration_json.body2')
