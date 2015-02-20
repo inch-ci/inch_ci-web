@@ -310,7 +310,7 @@ en:
       about_help: |
         ### Can I tell Inch which files to evaluate?
 
-        No problemo! [Learn how ...](/howto/configuration)
+        No problemo! [Learn how ...](%{config_path})
 
         ### Can I configure a webhook for continuous integration?
 

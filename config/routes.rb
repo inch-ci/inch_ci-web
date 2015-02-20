@@ -16,7 +16,7 @@ InchCI::Application.routes.draw do
   get 'learn_more' => 'page#about', :as => :about
   get 'lets_do_javascript' => 'page#help_javascript_beta', :as => :lets_do_javascript
   get 'howto/webhook' => 'page#help_webhook', :as => :help_webhook
-  get 'howto/configuration' => 'page#help_configuration_yaml', :as => :help_configuration
+  get 'howto/configuration' => 'page#help_configuration_yaml', :as => :help_configuration_yaml
   get 'howto/configuration_json' => 'page#help_configuration_json', :as => :help_configuration_json
   root 'page#welcome'
 
