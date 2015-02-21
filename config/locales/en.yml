@@ -171,6 +171,21 @@ en:
 
         After evaluating your codebase, Inch CI reports grades for each class, module, method, function etc.
 
+        ## Step One: Add your project
+
+        Go to the [homepage](/) and enter your GitHub `username/repo` info to evaluate any Open Source project that uses any of the languages listed above.
+
+        ## Step Two: Add a badge
+
+        Inch CI provides badges, which can be added to project's READMEs to motivate aspiring developers to read the source code (because they can expect a certain amount of docs to be there).
+
+        The badges do not show numbers like "65,7% documented", but give a visual feedback on how much documentation there is in the code.
+        ![Inline docs](%{badge_image_url})
+
+        ## Step Three: Hook your projects
+
+        [Sign in via GitHub](/auth/github) to add all your projects and activate hooks for automatic evaluation.
+
   help_configuration_yaml:
     headline: ".inch.yml file - include/exclude stuff"
     body1: |
