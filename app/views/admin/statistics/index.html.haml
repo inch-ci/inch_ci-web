@@ -15,13 +15,63 @@
           %tbody
             %thead
               %tr
-                - @stats_headers.each do |value|
-                  %th= value
+                %th Day
+                %th Date
+                %th Badges
+                %th Ruby
+                %th Elixir
+                %th JavaScript
+                %th Hooks
+                %th Projects
+                %th Maintainers
+                %th w/badges
+                %th w/hooks
+                %th Users
+                %th Signins
+                %th Badges Served
+                %th Manual Builds
+                %th Hooked Builds
+                %th Travis Builds
             %tbody
-              - @stats.each do |stats|
+              - @stats.each do |entry|
                 %tr
-                  - stats.each do |value|
-                    %td= value
+                  %td= entry.shown_date.strftime("%a")
+                  %td= entry.shown_date.strftime("%Y-%m-%d")
+                  %td= entry.val("projects:badges", true)
+                  %td= entry.val("projects:badges:ruby")
+                  %td= entry.val("projects:badges:elixir")
+                  %td= entry.val("projects:badges:javascript")
+                  %td= entry.val("projects:hooked")
+                  %td= entry.val("projects:all")
+                  %td= entry.val("maintainers:all")
+                  %td= entry.val("maintainers:badges")
+                  %td= entry.val("maintainers:hooked")
+                  %td= entry.val("users:github")
+                  %td= entry.val("users:signins:<24h", false)
+                  %td= entry.val("badges:served:<24h", false)
+                  %td= entry.val("builds:manual:<24h", false)
+                  %td= entry.val("builds:hooked:<24h", false)
+                  %td= entry.val("builds:travis:<24h", false)
+
+            %tfoot
+              %tr
+                %td
+                %td Average:
+                %td= @stats.average("projects:badges", use_changes: true)
+                %td= @stats.average("projects:badges:ruby", use_changes: true)
+                %td= @stats.average("projects:badges:elixir", use_changes: true)
+                %td= @stats.average("projects:badges:javascript", use_changes: true)
+                %td= @stats.average("projects:hooked", use_changes: true)
+                %td= @stats.average("projects:all", use_changes: true)
+                %td= @stats.average("maintainers:all", use_changes: true)
+                %td= @stats.average("maintainers:badges", use_changes: true)
+                %td= @stats.average("maintainers:hooked", use_changes: true)
+                %td= @stats.average("users:github", use_changes: true)
+                %td= @stats.average("users:signins:<24h")
+                %td= @stats.average("badges:served:<24h")
+                %td= @stats.average("builds:manual:<24h")
+                %td= @stats.average("builds:hooked:<24h")
+                %td= @stats.average("builds:travis:<24h")
 
 
 

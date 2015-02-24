@@ -46,34 +46,7 @@ class Admin::StatisticsController < ApplicationController
   def set_stats(&block)
     list = block.call.order('date ASC')
     map = map_stats_to_dates(list)
-    @stats_headers = %w(Day Date Badges Ruby Elixir JavaScript Hooks Projects Maintainers w/badges w/hooks Users Signins Badges\ Served Manual\ Builds Hooked\ Builds Travis\ Builds)
-    @stats = map.keys.sort.map do |date|
-      stats = map[date]
-      stats["projects:badges:ruby"] = stats["projects:badges"].to_i -
-                                      stats["projects:badges:elixir"].to_i -
-                                      stats["projects:badges:javascript"].to_i
-      shown_date = date - 1
-      [
-        shown_date.strftime("%a"),
-        shown_date.strftime("%Y-%m-%d"),
-        val(stats, "projects:badges", false),
-        val(stats, "projects:badges:ruby"),
-        val(stats, "projects:badges:elixir"),
-        val(stats, "projects:badges:javascript"),
-        val(stats, "projects:hooked"),
-        val(stats, "projects:all"),
-        val(stats, "maintainers:all"),
-        val(stats, "maintainers:badges"),
-        val(stats, "maintainers:hooked"),
-        val(stats, "users:github"),
-        val(stats, "users:signins:<24h", false),
-        val(stats, "badges:served:<24h", false),
-        val(stats, "builds:manual:<24h", false),
-        val(stats, "builds:hooked:<24h", false),
-        val(stats, "builds:travis:<24h", false),
-      ]
-    end
-    @stats.shift
+    @stats = Stats.new(map)
   end
 
   # Maps the given list of Statistic objects to their date's day.

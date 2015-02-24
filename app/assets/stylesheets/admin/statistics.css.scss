@@ -18,3 +18,8 @@
 .stats-table tr td:nth-child(13) {
     border-right: 1px solid #ccc;
 }
+
+.stats-table tfoot tr td {
+  border-top: 2px solid #ccc;
+  color: #888;
+}
