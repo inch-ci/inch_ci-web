@@ -19,6 +19,8 @@ InchCI::Application.routes.draw do
   get 'lets_do_javascript' => 'help#javascript_beta', :as => :lets_do_javascript
 
   get 'help/webhook' => 'help#webhook', :as => :help_webhook
+  get 'help/badge' => 'help#badge', :as => :help_badge
+  get 'help/grades' => 'help#grades', :as => :help_grades
   get 'help/config_file_yaml' => 'help#config_file_yaml', :as => :help_configuration_yaml
   get 'help/config_file_json' => 'help#config_file_json', :as => :help_configuration_json
 

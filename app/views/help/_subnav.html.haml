@@ -2,16 +2,21 @@
   .help-navigation
     %strong Topics
     %ul.list-unstyled
-      %li= link_to "Getting started", help_path
-      %li= link_to ".inch.yml", help_configuration_yaml_path
-      %li= link_to "inch.json", help_configuration_json_path
+      %li= link_to "Getting Started", help_path
+      %li= link_to "The Grade System", help_grades_path
+      %li= link_to "Using Badges", help_badge_path
+
+    %strong Configuration
+    %ul.list-unstyled
+      %li= link_to "Using .inch.yml", help_configuration_yaml_path
+      %li= link_to "Using inch.json", help_configuration_json_path
       %li= link_to "Webhooks", help_webhook_path
 
     %strong Inch on the web
     %ul.list-unstyled
-      %li= link_to "Raising the visibility of inline-docs", "http://trivelop.de/2014/02/24/visibility-of-documentation/"
-      %li= link_to "Why Inch doesn't use percentages", "http://trivelop.de/2014/02/17/why-inch-doesnot-use-percentages/"
+      %li= link_to "Raising the visibility of inline-docs", "http://trivelop.de/2014/02/24/visibility-of-documentation/", :target => '_blank'
+      %li= link_to "Why Inch doesn't use percentages", "http://trivelop.de/2014/02/17/why-inch-doesnot-use-percentages/", :target => '_blank'
     %strong Project pages
     %ul.list-unstyled
-      %li= link_to "Inch project page", "http://trivelop.de/inch"
-      %li= link_to "InchJS project page", "http://trivelop.de/inchjs"
+      %li= link_to "Inch project page", "http://trivelop.de/inch", :target => '_blank'
+      %li= link_to "InchJS project page", "http://trivelop.de/inchjs", :target => '_blank'

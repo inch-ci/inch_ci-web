@@ -1,0 +1,8 @@
+= render :layout => "page" do
+  %h2= t('help.badge.headline')
+
+  = markdown t('help.badge.body1')
+
+  .text-center= image_tag('badge-explanation.png')
+
+  = markdown t('help.badge.body2')

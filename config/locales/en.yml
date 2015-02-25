@@ -169,7 +169,7 @@ en:
         * JavaScript
         * Elixir
 
-        After evaluating your codebase, Inch CI reports grades for each class, module, method, function etc.
+        After evaluating your codebase, Inch CI [reports grades](/help/grades) for each class, module, method, function etc.
 
         ## Step One: Add your project
 
@@ -177,17 +177,98 @@ en:
 
         ## Step Two: Add a badge
 
-        Inch CI provides badges, which can be added to project's READMEs to motivate aspiring developers to read the source code (because they can expect a certain amount of docs to be there).
+        Inch CI [provides badges](/help/badge), which can be added to project's READMEs to motivate aspiring developers to read the source code (because they can expect a certain amount of docs to be there).
 
         The badges do not show numbers like "65,7% documented", but give a visual feedback on how much documentation there is in the code.
-        ![Inline docs](%{badge_image_url})
+        [![Inline docs](%{badge_image_url})](/help/badge)
 
         ## Step Three: Hook your projects
 
         [Sign in via GitHub](/auth/github) to add all your projects and activate hooks for automatic evaluation.
+    badge:
+      headline: Using Badges
+      body1: |
+
+        ### Putting badges in READMEs
+
+        Like many services, Inch CI provides badges to be embedded in READMEs. That way, visitors and potential contributors of your GitHub projects can immediately see that you value documenting your code.
+
+        Here is an example from one of my projects: [![Inline docs](http://inch-ci.org/github/rrrene/sparkr.svg?branch=master)](http://inch-ci.org/github/rrrene/sparkr)
+
+        Hopefully it's mostly green when you're reading this.
+
+        ### Understanding the "progress-bar"
+
+        Inch evaluates inline-docs and [reports grades](/help/grades) for each class, module and method.
+        The badges display up to four segments, with each segment representing one of these grades:
+      body2: |
+        * `A` Seems perfect, Inch can't make any suggestions for improvement.
+        * `B` Properly documented. Inch is able to make (pedantic) suggestions for minor improvements.
+        * `C` Something seems off here, like a mispelled parameter name. Please take a look.
+        * `U` Undocumented. This is assigned a special grade, since almost every project has parts that are not in need of explicit documentation.
+
+        The widths of the individual segments represent the distribution of the grades.
+
+        In the above example, you can see a grade distribution that tells you four things:
+
+        * There is a significant amount of documented code.
+        * The present documentation seems really good.
+        * There are some items that should be checked on.
+        * There are still some undocumented methods, which should not be a big deal.
+
+        This provides a lot more insight than an overall grade could and does a much better job of painting the bigger picture.
+
+    grades:
+      headline: The Grade System
+      body: |
+        Inch evaluates inline-docs and reports grades for each class, module and method.
+
+        ### Philosophy
+
+        Inch was ***created to help people document their code***, therefore it may be more important to look at what it does *not* do than at what it does.
+
+        * It does not aim for "fully documented" or "100% documentation coverage".
+        * It does not tell you to document everything (neither does it tell you not to).
+        * It does not impose rules on how your documentation should look like.
+        * It does not require that, e.g."every function's documentation should be a single line under 80 characters not ending in a period" or that "every class and module should provide a code example of their usage".
+
+        Inch ***takes a more relaxed approach*** towards documentation measurement and tries to show you places where your codebase *could* use more documentation.
+
+        ### The Grade System
+
+        Inch ***assigns grades to each class, module, constant or function*** in a codebase, based on how complete the docs are.
+
+        The grades are:
+
+        * `A` - Seems really good
+        * `B` - Properly documented, but could be improved
+        * `C` - Needs work
+        * `U` - Undocumented
+
+        Using this system has some advantages compared to plain coverage scores:
+
+        * You can get an `A` even if you "only" get 90 out of 100 possible points.
+        * Getting a `B` is basically good enough.
+        * ***Undocumented objects are assigned a special grade***, instead of scoring 0%.
+
+        The last point might be the most important one: If objects are undocumented, there is nothing to evaluate. Therefore you can not simply give them a bad rating, ***because they might be left undocumented intentionally***.
+
+        Inch ***does not give you a grade for your whole codebase***. The grade distribution ***does a much better job of painting the bigger picture***.
+
+        ### Priorities  ↑ ↓
+
+        Every class, module and function in a codebase is assigned a priority which reflects how important Inch thinks it is to be documented.
+
+        This process follows some reasonable rules, like
+
+        * it is more important to document public functions than private ones
+        * it is more important to document functions with many parameters than functions without parameters
+        * it is not important to document objects marked as private
+
+        Priorities are displayed as arrows. Arrows pointing north mark high priority objects, arrows pointing south mark low priority objects.
 
   help_configuration_yaml:
-    headline: ".inch.yml file - include/exclude stuff"
+    headline: "Using .inch.yml to include/exclude stuff"
     body1: |
       By default, Inch looks into `{app,lib}/**/*.rb` for Ruby source files.
 
@@ -198,7 +279,7 @@ en:
       `excluded` sets an array of files (or globs) to exclude files from the evaluation.
 
   help_configuration_json:
-    headline: "inch.json file - include/exclude stuff"
+    headline: "Using inch.json to include/exclude stuff"
     body1: |
       By default, Inch looks into `lib/` and `src/` for JavaScript source files.
 
