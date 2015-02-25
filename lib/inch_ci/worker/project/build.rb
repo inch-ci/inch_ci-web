@@ -37,7 +37,9 @@ module InchCI
           # @api private
           def perform(url, branch_name = 'master', revision_uid = nil, trigger = 'manual', build_id = nil, language = nil)
             build = ensure_running_build(url, branch_name, trigger, build_id)
-            stdout_str, stderr_str, status = Open3.capture3("#{BIN} #{url.inspect} #{branch_name} #{revision_uid} --language=#{language}")
+            cmd = "#{BIN} #{url.inspect} #{branch_name} #{revision_uid}"
+            cmd << " --language=#{language}" if language
+            stdout_str, stderr_str, status = Open3.capture3(cmd)
             HandleWorkerOutput.new(stdout_str, stderr_str, build)
           end
 
