@@ -32,6 +32,8 @@ task :check_for_new_revisions => :environment do
           enqueued_builds << InchCI::Worker::Project::Build.enqueue(project.repo_url, branch.name, nil, trigger)
         end
       end
+    rescue Octokit::Conflict
+      puts "[Octokit::Conflict] #{project.uid}"
     rescue Octokit::NotFound
       puts "[Octokit::NotFound] #{project.uid}"
     rescue Faraday::ConnectionFailed
