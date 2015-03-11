@@ -9,7 +9,7 @@ describe ::InchCI::Worker::Project::Build::HandleWorkerOutput do
   let(:trigger) { 'manual' }
   let(:build) { Build.first }
 
-  FakeSaveBuildData = -> (build, data) { }
+  FakeSaveBuildData = -> (build, data, stderr) { }
 
   it 'should work with a valid build' do
     output = WorkerOutputMock.string(:codebase_3_objects)

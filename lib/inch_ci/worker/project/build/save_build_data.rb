@@ -15,7 +15,7 @@ module InchCI
 
           # @param build_data [Hash] a Hash built from the 'build:' section
           #   of the worker output
-          def initialize(build, build_data, stderr)
+          def initialize(build, build_data, stderr = "")
             @build = build
             @build_data = BuildData.new(build_data)
             @build_data.stderr = stderr
@@ -79,11 +79,11 @@ module InchCI
             end
 
             if project.badge_in_readme_added_at.nil? && revision.badge_in_readme
-              project.badge_in_readme_added_at = revision.created_at
+              project.badge_in_readme_added_at = revision.authored_at
             end
             if project.badge_in_readme_added_at && !revision.badge_in_readme &&
                                     project.badge_in_readme_removed_at.nil?
-              project.badge_in_readme_removed_at = revision.created_at
+              project.badge_in_readme_removed_at = revision.authored_at
             end
 
             Store::SaveProject.call(project)
