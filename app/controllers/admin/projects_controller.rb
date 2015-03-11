@@ -22,6 +22,10 @@ class Admin::ProjectsController < ApplicationController
     @languages = %w(Elixir JavaScript Ruby)
   end
 
+  def show
+    @project = Project.find(params[:id])
+  end
+
   private
 
   def filter_collection(arel)
