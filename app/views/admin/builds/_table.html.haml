@@ -10,6 +10,7 @@
         %th.duration Duration
         %th.finished_at Finished
         %th.status{:colspan => 2} Status
+        %th
     %tbody
       - builds.each do |build|
         - project = build.branch.project
@@ -45,3 +46,6 @@
             = build_status_icon(build)
           %td.trigger
             = build_trigger_icon(build)
+          %td.text-right
+            = link_to icon(:refresh), project_rebuild_path(project), :method => :post
+
