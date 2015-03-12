@@ -1,0 +1,28 @@
+!!!
+%html{:lang => "en"}
+  = render "layouts/head"
+  %body
+    .row.row-header
+      .container
+        .pull-left
+          %h1= link_to "# Inch CI", "/"
+        .pull-right
+          %ul.nav.nav-header
+            - if logged_in?
+              %li{:class => "nav #{current_page?(user_path(current_user)) ? 'active' : nil}"}
+                = link_to current_user.name, user_path(current_user)
+            - if @project
+              %li{:class => "nav #{@project && current_page?(project_path(@project)) ? 'active' : nil}"}
+                = link_to t("navigation.report_card"), params
+            %li.nav
+              = link_to t("navigation.what_is_this"), about_path
+            %li{:class => "nav #{controller.controller_name.to_s == 'help' ? 'active' : nil}"}
+              = link_to t("navigation.help"), help_path
+    .row.row-subheader
+      .container
+        = yield(:subheader)
+    = yield
+    .row.row-footer
+      .container
+        = render "layouts/footer"
+    = render "shared/ga"

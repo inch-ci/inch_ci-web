@@ -1,11 +1,3 @@
-.inch-links
-  %b Everything Inch CI
-  %ul.list-unstyled
-    %li= link_to "Get your own badge!", root_path
-    %li= link_to "Configure a webhook for continuous integration!", help_webhook_path
-    %li= link_to "Raising the visibility of inline-docs", "http://trivelop.de/2014/02/24/visibility-of-documentation/"
-    %li= link_to "Why Inch doesn't use percentages", "http://trivelop.de/2014/02/17/why-inch-doesnot-use-percentages/"
-    %li= link_to "Inch project page", "http://trivelop.de/inch"
 
 .what-is-this
   = markdown t("projects.page.about1", :project_language => @project.language, :project_nwo => escape_markdown(@project.name), :badge_image_url => badge_markup.image_path, :new_issue_url => github_issue_url(:project => @project))

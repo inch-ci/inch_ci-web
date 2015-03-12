@@ -1,28 +1,38 @@
 = render :layout => "page" do
-  .repo-info
-    .explanation
+  .explanation
+    %p
+      This page shows an
+      %strong evaluation
+      of the project's documentation.
+
+    %p
+      Each class, module, method, etc. is given a grade based on how complete the docs are.
+    %p
+      The bar above shows the distribution of these grades.
+    - if @project.documentation_url
       %p
-        This page shows an
-        %strong evaluation
-        of the project's documentation.
+        = link_to icon(:search) + ' Read the docs', @project.documentation_url, :target => '_blank', :class => 'btn btn-primary'
 
-      %p
-        Each class, module, method, etc. is given a grade based on how complete the docs are.
-      %p
-        The bar above shows the distribution of these grades.
-      - if @project.documentation_url
-        %p
-          = link_to icon(:search) + ' Read the docs', @project.documentation_url, :target => '_blank', :class => 'btn btn-primary'
-
-    - if @project.language?(:javascript)
-      .javascript-beta-hint
-        %strong JavaScript support
-        is still young. Please
-        = link_to "report any mistakes", github_issue_url(:project => @project)
-        Inch makes!
-    .table-responsive
-      - @collection.each do |grade_list|
-        = render "shared/grade_list_table", :grade_list => grade_list
+  - if @project.language?(:javascript)
+    .javascript-beta-hint
+      %strong JavaScript support
+      is still young. Please
+      = link_to "report any mistakes", github_issue_url(:project => @project)
+      Inch makes!
+  .table-responsive
+    - @collection.each do |grade_list|
+      = render "shared/grade_list_table", :grade_list => grade_list
 
 
-  = render "about_footer"
+.inch-links
+  %b Everything Inch CI
+  %ul.list-unstyled
+    %li= link_to "Get your own badge!", root_path
+    %li= link_to "Configure a webhook for continuous integration!", help_webhook_path
+    %li= link_to "Raising the visibility of inline-docs", "http://trivelop.de/2014/02/24/visibility-of-documentation/"
+    %li= link_to "Why Inch doesn't use percentages", "http://trivelop.de/2014/02/17/why-inch-doesnot-use-percentages/"
+    %li= link_to "Inch project page", "http://trivelop.de/inch"
+
+.row.row-prefooter
+  .container
+    = render "about_footer"

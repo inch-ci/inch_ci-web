@@ -1,17 +1,19 @@
 - image_format = BadgeMarkup::DEFAULT_IMAGE_FORMAT
 
 #badge-image-markup{:style => "display: none;"}
-  %form
-    %p= t('badge.choose_hint').html_safe
-    - badge_markup.styles.each_with_index do |style, index|
-      %label
-        %input{:type => 'radio', :name => 'badge-format', :checked => index == 0 ? :checked : nil, :"data-select-badge-format" => style || 'default'}
-          = image_tag badge_markup.image_path(image_format, style), :"data-toggle" => 'tooltip', :title => t("badge.image_style.#{style || 'default'}")
-    .clearfix
+  .row.row-badge-selector
+    .container
+      %form
+        %p= t('badge.choose_hint').html_safe
+        - badge_markup.styles.each_with_index do |style, index|
+          %label
+            %input{:type => 'radio', :name => 'badge-format', :checked => index == 0 ? :checked : nil, :"data-select-badge-format" => style || 'default'}
+              = image_tag badge_markup.image_path(image_format, style), :"data-toggle" => 'tooltip', :title => t("badge.image_style.#{style || 'default'}")
+        .clearfix
 
-  - badge_markup.styles.each_with_index do |style, index|
-    .badge-image-markup{:class => "badge-image-markup-#{style || 'default'}", :style => index == 0 ? nil : "display: none;"}
-      - badge_markup.each(image_format, style) do |markup_format, string|
-        %p
-          %label= t("badge.markup_format.#{markup_format}")
-          %input{:value => string, :type => "text", :class => "url", :"data-select-on-click" => true}
+      - badge_markup.styles.each_with_index do |style, index|
+        .badge-image-markup{:class => "badge-image-markup-#{style || 'default'}", :style => index == 0 ? nil : "display: none;"}
+          - badge_markup.each(image_format, style) do |markup_format, string|
+            %p
+              %label= t("badge.markup_format.#{markup_format}")
+              %input{:value => string, :type => "text", :class => "url", :"data-select-on-click" => true}

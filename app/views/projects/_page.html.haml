@@ -1,36 +1,40 @@
-.repo-wrapper
-  .repo-card
-    - if @revision.nil?
-      = render "topbar"
-      - if @pending_build
-        = render "wait_for_build", :build => @pending_build
-      - else
-        - if @project.build_on_travis?
-          .repo-info
-            .how_to_travis
-              - if @project.language?(:elixir)
-                = render "shared/how_to_travis_elixir"
-        - else
-          - if @project.language?(:javascript) && @project.last_build.no_sources_found?
-            .repo-info
-              .explanation
-                = markdown t("projects.start_build.javascript_sources_not_found")
+- content_for(:subheader) do
+  = render "topbar"
+
+- if @revision
+  = render "badge_selector"
+
+.row.row-subsubheader
+  .container
+    = render "stats"
+    = yield(:after_stats)
+    = render "subnavi"
+.row.row-content
+  .container
+    .repo-wrapper
+      .repo-card
+        - if @revision.nil?
+
+          - if @pending_build
+            = render "wait_for_build", :build => @pending_build
           - else
-            %p.start_build
-              %em= t('projects.start_build.info')
-              = icon('level-up')
+            - if @project.build_on_travis?
+              .repo-info
+                .how_to_travis
+                  - if @project.language?(:elixir)
+                    = render "shared/how_to_travis_elixir"
+            - else
+              - if @project.language?(:javascript) && @project.last_build.no_sources_found?
+                .repo-info
+                  .explanation
+                    = markdown t("projects.start_build.javascript_sources_not_found")
+              - else
+                %p.start_build
+                  %em= t('projects.start_build.info')
+                  = icon('level-up')
 
-    - else
-      = render "badge_selector"
-
-      = render "topbar"
-
-      - if @pending_build
-        = render "wait_for_build", :build => @pending_build
-      - else
-        = render "stats"
-        = yield(:after_stats)
-
-        = render "subnavi"
-
-        = yield
+        - else
+          - if @pending_build
+            = render "wait_for_build", :build => @pending_build
+          - else
+            = yield

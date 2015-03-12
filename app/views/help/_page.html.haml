@@ -1,6 +1,8 @@
-.help-wrapper
-  = render "subnav"
-
+- content_for(:subheader) do
   %h1= t('help.header.headline')
 
-  = yield
+.row.row-content
+  .container
+    .help-wrapper
+      = render "subnav"
+      = yield

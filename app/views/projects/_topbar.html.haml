@@ -3,7 +3,7 @@
     .back-to-profile= link_to t('projects.topbar.profile_link'), user_path(current_user)
   %h1
     = @project.name
-    = link_to image_tag("GitHub-Mark-32px.png", :class => "github-logo"), @project.source_code_url, :target => '_blank'
+    = link_to icon(:github, :class => 'github-logo'), @project.source_code_url, :target => '_blank'
 
     - if @pending_build.nil?
       %a{:href => "#", :"data-show-markup" => true}

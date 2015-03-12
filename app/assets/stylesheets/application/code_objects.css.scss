@@ -1,4 +1,4 @@
-.repo-wrapper {
+
   .badge-info {
     position: absolute;
     right: 0;
@@ -19,10 +19,12 @@
     vertical-align: text-bottom;
   }
   #badge-image-markup {
-    background: #f0f0f0;
+    background: #3C393F;
+    color: #aaa;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
     padding: 1rem 2rem 0.5rem 2rem;
+    border-top: 4px solid #ddd;
     border-bottom: 4px solid #ddd;
   }
   #badge-image-markup h3 {
@@ -220,4 +222,3 @@
   .grade-table-U td:first-child {
     border-left-color: #BB85F7;
   }
-}

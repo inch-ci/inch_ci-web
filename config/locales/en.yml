@@ -157,7 +157,7 @@ en:
       If you have any questions or suggestions: Hit me up [on Twitter](https://twitter.com/rrrene) or [create an issue](https://github.com/inch-ci/inch_ci-web) in the Inch CI project.
   help:
     header:
-      headline: Inch CI Documentation
+      headline: Documentation
     index:
       headline: "Getting started"
       abstract: |

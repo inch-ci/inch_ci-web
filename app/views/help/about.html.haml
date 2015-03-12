@@ -1,5 +1,8 @@
-%h2= t('about.headline')
+- content_for(:subheader) do
+  %h2= t('about.headline')
 
-= markdown t('about.abstract', :badge_image_url => image_path('badge-example.svg'))
+.row.row-content
+  .container
+    = markdown t('about.abstract', :badge_image_url => image_path('badge-example.svg'))
 
-= render 'projects/form_new'
+    = render 'projects/form_new'

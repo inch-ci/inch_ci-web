@@ -1,37 +1,39 @@
-%h1.cover-heading
-  = t('welcome.headline')
+- content_for(:subheader) do
+  .text-center
+    %h1= t('welcome.headline')
 
-= markdown t('welcome.abstract')
+    = markdown t('welcome.abstract')
 
-= render 'projects/form_new'
+    = render 'projects/form_new'
 
-= markdown t('welcome.abstract2')
+    = markdown t('welcome.abstract2')
 
-%hr
+.row.row-subsubheader.text-center
+  .container
 
-%h1= t('welcome.featured_javascript_projects')
-= render "projects/featured", :featured_projects => featured_projects(:javascript)
-%p
-  = link_to "Learn how to help ...", lets_do_javascript_path
+    %h1= t('welcome.featured_javascript_projects')
+    = render "projects/featured", :featured_projects => featured_projects(:javascript)
+    %p
+      = link_to "Learn how to help ...", lets_do_javascript_path
 
-%hr
+    %hr
 
-%h1= t('welcome.featured_elixir_projects')
+    %h1= t('welcome.featured_elixir_projects')
 
-= render "projects/featured", :featured_projects => featured_projects(:elixir)
+    = render "projects/featured", :featured_projects => featured_projects(:elixir)
 
-%hr
+    %hr
 
-%h1= t('welcome.featured_ruby_projects')
+    %h1= t('welcome.featured_ruby_projects')
 
-= render "projects/featured", :featured_projects => featured_projects(:ruby)
+    = render "projects/featured", :featured_projects => featured_projects(:ruby)
 
-%hr
+    %hr
 
-%p.lead
-  = link_to t('welcome.learn_more'), about_path, :class => 'btn btn-lg btn-default'
+    %p.lead
+      = link_to t('welcome.learn_more'), about_path, :class => 'btn btn-lg btn-default'
 
-/ %hr
+    / %hr
 
-/ %p= t('welcome.signin_hint')
-/ %p= link_to icon(:github)+' '+t("navigation.signin"), signin_path, :class => 'btn btn-lg btn-signin'
+    / %p= t('welcome.signin_hint')
+    / %p= link_to icon(:github)+' '+t("navigation.signin"), signin_path, :class => 'btn btn-lg btn-signin'
