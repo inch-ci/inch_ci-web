@@ -1,5 +1,5 @@
 - content_for(:subheader) do
-  .text-center
+  .welcome-promo
     %h1= t('welcome.headline')
 
     = markdown t('welcome.abstract')
@@ -8,7 +8,7 @@
 
     = markdown t('welcome.abstract2')
 
-.row.row-subsubheader.text-center
+.row.row-subsubheader.welcome-promo
   .container
 
     %h1= t('welcome.featured_javascript_projects')

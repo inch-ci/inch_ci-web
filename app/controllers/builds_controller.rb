@@ -3,7 +3,7 @@ require 'inch_ci/controller'
 class BuildsController < ApplicationController
   include InchCI::Controller
 
-  layout 'page'
+  layout 'application'
 
   def index
     view = Action::BuildHistory.new(params)

@@ -1,0 +1,58 @@
+.stats-wrapper
+  .stats
+    .progress.progress-striped.active
+      .progress-bar.progress-bar-U{:style => "width: 100%"}
+
+    .row
+      .col-sm-3.build_number
+        %span.text-muted= icon(:server, :title => t('projects.topbar.info.build_number'))
+
+        = "##{build.number}"
+        %small
+          = link_to_build_history(@project)
+
+      .col-sm-3.language
+        %span.text-muted= icon(:"quote-right", :title => t('projects.topbar.info.language'))
+
+        = @project.language
+        - if !logged_in? || (logged_in? && current_user?)
+          %small
+            = link_to_edit_project(@project)
+
+      - if build.finished_at
+
+        .col-sm-3.duration
+          %span.text-muted= icon(:"clock-o", :title => t('projects.topbar.info.duration'))
+
+          = (build.finished_at - build.started_at).to_i
+          seconds
+
+        .col-sm-3.finished_ago
+          %span.text-muted= icon(:"calendar", :title => t('projects.topbar.info.finished_ago'))
+
+          = t("builds.index.finished_ago", :time_ago => time_ago_in_words(build.finished_at))
+
+      - elsif build.started_at
+        .col-sm-3.duration
+          %span.text-muted= icon(:"clock-o", :title => t('projects.topbar.info.duration'))
+
+          started
+          %span{"data-increment-every-second" => true}
+            = (Time.now - build.started_at).to_i
+          seconds ago
+
+        .col-sm-3.status
+          %span.text-muted= icon(:"info", :title => t('projects.topbar.info.status'))
+
+          = build.status
+      - else
+
+        .col-sm-3.duration
+          %span.text-muted= icon(:"clock-o", :title => t('projects.topbar.info.duration'))
+
+          = '-'
+
+        .col-sm-3.finished_ago
+          %span.text-muted= icon(:"info", :title => t('projects.topbar.info.finished_ago'))
+
+          = '-'

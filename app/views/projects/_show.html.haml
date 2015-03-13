@@ -9,9 +9,6 @@
       Each class, module, method, etc. is given a grade based on how complete the docs are.
     %p
       The bar above shows the distribution of these grades.
-    - if @project.documentation_url
-      %p
-        = link_to icon(:search) + ' Read the docs', @project.documentation_url, :target => '_blank', :class => 'btn btn-primary'
 
   - if @project.language?(:javascript)
     .javascript-beta-hint

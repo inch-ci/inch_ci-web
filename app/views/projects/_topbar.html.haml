@@ -32,7 +32,7 @@
     - if @project.build_on_inch_ci?
       = link_to t('projects.topbar.rebuild_link'), project_rebuild_path(@project, @branch.name), :method => :post, :class => 'btn btn-default btn-sm', :"data-toggle" => 'tooltip', :title => t('projects.topbar.rebuild_link_tooltip')
 
-    = link_to icon(:twitter) + ' ' + t('projects.topbar.tweet_link'), tweet_url(@project), :target => '_blank', :class => 'btn btn-tweet btn-sm', :"data-toggle" => 'tooltip', :title => t('projects.topbar.tweet_link_tooltip')
+    / = link_to icon(:twitter) + ' ' + t('projects.topbar.tweet_link'), tweet_url(@project), :target => '_blank', :class => 'btn btn-tweet btn-sm', :"data-toggle" => 'tooltip', :title => t('projects.topbar.tweet_link_tooltip')
   .clearfix
 
-  = render "webhook_hint"
+  -# = render "webhook_hint"

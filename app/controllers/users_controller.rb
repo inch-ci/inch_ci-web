@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   before_action :require_login
 
-  layout :determine_layout
+  layout 'application'
 
   def init_projects
     action = Action::User::InitProjects.new(current_user, params)
@@ -32,17 +32,6 @@ class UsersController < ApplicationController
   def welcome
     action = Action::User::Welcome.new(current_user)
     expose action
-  end
-
-  private
-
-  def determine_layout
-    case action_name
-    when 'welcome'
-      'cover'
-    else
-      'page'
-    end
   end
 
 end

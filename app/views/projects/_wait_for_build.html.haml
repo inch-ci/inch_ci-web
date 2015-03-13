@@ -1,33 +1,5 @@
-.stats-wrapper
-  .stats
-    .progress.progress-striped.active
-      .progress-bar.progress-bar-U{:style => "width: 100%"}
-
-    %table.table.stats-box
-      %tr
-        %th.build_number
-          = t('projects.topbar.info.build_number')
-        %td.build_number
-          - @build = @pending_build
-          = "##{@build.number}"
-          %small
-            = link_to_build_history(@project)
-        %th.branch_name= t('projects.topbar.info.branch_name')
-        %td.branch_name= link_to_branch @branch
-        %th.build_status= t('projects.topbar.info.build_status')
-        %td.build_status= build.status
-        %th.running_time= t('projects.topbar.info.running_time')
-        %td.running_time
-          - if build.started_at
-            %span{"data-increment-every-second" => true}
-              = (Time.now - build.started_at).to_i
-            seconds ago
-          - else
-            = "-"
-
-.repo-info
-  .explanation
-    %p= t('projects.wait_for_build.info')
+.explanation
+  %p= t('projects.wait_for_build.info')
 
 :javascript
   I.wait_for_build.initBuildChecker('#{url_for(@pending_build)}.json', '#{url_for(params.merge(:format => :js))}');

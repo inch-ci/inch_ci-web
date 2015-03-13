@@ -19,7 +19,14 @@ body
 .stats
   max-width: 100%
   .progress
-    margin: 0
+    margin-bottom: 1rem
+    margin-top: -2rem
+  .language,
+  .duration
+    text-align: left
+  .finished_ago,
+  .status
+    text-align: left
 
 table.stats-box
   margin-bottom: 0
@@ -27,6 +34,8 @@ table.stats-box
     width: 10px
     font-weight: normal
     color: #999
+  th, td
+    border-top: none !important
 
 tr.hidden_object
   display: none
@@ -81,15 +90,6 @@ a.btn-signin
     color: #fff !important
     background: #1a6eb7 !important
 
-.btn-tweet
-  color: #333
-  background-color: white
-  border-color: #cccccc
-  &:hover
-    background-color: #006CB2
-    border-color: #004F81
-    color: #fff
-
 .btn-cancel
   margin-top: 20px
 
@@ -98,14 +98,14 @@ p.help-image
   background: #fff
   margin: 40px 0
 
-.project-navi
-  margin: 0 20px 0 20px
-  padding-top: 20px
+.projects-subnavi
   text-align: center
   .btn.active
-    border-color: #ccc
     span.badge
       background-color: #aaa
+  .btn
+    border-top-left-radius: 0 !important
+    border-top-right-radius: 0 !important
   span.badge
     background-color: #00A300
 

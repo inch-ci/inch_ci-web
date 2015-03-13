@@ -3,7 +3,6 @@ en:
     brand: "# Inch CI"
     home: Home
     learn_more: Learn more
-    report_card: Report card
     what_is_this: What is this about?
     help: Help
     signin: "Sign in with GitHub"
@@ -131,8 +130,10 @@ en:
     project_hint: "Simply type your GitHub username/reponame"
     add_project: "Evaluate"
   about:
-    headline: "What is Inch CI?"
+    headline: "What this is about ..."
     abstract: |
+      ## What is Inch CI?
+
       This project is an attempt to raise the visibility of documentation in Open Source. It provides badges to include in your project's README, to show people that documenting code is a cool thing.
 
       The badges are based on Inch and look like this:
@@ -377,6 +378,9 @@ en:
         builds_link: "all"
         build_status: "Status"
         running_time: "Started"
+        duration: "Duration"
+        finished_ago: "Date"
+        status: "Status"
         branch_name: Branch
         revision_uid: Revision
         language: Language

@@ -1,11 +1,21 @@
-.repo-wrapper
-  .repo-card
-    = render "badge_selector"
+- content_for(:subheader) do
+  = render "topbar"
 
-    = render "topbar"
+- if @revision
+  = render "badge_selector"
 
-    - if logged_in?
-      = render "form_edit"
-    - else
-      .edit-signin-hint
-        %p= t("projects.topbar.info.edit_signin_hint")
+  .row.row-subsubheader
+    .container
+      = render "stats"
+      = yield(:after_stats)
+      = render "subnavi"
+
+.row.row-content
+  .container
+    .repo-wrapper
+      .repo-card
+        - if logged_in?
+          = render "form_edit"
+        - else
+          .edit-signin-hint
+            %p= t("projects.topbar.info.edit_signin_hint")

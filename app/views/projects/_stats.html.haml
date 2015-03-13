@@ -6,31 +6,41 @@
       .progress-bar.progress-bar-C{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('C')}%", :title => t('grade_list_table.header_C')}
       .progress-bar.progress-bar-U{:"data-placement" => 'bottom', :"data-toggle" => 'tooltip', :style => "width: #{@collection.percent('U')}%", :title => t('grade_list_table.header_U')}
 
-    .table-responsive
-      %table.table.stats-box
-        %tr
-          %th.build_number
-            = t('projects.topbar.info.build_number')
-          %td.build_number
-            - if @revision && @build = @revision.builds.last
-              = "##{@build.number}"
-              %small
-                = link_to_build_history(@project)
-          %th.language
-            = t('projects.topbar.info.language')
-          %td.language
-            = @project.language
-            - if !logged_in? || (logged_in? && current_user?)
-              %small
-                = link_to_edit_project(@project)
+    .row
+      .col-sm-3.build_number
+        %span.text-muted= icon(:server, :title => t('projects.topbar.info.build_number'))
 
-          - if @project.source_code_url
-            %th.source_code_url
-              = t('projects.topbar.info.source_code_url')
-            %td.source_code_url
-              = link_to_with_hostname @project.source_code_url, :target => '_blank'
-          - if @project.documentation_url
-            %th.documentation_url
-              = t('projects.topbar.info.documentation_url')
-            %td.documentation_url
-              = link_to_with_hostname @project.documentation_url, :target => '_blank'
+        - if @revision && @build = @revision.builds.last
+          = "##{@build.number}"
+          %small
+            = link_to_build_history(@project)
+
+      .col-sm-3.language
+        %span.text-muted= icon(:"quote-right", :title => t('projects.topbar.info.language'))
+
+        = @project.language
+        - if !logged_in? || (logged_in? && current_user?)
+          %small
+            = link_to_edit_project(@project)
+
+      - if @build.finished_at
+
+        .col-sm-3.duration
+          %span.text-muted= icon(:"clock-o", :title => t('projects.topbar.info.duration'))
+
+          = (@build.finished_at - @build.started_at).to_i
+          seconds
+
+        .col-sm-3.finished_ago
+          %span.text-muted= icon(:"calendar", :title => t('projects.topbar.info.finished_ago'))
+
+          = t("builds.index.finished_ago", :time_ago => time_ago_in_words(@build.finished_at))
+
+      - elsif @build.started_at
+        .col-sm-3.duration
+          %span.text-muted= icon(:"clock-o", :title => t('projects.topbar.info.finished_at'))
+
+          started
+          %span{"data-increment-every-second" => true}
+            = (Time.now - build.started_at).to_i
+          seconds ago

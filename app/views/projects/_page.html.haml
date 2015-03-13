@@ -4,16 +4,28 @@
 - if @revision
   = render "badge_selector"
 
-.row.row-subsubheader
-  .container
-    = render "stats"
-    = yield(:after_stats)
-    = render "subnavi"
+- if @revision || @pending_build
+  .row.row-subsubheader
+    .container
+      - if @pending_build
+        = render "stats_pending_build", :build => @pending_build
+      - else
+        = render "stats"
+      = yield(:after_stats)
+
 .row.row-content
   .container
     .repo-wrapper
       .repo-card
-        - if @revision.nil?
+        - if @revision
+          = render "subnavi"
+
+          - if @pending_build
+            = render "wait_for_build", :build => @pending_build
+          - else
+            = yield
+
+        - else
 
           - if @pending_build
             = render "wait_for_build", :build => @pending_build
@@ -32,9 +44,3 @@
                 %p.start_build
                   %em= t('projects.start_build.info')
                   = icon('level-up')
-
-        - else
-          - if @pending_build
-            = render "wait_for_build", :build => @pending_build
-          - else
-            = yield

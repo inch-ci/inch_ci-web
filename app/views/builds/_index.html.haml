@@ -1,12 +1,3 @@
-- if @project
-  = back_button project_path(@project)
-
-%h2.sub-header
-  - if @project
-    = t("builds.index.title_with_project", :project_name => @project.name)
-  - else
-    = t("builds.index.title")
-
 - unless @running_builds.empty?
   %h3.sub-header= t("builds.index.running_header", :count => @running_builds.size).html_safe
   = render "table", :builds => @running_builds
