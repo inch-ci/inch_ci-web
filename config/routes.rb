@@ -64,7 +64,6 @@ InchCI::Application.routes.draw do
 
   get "#{triple}.:format" => 'projects#badge', :constraints => badge_constraints
 
-  get "/dashboard" => 'builds#dashboard', :as => :dashboard
   get "(#{triple}(/branch/:branch))/builds" => 'builds#index', :as => :builds, :constraints => triple_constraints
   #get "#{triple}(/branch/:branch)(/revision/:revision)/list" => 'projects#show', :constraints => triple_constraints
   get "#{triple}(/branch/:branch)(/revision/:revision)/suggestions" => 'projects#suggestions', :constraints => triple_constraints

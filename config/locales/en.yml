@@ -316,11 +316,6 @@ en:
       scheduled_header: "Scheduled <small>(%{count})</small>"
       completed_header: Completed
       finished_ago: "%{time_ago} ago"
-    dashboard:
-      title: Dashboard
-      today_header: Today
-      yesterday_header: Yesterday
-      other_header: Other
   code_objects:
     show:
       docstring_header: "Parsed documentation:"

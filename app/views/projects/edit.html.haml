@@ -12,10 +12,8 @@
 
 .row.row-content
   .container
-    .repo-wrapper
-      .repo-card
-        - if logged_in?
-          = render "form_edit"
-        - else
-          .edit-signin-hint
-            %p= t("projects.topbar.info.edit_signin_hint")
+    - if logged_in?
+      = render "form_edit"
+    - else
+      .edit-signin-hint
+        %p= t("projects.topbar.info.edit_signin_hint")

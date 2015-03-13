@@ -44,10 +44,4 @@ module BuildsHelper
       'travis' => :"cloud-upload",
     }
   end
-
-  def dashboard_table_project_class(project)
-    classes = []
-    classes << :new if project.created_at > 1.day.ago
-    classes.join(' ')
-  end
 end
