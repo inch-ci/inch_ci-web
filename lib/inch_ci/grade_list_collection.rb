@@ -6,10 +6,8 @@ module InchCI
 
     def initialize(code_objects)
       @count = code_objects.count
-      @grade_lists = {}
-      GRADES.each do |grade|
-        @grade_lists[grade] = GradeList.new(grade, code_objects)
-      end
+      @grade_lists = create_grade_lists(code_objects)
+      @grade_percentages = calculate_grade_percentages(@grade_lists)
     end
 
     def [](grade)
@@ -23,9 +21,35 @@ module InchCI
     end
 
     def percent(grade)
-      return nil if @count == 0
-      v = @grade_lists[grade.to_s].count / @count.to_f
-      (v * 100).to_i
+      @grade_percentages[grade.to_s]
+    end
+
+    private
+
+    def create_grade_lists(code_objects)
+      grade_lists = {}
+      GRADES.each do |grade|
+        grade_lists[grade] = GradeList.new(grade, code_objects)
+      end
+      grade_lists
+    end
+
+    def calculate_grade_percentages(grade_lists)
+      grade_percentages = {}
+      GRADES.each do |grade|
+        v = @count == 0 ? 0 : (grade_lists[grade.to_s].count / @count.to_f)
+        grade_percentages[grade.to_s] = (v * 100).to_i
+      end
+
+      residual = 100 - grade_percentages.values.inject(:+)
+      GRADES.reverse.each do |grade|
+        if grade_percentages[grade.to_s] > 0
+          grade_percentages[grade.to_s] += residual
+          break
+        end
+      end
+
+      grade_percentages
     end
   end
 
