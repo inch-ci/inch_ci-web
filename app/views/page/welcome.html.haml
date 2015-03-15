@@ -8,8 +8,8 @@
 
     = markdown t('welcome.abstract2')
 
-.row.row-subsubheader.welcome-promo
-  .container
+.row.row-subsubheader
+  .container.welcome-promo
 
     %h1= t('welcome.featured_javascript_projects')
     = render "projects/featured", :featured_projects => featured_projects(:javascript)
@@ -30,10 +30,54 @@
 
     %hr
 
-    %p.lead
+    %p
       = link_to t('welcome.learn_more'), about_path, :class => 'btn btn-lg btn-default'
 
-    / %hr
 
-    / %p= t('welcome.signin_hint')
-    / %p= link_to icon(:github)+' '+t("navigation.signin"), signin_path, :class => 'btn btn-lg btn-signin'
+.row.row-content
+  .container.welcome-promo
+
+    %hr
+
+    %h1
+      %span.text-muted  #
+      Goals of this project
+    %hr
+
+    %h2
+      %span.text-muted  1
+      Raising awareness for visibility.
+    %p.lead
+      Documentation is often neglected, although I think it is the art of
+      = link_to "Copywriting for Hackers", "", :target => '_blank'
+
+
+    %hr
+
+    %h2
+      %span.text-muted  2
+      Providing badges for visibility.
+    %p.lead
+      I believe badges are a great way to raise awareness and they are able to give a quick overview.
+
+
+    %hr
+
+    %h2
+      %span.text-muted  3
+      Do not obsess about numbers.
+    %p.lead
+      Inch is not about coverage in the traditional sense. The are no meaningful differences between 68.2% and 74% docs coverage. So, instead of numbers, we show you a bar. Get a decent chunk of green and you are fine.
+
+
+    %hr
+
+    %p.lead
+      You can add your own projects via GitHub:
+    %p
+      = link_to icon(:github)+' '+t("navigation.signin"), signin_path, :class => 'btn btn-lg btn-signin'
+
+/ %hr
+
+/ %p= t('welcome.signin_hint')
+/ %p= link_to icon(:github)+' '+t("navigation.signin"), signin_path, :class => 'btn btn-lg btn-signin'
