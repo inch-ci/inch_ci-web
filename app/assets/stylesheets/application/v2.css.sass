@@ -1,13 +1,38 @@
+body .row
+  margin: 0
+
 .row-header,
 .row-footer
   background-color: #222
   color: #fff
   a
     color: #fff
+
+.row-header
+  h1
+    a
+      &:hover,
+      &:focus
+        text-decoration: none
+  li
+    float: left
+    font-size: 20px
+
+    a
+      padding: 26px 10px
+      color: #fff
+
+      &:hover,
+      &:focus
+        text-decoration: underline
+        background: transparent
+
 .row-footer
   padding: 2rem 0
   border-top: 4px solid #888
   color: #aaa
+  text-align: center
+
 .row-subheader
   background-color: #392455
   color: #fff
@@ -18,12 +43,14 @@
     padding: 20px 0
     small
       display: block
+
 .row-subheader,
 .row-subsubheader
   .btn-default
     color: #FFFFFF
     background-color: #523B6F
     text-decoration: none
+
 .row-subsubheader
   background-color: #412A5F
   color: #fff
@@ -35,30 +62,20 @@
   a
     color: #CAB7E0
     text-decoration: underline
-.back-to-profile
-  a
-    color: #CAB7E0
 
 .row-content
   min-height: 400px
+
 .row-prefooter
   background-color: #f0f0f0
   border-top: 4px solid #ddd
 
-.nav-header
-  li
-    float: left
-    font-size: 20px
-
-    a
-      padding: 26px 10px
-      color: #fff
-      &:hover
-        text-decoration: underline
-        background: transparent
-
 .welcome-promo
   text-align: center
+
+.back-to-profile
+  a
+    color: #CAB7E0
 
 .explanation,
 .inch-links
