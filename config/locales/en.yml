@@ -321,7 +321,7 @@ en:
       docstring_header: "Parsed documentation:"
       suggestions_header: "Suggestions:"
       no_suggestions_header: "No suggestions."
-      view_on_github: "View on Github"
+      view_on_github: "View on GitHub"
       issue_hint:
         text: "Please help! %{link} if this assessment is incorrect."
         link: "Open an issue on GitHub"
