@@ -379,6 +379,7 @@ en:
         branch_name: Branch
         revision_uid: Revision
         language: Language
+        language_unknown: unknown
         edit_all: "(%{link})"
         edit_link: "change"
         edit_submit: "Change"

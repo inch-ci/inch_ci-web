@@ -18,7 +18,7 @@
       .col-sm-3.language
         %span.text-muted= icon(:"quote-right", :title => t('projects.topbar.info.language'))
 
-        = @project.language
+        = @project.language || t('projects.topbar.info.language_unknown')
         - if !logged_in? || (logged_in? && current_user?)
           %small
             = link_to_edit_project(@project)
