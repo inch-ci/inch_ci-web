@@ -19,7 +19,7 @@
         %span.text-muted= icon(:"quote-right", :title => t('projects.topbar.info.language'))
 
         = @project.language || t('projects.topbar.info.language_unknown')
-        - if !logged_in? || (logged_in? && current_user?)
+        - if !logged_in? || (logged_in? && can_edit?)
           %small
             = link_to_edit_project(@project)
 

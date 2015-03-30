@@ -21,16 +21,22 @@ module InchCI
         def perform(id)
           user = Store::FindUserById.call(id)
           service_name = user.provider
-          user_name = user.user_name
           if service_name == "github"
-            update_via_github(user, user_name)
+            update_via_github(user)
           end
         end
 
         private
 
-        def update_via_github(user, user_name)
-          github = GitHubInfo.user(user_name)
+        def update_via_github(user)
+          update_organizations_via_github(user)
+          update_projects_via_github(user)
+
+          Store::UpdateLastProjectSync.call(user)
+        end
+
+        def update_projects_via_github(user)
+          github = GitHubInfo.user(user.user_name)
 
           github.repos.each do |_repo|
             repo = GitHubInfo::Repo.new(_repo)
@@ -40,8 +46,15 @@ module InchCI
               #build(project) if project.language == 'Ruby' && project.builds.count == 0
             end
           end
+        end
 
-          Store::UpdateLastProjectSync.call(user)
+        def update_organizations_via_github(user)
+          client = Octokit::Client.new(access_token: user.github_access_token)
+          list = client.organizations || []
+          unless list.empty?
+            names = list.map { |hash| hash['login'] }
+            Store::UpdateOrganizations.call(user, names)
+          end
         end
 
         def ensure_project_and_branch(url, branch_name)

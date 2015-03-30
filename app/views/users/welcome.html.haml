@@ -41,7 +41,7 @@
 
     %h3 4th rule: Join the movement!
 
-    - start_sync = current_user? && @user.last_synced_projects_at.nil?
+    - start_sync = can_edit? && @user.last_synced_projects_at.nil?
     - if start_sync
       #syncing
         %p= icon(:cog, :class => 'fa-spin')

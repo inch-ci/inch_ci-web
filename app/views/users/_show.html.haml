@@ -7,7 +7,7 @@
 
 .row.row-subsubheader
   .container
-    - if current_user?
+    - if can_edit?
       .pull-left
         %p.description
           = t(@projects.empty? ? ".empty_hint" : ".sync_hint", :time_ago => @user.last_synced_projects_at && time_ago_in_words(@user.last_synced_projects_at))
