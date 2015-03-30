@@ -92,7 +92,7 @@
 class BasePresenter
   extend Forwardable
 
-  def_delegators :@resource, :id, :new_record?, :to_param, :to_json, :to_xml, :to_yaml
+  def_delegators :@resource, :id, :new_record?, :valid?, :to_param, :to_json, :to_xml, :to_yaml
 
   # @param resource [ActiveRecord::Base]
   def initialize(resource)

@@ -2,5 +2,5 @@
   .configure-a-webhook
     %em Pro-Tip:
     You can also
-    = link_to "configure a webhook!", current_user? ? user_path(current_user) : help_webhook_path
+    = link_to "configure a webhook!", can_edit? ? user_path(current_user) : help_webhook_path
     = icon('hand-o-left')

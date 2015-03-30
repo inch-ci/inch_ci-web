@@ -1,11 +1,16 @@
 class User < ActiveRecord::Base
   serialize :follows
+  serialize :organizations
 
   def projects
-    uid = InchCI::ProjectUID.new({
-        :service => provider, :user => user_name, :repo => '%'
-      })
-    Project.includes(:default_branch).where('uid LIKE ?', uid.project_uid)
+    all_user_names = (organizations || []) + [user_name]
+    uids = all_user_names.map do |username|
+      uid = InchCI::ProjectUID.new({
+          :service => provider, :user => username, :repo => '%'
+        }).project_uid
+    end
+    like_condition = (['uid LIKE ?'] * uids.size).join(' OR ')
+    Project.includes(:default_branch).where(like_condition, *uids)
   end
 
   def self.create_with_omniauth(auth)

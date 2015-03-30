@@ -6,6 +6,6 @@
       jQuery.ajax(#{url_for(params.merge(:format => :js)).to_json});
     }, 4000)
 
-- if current_user? && @user.last_synced_projects_at.nil?
+- if can_edit? && @user.last_synced_projects_at.nil?
   :javascript
     I.user.syncProjects(#{sync_projects_url.to_json});

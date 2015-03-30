@@ -109,10 +109,15 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  def current_user?(user = @user)
-    logged_in? && user && user.id == current_user.id
+  def can_edit?(user: @user, project: @project)
+    return false unless logged_in?
+    if project
+      Action::Project::Update.can_edit?(current_user, project)
+    elsif user
+      user.id == current_user.id
+    end
   end
-  helper_method :current_user?
+  helper_method :can_edit?
 
   def logged_in?
     !current_user.nil?

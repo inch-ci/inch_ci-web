@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212200619) do
+ActiveRecord::Schema.define(version: 20150327194017) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(version: 20150212200619) do
     t.datetime "last_synced_projects_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "organizations"
   end
 
   add_index "users", ["provider", "user_name"], name: "index_users_on_provider_and_user_name", unique: true, using: :btree

@@ -8,9 +8,16 @@ module Action
 
       exposes :project, :branch
 
+      # allow if user owns project or user is in project's org
+      def self.can_edit?(current_user, project)
+        project.user_name.downcase == current_user.user_name.downcase ||
+          current_user.organizations.map(&:downcase)
+            .include?(project.user_name.downcase)
+      end
+
       def initialize(current_user, params)
         set_project_and_branch(params)
-        if current_user && @project.user_name == current_user.user_name
+        if current_user && self.class.can_edit?(current_user, @project)
           @project = @project.to_model
           update_project(params[:project])
         end
