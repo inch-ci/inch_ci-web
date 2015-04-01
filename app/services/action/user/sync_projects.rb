@@ -5,12 +5,15 @@ module Action
     class SyncProjects
       include InchCI::Action
 
-      exposes :user, :projects, :languages
+      DEFAULT_TAB = Action::User::Show::DEFAULT_TAB
+
+      exposes :user, :projects, :languages, :active_tab
 
       def initialize(current_user, params)
         @user = UserPresenter.new(current_user)
         @languages = Action::User::Show::LANGUAGES
         @projects = retrieve_projects(current_user).map { |p| ProjectPresenter.new(p) }
+        @active_tab = params[:tab] || DEFAULT_TAB
       end
 
       private
@@ -21,7 +24,7 @@ module Action
 
       def retrieve_projects(user)
         InchCI::Worker::User::UpdateProjects.new.perform(user.id)
-        InchCI::Store::FindAllProjects.call(user)
+        InchCI::Store::FindAllProjects.call(user).select(&:name)
       end
     end
   end

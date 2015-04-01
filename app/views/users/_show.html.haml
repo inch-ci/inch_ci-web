@@ -8,6 +8,10 @@
 .row.row-subsubheader
   .container
     - if can_edit?
+      .stats#syncing{:style => 'display:none'}
+        .progress.progress-striped.active
+          .progress-bar.progress-bar-U{:style => "width: 100%"}
+
       .pull-left
         %p.description
           = t(@projects.empty? ? ".empty_hint" : ".sync_hint", :time_ago => @user.last_synced_projects_at && time_ago_in_words(@user.last_synced_projects_at))
@@ -16,10 +20,6 @@
         .btn-group
           = link_to t(".sync_now"), sync_projects_path, :class => "btn btn-default", :method => :post, :"data-sync-projects" => true
       %div{:style => 'clear:both'}
-
-    .stats#syncing{:style => 'display:none'}
-      .progress.progress-striped.active
-        .progress-bar.progress-bar-U{:style => "width: 100%"}
 
 .row.row-content
   .container
