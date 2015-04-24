@@ -15,7 +15,6 @@ module Action
         if @revision
           list = InchCI::Store::FindRevisionDiffs.call(@branch.to_model)
           @diffs = limit present list
-          p :SIZE2 => @diffs.size
           @code_object_map = {}
           ids = @diffs.flat_map do |diff|
             diff.to_model.code_object_diffs.flat_map do |odiff|
@@ -31,7 +30,6 @@ module Action
       private
 
       def present(list)
-        p :SIZE => list.size
         list.map { |diff| RevisionDiffPresenter.new(diff) }
       end
 

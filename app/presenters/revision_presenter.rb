@@ -1,6 +1,6 @@
 class RevisionPresenter < BasePresenter
   def_delegators :revision, :diff, :tag_uid, :badge_in_readme?
-  def_delegators :revision, :author_name, :author_email, :authored_at
+  def_delegators :revision, :author_name, :author_email, :authored_at, :message
 
   def_delegators :revision, :branch, :project
   use_presenters :builds, :code_objects

@@ -113,12 +113,13 @@
   border: 1px solid #e5e5e5;
 }
 .grade-table th,
-.grade-table td:first-child {
+.grade-table td.grade {
   // border-left: 4px solid #eee;
   color: #fff;
 }
 .grade-table td:last-child,
-.grade-table td:first-child {
+.grade-table td:first-child,
+.grade-table td.grade {
   width: 3rem;
   text-align: center;
 }
@@ -202,6 +203,28 @@
 }
 .grade-table-added td:first-child {
   // border-left-color: #90C790;
+}
+
+tr.added td.change {
+  color: #aaa;
+}
+tr.improved {
+  td.change,
+  b {
+    color: #00A300;
+  }
+  td.change {
+    font-size: 18px;
+  }
+}
+tr.degraded {
+  td.change,
+  b {
+    color: #FF3D00;
+  }
+  td.change {
+    font-size: 18px;
+  }
 }
 
 .grade-table-B th {

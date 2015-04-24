@@ -9,25 +9,69 @@
         Objects that would not appear under 'Evaluation' like private methods are omitted.
 
     .table-responsive
+      - current_day = nil
       - @diffs.each do |rev_diff|
         - if rev_diff.change_count > 0
           .revision_diff
-            %h3.sub-header= rev_diff.revision.authored_at.strftime("%a, %Y-%m-%d")
-            = rev_diff.revision.uid
-            - rev_diff.changes.each do |key, list|
+
+            - if current_day != rev_diff.revision.authored_at.midnight
+              - current_day = rev_diff.revision.authored_at.midnight
+              %h3.sub-header= current_day.strftime("%a, %Y-%m-%d")
+
+            .pull-left
+              %span.badge= rev_diff.revision.uid
+              = rev_diff.revision.message
+            .pull-right
+              - rev_diff.changes.each do |key, list|
+                - if list.size > 0
+                  = list.size
+                  = key
+
+            %table.table.table-striped.grade-table
+              - list = rev_diff.changes['degraded']
               - if list.size > 0
-                = list.size
-                = key
-
-            - list = rev_diff.changes['degraded']
-            - if list.size > 0
-              %table.table.table-striped.grade-table.grade-table-C
-                %thead
-                  %tr
-                    %th{:colspan => 3} DEGRADED
                 - list.each do |code_object_diff|
                   - code_object = @code_object_map[code_object_diff.after_object_id]
-                  %tr
+                  - before_code_object = @code_object_map[code_object_diff.before_object_id]
+                  %tr.degraded
+                    %td.change
+                      = icon(:bug)
+                    %td.grade
+                      .grade-circle{:class => "grade-circle-#{code_object.grade}", :title => t("grade_list_table.grade_icon_hint")}
+                        = code_object.grade
+                    %td.fullname
+                      = code_object.fullname
+
+                      %b has gotten worse
+                      (was #{before_code_object.grade})
+                    %td.priority
+                      = image_tag "priority/#{code_object.priority_symbol}.png", :title => t("grade_list_table.priority_icon_hint")
+
+              - list = rev_diff.changes['improved']
+              - if list.size > 0
+                - list.each do |code_object_diff|
+                  - code_object = @code_object_map[code_object_diff.after_object_id]
+                  - before_code_object = @code_object_map[code_object_diff.before_object_id]
+                  %tr.improved
+                    %td.change
+                      = icon(:"smile-o")
+                    %td.grade
+                      .grade-circle{:class => "grade-circle-#{code_object.grade}", :title => t("grade_list_table.grade_icon_hint")}
+                        = code_object.grade
+                    %td.fullname
+                      = code_object.fullname
+                      %b has improved
+                      (was #{before_code_object.grade})
+                    %td.priority
+                      = image_tag "priority/#{code_object.priority_symbol}.png", :title => t("grade_list_table.priority_icon_hint")
+
+              - list = rev_diff.changes['added']
+              - if list.size > 0
+                - list.each do |code_object_diff|
+                  - code_object = @code_object_map[code_object_diff.after_object_id]
+                  %tr.added
+                    %td.change
+                      = icon(:plus)
                     %td.grade
                       .grade-circle{:class => "grade-circle-#{code_object.grade}", :title => t("grade_list_table.grade_icon_hint")}
                         = code_object.grade
@@ -36,38 +80,15 @@
                     %td.priority
                       = image_tag "priority/#{code_object.priority_symbol}.png", :title => t("grade_list_table.priority_icon_hint")
 
-            - list = rev_diff.changes['improved']
-            - if list.size > 0
-              %table.table.table-striped.grade-table.grade-table-A
-                %thead
-                  %tr
-                    %th{:colspan => 3} IMPROVED
-                - list.each do |code_object_diff|
-                  - code_object = @code_object_map[code_object_diff.after_object_id]
-                  %tr
-                    %td.grade
-                      .grade-circle{:class => "grade-circle-#{code_object.grade}", :title => t("grade_list_table.grade_icon_hint")}
-                        = code_object.grade
-                    %td.fullname
-                      = code_object.fullname
-                    %td.priority
-                      = image_tag "priority/#{code_object.priority_symbol}.png", :title => t("grade_list_table.priority_icon_hint")
+.inch-links
+  %b Everything Inch CI
+  %ul.list-unstyled
+    %li= link_to "Get your own badge!", root_path
+    %li= link_to "Configure a webhook for continuous integration!", help_webhook_path
+    %li= link_to "Raising the visibility of inline-docs", "http://trivelop.de/2014/02/24/visibility-of-documentation/"
+    %li= link_to "Why Inch doesn't use percentages", "http://trivelop.de/2014/02/17/why-inch-doesnot-use-percentages/"
+    %li= link_to "Inch project page", "http://trivelop.de/inch"
 
-            - list = rev_diff.changes['added']
-            - if list.size > 0
-              %table.table.table-striped.grade-table.grade-table-added
-                %thead
-                  %tr
-                    %th{:colspan => 3} ADDED
-                - list.each do |code_object_diff|
-                  - code_object = @code_object_map[code_object_diff.after_object_id]
-                  %tr
-                    %td.grade
-                      .grade-circle{:class => "grade-circle-#{code_object.grade}", :title => t("grade_list_table.grade_icon_hint")}
-                        = code_object.grade
-                    %td.fullname
-                      = code_object.fullname
-                    %td.priority
-                      = image_tag "priority/#{code_object.priority_symbol}.png", :title => t("grade_list_table.priority_icon_hint")
-
-  = render "about_footer"
+.row.row-prefooter
+  .container
+    = render "about_footer"
