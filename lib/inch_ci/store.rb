@@ -51,6 +51,8 @@ module InchCI
     FindLatestRevision = -> (branch) { branch.latest_revision }
     UpdateLatestRevision = -> (branch, revision) { branch.update_attribute(:latest_revision, revision) }
 
+    FindRevisionDiffs = -> (branch, count = 200) { branch.revision_diffs.includes(:code_object_diffs).includes(:after_revision).limit(count) }
+
     class CreateRevisionDiff
       attr_reader :revision_diff
 

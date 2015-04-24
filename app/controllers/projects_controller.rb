@@ -55,7 +55,7 @@ class ProjectsController < ApplicationController
   end
 
   def history
-    process_project_action Action::Project::Show
+    process_project_action Action::Project::History
   end
 
   def rebuild
