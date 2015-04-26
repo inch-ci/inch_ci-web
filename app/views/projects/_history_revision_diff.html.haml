@@ -17,8 +17,7 @@
       - list.each do |code_object_diff|
         - code_object = @code_object_map[code_object_diff.after_object_id]
         - before_code_object = @code_object_map[code_object_diff.before_object_id]
-        - negative_priority_count += 1 if code_object.priority < 0
-        %tr.degraded{:"data-negative-priority" => code_object.priority < 0 ? revision_diff.id : nil, :style => code_object.priority < 0 ? "display: none" : nil}
+        %tr.degraded
           %td.change
             = icon(:bug)
           %td.grade
@@ -36,8 +35,7 @@
       - list.each do |code_object_diff|
         - code_object = @code_object_map[code_object_diff.after_object_id]
         - before_code_object = @code_object_map[code_object_diff.before_object_id]
-        - negative_priority_count += 1 if code_object.priority < 0
-        %tr.improved{:"data-negative-priority" => code_object.priority < 0 ? revision_diff.id : nil, :style => code_object.priority < 0 ? "display: none" : nil}
+        %tr.improved
           %td.change
             = icon(:"smile-o")
           %td.grade
