@@ -10,12 +10,15 @@
           = key
 
   %table.table.table-striped.grade-table
+    - negative_priority_count = 0
+
     - list = revision_diff.changes['degraded']
     - if list.size > 0
       - list.each do |code_object_diff|
         - code_object = @code_object_map[code_object_diff.after_object_id]
         - before_code_object = @code_object_map[code_object_diff.before_object_id]
-        %tr.degraded
+        - negative_priority_count += 1 if code_object.priority < 0
+        %tr.degraded{:"data-negative-priority" => code_object.priority < 0 ? revision_diff.id : nil, :style => code_object.priority < 0 ? "display: none" : nil}
           %td.change
             = icon(:bug)
           %td.grade
@@ -23,7 +26,6 @@
               = code_object.grade
           %td.fullname
             = code_object.fullname
-
             %b has gotten worse
             (was #{before_code_object.grade})
           %td.priority
@@ -34,7 +36,8 @@
       - list.each do |code_object_diff|
         - code_object = @code_object_map[code_object_diff.after_object_id]
         - before_code_object = @code_object_map[code_object_diff.before_object_id]
-        %tr.improved
+        - negative_priority_count += 1 if code_object.priority < 0
+        %tr.improved{:"data-negative-priority" => code_object.priority < 0 ? revision_diff.id : nil, :style => code_object.priority < 0 ? "display: none" : nil}
           %td.change
             = icon(:"smile-o")
           %td.grade
@@ -51,7 +54,8 @@
     - if list.size > 0
       - list.each do |code_object_diff|
         - code_object = @code_object_map[code_object_diff.after_object_id]
-        %tr.added
+        - negative_priority_count += 1 if code_object.priority < 0
+        %tr.added{:"data-negative-priority" => code_object.priority < 0 ? revision_diff.id : nil, :style => code_object.priority < 0 ? "display: none" : nil}
           %td.change
             = icon(:plus)
           %td.grade
@@ -61,3 +65,9 @@
             = code_object.fullname
           %td.priority
             = image_tag "priority/#{code_object.priority_symbol}.png", :title => t("grade_list_table.priority_icon_hint")
+
+    - if negative_priority_count > 0
+      %tr.show_negative_priority
+        %td{:colspan => 4}
+          %a{:href => "#", :"data-show-negative-priority" => revision_diff.id}
+            Show #{negative_priority_count} low priority changes ...
