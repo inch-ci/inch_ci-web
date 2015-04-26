@@ -4,6 +4,10 @@ class BuildPresenter < BasePresenter
 
   use_presenters :revision, :revision_diff
 
+  def duplicate?
+    status == 'duplicate'
+  end
+
   def duration
     finished_at.to_i - started_at.to_i
   end

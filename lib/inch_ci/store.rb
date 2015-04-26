@@ -92,7 +92,7 @@ module InchCI
     FindBuild = -> (id) { Build.find(id) }
     FindBuilds = -> (count = 200) { Build.order('id DESC').limit(count).includes(:revision).includes(:branch).includes(:project) }
     FindBuildsInProject = -> (project) { project.builds }
-    FindBuildsInBranch = -> (branch, count = 200) { branch.to_model.builds.preload(:revision_diff).limit(count) }
+    FindBuildsInBranch = -> (branch, count = 200) { branch.to_model.builds.preload(:revision, :revision_diff).limit(count) }
     FindLatestBuildInProject = -> (project) { project.builds.order('id DESC').first }
 
     CreateBuild = -> (branch, trigger, status = 'created') do

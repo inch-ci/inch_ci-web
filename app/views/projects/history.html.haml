@@ -12,7 +12,7 @@
       - not_rendered_builds = []
       - @builds.each do |build|
         - rev_diff = build.revision_diff
-        - if rev_diff.change_count == 0
+        - if build.duplicate? || (rev_diff && rev_diff.change_count == 0)
           - not_rendered_builds << build
         - else
           - if not_rendered_builds.size > 0

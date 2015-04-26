@@ -27,9 +27,10 @@ module Action
 
       def create_code_object_map(revision_diffs)
         code_object_map = {}
-        code_object_ids = revision_diffs.flat_map do |diff|
-          diff.to_model.code_object_diffs.flat_map do |odiff|
-            [odiff.before_object_id, odiff.after_object_id]
+
+        code_object_ids = revision_diffs.flat_map do |rev_diff|
+          rev_diff.to_model.code_object_diffs.flat_map do |obj_diff|
+            [obj_diff.before_object_id, obj_diff.after_object_id]
           end
         end
         ::CodeObject.where(:id => code_object_ids).each do |code_object|

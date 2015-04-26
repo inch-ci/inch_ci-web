@@ -1,12 +1,4 @@
 class RevisionDiffPresenter < BasePresenter
-  def code_objects=(objects)
-    @code_objects ||= {}
-    objects.eah do |object|
-      @code_objects[object.id] = object
-    end
-    @code_objects
-  end
-
   def code_object(id)
     @code_objects ||= {}
     CodeObjectPresenter.new(@code_objects[id] || CodeObject.find(id))
