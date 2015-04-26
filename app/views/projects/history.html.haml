@@ -9,44 +9,16 @@
         In case the documentation changed, it is shown here.
 
     .table-responsive
+      - not_rendered_builds = []
       - @builds.each do |build|
-        .history-build-wrapper
-          %table.table.table-striped.history
-            %tbody
-              %tr
-                %td.status{:class => build_css_class(build)}
-                  = build_status_icon(build)
-                  = "##{build.number}"
-                %td.revision_uid
-                  - if revision = build.revision
-                    - if revision.tag_uid
-                      - if revision.tag_uid.size < 10
-                        %span.badge{:title => revision.uid}= revision.tag_uid
-                      - else
-                        %span.badge{:title => revision.tag_uid(false)}= revision.tag_uid
-                    - else
-                      = revision.message
-                      %span.text-muted= "[#{revision.uid}]"
-                - if build.finished_at
-                  %td.duration
-                    %span.text-muted= icon(:"clock-o", :title => t('projects.topbar.info.duration'))
-                    = (build.finished_at - build.started_at).to_i
-                    seconds
-                  %td.finished_at
-                    %span.text-muted= icon(:"calendar", :title => t('projects.topbar.info.finished_ago'))
-                    = t("builds.index.finished_ago", :time_ago => time_ago_in_words(build.finished_at))
-                - elsif build.started_at
-                  %td.duration{:colspan => 2}
-                    started
-                    %span{"data-increment-every-second" => true}
-                      = (Time.now - build.started_at).to_i
-                    seconds ago
-                - else
-                  %td.duration{:colspan => 2}
-
-          - rev_diff = build.revision_diff
-          - if rev_diff && rev_diff.change_count > 0
-            = render "revision_diff", :revision_diff => rev_diff
+        - rev_diff = build.revision_diff
+        - if rev_diff.change_count == 0
+          - not_rendered_builds << build
+        - else
+          - if not_rendered_builds.size > 0
+            = render "history_no_changes_builds", :builds => not_rendered_builds
+            - not_rendered_builds = []
+          = render "history_build", :build => build
 
 .inch-links
   %b Everything Inch CI

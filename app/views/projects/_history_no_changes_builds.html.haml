@@ -1,0 +1,13 @@
+.history-build-wrapper.history-omitted
+  %table.table.table-striped.history
+    %tbody
+      %tr
+        %td.status{:class => 'muted'}
+          = icon(:"circle-o")
+        %td.revision_uid
+          - if builds.size == 1
+            #{builds.size} build omitted (no changes to documentation).
+          - else
+            #{builds.size} builds omitted (no changes to documentation).
+
+        %td.duration{:colspan => 2}
