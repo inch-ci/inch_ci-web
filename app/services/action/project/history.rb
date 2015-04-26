@@ -13,24 +13,33 @@ module Action
       def initialize(params)
         super
         if @revision
-          list = InchCI::Store::FindRevisionDiffs.call(@branch.to_model)
-          @diffs = limit present list
+          @builds = find_builds
+
+          revision_diffs = InchCI::Store::FindRevisionDiffs.call(@branch.to_model)
+          @diffs = limit present(revision_diffs, RevisionDiffPresenter)
+
           @code_object_map = {}
-          ids = @diffs.flat_map do |diff|
+          code_object_ids = @diffs.flat_map do |diff|
             diff.to_model.code_object_diffs.flat_map do |odiff|
               [odiff.before_object_id, odiff.after_object_id]
             end
           end
-          ::CodeObject.where(:id => ids).each { |code_object|
+          ::CodeObject.where(:id => code_object_ids).each do |code_object|
             @code_object_map[code_object.id] = CodeObjectPresenter.new(code_object)
-          }
+          end
+
+          @builds = present(@builds, BuildPresenter)
         end
       end
 
       private
 
-      def present(list)
-        list.map { |diff| RevisionDiffPresenter.new(diff) }
+      def find_builds
+        InchCI::Store::FindBuildsInProject.call(@project)
+      end
+
+      def present(list, presenter_class)
+        list.map { |diff| presenter_class.new(diff) }
       end
 
       def limit(list, max_count = 50)

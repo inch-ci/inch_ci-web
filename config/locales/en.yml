@@ -409,7 +409,7 @@ en:
 
         No problemo! [Learn how ...](/help/config_file_json)
     subnavi:
-      history: History
+      history: Build History
       show: Evaluation
       suggestions: Suggestions <span class=badge>%{suggestion_count}</span>
     page:
