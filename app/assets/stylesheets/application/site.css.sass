@@ -144,3 +144,35 @@ table.projects
     display: block
     margin-top: 10px
     font-weight: normal
+
+table.history
+  margin-bottom: 0
+  td
+    border-top: none !important
+  td.status
+    border-radius: 4px
+    width: 6rem
+    text-align: center
+  td.duration,
+  td.finished_at
+    text-align: right
+  td.finished_at
+    width: 12rem
+
+.revision_diff
+  table
+    margin-bottom: 0
+  table > tbody > tr:nth-child(odd) > td,
+  table > tbody > tr:nth-child(odd) > th
+    background: transparent
+  table > tbody > tr:nth-child(even) > td,
+  table > tbody > tr:nth-child(even) > th
+    background: #f9f9f9
+  table tr td
+    border: none !important
+    border-radius: 4px
+
+.history-build-wrapper
+  border: 4px solid #f9f9f9
+  border-radius: 4px
+  margin-bottom: 20px

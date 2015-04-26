@@ -8,34 +8,38 @@ module Action
       include Action::SetProjectAndBranch
 
       exposes :project, :branch, :revision, :collection, :suggestion_count
-      exposes :diffs, :code_object_map
+      exposes :builds, :diffs, :code_object_map
 
       def initialize(params)
         super
         if @revision
-          @builds = find_builds
+          @builds = present(find_builds, BuildPresenter)
 
-          revision_diffs = InchCI::Store::FindRevisionDiffs.call(@branch.to_model)
-          @diffs = limit present(revision_diffs, RevisionDiffPresenter)
+          #revision_diffs = InchCI::Store::FindRevisionDiffs.call(@branch.to_model)
+          #@diffs = limit present(revision_diffs, RevisionDiffPresenter)
+          @diffs = @builds.map(&:revision_diff).compact
 
-          @code_object_map = {}
-          code_object_ids = @diffs.flat_map do |diff|
-            diff.to_model.code_object_diffs.flat_map do |odiff|
-              [odiff.before_object_id, odiff.after_object_id]
-            end
-          end
-          ::CodeObject.where(:id => code_object_ids).each do |code_object|
-            @code_object_map[code_object.id] = CodeObjectPresenter.new(code_object)
-          end
-
-          @builds = present(@builds, BuildPresenter)
+          @code_object_map = create_code_object_map(@diffs)
         end
       end
 
       private
 
+      def create_code_object_map(revision_diffs)
+        code_object_map = {}
+        code_object_ids = revision_diffs.flat_map do |diff|
+          diff.to_model.code_object_diffs.flat_map do |odiff|
+            [odiff.before_object_id, odiff.after_object_id]
+          end
+        end
+        ::CodeObject.where(:id => code_object_ids).each do |code_object|
+          code_object_map[code_object.id] = CodeObjectPresenter.new(code_object)
+        end
+        code_object_map
+      end
+
       def find_builds
-        InchCI::Store::FindBuildsInProject.call(@project)
+        InchCI::Store::FindBuildsInBranch.call(@branch)
       end
 
       def present(list, presenter_class)

@@ -1,16 +1,13 @@
 .revision_diff
-  - if @__history_day != revision_diff.revision.authored_at.midnight
-    - @__history_day = revision_diff.revision.authored_at.midnight
-    %h3.sub-header= @__history_day.strftime("%a, %Y-%m-%d")
-
-  .pull-left
-    %span.badge= revision_diff.revision.uid
-    = revision_diff.revision.message
-  .pull-right
-    - revision_diff.changes.each do |key, list|
-      - if list.size > 0
-        = list.size
-        = key
+  /
+    .pull-left
+      %span.badge= revision_diff.revision.uid
+      = revision_diff.revision.message
+    .pull-right
+      - revision_diff.changes.each do |key, list|
+        - if list.size > 0
+          = list.size
+          = key
 
   %table.table.table-striped.grade-table
     - list = revision_diff.changes['degraded']
