@@ -14,11 +14,7 @@ module Action
         super
         if @revision
           @builds = present(find_builds, BuildPresenter)
-
-          #revision_diffs = InchCI::Store::FindRevisionDiffs.call(@branch.to_model)
-          #@diffs = limit present(revision_diffs, RevisionDiffPresenter)
           @diffs = @builds.map(&:revision_diff).compact
-
           @code_object_map = create_code_object_map(@diffs)
         end
       end

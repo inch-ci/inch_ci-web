@@ -1,6 +1,6 @@
 - rev_diff = build.revision_diff
 
-.history-build-wrapper
+.history-build-wrapper{:"data-build-id" => build.id}
   %table.table.table-striped.history
     %tbody
       %tr
@@ -17,6 +17,8 @@
             - else
               = revision.message
               %span.text-muted= "[#{revision.uid}]"
+          - else
+            Evaluating project ...
         - if build.finished_at
           %td.duration
             %span.text-muted= icon(:"clock-o", :title => t('projects.topbar.info.duration'))
@@ -27,6 +29,7 @@
             = t("builds.index.finished_ago", :time_ago => time_ago_in_words(build.finished_at))
         - elsif build.started_at
           %td.duration{:colspan => 2}
+            %span.text-muted= icon(:"clock-o", :title => t('projects.topbar.info.duration'))
             started
             %span{"data-increment-every-second" => true}
               = (Time.now - build.started_at).to_i
@@ -34,5 +37,5 @@
         - else
           %td.duration{:colspan => 2}
 
-  - if rev_diff && rev_diff.change_count > 0
-    = render "history_revision_diff", :revision_diff => rev_diff
+  - if !build.duplicate? && rev_diff && rev_diff.change_count > 0
+    = render "/projects/history_revision_diff", :revision_diff => rev_diff

@@ -1,4 +1,5 @@
 require 'inch_ci/worker/project/build/handle_worker_output'
+require 'inch_ci/gossip'
 require 'open3'
 
 module InchCI
@@ -17,6 +18,7 @@ module InchCI
           branch = Store::EnsureProjectAndBranch.call(url, branch_name)
           project = branch.project
           build = Store::CreateBuild.call(branch, trigger)
+          Gossip.new_build(build, build.project, build.branch)
           ShellInvocation.perform_async(url, branch_name, revision_uid, trigger, build.id, project.language)
           build
         end
@@ -41,6 +43,7 @@ module InchCI
             cmd << " --language=#{language}" if language
             stdout_str, stderr_str, status = Open3.capture3(cmd)
             HandleWorkerOutput.new(stdout_str, stderr_str, build)
+            Gossip.update_build(build, build.project, build.branch)
           end
 
           private
@@ -54,9 +57,12 @@ module InchCI
             if build_id
               build = Store::FindBuild.call(build_id)
               Store::UpdateBuildStatus.call(build, 'running', Time.now)
+              Gossip.update_build(build, build.project, build.branch)
               build
             else
-              create_preliminary_build(url, branch_name, trigger)
+              build = create_preliminary_build(url, branch_name, trigger)
+              Gossip.new_build(build, build.project, build.branch)
+              build
             end
           end
         end

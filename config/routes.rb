@@ -52,7 +52,7 @@ InchCI::Application.routes.draw do
 
   duo    = ':service/:user'
   triple = ':service/:user/:repo'
-  triple_constraints = {:repo => /[^\/]+/, :branch => /[^\/]+/}
+  triple_constraints = {:service => /(github)/, :repo => /[^\/]+/, :branch => /[^\/]+/}
   badge_constraints = {:format => /(png|svg)/}.merge(triple_constraints)
 
   get "#{duo}" => 'users#show', :format => false
@@ -80,7 +80,11 @@ InchCI::Application.routes.draw do
 
   post 'rebuild' => 'projects#rebuild_via_hook'
 
-  resources :builds
+  resources :builds do
+    member do
+      get :history_show
+    end
+  end
   resources :projects
 
 end

@@ -1,7 +1,7 @@
 !!!
 %html{:lang => "en"}
   = render "layouts/head"
-  %body
+  %body{"data-gossip-server" => gossip_server, "data-gossip-room" => gossip_room}
     .row.row-header
       .container
         .pull-left

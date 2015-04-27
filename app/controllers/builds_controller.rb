@@ -10,6 +10,11 @@ class BuildsController < ApplicationController
     expose view
   end
 
+  def history_show
+    view = Action::Build::Show.new(params, load_diff: true)
+    expose view
+  end
+
   def show
     view = Action::Build::Show.new(params)
     expose view

@@ -1,0 +1,3 @@
+# This is the configuration file for the Inch CI Gossip server.
+
+server: "localhost:4000"

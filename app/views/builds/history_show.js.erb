@@ -1,0 +1,1 @@
+jQuery('[data-build-id=<%= @build.id %>]').replaceWith('<%= escape_javascript render('/projects/history_build', :build => @build) %>');

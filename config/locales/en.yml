@@ -1,4 +1,9 @@
 en:
+  datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        one: '< 1 minute'
+        other: 'less than {{count}} minutes ago'
   navigation:
     brand: "# Inch CI"
     home: Home

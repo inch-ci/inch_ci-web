@@ -1,4 +1,5 @@
 require 'inch_ci/worker/project/build/handle_worker_output'
+require 'inch_ci/gossip'
 require 'open3'
 require 'json'
 
@@ -22,6 +23,7 @@ module InchCI
           if json.url
             branch = Store::EnsureProjectAndBranch.call(json.url, json.branch_name)
             build = Store::CreateBuild.call(branch, trigger)
+            Gossip.new_build(build, build.project, build.branch)
             ShellInvocation.perform_async(filename, json.url, json.branch_name, trigger, build.id)
             build
           end
@@ -45,6 +47,7 @@ module InchCI
             build = ensure_running_build(url, branch_name, trigger, build_id)
             stdout_str, stderr_str, status = Open3.capture3("#{BIN} #{filename}")
             Project::Build::HandleWorkerOutput.new(stdout_str, stderr_str, build)
+            Gossip.update_build(build, build.project, build.branch)
           end
 
           private
@@ -58,9 +61,12 @@ module InchCI
             if build_id
               build = Store::FindBuild.call(build_id)
               Store::UpdateBuildStatus.call(build, 'running', Time.now)
+              Gossip.update_build(build, build.project, build.branch)
               build
             else
-              create_preliminary_build(url, branch_name, trigger)
+              build = create_preliminary_build(url, branch_name, trigger)
+              Gossip.new_build(build, build.project, build.branch)
+              build
             end
           end
         end

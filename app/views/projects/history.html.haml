@@ -8,11 +8,12 @@
       %p
         In case the documentation changed, it is shown here.
 
-    .table-responsive
+    .history-builds.table-responsive
       - not_rendered_builds = []
-      - @builds.each do |build|
+      - @builds.each_with_index do |build, index|
         - rev_diff = build.revision_diff
-        - if build.duplicate? || (rev_diff && rev_diff.change_count == 0)
+        - no_changes_present = rev_diff && rev_diff.change_count == 0
+        - if index > 0 && (build.duplicate? || no_changes_present)
           - not_rendered_builds << build
         - else
           - if not_rendered_builds.size > 0
