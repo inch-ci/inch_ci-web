@@ -8,6 +8,10 @@ class BuildPresenter < BasePresenter
     status == 'duplicate'
   end
 
+  def finished?
+    status != 'created' && status != 'running'
+  end
+
   def duration
     finished_at.to_i - started_at.to_i
   end

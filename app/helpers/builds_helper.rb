@@ -21,7 +21,7 @@ module BuildsHelper
   def build_status_icon_map
     {
       'created' => :"circle-o",
-      'running' => :"dot-circle-o",
+      'running' => :"spinner fa-pulse",
       'deffered' => :"arrow-up",
       'duplicate' => :"check-square",
       'success' => :check,

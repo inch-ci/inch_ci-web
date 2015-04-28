@@ -1,7 +1,7 @@
 I.grade_list_table = (function () {
 
   function showMore(grade) {
-    var table = $(".grade-table-"+grade);
+    var table = $(".grade-list-table-"+grade);
     table.find("tr.show_more").hide();
     table.find("tr.hidden_object").show();
   }

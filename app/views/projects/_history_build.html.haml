@@ -18,7 +18,8 @@
               = revision.message
               %span.text-muted= "[#{revision.uid}]"
           - else
-            Evaluating project ...
+            - if !build.finished?
+              Evaluating project ...
         - if build.finished_at
           %td.duration
             %span.text-muted= icon(:"clock-o", :title => t('projects.topbar.info.duration'))
