@@ -16,6 +16,7 @@
 //= require morris
 //= require rdash
 //= require ../application/base
+//= require ../application/phoenix
 //= require_tree ../application
 
 

@@ -1,0 +1,9 @@
+.history-build-wrapper{:"data-build-id" => "{{build_id}}"}
+  %table.table.table-striped.history
+    %tbody
+      %tr
+        %td.status{:class => "status {{build_status}}"}
+          = "#" + "{{build_number}}"
+        %td.revision_uid
+          Created new build ...
+        %td.duration{:colspan => 2}

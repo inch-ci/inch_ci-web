@@ -1,21 +1,10 @@
 I.gossip = (function () {
   function onNewBuild(payload) {
-    console.log(payload);
-    var html = template.replace('{{build_id}}', payload.build_id)
-                        .replace('{{build_number}}', payload.build_number)
-                        .replace('{{build_status}}', payload.build_status);
-    $('.history-builds').prepend(html);
-    updateRemotely(payload.build_id);
+    console.log("Unhandled :new_build message", payload);
   }
 
   function onUpdateBuild(payload) {
-    console.log(payload);
-    updateRemotely(payload.build_id);
-  }
-
-  function updateRemotely(build_id) {
-    var url = "/builds/"+build_id+"/history_show.js";
-    jQuery.ajax(url);
+    console.log("Unhandled :update_build message", payload);
   }
 
 
@@ -27,7 +16,6 @@ I.gossip = (function () {
   return {
     onNewBuild: onNewBuild,
     onUpdateBuild: onUpdateBuild,
-    updateRemotely: updateRemotely,
     showMore: showMore
   };
 }());
@@ -54,5 +42,3 @@ jQuery(function() {
     });
   }
 });
-
-var template = '<div class="history-build-wrapper" data-build-id="{{build_id}}">  <table class="table table-striped history">    <tbody>      <tr>        <td class="status {{build_status}}">          #{{build_number}}        </td>        <td class="revision_uid">          New build        </td>        <td class="duration">        </td>        <td class="finished_at">        </td>      </tr>    </tbody>  </table></div>';

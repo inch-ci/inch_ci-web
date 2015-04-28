@@ -9,6 +9,7 @@ class Admin::BuildsController < ApplicationController
   def index
     set_builds
     @languages = %w(Elixir JavaScript Ruby)
+    @gossip_room = "projects:lobby"
   end
 
   def show

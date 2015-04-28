@@ -33,3 +33,23 @@
 .row.row-prefooter
   .container
     = render "about_footer"
+
+:javascript
+
+  I.gossip.onNewBuild = function onNewBuild(payload) {
+    var template = '#{escape_javascript render('history_build_template')}';
+    var html = template.replace('{{build_id}}', payload.build_id)
+                        .replace('{{build_number}}', '#'+payload.build_number)
+                        .replace('{{build_status}}', payload.build_status);
+    $('.history-builds').prepend(html);
+    updateRemotely(payload.build_id);
+  }
+
+  I.gossip.onUpdateBuild = function onUpdateBuild(payload) {
+    updateRemotely(payload.build_id);
+  }
+
+  function updateRemotely(build_id) {
+    var url = "/builds/"+build_id+"/history_show.js";
+    jQuery.ajax(url);
+  }
