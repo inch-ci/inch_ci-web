@@ -19,7 +19,10 @@
     border-right: 1px solid #ccc;
 }
 
-.stats-table tfoot tr td {
+.stats-table tfoot tr:first-child td {
   border-top: 2px solid #ccc;
+}
+
+.stats-table tfoot tr td {
   color: #888;
 }

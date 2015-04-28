@@ -73,6 +73,25 @@
                 %td= @stats.average("builds:hooked:<24h")
                 %td= @stats.average("builds:travis:<24h")
 
+              %tr
+                %td
+                %td Median:
+                %td= @stats.median("projects:badges", use_changes: true)
+                %td= @stats.median("projects:badges:ruby", use_changes: true)
+                %td= @stats.median("projects:badges:elixir", use_changes: true)
+                %td= @stats.median("projects:badges:javascript", use_changes: true)
+                %td= @stats.median("projects:hooked", use_changes: true)
+                %td= @stats.median("projects:all", use_changes: true)
+                %td= @stats.median("maintainers:all", use_changes: true)
+                %td= @stats.median("maintainers:badges", use_changes: true)
+                %td= @stats.median("maintainers:hooked", use_changes: true)
+                %td= @stats.median("users:github", use_changes: true)
+                %td= @stats.median("users:signins:<24h")
+                %td= @stats.median("badges:served:<24h")
+                %td= @stats.median("builds:manual:<24h")
+                %td= @stats.median("builds:hooked:<24h")
+                %td= @stats.median("builds:travis:<24h")
+
 
 
 .col-lg-2

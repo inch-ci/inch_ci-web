@@ -15,11 +15,25 @@ class Stats
   end
 
   def average(key, use_changes: false)
+    mean(key, use_changes: use_changes) do |values|
+      (values.inject(:+).to_f / values.size).round(1)
+    end
+  end
+
+  def median(key, use_changes: false)
+    mean(key, use_changes: use_changes) do |values|
+      values[values.size/2]
+    end
+  end
+
+  private
+
+  def mean(key, use_changes:, &block)
     values = @stats.map { |entry| entry.value(key) }
     if use_changes
       values = values.map(&:change)
     end
-    result = (values.map(&:to_i).inject(:+).to_f / values.size).round(1)
+    result = block.call(values.map(&:to_i))
     if use_changes && result > 0
       "+#{result}"
     else
