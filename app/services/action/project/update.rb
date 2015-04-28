@@ -30,6 +30,7 @@ module Action
       private
 
       def update_project(attributes)
+        @project.documentation_url = attributes[:documentation_url]
         @project.language = attributes[:language]
         InchCI::Store::SaveProject.call(@project)
       end

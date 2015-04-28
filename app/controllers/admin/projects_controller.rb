@@ -3,6 +3,8 @@ require 'inch_ci/controller'
 class Admin::ProjectsController < ApplicationController
   include InchCI::Controller
 
+  PROJECTS_PER_PAGE = 200
+
   layout 'admin'
 
   def create
@@ -16,9 +18,17 @@ class Admin::ProjectsController < ApplicationController
     end
   end
 
-  PER_PAGE = 200
+  def update
+    @project = ::Project.find(params[:id])
+    attributes = params[:project]
+    @project.documentation_url = attributes[:documentation_url]
+    @project.language = attributes[:language]
+    InchCI::Store::SaveProject.call(@project)
+    redirect_to admin_project_url(@project)
+  end
+
   def index
-    @projects = filter_collection(Project).order('created_at DESC').limit(PER_PAGE)
+    @projects = filter_collection(Project).order('created_at DESC').limit(PROJECTS_PER_PAGE)
     @languages = %w(Elixir JavaScript Ruby)
   end
 

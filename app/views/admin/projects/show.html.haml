@@ -2,3 +2,18 @@
   .col-lg-6
     = render "admin/projects/project", :project => @project
 
+  .col-lg-4
+    = form_for(@project, :url => admin_project_path(@project), :method => :put, :html => {:class => 'edit-project-form form-horizontal'}) do |f|
+      .form-group{:class => flash[:error] ? 'has-error' : nil}
+        = f.label(:language, t(".label.language"))
+        = f.select(:language, %w(Ruby Elixir JavaScript), {}, :class => "form-control")
+      .form-group{:class => flash[:error] ? 'has-error' : nil}
+        = f.label(:language, t(".label.documentation_url"))
+        = f.text_field(:documentation_url, :class => "form-control")
+
+      .form-group{:class => flash[:error] ? 'has-error' : nil}
+        = submit_tag "Update project", :class => "btn btn-success"
+
+        - flash[:error].tap do |error_message|
+          .error
+            = error_message
