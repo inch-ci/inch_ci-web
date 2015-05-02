@@ -32,9 +32,14 @@
           = select_tag(:badge_in_readme, options_for_select([[''], ['Badge in README', '1'], ['No badge in README', '0']], params[:badge_in_readme]), :class => 'form-control')
 
         .form-group
+          %label Limit to ...
+          %label
+            = check_box_tag :fork, '0', !!params[:fork]
+            = "non-forked projects"
+
           %label
             = check_box_tag :maintainers_with_badge_in_readme, '1', !!params[:maintainers_with_badge_in_readme]
-            = "Limit to users sporting badges"
+            = "users sporting badges"
 
         = submit_tag "Show projects"
         - if params.size > 2

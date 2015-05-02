@@ -42,6 +42,9 @@ class Admin::ProjectsController < ApplicationController
     if params[:language].present?
       arel = arel.where('LOWER(language) = ?', params[:language].to_s.downcase)
     end
+    if params[:fork].present?
+      arel = arel.where(:fork => params[:fork] == '1')
+    end
     if params[:badge_in_readme].present?
       arel = arel.where(:badge_in_readme => params[:badge_in_readme] == '1')
     end
