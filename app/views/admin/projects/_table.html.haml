@@ -8,6 +8,7 @@
         %th Date added
         %th Language
         %th Builds
+        %th Docs
         %th
         %th
     %tbody
@@ -20,6 +21,9 @@
             %td= project.created_at.strftime('%Y-%m-%d')
             %td= link_to project.language || '-', :language => project.language
             %td= link_to icon(:signal), admin_builds_path(:service => project.service_name, :user => project.user_name, :repo => project.repo_name)
+            %td
+              - if project.documentation_url
+                = link_to icon(:globe), project.documentation_url, :target => '_blank'
             %td.text-right
               - if project.badge_generated?
                 - if project.badge_in_readme?
