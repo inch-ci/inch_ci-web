@@ -4,6 +4,7 @@ class Admin::ProjectsController < ApplicationController
   include InchCI::Controller
 
   PROJECTS_PER_PAGE = 200
+  LANGUAGE_NOT_SET = "LANGUAGE_NOT_SET"
 
   layout 'admin'
 
@@ -29,7 +30,7 @@ class Admin::ProjectsController < ApplicationController
 
   def index
     @projects = filter_collection(Project).order('created_at DESC').limit(PROJECTS_PER_PAGE)
-    @languages = %w(Elixir JavaScript Ruby)
+    @languages = %w(Elixir JavaScript Ruby) + [LANGUAGE_NOT_SET]
   end
 
   def show
@@ -40,7 +41,11 @@ class Admin::ProjectsController < ApplicationController
 
   def filter_collection(arel)
     if params[:language].present?
-      arel = arel.where('LOWER(language) = ?', params[:language].to_s.downcase)
+      if params[:language] == LANGUAGE_NOT_SET
+        arel = arel.where('language IS NULL')
+      else
+        arel = arel.where('LOWER(language) = ?', params[:language].to_s.downcase)
+      end
     end
     if params[:fork].present?
       arel = arel.where(:fork => params[:fork] == '1')

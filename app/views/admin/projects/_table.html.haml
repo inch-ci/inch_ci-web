@@ -18,7 +18,7 @@
             %td= link_to(project.name, project.source_code_url, :target => '_blank', :class => 'external')
             %td= project.origin
             %td= project.created_at.strftime('%Y-%m-%d')
-            %td= link_to project.language, :language => project.language
+            %td= link_to project.language || '-', :language => project.language
             %td= link_to icon(:signal), admin_builds_path(:service => project.service_name, :user => project.user_name, :repo => project.repo_name)
             %td.text-right
               - if project.badge_generated?
