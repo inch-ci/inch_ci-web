@@ -79,7 +79,7 @@ GEM
       yard (~> 0.8.7.5)
     inch-badge (0.4.1)
       chunky_png
-    inch_ci-worker (0.3.7)
+    inch_ci-worker (0.3.8)
       inch
       repomen (>= 0.2.1)
     jbuilder (1.5.3)
