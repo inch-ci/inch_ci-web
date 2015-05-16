@@ -16,6 +16,7 @@ module InchCI
           json = InchCI::Worker::BuildJSON.json(filename)
           if trigger.nil?
             trigger = 'ci'
+            trigger = 'shell' if json.shell?
             trigger = 'travis' if json.travis?
             trigger = 'circleci' if json.circleci?
           end
