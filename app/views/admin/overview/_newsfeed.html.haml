@@ -1,0 +1,21 @@
+.col-lg-6
+  .widget
+    .widget-title
+      = icon :'bar-chart'
+      = "Newsfeed"
+
+    .widget-body.large{:"data-scroll-down" => true}
+      .widget-content
+        - @newsfeed.each do |day|
+          .newsfeed-day
+            %strong= day.title
+            %p
+              = day.badges_added
+              badges added.
+            %p
+              = day.badges_removed
+              badges removed.
+            %p
+              = day.not_forked_projects_created
+              non-forked projects created.
+

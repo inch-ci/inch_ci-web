@@ -4,6 +4,7 @@ class Admin::OverviewController < ApplicationController
   def index
     set_stats
     set_chart_data
+    set_newsfeed
     set_projects
   end
 
@@ -66,6 +67,14 @@ class Admin::OverviewController < ApplicationController
     map
   end
 
+  def set_newsfeed
+    base_date = DateTime.parse('2015-02-20 00:00') # Time.now
+    @newsfeed = (1..7).to_a.reverse.map do |index|
+      date = base_date - index.days
+      NewsfeedDay.new(date)
+    end
+  end
+
   def set_projects
     @new_projects = Project.includes(:default_branch)
                             .where(:badge_generated => true)
@@ -91,5 +100,4 @@ class Admin::OverviewController < ApplicationController
     result << " (#{change})" if add_change
     result
   end
-
 end
