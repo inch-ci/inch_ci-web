@@ -62,6 +62,8 @@ class Admin::BuildsController < ApplicationController
   end
 
   def find_builds
-    filter_collection(Build).order('created_at DESC').limit(PER_PAGE)
+    arel = filter_collection(Build).order('created_at DESC')
+    @builds_total_count = arel.count
+    arel.limit(PER_PAGE)
   end
 end

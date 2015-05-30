@@ -29,8 +29,14 @@ class Admin::ProjectsController < ApplicationController
   end
 
   def index
-    @projects = filter_collection(Project).order('created_at DESC').limit(PROJECTS_PER_PAGE)
+    @projects = find_projects
     @languages = %w(Elixir JavaScript Ruby) + [LANGUAGE_NOT_SET]
+  end
+
+  def find_projects
+    arel = filter_collection(Project).order('created_at DESC')
+    @projects_total_count = arel.count
+    arel.limit(PROJECTS_PER_PAGE)
   end
 
   def show
