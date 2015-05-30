@@ -5,17 +5,21 @@
       = "Newsfeed"
 
     .widget-body.large{:"data-scroll-down" => true}
-      .widget-content
-        - @newsfeed.each do |day|
-          .newsfeed-day
-            %strong= day.title
-            %p
-              = day.badges_added
-              badges added.
-            %p
-              = day.badges_removed
-              badges removed.
-            %p
-              = day.not_forked_projects_created
-              non-forked projects created.
-
+      .table-responsive
+        %table.table.newsfeed
+          %tbody
+            - @newsfeed.each do |day|
+              %tr
+                %th= day.title
+                %td
+                  = day.badges_added
+                  badges added.
+                %td
+                  = day.badges_removed
+                  removed.
+                %td
+                  = day.not_forked_projects_created
+                  non-forked projects created.
+                %td
+                  = day.failed_builds
+                  failed builds.

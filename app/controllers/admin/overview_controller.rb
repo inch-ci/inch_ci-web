@@ -68,8 +68,8 @@ class Admin::OverviewController < ApplicationController
   end
 
   def set_newsfeed
-    base_date = Time.now
-    @newsfeed = (1..7).to_a.reverse.map do |index|
+    base_date = Time.now #Time.parse('2015-04-26')
+    @newsfeed = (1..14).to_a.reverse.map do |index|
       date = base_date - index.days
       NewsfeedDay.new(date)
     end
