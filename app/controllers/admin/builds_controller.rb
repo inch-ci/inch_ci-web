@@ -45,15 +45,18 @@ class Admin::BuildsController < ApplicationController
       arel = arel.where('projects.uid LIKE ?', "%#{uid}%")
     end
     if params[:service]
-      arel = filter_by_service_and_user(arel, params[:service], params[:user])
+      arel = filter_by_service_and_user(arel, params[:service], params[:user], params[:repo])
     end
     arel
   end
 
-  def filter_by_service_and_user(arel, service, user_name)
+  def filter_by_service_and_user(arel, service, user_name, repo_name)
     like = "#{service}:"
     if user_name
       like << "#{user_name}/"
+    end
+    if repo_name
+      like << "#{repo_name}"
     end
     arel.where('projects.uid LIKE ?', like+'%')
   end
