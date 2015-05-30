@@ -40,7 +40,7 @@ module BuildsHelper
       'hook' => :git,
       'manual' => :user,
       'tag_build' => :tags,
-      'ci' => :terminal,
+      'shell' => :terminal,
       'travis' => :"cloud-upload",
     }
   end
