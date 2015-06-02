@@ -89,13 +89,16 @@ module InchCI
       end
     end
 
+    STATUS_SCHEDULED = 'created'
+
     FindBuild = -> (id) { Build.find(id) }
     FindBuilds = -> (count = 200) { Build.order('id DESC').limit(count).includes(:revision).includes(:branch).includes(:project) }
     FindBuildsInProject = -> (project) { project.builds }
     FindBuildsInBranch = -> (branch, count = 200) { branch.to_model.builds.preload(:revision, :revision_diff).limit(count) }
+    FindScheduledBuildsInBranch = -> (branch) { branch.to_model.builds.where(:status => STATUS_SCHEDULED).preload(:revision, :revision_diff) }
     FindLatestBuildInProject = -> (project) { project.builds.order('id DESC').first }
 
-    CreateBuild = -> (branch, trigger, status = 'created') do
+    CreateBuild = -> (branch, trigger, status = STATUS_SCHEDULED) do
         attributes = {
           :status => status,
           :trigger => trigger,
@@ -117,11 +120,9 @@ module InchCI
         build.update_attributes!(attributes)
       end
 
-    UpdateBuildStatus = -> (build, status, started_at) do
-      attributes = {
-        :status => status,
-        :started_at => started_at
-      }
+    UpdateBuildStatus = -> (build, status, started_at = nil) do
+      attributes = {:status => status}
+      attributes[:started_at] = started_at if started_at
       build.update_attributes!(attributes)
     end
 

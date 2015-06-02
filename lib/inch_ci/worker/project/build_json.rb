@@ -21,6 +21,11 @@ module InchCI
             trigger = 'circleci' if json.circleci?
           end
 
+          scheduled_builds = Store::FindScheduledBuildsInBranch.call(branch)
+          scheduled_builds.each do |build|
+            Store::UpdateBuildStatus.call(build, STATUS_CANCELLED)
+          end
+
           if json.url
             branch = Store::EnsureProjectAndBranch.call(json.url, json.branch_name)
             build = Store::CreateBuild.call(branch, trigger)
@@ -46,8 +51,10 @@ module InchCI
           # @api private
           def perform(filename, url, branch_name = 'master', trigger = 'ci', build_id = nil)
             build = ensure_running_build(url, branch_name, trigger, build_id)
-            stdout_str, stderr_str, status = Open3.capture3("#{BIN} #{filename}")
-            Project::Build::HandleWorkerOutput.new(stdout_str, stderr_str, build)
+            if build.status == STATUS_RUNNING
+              stdout_str, stderr_str, status = Open3.capture3("#{BIN} #{filename}")
+              Project::Build::HandleWorkerOutput.new(stdout_str, stderr_str, build)
+            end
             Gossip.update_build(build, build.project, build.branch)
           end
 
@@ -61,7 +68,9 @@ module InchCI
           def ensure_running_build(url, branch_name, trigger, build_id)
             if build_id
               build = Store::FindBuild.call(build_id)
-              Store::UpdateBuildStatus.call(build, 'running', Time.now)
+              if build.status == STATUS_SCHEDULED
+                Store::UpdateBuildStatus.call(build, 'running', Time.now)
+              end
               Gossip.update_build(build, build.project, build.branch)
               build
             else

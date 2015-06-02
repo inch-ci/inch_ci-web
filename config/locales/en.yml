@@ -313,7 +313,11 @@ en:
 
   builds:
     status:
-      deffered: "prepare"
+      created: "Waiting ..."
+      cancelled: "Evaluation forwarded to next build"
+      duplicate: "Revision already exists"
+      running: "Evaluating!"
+      success: "Evaluation successful"
     index:
       title: Recent builds
       title_with_project: "Recent builds for %{project_name}"

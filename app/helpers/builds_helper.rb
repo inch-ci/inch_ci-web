@@ -7,23 +7,24 @@ module BuildsHelper
     {
       'created' => '',
       'running' => :info,
-      'deffered' => :success,
       'success' => :success,
       'duplicate' => :warning,
+      'cancelled' => :cancelled,
     }[build.status] || :danger
   end
 
   def build_status_icon(build)
     key = build_status_icon_map[build.status]
-    icon(key || :question, :title => build.status)
+    title = t("builds.status.#{build.status}", :default => build.status)
+    icon(key || :question, :title => title)
   end
 
   def build_status_icon_map
     {
       'created' => :"circle-o",
-      'running' => :"spinner fa-pulse",
-      'deffered' => :"arrow-up",
+      'cancelled' => :"arrow-up",
       'duplicate' => :"check-square",
+      'running' => :"spinner fa-pulse",
       'success' => :check,
       'failed:retriever' => :exclamation,
     }
