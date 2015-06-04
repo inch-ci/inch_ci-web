@@ -21,13 +21,14 @@ module InchCI
             trigger = 'circleci' if json.circleci?
           end
 
-          scheduled_builds = Store::FindScheduledBuildsInBranch.call(branch)
-          scheduled_builds.each do |build|
-            Store::UpdateBuildStatus.call(build, STATUS_CANCELLED)
-          end
-
           if json.url
             branch = Store::EnsureProjectAndBranch.call(json.url, json.branch_name)
+
+            scheduled_builds = Store::FindScheduledBuildsInBranch.call(branch)
+            scheduled_builds.each do |build|
+              Store::UpdateBuildStatus.call(build, STATUS_CANCELLED)
+            end
+
             build = Store::CreateBuild.call(branch, trigger)
             Gossip.new_build(build, build.project, build.branch)
             ShellInvocation.perform_async(filename, json.url, json.branch_name, trigger, build.id)
