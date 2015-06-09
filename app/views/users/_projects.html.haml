@@ -18,7 +18,7 @@
         %td.hook
           - if project.build_on_inch_ci?
             - if project.builds.count > 0
-              - if project.language == 'Ruby'
+              - if project.build_on_inch_ci?
                 - if project.hooked?
                   = link_to t("users.show.hook_remove"), project_path(project, :action => 'remove_hook'), :method => :post, :class => "btn btn-success"
                 - else
