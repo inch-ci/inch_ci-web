@@ -156,6 +156,10 @@ en:
 
       Let's start a discussion, let's raise the visibility of documentation, let's talk.
 
+      ## Which languages are supported?
+
+      Currently Inch supports ***Elixir, JavaScript, and Ruby***. If your language of choice is not supported, [create an issue](https://github.com/inch-ci/inch_ci-web/issues/new?title=Add support for) or [drop me a line on Twitter](https://twitter.com/rrrene).
+
       ## Wait, who's behind this?
 
       I'm [@rrrene](https://twitter.com/rrrene), creator of [sparkr](http://trivelop.de/sparkr) and [Inch](http://trivelop.de/inch).
