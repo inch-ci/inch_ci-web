@@ -455,3 +455,10 @@ en:
         Let's start a discussion, let's raise the visibility of documentation, let's talk.
 
         ***Suggestions, feedback, critique***: <a target="_blank" href="https://twitter.com/rrrene">Hit me up on Twitter</a> or <a target="_blank" href="%{new_issue_url}">via issue</a>.
+
+      intro: |
+        This page shows an **evaluation** of the project's documentation.
+
+        Each class, module, method, etc. is given a grade based on how complete the docs are.
+
+        The bar above shows the distribution of these grades.

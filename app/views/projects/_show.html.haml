@@ -1,14 +1,7 @@
 = render :layout => "page" do
   .explanation
-    %p
-      This page shows an
-      %strong evaluation
-      of the project's documentation.
+    = markdown t('projects.page.intro')
 
-    %p
-      Each class, module, method, etc. is given a grade based on how complete the docs are.
-    %p
-      The bar above shows the distribution of these grades.
 
   - if @project.language?(:javascript)
     .javascript-beta-hint
