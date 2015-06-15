@@ -9,7 +9,7 @@ module Action
 
       MAX_SUGGESTIONS = 20
 
-      exposes :project, :branch, :revision, :user,
+      exposes :project, :branch, :revision, :user, :code_objects,
               :collection, :suggestion_count, :pending_build
 
       def initialize(params)

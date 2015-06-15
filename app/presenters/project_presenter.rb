@@ -35,4 +35,8 @@ class ProjectPresenter < BasePresenter
   def name_without_owner
     name.to_s.split('/').last
   end
+
+  def unsupported_language?
+    !InchCI::Config::LANGUAGES.include?(project.language.to_s)
+  end
 end

@@ -1,17 +1,20 @@
 = render :layout => "page" do
-  .explanation
-    = markdown t('projects.page.intro')
+  - if @code_objects.empty?
+    - if @project.unsupported_language?
+      .explanation= markdown t('projects.page.unsupported_language_hint')
+  - else
+    .explanation= markdown t('projects.page.intro')
 
 
-  - if @project.language?(:javascript)
-    .javascript-beta-hint
-      %strong JavaScript support
-      is still young. Please
-      = link_to "report any mistakes", github_issue_url(:project => @project)
-      Inch makes!
-  .table-responsive
-    - @collection.each do |grade_list|
-      = render "shared/grade_list_table", :grade_list => grade_list
+    - if @project.language?(:javascript)
+      .javascript-beta-hint
+        %strong JavaScript support
+        is still young. Please
+        = link_to "report any mistakes", github_issue_url(:project => @project)
+        Inch makes!
+    .table-responsive
+      - @collection.each do |grade_list|
+        = render "shared/grade_list_table", :grade_list => grade_list
 
 
 .inch-links
