@@ -7,7 +7,7 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = sort_collection(User)
-    @languages = %w(Ruby Elixir Javascript)
+    @languages = InchCI::Config::LANGUAGES
   end
 
   private

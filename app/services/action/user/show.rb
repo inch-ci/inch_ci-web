@@ -5,7 +5,7 @@ module Action
     class Show
       include InchCI::Action
 
-      LANGUAGES = %w(Ruby Elixir JavaScript)
+      LANGUAGES = InchCI::Config::LANGUAGES
       DEFAULT_TAB = LANGUAGES.first
 
       exposes :user, :projects, :projects_without_badges, :languages,

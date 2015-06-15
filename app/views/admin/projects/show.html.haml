@@ -6,7 +6,7 @@
     = form_for(@project, :url => admin_project_path(@project), :method => :put, :html => {:class => 'edit-project-form form-horizontal'}) do |f|
       .form-group{:class => flash[:error] ? 'has-error' : nil}
         = f.label(:language, t(".label.language"))
-        = f.select(:language, %w(Ruby Elixir JavaScript), {}, :class => "form-control")
+        = f.select(:language, InchCI::Config::LANGUAGES, {}, :class => "form-control")
       .form-group{:class => flash[:error] ? 'has-error' : nil}
         = f.label(:language, t(".label.documentation_url"))
         = f.text_field(:documentation_url, :class => "form-control")
