@@ -5,5 +5,8 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-47478322-3', 'inch-ci.org');
+  <% if @project %>
+    ga('set', 'Project-Language', <%= @project.language.to_json.html_safe %>);
+  <% end %>
   ga('send', 'pageview');
 </script>
