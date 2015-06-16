@@ -55,6 +55,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :project_history_path
 
+  def project_history_url(*args)
+    url_for project_path(*args).merge(:action => 'history', :protocol => 'http')
+  end
+  helper_method :project_history_url
+
   def project_suggestions_path(*args)
     project_path(*args).merge(:action => 'suggestions')
   end
