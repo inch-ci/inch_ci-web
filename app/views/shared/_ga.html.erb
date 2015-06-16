@@ -6,7 +6,7 @@
 
   ga('create', 'UA-47478322-3', 'inch-ci.org');
   <% if @project %>
-    ga('set', 'Project-Language', <%= @project.language.to_json.html_safe %>);
+    ga('set', 'dimension1', <%= @project.language.to_json.html_safe %>);
   <% end %>
   ga('send', 'pageview');
 </script>
