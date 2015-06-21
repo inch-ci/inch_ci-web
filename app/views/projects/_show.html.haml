@@ -12,6 +12,10 @@
         is still young. Please
         = link_to "report any mistakes", github_issue_url(:project => @project)
         Inch makes!
+
+    - if @project.language?(:elixir)
+      = render "shared/elixirstatus_promo_hint"
+
     .table-responsive
       - @collection.each do |grade_list|
         = render "shared/grade_list_table", :grade_list => grade_list
@@ -25,6 +29,9 @@
     %li= link_to "Raising the visibility of inline-docs", "http://trivelop.de/2014/02/24/visibility-of-documentation/"
     %li= link_to "Why Inch doesn't use percentages", "http://trivelop.de/2014/02/17/why-inch-doesnot-use-percentages/"
     %li= link_to "Inch project page", "http://trivelop.de/inch"
+
+- if @project.language?(:elixir)
+  = render "shared/elixirstatus_promo_hint"
 
 .row.row-prefooter
   .container
