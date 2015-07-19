@@ -23,3 +23,5 @@ config/unicorn.rb
 
 /dumps
 *.sh
+
+/app/views/layouts/_admin_site_switcher.html.haml

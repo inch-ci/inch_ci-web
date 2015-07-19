@@ -1,0 +1,8 @@
+%ul.nav.navbar-nav.navbar-left
+  %li.dropdown.site-switcher
+    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      = image_tag("logo.png")
+    %ul.dropdown-menu
+      %li
+        %a{:href => "http://trivelop.de/"}
+          Personal blog

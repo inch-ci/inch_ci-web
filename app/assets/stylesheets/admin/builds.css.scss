@@ -13,6 +13,16 @@ body {
 .navbar-inverse {
   background-color: #273759;
   border-color: #273759;
+
+  .container-fluid {
+    padding: 0;
+  }
+}
+.site-switcher {
+  img {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 .projects tr td {
