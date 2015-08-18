@@ -83,7 +83,7 @@ InchCI::Application.routes.draw do
   # to catch branches with a "/" in them; this goes last, since we can only
   # support this if none of the other routes triggers; thus, people naming
   # their branches "foo/edit" or "bar/builds" are out of luck
-  get "#{triple}(/branch/:branch)" => 'projects#show', :constraints => triple_constraints.merge(:branch => /.+/), :format => false
+  #get "#{triple}(/branch/:branch)" => 'projects#show', :constraints => triple_constraints.merge(:branch => /.+/), :format => false
 
   resources :builds do
     member do
