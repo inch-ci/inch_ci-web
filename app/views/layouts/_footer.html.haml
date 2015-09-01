@@ -4,9 +4,17 @@
     %p
       = markdown t("shared.footer")
 
-    - if current_user
-      = link_to current_user.display_name, user_path(current_user)
-      = "|"
-      = link_to "Sign out", signout_path
-    - else
-      = link_to "Sign in with GitHub", signin_path
+    %p
+      - if current_user
+        = link_to current_user.display_name, user_path(current_user)
+        = "|"
+        = link_to "Sign out", signout_path
+      - else
+        = link_to "Sign in with GitHub", signin_path
+
+        |
+        = link_to "Contact", "http://trivelop.de/imprint/"
+        |
+        = link_to "Imprint", "http://trivelop.de/imprint/"
+        |
+        = link_to "Blog", "http://trivelop.de/imprint/"
