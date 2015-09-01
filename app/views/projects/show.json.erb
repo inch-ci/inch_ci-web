@@ -1,0 +1,16 @@
+<%-
+  @total = @collection.map(&:code_objects).map(&:size).inject(:+)
+  @percentages = @collection.map { |grade_list| (grade_list.code_objects.size / @total.to_f).round(3) }
+-%>
+{
+  "user_name": '<%= escape_javascript @project.user_name %>',
+  "repo_name": '<%= escape_javascript @project.repo_name %>',
+  "branch_name": '<%= escape_javascript @branch.name %>',
+  "revision_sha1": '<%= escape_javascript @revision.uid %>',
+  "grade_shares": <%= @percentages.to_json %>,
+  "grade_map": {
+  <% @collection.each do |grade_list| %>
+    "<%= grade_list.grade %>": <%= grade_list.code_objects.size %><%= "," unless grade_list == @collection.to_a.last %>
+  <% end %>
+  }
+}
