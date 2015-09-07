@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require cookieconsent.latest.min
 //= require bootstrap
 //= require application/base
 //= require application/phoenix
