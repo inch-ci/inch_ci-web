@@ -203,7 +203,7 @@ en:
 
         Like many services, Inch CI provides badges to be embedded in READMEs. That way, visitors and potential contributors of your GitHub projects can immediately see that you value documenting your code.
 
-        Here is an example from one of my projects: [![Inline docs](http://inch-ci.org/github/rrrene/sparkr.svg?branch=master)](http://inch-ci.org/github/rrrene/sparkr)
+        Here is an example from one of my projects: [![Inline docs](//inch-ci.org/github/rrrene/sparkr.svg?branch=master)](//inch-ci.org/github/rrrene/sparkr)
 
         Hopefully it's mostly green when you're reading this.
 
@@ -312,7 +312,7 @@ en:
     howto1: "Go to the *Settings* page of your repository:"
     howto2: "Select the *Webhooks and Services* submenu:"
     howto3: "Click the *Add webhook* button ..."
-    howto4: "... and use http://inch-ci.org/rebuild as Payload URL:"
+    howto4: "... and use https://inch-ci.org/rebuild as Payload URL:"
     howto5: "Click *Add webhook* and you are good to go!"
 
   builds:
@@ -469,4 +469,3 @@ en:
         Currently Inch supports ***Elixir, JavaScript, and Ruby***.
 
         If your language of choice is not supported, [create an issue](https://github.com/inch-ci/inch_ci-web/issues/new?title=Add support for) or [drop me a line on Twitter](https://twitter.com/rrrene).
-
