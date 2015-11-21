@@ -26,4 +26,4 @@
             - else
               %tr.show_more{:"data-insert-#{grade_list.grade}" => true}
                 %td{:colspan => 3}
-                  = link_to t('grade_list_table.show_more', :more_count => grade_list.count - show_count), project_path(@project, :grade_list => grade_list.grade), :remote => true
+                  = link_to t('grade_list_table.show_more', :more_count => grade_list.count - show_count), project_path(@project, @branch.try(:name), :grade_list => grade_list.grade), :remote => true
