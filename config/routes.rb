@@ -61,7 +61,7 @@ InchCI::Application.routes.draw do
   post "sync_projects" => 'users#sync_projects', :as => :sync_projects
   get "welcome" => 'users#welcome', :as => :welcome
 
-  get "#{triple}/branch/:branch/revision/:revision/code_object/:code_object" => 'code_objects#show', :constraints => triple_constraints
+  get "#{triple}/revision/:revision/code_object/:code_object" => 'code_objects#show', :constraints => triple_constraints
 
   get "#{triple}.:format" => 'projects#badge', :constraints => badge_constraints
   get "#{triple}.:format" => 'projects#show', :constraints => json_constraints
