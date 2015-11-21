@@ -52,7 +52,7 @@ InchCI::Application.routes.draw do
 
   duo    = ':service/:user'
   triple = ':service/:user/:repo'
-  triple_constraints = {:service => /(github)/, :repo => /[^\/]+/, :branch => /[^\/]+/}
+  triple_constraints = {:service => /(github)/, :repo => /[^\/]+/}
   badge_constraints = {:format => /(png|svg)/}.merge(triple_constraints)
   json_constraints = {:format => /json/}.merge(triple_constraints)
 
@@ -66,26 +66,21 @@ InchCI::Application.routes.draw do
   get "#{triple}.:format" => 'projects#badge', :constraints => badge_constraints
   get "#{triple}.:format" => 'projects#show', :constraints => json_constraints
 
-  get "(#{triple}(/branch/:branch))/builds" => 'builds#index', :as => :builds, :constraints => triple_constraints
-  #get "#{triple}(/branch/:branch)(/revision/:revision)/list" => 'projects#show', :constraints => triple_constraints
-  get "#{triple}(/branch/:branch)(/revision/:revision)/suggestions" => 'projects#suggestions', :constraints => triple_constraints
-  get "#{triple}(/branch/:branch)(/revision/:revision)/history" => 'projects#history', :constraints => triple_constraints
-  get "#{triple}(/branch/:branch)(/revision/:revision)" => 'projects#show', :constraints => triple_constraints, :format => false
+  get "(#{triple})/builds" => 'builds#index', :as => :builds, :constraints => triple_constraints
+  #get "#{triple}(/revision/:revision)/list" => 'projects#show', :constraints => triple_constraints
+  get "#{triple}(/revision/:revision)/suggestions" => 'projects#suggestions', :constraints => triple_constraints
+  get "#{triple}(/revision/:revision)/history" => 'projects#history', :constraints => triple_constraints
+  get "#{triple}(/revision/:revision)" => 'projects#show', :constraints => triple_constraints, :format => false
 
-  post "#{triple}(/branch/:branch)/rebuild" => 'projects#rebuild', :constraints => triple_constraints
-  post "#{triple}(/branch/:branch)/update_info" => 'projects#update_info', :constraints => triple_constraints
-  post "#{triple}(/branch/:branch)/create_hook" => 'projects#create_hook', :constraints => triple_constraints
-  post "#{triple}(/branch/:branch)/remove_hook" => 'projects#remove_hook', :constraints => triple_constraints
+  post "#{triple}/rebuild" => 'projects#rebuild', :constraints => triple_constraints
+  post "#{triple}/update_info" => 'projects#update_info', :constraints => triple_constraints
+  post "#{triple}/create_hook" => 'projects#create_hook', :constraints => triple_constraints
+  post "#{triple}/remove_hook" => 'projects#remove_hook', :constraints => triple_constraints
 
   get  "#{triple}/edit" => 'projects#edit', :constraints => triple_constraints
   put  "#{triple}" => 'projects#update', :constraints => triple_constraints
 
   post 'rebuild' => 'projects#rebuild_via_hook'
-
-  # to catch branches with a "/" in them; this goes last, since we can only
-  # support this if none of the other routes triggers; thus, people naming
-  # their branches "foo/edit" or "bar/builds" are out of luck
-  #get "#{triple}(/branch/:branch)" => 'projects#show', :constraints => triple_constraints.merge(:branch => /.+/), :format => false
 
   resources :builds do
     member do
