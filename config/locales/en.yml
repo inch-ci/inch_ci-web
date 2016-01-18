@@ -360,7 +360,7 @@ en:
           intro: "Inch was originally designed to evaluate the inline-docs of Ruby projects"
         Elixir:
           header: "Elixir projects"
-          intro: "Inch CI can now also evaluate Elixir projects, but they have to be build by Travis"
+          intro: "Inch CI can now also evaluate Elixir projects, but they have to be built by Travis"
           how_to_build: "How to configure Travis to build this project"
         JavaScript:
           header: "JavaScript projects"
