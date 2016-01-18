@@ -32,6 +32,9 @@ module Action
       def find_or_create_user(auth)
         user = ::User.find_or_create_with_omniauth(auth)
         user.github_access_token = auth["credentials"]["token"]
+        user.display_name = auth["info"]["name"]
+        user.user_name = auth["info"]["nickname"]
+        user.email = auth["info"]["email"]
         user.follows = follows(user) if user.follows.nil?
         user
       end
