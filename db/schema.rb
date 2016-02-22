@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223114527) do
+ActiveRecord::Schema.define(version: 20160222085815) do
 
   create_table "branches", force: true do |t|
     t.integer  "project_id"
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20151223114527) do
     t.integer  "branch_id"
     t.string   "uid"
     t.string   "tag_uid"
-    t.string   "message"
+    t.text     "message"
     t.string   "author_name"
     t.string   "author_email"
     t.datetime "authored_at"
