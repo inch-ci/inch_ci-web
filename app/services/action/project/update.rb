@@ -10,9 +10,9 @@ module Action
 
       # allow if user owns project or user is in project's org
       def self.can_edit?(current_user, project)
+        organizations = current_user.organizations || []
         project.user_name.downcase == current_user.user_name.downcase ||
-          current_user.organizations.map(&:downcase)
-            .include?(project.user_name.downcase)
+          organizations.map(&:downcase).include?(project.user_name.downcase)
       end
 
       def initialize(current_user, params)
