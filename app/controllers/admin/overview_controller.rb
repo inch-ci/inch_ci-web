@@ -4,10 +4,12 @@ class Admin::OverviewController < ApplicationController
   def index
     set_stats
     @days_back = 7
-    @pending_builds = Build.where("created_at > ?", (@days_back + 1).days.ago)
-                            .where(:status => %w(created)).count
-    @success_builds = Build.where("created_at > ?", (@days_back + 1).days.ago)
-                            .where(:status => %w(success)).count
+    @pending_builds_24 = Build.where("created_at > ?", 24.hours.ago)
+                            .where(:status => "created").count
+    @pending_builds_48 = Build.where("created_at > ?", 48.hours.ago)
+                            .where(:status => "created").count
+    @success_builds_24 = Build.where("created_at > ?", 24.hours.ago)
+                            .where(:status => "success").count
 
     respond_to do |format|
       format.html do
