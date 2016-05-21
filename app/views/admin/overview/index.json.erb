@@ -1,0 +1,14 @@
+{
+  "stats": {
+    "badges": {
+      "elixir": <%= @stats_badges_elixir.to_i %>,
+      "javascript": <%= @stats_badges_javascript.to_i %>,
+      "ruby": <%= @stats_badges_ruby.to_i %>,
+      "all": <%= @stats_badges.to_i %>
+    },
+    "builds": {
+      "pending": <%= @pending_builds.to_i %>,
+      "success": <%= @success_builds.to_i %>
+    }
+  }
+}

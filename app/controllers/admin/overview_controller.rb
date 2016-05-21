@@ -3,9 +3,21 @@ class Admin::OverviewController < ApplicationController
 
   def index
     set_stats
-    set_chart_data
-    set_newsfeed
-    set_projects
+    @days_back = 7
+    @pending_builds = Build.where("created_at > ?", (@days_back + 1).days.ago)
+                            .where(:status => %w(created)).count
+    @success_builds = Build.where("created_at > ?", (@days_back + 1).days.ago)
+                            .where(:status => %w(success)).count
+
+    respond_to do |format|
+      format.html do
+        set_chart_data
+        set_newsfeed
+        set_projects
+      end
+      format.json do
+      end
+    end
   end
 
   private
@@ -30,6 +42,9 @@ class Admin::OverviewController < ApplicationController
       ]
     end
     @stats_badges = stat('projects:badges')
+    @stats_badges_elixir = stat('projects:badges:elixir')
+    @stats_badges_ruby = stat('projects:badges:ruby')
+    @stats_badges_javascript = stat('projects:badges:javascript')
     @stats_badge_users = stat('maintainers:badges')
     @stats_badges_per_user = quotient('projects:badges', 'maintainers:badges')
     @stats_hooks_per_user = quotient('projects:hooked', 'maintainers:hooked')
@@ -83,7 +98,8 @@ class Admin::OverviewController < ApplicationController
   end
 
   def stat(name)
-    Statistics.where(:name => name).last.value
+    statistic = Statistics.where(:name => name).last
+    (statistic && statistic.value).to_i
   end
 
   def quotient(name1, name2, digits = 2)
