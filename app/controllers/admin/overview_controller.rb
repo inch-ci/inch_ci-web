@@ -3,13 +3,6 @@ class Admin::OverviewController < ApplicationController
 
   def index
     set_stats
-    @days_back = 7
-    @pending_builds_24 = Build.where("created_at > ?", 24.hours.ago)
-                            .where(:status => "created").count
-    @pending_builds_48 = Build.where("created_at > ?", 48.hours.ago)
-                            .where(:status => "created").count
-    @success_builds_24 = Build.where("created_at > ?", 24.hours.ago)
-                            .where(:status => "success").count
 
     respond_to do |format|
       format.html do
@@ -18,6 +11,9 @@ class Admin::OverviewController < ApplicationController
         set_projects
       end
       format.json do
+        @pending_builds_24 = Build.where("created_at > ?", 24.hours.ago).where(:status => "created").count
+        @pending_builds_48 = Build.where("created_at > ?", 48.hours.ago).where(:status => "created").count
+        @success_builds_24 = Build.where("created_at > ?", 24.hours.ago).where(:status => "success").count
       end
     end
   end
@@ -45,8 +41,8 @@ class Admin::OverviewController < ApplicationController
     end
     @stats_badges = stat('projects:badges')
     @stats_badges_elixir = stat('projects:badges:elixir')
-    @stats_badges_ruby = stat('projects:badges:ruby')
     @stats_badges_javascript = stat('projects:badges:javascript')
+    @stats_badges_ruby = @stats_badges - @stats_badges_elixir - @stats_badges_javascript
     @stats_badge_users = stat('maintainers:badges')
     @stats_badges_per_user = quotient('projects:badges', 'maintainers:badges')
     @stats_hooks_per_user = quotient('projects:hooked', 'maintainers:hooked')
