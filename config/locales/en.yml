@@ -436,7 +436,9 @@ en:
       about2: |
         ### Can I have my own badges?
 
-        [Sure!](/)
+        Sure! To get the badge for the project you are looking at, just click the badge next to the project name.
+
+        To register another project with Inch CI, just [enter your username/repo on the homepage](/) or [sign in with GitHub!](/auth/github)
 
       about_help: |
         ### Can I tell Inch which files to evaluate?
