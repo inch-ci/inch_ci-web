@@ -47,7 +47,7 @@ module Action
       end
 
       module HookConfig
-        HOOK_URL = 'http://inch-ci.org/rebuild'
+        HOOK_URL = 'https://inch-ci.org/rebuild'
 
         def hook_service
           'web'
