@@ -48,7 +48,7 @@
         %small
           Syncing projects. This may take 10-30 seconds, if you have many.
       :javascript
-        I.user.syncProjects(#{init_projects_url.to_json});
+        I.user.syncProjects(#{init_projects_url(protocol: 'https').to_json});
 
     %p#synced{:style => start_sync ? 'display:none' : nil}
       = link_to(("Let's look at my projects" + ' ' + icon(:'arrow-right')).html_safe, user_path(current_user), :class => 'btn btn-lg btn-default')
