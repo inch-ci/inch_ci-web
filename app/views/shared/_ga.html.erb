@@ -8,5 +8,6 @@
   <% if @project %>
     ga('set', 'dimension1', <%= @project.language.to_json.html_safe %>);
   <% end %>
+  ga('set', 'anonymizeIp', true);
   ga('send', 'pageview');
 </script>
