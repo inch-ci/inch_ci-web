@@ -35,6 +35,8 @@ module InchCI
 
       def post(event_name, build, project, branch)
         Net::HTTP.post_form url(event_name), payload(build, project, branch)
+      rescue StandardError => e
+        Rails.logger.warn "Gossip: #{e}"
       end
 
       def url(event_name)
