@@ -9,8 +9,12 @@ InchCI::Application.routes.draw do
   namespace :api do
     get 'v1/cli' => 'cli#hint'
     post 'v1/cli' => 'cli#run'
+
     get 'v1/builds' => 'builds#hint'
     post 'v1/builds' => 'builds#run'
+
+    get 'v2/builds' => 'builds#hint'
+    post 'v2/builds' => 'builds#run'
   end
 
   # Help section
