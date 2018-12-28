@@ -42,7 +42,7 @@ gem 'unicorn'
 
 gem "omniauth-github", '1.1.1'
 
-gem 'inch', '0.7.1'
+gem 'inch', '0.9.0.rc1'
 gem 'inch-badge', '>= 0.3.5'
 gem 'inch_ci-worker', '>= 0.3.4'
 gem 'octokit'
