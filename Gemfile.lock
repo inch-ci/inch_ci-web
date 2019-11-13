@@ -222,7 +222,7 @@ GEM
       raindrops (~> 0.7)
     uniform_notifier (1.6.2)
     uuidtools (2.1.4)
-    yard (0.9.16)
+    yard (0.9.20)
 
 PLATFORMS
   ruby
